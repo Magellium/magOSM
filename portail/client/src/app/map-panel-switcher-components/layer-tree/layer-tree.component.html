@@ -1,0 +1,114 @@
+
+<div class="card-header p-2 text-center" role="tab" id="headingMenu">
+  <div data-toggle="collapse" href="#collapseLegend" aria-expanded="true" aria-controls="collapseLegend">
+    <h3>Thématiques</h3>
+  </div>
+</div>
+<div role="tablist" aria-multiselectable="true" style="overflow-y: hidden; overflow-x: hidden; width:100%;" >
+    <div *ngFor="let categorie of layervariables" class="card">
+        <div class="card-header" role="tab" id="categorie{{categorie.id_categorie}}">
+            <h6 class="mb-0">
+                <a id="categorie-title" class="collapsed" data-toggle="collapse" data-parent="#menuaccordion" [attr.href]="'#collapse'+categorie.id_categorie"
+                    [title]="categorie.help || categorie.categorie"
+                    [attr.aria-controls]="'#collapse'+categorie.id_categorie" aria-expanded="false"
+                >
+                    {{categorie.categorie}}
+                </a>
+            </h6>
+        </div>
+        <div class="collapse collapse-close" [attr.id]="'collapse'+categorie.id_categorie" role="tabpanel" [attr.aria-labelledby]="'categorie'+categorie.id_categorie">
+            <div class="list-group">
+                <div *ngFor="let feature of categorie.features">
+                    <a id="layer-title" type="button" class="list-group-item btn-feature layer-entry"
+                        style="width: 100%;" 
+                        [class.visible]="mapService.isVisible(feature.layername)"
+                    >
+                        <div>
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input position-static" (click)="onSelect($event,feature)" [checked]="categorie.id_categorie === 4 || (userContext.vLay.indexOf(feature.layername.replace(myRegex, '')) >= 0)">
+                                {{feature.nom_court}}
+                                <a (click)="onInfo(feature)">
+                                    <img width="24" height="24" src="./assets/menu/help-info.png" [title]="feature.md_url ? 'Fiche de métadonnées' : 'Aucune info pour cette couche'" />
+                                </a>
+                            </label>
+   
+                            <span class="loading-panel" *ngIf="getState(feature)>0">
+                                <div class="loading-counter">{{getState(feature)}}</div>
+                                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                            </span>
+
+                            <br>
+
+                            <div style="
+                                display: flex;
+                                align-items: center;
+                            ">
+                                <input #ref
+                                    type="range" min ="0" max="100" step ="2.5"
+                                    value ="{{feature.opacity}}"
+                                    (change)="changeOpacity($event,feature,ref.value);false"
+                                    style="width:60px; padding-right: 10px;"
+                                />
+
+                                <span *ngIf="mapService.isInRange(feature.layername)==false" 
+                                    style="cursor:pointer;margin: 3px"
+                                    title="Couche non visible à cette résolution" 
+                                    data-container="body"
+                                    data-toggle="popover"
+                                    data-trigger="hover"
+                                    data-html="true"
+                                    data-content="<div class='alert alert-warning'><i class='fa fa-warning' aria-hidden='true'></i> la couche n'est pas visible à cette résolution</div>"
+                                    data-placement="top"
+                                >
+                                    <i class="fa fa-eye-slash" aria-hidden="true" style="font-size: 27px;"></i>
+                                </span>
+                                <span *ngIf="feature.download_kml" 
+                                    style="cursor:pointer;margin: 3px"
+                                    (click)="onKmlDownload($event,feature)" 
+                                    title="Téléchargement KML" 
+                                    data-container="body"
+                                    data-toggle="popover"
+                                    data-trigger="hover"
+                                    data-html="true"
+                                    data-content="<div class='alert alert-warning'><i class='fa fa-warning' aria-hidden='true'></i> Téléchargement de la zone visualisée uniquement</div>"
+                                    data-placement="top"
+                                >
+                                    <i class="fa fa-download" aria-hidden="true"></i> kml
+                                </span>
+                                <span *ngIf="feature.download_shp"
+                                    style="cursor:pointer;margin: 3px"
+                                    (click)="onShpDownload($event,feature)"
+                                    title="Téléchargement Shapefile" 
+                                    data-container="body"
+                                    data-toggle="popover"
+                                    data-trigger="hover"
+                                    data-html="true"
+                                    data-content="<div class='alert alert-warning'><i class='fa fa-warning' aria-hidden='true'></i>Téléchargement de la zone visualisée uniquement</div>"
+                                    data-placement="top"
+                                >
+                                    <i class="fa fa-download" aria-hidden="true"></i> shp
+                                </span>
+                                <span *ngIf="feature.sld_url"
+                                    style="cursor:pointer;margin: 3px"
+                                    (click)="onSldDownload($event,feature)"
+                                    title="Téléchargement du style" 
+                                    data-container="body"
+                                    data-toggle="popover"
+                                    data-trigger="hover"
+                                    data-html="true"
+                                    data-content="<div class='alert alert-warning'><i class='fa fa-warning' aria-hidden='true'></i>Téléchargement du style au format sld, les pictos ne sont pas inclus</div>"
+                                    data-placement="top"
+                                >
+                                    <i class="fa fa-download" aria-hidden="true"></i> sld
+                                </span>
+
+                            </div>
+
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

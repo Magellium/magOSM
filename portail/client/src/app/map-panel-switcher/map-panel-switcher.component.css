@@ -1,0 +1,109 @@
+.btn {
+  font-size: 14px;
+}
+
+.btn-feature {
+  text-align: left;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #0275d8;
+  border-color: #0275d8;
+}
+
+/* panneau masquable */
+
+
+#panel-switcher-wrapper {
+  margin-right: -300px;
+  right: 0;
+  top: 0vw;
+  width: 300px;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.5s ease-in 0s;
+  -webkit-transition: all 0.5s ease-in 0s;
+  -moz-transition: all 0.5s ease-in 0s;
+  -ms-transition: all 0.5s ease-in 0s;
+  -o-transition: all 0.5s ease-in 0s;
+}
+
+.panel-switcher-opts {
+  right: 10px;
+  position: fixed;
+  z-index: 1;
+  top: 60px;
+  transition: all 0.5s ease-in 0s;
+  -webkit-transition: all 0.5s ease-in 0s;
+  -moz-transition: all 0.5s ease-in 0s;
+  -ms-transition: all 0.5s ease-in 0s;
+  -o-transition: all 0.5s ease-in 0s;
+}
+
+
+.panel-switcher-nav {
+  position: absolute;
+  top: 0;
+  width: 300px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.panel-switcher-nav li {
+  line-height: 50px;
+  text-indent: 20px;
+}
+
+.panel-switcher-nav li a {
+  color: #999999;
+  display: block;
+  text-decoration: none;
+}
+
+.panel-switcher-nav li a:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+
+.panel-switcher-nav li a:active, .panel-switcher-nav li a:focus {
+  text-decoration: none;
+}
+
+.btn-panel-switcher {
+  width: 110px;
+  height: 25px;
+}
+
+#panel-switcher-wrapper.active {
+  right: 300px;
+  width: 300px;
+  transition: all 0.5s ease-out 0s;
+  -webkit-transition: all 0.5s ease-out 0s;
+  -moz-transition: all 0.5s ease-out 0s;
+  -ms-transition: all 0.5s ease-out 0s;
+  -o-transition: all 0.5s ease-out 0s;
+}
+
+.panel-switcher-opts.active{
+  right: 300px;
+  transition: all 0.5s ease-out 0s;
+  -webkit-transition: all 0.5s ease-out 0s;
+  -moz-transition: all 0.5s ease-out 0s;
+  -ms-transition: all 0.5s ease-out 0s;
+  -o-transition: all 0.5s ease-out 0s;
+}
+
+
+.toggle {
+  margin: 5px 5px 0 0;
+  line-height: .5;
+}
+
+
+

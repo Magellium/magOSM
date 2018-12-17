@@ -1,0 +1,19 @@
+
+
+app-alert{
+    position:absolute;
+    top:400px;
+    left:480px;
+}
+
+#menuContainer {
+    position: absolute;
+    top: 2%;
+    z-index: 2;
+    right: 0px;
+    width: 200px;
+    overflow: hidden;
+    overflow-y: hidden;
+    scroll-behavior: unset;
+    position: absolute;
+  }

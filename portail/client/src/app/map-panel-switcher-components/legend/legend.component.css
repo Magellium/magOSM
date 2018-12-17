@@ -1,0 +1,20 @@
+
+.legendcolor{
+    width:25px;
+    height:15px;
+    display:inline-block;
+    }
+
+#headingLegende{
+    font-size: 1vw;
+}
+
+h3 {
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 0.7em;
+    font-weight: bold;
+}

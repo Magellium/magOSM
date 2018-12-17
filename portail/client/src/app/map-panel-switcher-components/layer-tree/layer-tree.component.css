@@ -1,0 +1,207 @@
+#headingMenu{
+    font-size: 1vw;
+}
+
+
+  #categorie-title{
+      color: black;
+      font-size: 0.8em;
+  }
+
+  #layer-title{
+      font-size: 0.7em;
+      line-height: 100%
+  }
+
+  .shift {
+    position: relative;
+    left: 30px;
+  }
+
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
+
+h3 {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
+.ol-attribution{
+  right: 50px;
+}
+
+.loading-panel{
+	position:relative;
+	top:-10px;
+	left:0px
+}
+
+.loading-counter{
+	position:absolute;
+	color:white;
+	z-index: 100001;
+	top:13px;
+	left:15px
+}
+.lds-ring {
+	/*background-color: lightskyblue;*/
+	z-index: 100000;
+	display: inline-block;
+	position: relative;
+	width: 8px;
+	height: 8px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: 6px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.layer-entry {
+  background: white;
+}
+
+.layer-entry.visible {
+  background: #dae2ec;
+}
+
+/*
+ * Make sure bg is transparent. If not set, bg is white for Chrome while
+ * actually transparent for Firefox and Edge.
+ */
+input[type=range] {
+  background: transparent;
+}
+
+/*
+ * Styling of slider defined with this web page:
+ *     https://www.cssportal.com/style-input-range/
+ */
+
+input[type=range] {
+  height: 17px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #ADC8D9;
+  border-radius: 7px;
+  border: 0px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #738E9C;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  background: #F0F9FF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ADC8D9;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #ADC8D9;
+  border-radius: 7px;
+  border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #738E9C;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  background: #F0F9FF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #ADC8D9;
+  border: 0px solid #000000;
+  border-radius: 14px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #ADC8D9;
+  border: 0px solid #000000;
+  border-radius: 14px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #738E9C;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  background: #F0F9FF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #ADC8D9;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #ADC8D9;
+}

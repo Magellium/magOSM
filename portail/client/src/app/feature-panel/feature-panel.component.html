@@ -1,0 +1,110 @@
+<div class="card row active" id="featurepanel-wrapper" style="overflow-x: hidden;">
+  <div class="featurepanel-nav">
+    <a id="featurepanel-close" href="#" class="btn btn-default pull-right toggle">
+        <b class="glyphicon glyphicon-remove">x</b>
+    </a>
+    <div class="card-header p-2 text-center" role="tab" id="headingFeaturePanel" style="word-wrap: break-word;">
+      <b data-toggle="collapse" href="#collapseFeaturePanel" aria-expanded="true" aria-controls="collapseFeaturePanel">
+        <b> Information sur l'objet</b>
+      </b>
+    </div>
+
+    <div id="featureContainer">
+      <div id="collapseFeaturePanel" class="collapse show" role="tabpanel" aria-labelledby="headingFeaturePanel"><!--<https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll/16671476#16671476-->
+        <div  class="card-block p-2">
+          <div style="width:100%;overflow-y:scroll;">
+            <div id="panel_accordion" role="tablist" aria-multiselectable="true">
+
+              <div *ngIf="selectedFeatures.length>1">
+                <!--
+                        <nav aria-label="Page navigation example">
+                          <ul class="pagination">
+                            
+                            <li *ngFor="let k of selectedFeatures" class="page-item"><a class="page-link" (click)="onSelect(k)" href="#">{{k.get('osm_id')}}</a></li>
+                          </ul>
+                      </nav>
+                -->
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{selectedFeature.getDisplayLabel()}}
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a *ngFor="let k of selectedFeatures" class="dropdown-item" (click)="onSelect(k)">{{k.getDisplayLabel()}}</a>
+                  </div>
+                </div>
+              </div>
+
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>clef</th>
+                    <th>valeur</th>
+                    <th>overpass</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let k of keys">
+                    <tr>
+                      <td>
+                        <a target="_blank" href="https://taginfo.openstreetmap.fr/keys/{{k}}#overview">{{formatKey(k)}}</a>
+                      </td>
+                      <td>
+                        <span *ngIf="k == 'wikidata'" ><a  target="_blank" href="https://www.wikidata.org/wiki/{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span>
+                        <span *ngIf="k == 'wikipedia'" ><a  target="_blank" href="https://fr.wikipedia.org/wiki/{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span> 
+                        <span *ngIf="k == 'website'" ><a  target="_blank" href="{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span> 
+                        <span *ngIf="selectedFeature.get(k) != undefined && k != 'wikidata' && k != 'wikipedia' && k != 'website'" ><a  target="_blank" href="https://taginfo.openstreetmap.fr/tags/{{k}}={{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span>
+                        <span *ngIf="selectedFeature.get(k) == undefined && k != 'wikidata' && k != 'wikipedia' && k != 'website'" >n/a</span>
+                      </td>
+                      <td>
+                        <a target="_blank" href="http://overpass-turbo.eu/?key={{k}}&value={{selectedFeature.get(k)}}&template=key-value"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAABJklEQVQoz13RP0oDYRCH4UcShdRbWWjSWWgOEEFLSWNj5SG2DHxa5RBaWOQM5gASraKdILugblaTEAvBP6BC0M4iWxhnuoHfDPO+QElkU3Dhy5ueYFOkpKiymlhfZiCXyWT6YjXlWbqmLZHratm1q6Url2irKRGJpRJBXaSiIlIXJBKxiIZLE4eqs4XF0aoDD/oaHHgytG/VkoWil6zac+VR4Nynb4lj29atWbNu27Ebnz6c82pq7N7YnWtdXdfuisnUKy+GYk0dqYkTJyZSHU2xoRd6Mi3LVuw4MzJyZseKZS2ZHkHmVF1ZRdPAQFNFWd2pTKChLxdULdqQSm1YVBXkszcjsaQAteXWra15UH9RH3n27Gge9V9ZYz++jeZl/df9Pq/7F7ojeX4atkuXAAAAAElFTkSuQmCC"></a>
+                      </td>
+                    </tr>
+                  </ng-container>  
+                </tbody>
+              </table>
+
+
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>clef</th>
+                    <th>valeur</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let k of technical_keys">
+                    <tr>
+                      <td>{{k}}</td>
+                      <td>
+                        <span *ngIf="k == 'osm_id' && selectedFeature.get(k)>0" ><a  target="_blank" href="http://www.openstreetmap.org/{{osm_type}}/{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span>
+                        <span *ngIf="k == 'osm_id' && selectedFeature.get(k)<0" ><a  target="_blank" href="http://www.openstreetmap.org/relation/{{selectedFeature.get(k)*-1}}">{{selectedFeature.get(k)*-1}}</a> </span>
+                        <span *ngIf="k == 'osm_user'" ><a  target="_blank" href="http://www.openstreetmap.org/user/{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span> 
+                        <span *ngIf="k == 'osm_changeset'" ><a  target="_blank" href="http://www.openstreetmap.org/changeset/{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span>
+                        
+                        <span *ngIf="selectedFeature.get(k) != undefined && k != 'osm_id' && k != 'osm_user' && k != 'osm_changeset'" >{{selectedFeature.get(k)}} </span>
+                        <span *ngIf="selectedFeature.get(k) == undefined && k != 'osm_id' && k != 'osm_user' && k != 'osm_changeset'" >n/a</span>
+                      </td>
+                    </tr>
+                  </ng-container>  
+                </tbody>
+              </table>
+
+              <!--  <ul class="list-group">
+                  <ng-container *ngFor="let k of keys">
+                    <li class="list-group-item justify-content-between" >
+                        <span id="layer-title"><a target="_blank" href="https://taginfo.openstreetmap.fr/keys/{{k}}#overview">{{k}}</a>:</span>
+                        <span *ngIf="selectedFeature.get(k) != undefined" ><a  target="_blank" href="https://taginfo.openstreetmap.fr/tags/{{k}}={{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span>
+                        <a target="_blank" href="http://overpass-turbo.eu/?key={{k}}&value={{selectedFeature.get(k)}}&template=key-value"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAABJklEQVQoz13RP0oDYRCH4UcShdRbWWjSWWgOEEFLSWNj5SG2DHxa5RBaWOQM5gASraKdILugblaTEAvBP6BC0M4iWxhnuoHfDPO+QElkU3Dhy5ueYFOkpKiymlhfZiCXyWT6YjXlWbqmLZHratm1q6Url2irKRGJpRJBXaSiIlIXJBKxiIZLE4eqs4XF0aoDD/oaHHgytG/VkoWil6zac+VR4Nynb4lj29atWbNu27Ebnz6c82pq7N7YnWtdXdfuisnUKy+GYk0dqYkTJyZSHU2xoRd6Mi3LVuw4MzJyZseKZS2ZHkHmVF1ZRdPAQFNFWd2pTKChLxdULdqQSm1YVBXkszcjsaQAteXWra15UH9RH3n27Gge9V9ZYz++jeZl/df9Pq/7F7ojeX4atkuXAAAAAElFTkSuQmCC"></a>
+                        <span *ngIf="selectedFeature.get(k) == undefined" >n/a</span>
+                    </li>
+                  </ng-container> 
+                </ul>
+              -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

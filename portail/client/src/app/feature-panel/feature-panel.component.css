@@ -1,0 +1,136 @@
+ .table{
+   line-height: 18px;
+ }
+ 
+  #headingFeaturePanel{
+    font-size: 1vw;
+}
+
+  #categorie-title{
+    font-size: 0.9vw;
+}
+
+  #layer-title{
+    font-size: 0.8vw;
+}
+
+   .btn {
+  font-size: 1.2vw;
+}
+
+  .btn-secondary {
+  font-size: 1vw;
+}
+
+  .btn-feature {
+  font-size: 1vw;
+  text-align: left;
+}
+
+  .categories{
+    color: black;
+  }
+
+  .d-flex{
+    font-size: 0.8vw;
+}
+
+  .badge-selected-layer{
+    background-color: #960606;
+  }
+
+  .accordionFeaturePanel{
+  height: 300px;
+  width: 300px;
+  resize: both;
+  overflow: auto;
+  }
+
+  b {
+    font-size: 0.9em;
+}
+
+/* Panneau masquable */
+
+  #featurepanel-wrapper {
+    margin-left: -400px;
+    left: 0;
+    top: 0vw;
+    width: 400px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: all 0.5s ease-in 0s;
+    -webkit-transition: all 0.5s ease-in 0s;
+    -moz-transition: all 0.5s ease-in 0s;
+    -ms-transition: all 0.5s ease-in 0s;
+    -o-transition: all 0.5s ease-in 0s;
+  }
+
+  .featurepanel-nav {
+    position: absolute;
+    top: 0;
+    width: 400px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .featurepanel-nav li {
+    line-height: 50px;
+    text-indent: 20px;
+  }
+
+  .featurepanel-nav li a {
+    color: #999999;
+    display: block;
+    text-decoration: none;
+  }
+
+  .featurepanel-nav li a:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+    text-decoration: none;
+  }
+
+  .featurepanel-nav li a:active, .featurepanel-nav li a:focus {
+    text-decoration: none;
+  }
+
+  .featurepanel-nav > .featurepanel-brand {
+    height: 55px;
+    line-height: 55px;
+    font-size: 18px;
+  }
+
+  .featurepanel-nav > .featurepanel-brand a {
+    color: #999999;
+  }
+
+  .featurepanel-nav > .featurepanel-brand a:hover {
+    color: #fff;
+    background: none;
+  }
+
+  #featurepanel-toggle {
+    right: 0;
+    position: fixed;
+    z-index: 1;
+    top: 130px;
+  }
+
+  #featurepanel-wrapper.active {
+    left: 400px;
+    width: 400px;
+    transition: all 0.5s ease-out 0s;
+    -webkit-transition: all 0.5s ease-out 0s;
+    -moz-transition: all 0.5s ease-out 0s;
+    -ms-transition: all 0.5s ease-out 0s;
+    -o-transition: all 0.5s ease-out 0s;
+  }
+
+  .toggle {
+    margin: 5px 5px 0 0;
+    line-height: .5;
+  }

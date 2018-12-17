@@ -1,0 +1,18 @@
+<div *ngIf="jsonContextLoaded" class="container-fluid" style="overflow: hidden">
+  <div style="position: absolute; right: 0vw; top: -2%; width: 20vw; height: 99vh; max-height: 100vh;">
+    <div id="menuContainer" class="" style="overflow-x: hidden; width: 100%">
+      <app-map-panel-switcher [userContext]="userContext"></app-map-panel-switcher>
+    </div>
+  </div>
+  <div class="row">
+    <div id="blank_header" style="height: 55px; margin-left: 5px; font-size: 14px;">
+      <app-header></app-header>
+    </div>
+  </div>
+  <div class="row">
+    <div id="mainmap" class="col-md-12 col-lg-12 col-xl-12">
+      <app-map *ngIf="userContext" [userContext]="userContext"></app-map>
+      <app-permalink></app-permalink>
+    </div>
+  </div>
+</div>

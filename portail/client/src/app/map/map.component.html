@@ -1,0 +1,15 @@
+
+<div style="position:relative">
+    <div
+      id="map" class="map"
+      (drop)="onDrop($event)"
+      (dragover)="onDragOver($event)"
+    ></div>
+    <app-apiadresse (citySelected)="onCitySelected($event)"></app-apiadresse>
+    <div id="map-scale"></div>
+    <div id="mouse-position"></div>
+    <div id="loading-panel" *ngIf="mapService.loadingCounter>0"><div id="loading-counter">{{mapService.loadingCounter}}</div>
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+    <app-feature-panel *ngIf="selectedFeature" [selectedLayer]="selectedLayer" [selectedFeatures]="selectedFeature" id="accordionFeaturePanel" ></app-feature-panel>
+</div>
+

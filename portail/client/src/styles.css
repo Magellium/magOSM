@@ -1,0 +1,137 @@
+/* You can add global styles to this file, and also import other style files */
+
+.centered_loading{
+    transform: scale(3, 3);
+}
+
+.lds-grid {
+    display: inline-block;
+    position: relative;
+    
+    width: 64px;
+    height: 64px;
+  }
+  .lds-grid div {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background:#498fcc;
+    animation: lds-grid 1.2s linear infinite;
+  }
+  .lds-grid div:nth-child(1) {
+    top: 6px;
+    left: 6px;
+    animation-delay: 0s;
+  }
+  .lds-grid div:nth-child(2) {
+    top: 6px;
+    left: 26px;
+    animation-delay: -0.4s;
+  }
+  .lds-grid div:nth-child(3) {
+    top: 6px;
+    left: 45px;
+    animation-delay: -0.8s;
+  }
+  .lds-grid div:nth-child(4) {
+    top: 26px;
+    left: 6px;
+    animation-delay: -0.4s;
+  }
+  .lds-grid div:nth-child(5) {
+    top: 26px;
+    left: 26px;
+    animation-delay: -0.8s;
+  }
+  .lds-grid div:nth-child(6) {
+    top: 26px;
+    left: 45px;
+    animation-delay: -1.2s;
+  }
+  .lds-grid div:nth-child(7) {
+    top: 45px;
+    left: 6px;
+    animation-delay: -0.8s;
+  }
+  .lds-grid div:nth-child(8) {
+    top: 45px;
+    left: 26px;
+    animation-delay: -1.2s;
+  }
+  .lds-grid div:nth-child(9) {
+    top: 45px;
+    left: 45px;
+    animation-delay: -1.6s;
+  }
+  @keyframes lds-grid {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  
+
+
+
+.btn-warning{
+
+    background-color: #941333;
+    border-color: #941333;
+}
+
+.btn-warning:hover{
+   background-color:#AA1438;
+   border-color: #AA1438; 
+}
+
+
+.btn-outline-warning {
+    color: #941333;
+    background-image: none;
+    background-color: transparent;
+    border-color: #941333;
+}
+
+.btn-outline-warning.active, .btn-outline-warning:active, .show>.btn-outline-warning.dropdown-toggle {
+    color: #fff;
+    background-color: #941333;
+    border-color: #941333;
+}
+
+
+.btn-outline-warning:hover {
+    color: #fff;
+    background-color: #941333;
+    border-color: #941333;
+}
+
+.ol-button.ol-active button{
+    background-color: rgba(60,136,0,0.7);
+}
+
+.ol-attribution.ol-uncollapsible{
+    height:1.3em;
+}
+
+.tool-box-extraction {
+    top: 70px;
+    left:.5em;
+}
+
+.tool-export-png {
+    top:.5em;
+    right:35px;
+}
+
+.tool-export-nc {
+    top:.5em;
+    right:65px;
+}
+
+.export-png,.box-extraction,.export-nc {
+    cursor: pointer;
+}

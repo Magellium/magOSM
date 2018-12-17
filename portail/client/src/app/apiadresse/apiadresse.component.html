@@ -1,0 +1,7 @@
+<!-- doc utile dans https://www.npmjs.com/package/ng2-auto-complete -->
+<input class="apiadresse-input" placeholder=" Rechercher un lieu ..." ngui-auto-complete [(ngModel)]="selected" loading-text="Chargement..." [list-formatter]="myListFormatter"
+  [value-formatter]="myValueFormatter" (valueChanged)="onSelect($event)" [source]="observableSource.bind(this)" no-match-found-text="Pas de résultat" />
+
+<!--
+    <br/>selected model: {{selected | json}}<br/><br/>
+-->

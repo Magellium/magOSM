@@ -1,0 +1,120 @@
+ {
+
+    "PARAMS":[
+            {
+                "geoserver_baseurl": "https://magosm.magellium.com/geoserver",
+                "services_baseurl": "/services-webapp"
+            }
+    ],
+
+    "DEFAULTUSERCONTEXT":[
+        {
+            "z": 6,
+            "lon": 2.2, 
+            "lat": 46.8,
+            "bLay": "OSM",
+            "vLay": "none",
+            "tr": 30
+        }
+    ],
+
+    "PROJECTION_CODE":"EPSG:3857",
+
+    "LAYERS":[
+    {
+        "categorie": "Points d'intérêt",
+        "id_categorie": 1,
+        "features": [
+           
+            {
+                "layername": "magosm:france_hospitals_point",
+                "nom_court": "Hopitaux",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/2da9b1d7a43343769519d4e7f01c5608",
+                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_hospitals_point.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true
+            
+            },
+            {
+                "layername": "magosm:france_shops_point",
+                "nom_court": "Magasins",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/946bd9cdf20f4b368abb4e19c195cd02",
+                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_shops_point.sld",
+                "type":"WMS"
+            }
+            ,
+           
+              {
+                "layername": "magosm:france_schools_point",
+                "nom_court": "Ecoles",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/18548cfe66dc4cabba4e671abe8438c9",
+                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_schools_point.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true
+            }
+            
+          
+            
+            
+             	
+        ]
+    },
+    {
+        
+        "categorie": "Routes/Itinéraires",
+        "id_categorie": 2,
+        "features": [
+           
+          
+            {
+                "layername": "magosm:france_tram_ltr_routes_line",
+                "nom_court": "Itinéraires de tramways",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/3404fa23a39745029abac20c78d33cae",
+                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_tram_ltr_routes_line.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true
+            },
+            {
+
+                "layername": "magosm:france_bus_routes_line",
+                "nom_court": "Itinéraires de bus",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/234a9be4cc5f496984926f421df952a3",
+                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_bus_routes_line.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true
+            }
+        ]
+    },
+    {
+        "categorie": "Bâti/Occupation du sol",
+        "id_categorie": 3,
+        "features": [
+            {
+                "layername": "magosm:france_buildings_polygon",
+                "nom_court": "Bâtiments",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/c2c70bfc443a456d89f169633d74c73d",
+                 "sld_url":"http://magosm.magellium.com/geoserver/styles/france_building_v2.sld",
+                "type":"WMTS",
+                "maxScaleDenominator":250000,
+                "download_kml":true,
+                "download_shp":true
+            },
+            {
+                "layername": "magosm:france_landuses_naturals_polygon",
+                "nom_court": "Occupation du sol",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/d14edc3925684255847b0bc155c18bc3",
+                 "sld_url":"http://magosm.magellium.com/geoserver/styles/france_landuses_naturals_v3.sld",
+                "type":"WMTS"
+            }
+            
+        ]
+    }
+
+]
+
+
+}

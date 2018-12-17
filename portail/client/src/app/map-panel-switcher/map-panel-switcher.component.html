@@ -1,0 +1,37 @@
+<table class="panel-switcher-opts"><tbody>
+  <tr><a id="menu-toggle" (click)="setPanelToShow('layerTree')" href="#" class="btn btn-primary btn-panel-switcher toggle">
+    Thématiques
+  </a></tr>
+  <tr><a id="carte-toggle" (click)="setPanelToShow('carte')" href="#" class="btn btn-primary btn-panel-switcher toggle">
+    Paramètres
+  </a></tr>
+  <tr >
+    <a 
+      [hidden]="!mapService.legendUrls || !(mapService.legendUrls.length>0)"
+      id="legende-toggle" (click)="setPanelToShow('legende')" href="#" class="btn btn-primary btn-panel-switcher toggle"
+    >
+      Légende
+    </a>
+  </tr>
+</tbody></table>
+
+<div class="card" id="panel-switcher-wrapper" style="overflow-x: hidden;" title="Comment démarrer?"
+  data-container="body"
+  data-toggle="popover"
+  data-content="Séléctionnez une ou plusieurs couches de données dans le menu de droite, zoomez sur une zone puis cliquez sur un objet pour obtenir des informations"
+  data-placement="right"
+>
+  <div class="panel-switcher-nav" role="tab">
+    <a id="panel-switcher-close" href="#" class="btn btn-default pull-right toggle">
+      <b style="z-index:10;position:relative;min-width:25px;;" class="glyphicon glyphicon-remove">x</b>
+    </a>
+    <app-layer-tree [hidden]="panelToShow != 'layerTree'" [userContext]="userContext" id="layerTree"></app-layer-tree>
+    <app-map-controller *ngIf="panelToShow == 'carte'" [userContext]="userContext"></app-map-controller>
+    <app-legend
+      *ngIf="panelToShow == 'legende'"
+      [legendUrls]="mapService.legendUrls" [legendSubTitles]="mapService.legendSubTitles" [legendTitle]="mapService.legendTitle"
+      [currentScale]="mapService.currentScale" id="accordionLegend"
+    >
+    </app-legend>
+  </div>
+</div>
