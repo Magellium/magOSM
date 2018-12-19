@@ -68,13 +68,24 @@ app-apiadresse{
 }
 
 #map-scale {
-	padding-right: 20px;
+	left: 180px;
+}
+
+#mouse-position {
+	left: 330px;
 }
 
 #mouse-position, #map-scale {
+	padding: 1px 5px;
+	border-radius: 3px;
+	position:absolute;
+	bottom: 8px;
 	font-size: 0.7em;
 	display: inline-block;
+	color: #444;
+	background: rgba(255, 255, 255, 0.6);
 }
+
 #toggle-legend.collapsed span::after {
 	content: '»';
 }
