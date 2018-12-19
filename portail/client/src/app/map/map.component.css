@@ -95,14 +95,10 @@ app-apiadresse{
 }
 
 .map {
-	height: -moz-calc(100vh - 130px);
-	height: -webkit-calc(100vh - 130px);
-	height: -o-calc(100vh - 130px);
-	height: calc(100vh - 130px);
+	height: calc(100vh - 80px);
 	top: 50px;
 }
 
 label  {
 	margin-bottom: 0;
 }
-
