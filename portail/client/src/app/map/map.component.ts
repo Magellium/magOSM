@@ -243,13 +243,15 @@ export class MapComponent implements OnInit {
   }
 
   onClick(event) {
-    //console.log(event);
     var viewResolution = /** @type {number} */ (this.view.getResolution());
 
-    this.visibleLayers = [this.currentLayer];
-    this.id_layers = this.selectedLayer.layername;
-    //console.log(this.id_layers);
-    this.printSelectedFeatureOnMap(this.visibleLayers, this.id_layers, viewResolution, event);
+    if (this.selectedLayer) {
+      this.visibleLayers = [this.currentLayer];
+      this.id_layers = this.selectedLayer.layername;
+      this.printSelectedFeatureOnMap(
+        this.visibleLayers, this.id_layers, viewResolution, event
+      );
+    }
   }
 
   setVisibleLayersAndLegends(): boolean { //tient à jour les infos sur les layers visibles et les légendes à afficher
