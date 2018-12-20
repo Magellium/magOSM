@@ -19,6 +19,13 @@ export class MapPanelSwitcherComponent implements OnInit {
   @Input('userContext') 
   public userContext: UserContext;
 
+  // As soon we close the panel, we want the startup dialog to hide. But for
+  // some reason (side effect of Angular's rerender on Bootstrap's popover?),
+  // the DOM element for the dialog is created again when one clicks on the
+  // close panel button. Thus we use a local variable that we check every time
+  // the popover is "inserted", to force it to hide after a first click to close
+  // (see below).
+  private showStartDialog: Boolean = true;
 
   constructor(
     public router: Router, 
@@ -29,8 +36,9 @@ export class MapPanelSwitcherComponent implements OnInit {
 
   ngOnInit() {
     var self = this;
-    $("#panel-switcher-close").click(function(e) {
+    $("#panel-switcher-close").click(function (e) {
       console.log("close");
+      self.showStartDialog = false
       $('#panel-switcher-wrapper').popover('hide');
       e.preventDefault();
       self.closePanel();
@@ -38,6 +46,11 @@ export class MapPanelSwitcherComponent implements OnInit {
     $(".btn-panel-switcher").click(function(e) {
       e.preventDefault();
     }); 
+    $('#panel-switcher-wrapper').on('inserted.bs.popover', function () {
+      if (!self.showStartDialog) {
+        $('#panel-switcher-wrapper').popover('hide');
+      }
+    });
    
     this.setPanelToShow('layerTree');
   }
