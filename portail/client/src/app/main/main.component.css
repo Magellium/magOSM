@@ -18,7 +18,14 @@ app-alert{
     position: absolute;
   }
 
-  #github-logo{
-    height: 14px;
-    margin-bottom: 4px;
-  }
+app-permalink {
+    position: absolute;
+    top: 12px;
+    left: 350px;
+}  
+
+#report-bug {
+  position: absolute;
+  top: 12px;
+  left: 425px;
+} 

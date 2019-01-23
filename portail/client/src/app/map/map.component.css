@@ -63,8 +63,8 @@
 }
 app-apiadresse{
 	position:absolute;
-	top:8px;
-	left:42px
+	top:10px;
+	left:160px;
 }
 
 #map-scale {
@@ -95,8 +95,8 @@ app-apiadresse{
 }
 
 .map {
-	height: calc(100vh - 80px);
-	top: 50px;
+	height: 100vh;
+	width: 100vw;
 }
 
 label  {

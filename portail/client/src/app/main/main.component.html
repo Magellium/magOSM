@@ -5,15 +5,13 @@
     </div>
   </div>
   <div class="row">
-    <div id="blank_header" style="height: 55px; margin-left: 5px; font-size: 14px;">
-      <app-header></app-header>
-    </div>
-  </div>
-  <div class="row">
-    <div id="mainmap" class="col-md-12 col-lg-12 col-xl-12">
+    <div id="mainmap">
       <app-map *ngIf="userContext" [userContext]="userContext"></app-map>
-      <app-permalink></app-permalink>
-      - <img id="github-logo" src="assets/images/GitHub-Mark-32px.png"><a href="https://github.com/Magellium/magOSM/" target="_blank"> Signaler une anomalie</a>
+      <app-header></app-header>
+      <app-permalink class="d-none d-md-block"></app-permalink>
+      <span id="report-bug" class="d-none d-md-block">
+        - <a href="https://github.com/Magellium/magOSM/" target="_blank"> Signaler une anomalie</a>
+      </span>
     </div>
   </div>
 </div>
