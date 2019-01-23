@@ -5,13 +5,9 @@
     </div>
   </div>
   <div class="row">
-    <div id="blank_header" style="height: 55px; margin-left: 5px; font-size: 14px;">
-      <app-header></app-header>
-    </div>
-  </div>
-  <div class="row">
-    <div id="mainmap" class="col-md-12 col-lg-12 col-xl-12">
+    <div id="mainmap">
       <app-map *ngIf="userContext" [userContext]="userContext"></app-map>
+      <app-header></app-header>
       <app-permalink></app-permalink>
     </div>
   </div>

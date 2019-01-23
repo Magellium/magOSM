@@ -135,3 +135,8 @@
 .export-png,.box-extraction,.export-nc {
     cursor: pointer;
 }
+
+.ol-zoom {
+  left: 10px;
+	top: 60px;
+}

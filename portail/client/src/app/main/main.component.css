@@ -17,3 +17,9 @@ app-alert{
     scroll-behavior: unset;
     position: absolute;
   }
+
+app-permalink {
+    position: absolute;
+    top: 10px;
+    left: 400px;
+}  
