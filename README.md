@@ -3,8 +3,8 @@ Toutes les informations utiles sur le projet sont accessibles directement sur le
 
 ## Contribuer
 
-### Remonter un bug ou proposer une amélioration
-Vous pouvez [créer une issue](https://github.com/magellium/magosm/issues/new). Merci de fournir autant de détails que possible (copies d'écran, étapes pour reproduire etc.)
+### Remonter une anomalie ou proposer une amélioration
+Vous pouvez [rapporter une anomalie](https://github.com/magellium/magosm/issues/new). Merci de fournir autant de détails que possible (copies d'écran, étapes pour reproduire etc.).
 
 ### Proposer une nouvelle couche thématique
 Un guide est disponible ici : [Contribution.md](/blob/master/Contribution.md) !
