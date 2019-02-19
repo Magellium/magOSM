@@ -1,24 +1,16 @@
-## A propos de magOSM
-magOSM propose d’accéder à des jeux de données thématiques issus d’OpenStreetMap aux formats WFS/WMS. 
-Ces données sont mises à jour quotidiennement sur la France métropolitaine. Ce service permet ainsi d’accéder directement à des couches de données vectorielles sous QGIS ou tout autre environnement client de services OGC
+## magOSM
+Toutes les informations utiles sur le projet sont accessibles directement sur le site de magOSM  : https://magosm.magellium.com/
 
-## Rajouter une nouvelle thématique
-Pour enrichir le service d'une nouvelle couche de données sur une thématique, les étapes suivantes sont nécessaires:
- 1. Définir la requête SQL qui permet d'extraire les données des tables contenants les données brutes(france_line,france_point, france_polygon)
- 2. Décrire la couche en créant une fiche de métadonnées pour qu'elle soit décrite et présentée dans un catalogue.
- 3. Définir un style de représentation pour la diffusion des données au format image / WMS
+## Contribuer
 
+### Remonter un bug ou proposer une amélioration
+Vous pouvez [créer une issue](https://github.com/magellium/magosm/issues/new). Merci de fournir autant de détails que possible (copies d'écran, étapes pour reproduire etc.)
 
-## Organisation du dépot github magOSM
+### Proposer une nouvelle couche thématique
+Un guide est disponible ici : [Contribution.md](/blob/master/Contribution.md) !
 
- * portail/client : code source du portail Angular http://magosm.magellium.com/portail/
- * metadatas : liste des fiches de métadonnées
- * database : scripts de création des vues et scripts d'initialisation de la base
- * styles : définition des symbologies dans un fichier excel et fichiers SLD correspondants
-
- 
-
-
-
-
-
+## Organisation du dépot
+ * portail/client : code source du [Portail magOSM](http://magosm.magellium.com/portail/)
+ * metadatas : fiches de métadonnées du [Catalogue magOSM](http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80) au format XML ISO 19139
+ * database : déploiement d'une base de données PostgreSQL/PostGIS mise à jour quotidiennement avec Osm2pgsql et Osmosis & requêtes PGSQL de créations des vues thématiques
+ * styles : fichiers de style SLD définissant les styles par défaut pour les flux WMS
