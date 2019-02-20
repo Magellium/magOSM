@@ -27,9 +27,7 @@
                             <label class="form-check-label">
                             <input type="checkbox" class="form-check-input position-static" (click)="onSelect($event,feature)" [checked]="categorie.id_categorie === 4 || (userContext.vLay.indexOf(feature.layername.replace(myRegex, '')) >= 0)">
                                 {{feature.nom_court}}
-                                <a (click)="onInfo(feature)">
-                                    <img width="24" height="24" src="./assets/menu/help-info.png" [title]="feature.md_url ? 'Fiche de métadonnées' : 'Aucune info pour cette couche'" />
-                                </a>
+                                <div (click)="onInfo(feature)" class="metadata-circle" [title]="feature.md_url ? 'Fiche de métadonnées' : 'Aucune info pour cette couche'"><b>?</b></div>
                             </label>
    
                             <span class="loading-panel" *ngIf="getState(feature)>0">
