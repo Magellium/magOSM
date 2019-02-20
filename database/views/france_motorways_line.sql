@@ -36,7 +36,7 @@ CREATE MATERIALIZED VIEW france_motorways_line AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		way
+		way AS "the_geom"
 	FROM france_line 
 	WHERE 
 		(highway='motorway'

@@ -63,9 +63,8 @@ tags->'note' AS "note",
 tags->'osm_version' AS "osm_version",
 tags->'osm_timestamp' AS "osm_timestamp",
 
-
 --geometrie et type
-way,
+way AS "the_geom",
 'rel'::text AS "osm_type"
 
 FROM magosm.france_polygon 

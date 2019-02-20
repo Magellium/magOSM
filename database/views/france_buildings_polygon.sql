@@ -38,8 +38,8 @@ CREATE MATERIALIZED VIEW france_buildings_polygon AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		way
+		way AS "the_geom"
 	FROM france_polygon 
 	WHERE building IS NOT NULL;
 GRANT SELECT ON TABLE france_buildings_polygon TO isogeo;
-CREATE INDEX france_buildings_polygon_gist ON france_buildings_polygon USING gist (way);
+CREATE INDEX france_buildings_polygon_gist ON france_buildings_polygon USING gist (the_geom);

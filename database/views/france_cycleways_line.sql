@@ -2,7 +2,7 @@
 --cycleways--
 --------------
 
---DROP VIEW france_cycleways_line;
+DROP VIEW france_cycleways_line;
 CREATE OR REPLACE VIEW france_cycleways_line AS 
 	SELECT
 		osm_id,
@@ -39,7 +39,7 @@ CREATE OR REPLACE VIEW france_cycleways_line AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		way
+		way AS "the_geom"
 	FROM france_line 
 	WHERE 
 		highway='cycleway'

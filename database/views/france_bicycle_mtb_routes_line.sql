@@ -43,7 +43,7 @@ CREATE MATERIALIZED VIEW france_bicycle_mtb_routes_line AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		st_union(way)
+		st_union(way) AS "the_geom"
 	FROM france_line 
 	WHERE (route='bicycle' OR route='mtb') and osm_id<0
 	GROUP BY osm_id, route, tags, name, ref, operator,highway;

@@ -33,7 +33,7 @@
               
               <sld:Geometry>
                <ogc:Function name="Centroid">
-                <ogc:PropertyName>way</ogc:PropertyName>
+                <ogc:PropertyName>the_geom</ogc:PropertyName>
                </ogc:Function>
               </sld:Geometry>
             <sld:Label>

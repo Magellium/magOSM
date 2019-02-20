@@ -2,7 +2,7 @@
 -----------------
 --subway_routes--
 -----------------
---DROP VIEW france_subway_routes_line;
+DROP VIEW france_subway_routes_line;
 CREATE OR REPLACE VIEW france_subway_routes_line AS 
 	SELECT
 		--row_number() over() as magosm_id,--utile lorsque osm_id n'est pas unique
@@ -33,7 +33,7 @@ CREATE OR REPLACE VIEW france_subway_routes_line AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		st_union(way)
+		st_union(way) AS "the_geom"
 	FROM france_line 
 	WHERE route='subway' and osm_id<0 -- élimine erreurs de tagging avec route=bus sur un way
 	GROUP BY osm_id, route, tags, name, ref, operator;

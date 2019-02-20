@@ -75,7 +75,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Geometry>
               <ogc:Function name="centroid">
-                <ogc:PropertyName>way</ogc:PropertyName>
+                <ogc:PropertyName>the_geom</ogc:PropertyName>
               </ogc:Function>
             </sld:Geometry>
             <sld:Graphic>

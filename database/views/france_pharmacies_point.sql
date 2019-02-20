@@ -47,7 +47,7 @@ CREATE MATERIALIZED VIEW france_pharmacies_point AS
     tags -> 'osm_changeset'::text AS osm_changeset,*/
     tags -> 'osm_version'::text AS osm_version,
     tags -> 'osm_timestamp'::text AS osm_timestamp,
-    way,
+    way AS "the_geom",
     '' AS "osm_original_geom",
     'node' AS "osm_type"
    FROM france_point
@@ -96,7 +96,7 @@ CREATE MATERIALIZED VIEW france_pharmacies_point AS
     tags -> 'osm_changeset'::text AS osm_changeset,*/
     tags -> 'osm_version'::text AS osm_version,
     tags -> 'osm_timestamp'::text AS osm_timestamp,
-    ST_Centroid(way) AS "way",
+    ST_Centroid(way) AS "the_geom",
     ST_AsEWKT(way) AS "osm_original_geom",
     'way' AS "osm_type"
    FROM france_polygon

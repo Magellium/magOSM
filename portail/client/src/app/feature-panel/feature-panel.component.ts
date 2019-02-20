@@ -66,7 +66,7 @@ export class FeaturePanelComponent implements OnInit {
     this.keys=[];
     for (let key in clefs) {
       console.log(clefs[key]);
-      if ('boundedBy' != clefs[key] && 'way' != clefs[key] && 'st_union' != clefs[key]) {
+      if ('boundedBy' != clefs[key] && 'way' != clefs[key] && 'st_union' != clefs[key] && 'the_geom' != clefs[key]) {
         if ('osm_' == clefs[key].substr(0, 4)) {
           if('osm_uid' != clefs[key] && 'osm_user' != clefs[key] && 'osm_changeset' != clefs[key] && 'osm_original_geom' != clefs[key]){
              this.technical_keys.push(clefs[key]);

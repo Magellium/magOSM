@@ -41,7 +41,7 @@ CREATE MATERIALIZED VIEW france_highways_line AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		way
+		way AS "the_geom"
 	FROM france_line 
 	WHERE 
 		osm_id>0 
@@ -105,7 +105,7 @@ CREATE MATERIALIZED VIEW france_highways_line_recently_modified AS
     */
     france_highways_line.osm_version,
     france_highways_line.osm_timestamp,
-    france_highways_line.way
+    france_highways_line.the_geom
    FROM france_highways_line
   WHERE france_highways_line.osm_timestamp::timestamp without time zone > (now() - '7 days'::interval);
   
