@@ -16,7 +16,7 @@ Tout le monde peut participer à améliorer la carte en ajoutant ou en mettant �
 Vous pouvez [rapporter une anomalie](https://github.com/magellium/magosm/issues/new). Merci de fournir autant de détails que possible (copies d'écran, étapes pour reproduire etc.).
 
 ### Proposer une nouvelle couche thématique
-Un guide est disponible ici : [Contribution.md](/blob/master/Contribution.md) !
+Un guide est disponible ici : [Contribution.md](Contribution.md) !
 
 ## Organisation du dépot
  * portail/client : code source du [Portail magOSM](http://magosm.magellium.com/portail/)
