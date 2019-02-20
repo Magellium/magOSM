@@ -3,6 +3,15 @@ Toutes les informations utiles sur le projet sont accessibles directement sur le
 
 ## Contribuer
 
+### Améliorer la carte
+Les données diffusées par le projet magOSM sont toutes issues de la base de données géographique OpenStreetMap (OSM).<br>
+OpenStreetMap est un projet de cartographie qui a pour but de constituer une base de données géographiques libre du monde.
+Le projet est souvent désigné comme "le Wikipédia de la cartographie".<br>
+Tout le monde peut participer à améliorer la carte en ajoutant ou en mettant à jour des données ! Plus d'informations ici :<br>
+* <a href="https://www.openstreetmap.org/user/new" target="_blank">Se créer un compte</a>
+* <a href="https://learnosm.org/fr/" target="_blank">LearnOSM</a>
+* <a href="https://www.openstreetmap.fr/" target="_blank">Association OpenStreetMap France</a>
+
 ### Remonter une anomalie ou proposer une amélioration
 Vous pouvez [rapporter une anomalie](https://github.com/magellium/magosm/issues/new). Merci de fournir autant de détails que possible (copies d'écran, étapes pour reproduire etc.).
 
