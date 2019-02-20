@@ -65,6 +65,11 @@ CREATE INDEX wood_index
   USING btree
   (wood COLLATE pg_catalog."default");
 
+CREATE INDEX boundary_index
+  ON france_polygon
+  USING btree
+  (boundary COLLATE pg_catalog."default");
+
 CREATE INDEX osm_id_index
   ON france_line
   USING GIST (osm_id);

@@ -42,7 +42,7 @@ CREATE MATERIALIZED VIEW france_vineyards_grapes_polygon AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		way
+		way AS "the_geom"
 		FROM france_polygon
 		WHERE 	landuse='vineyard';
 GRANT SELECT ON TABLE france_vineyards_grapes_polygon TO isogeo;

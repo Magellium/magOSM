@@ -1,4 +1,4 @@
---DROP VIEW france_clinics_polygon;
+DROP VIEW france_clinics_polygon;
 CREATE OR REPLACE VIEW france_clinics_polygon AS 
 	SELECT
 		osm_id,
@@ -44,7 +44,7 @@ CREATE OR REPLACE VIEW france_clinics_polygon AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		way
+		way AS "the_geom"
 	FROM france_polygon 
 	WHERE amenity='clinic';
 GRANT SELECT ON TABLE france_clinics_polygon TO isogeo;

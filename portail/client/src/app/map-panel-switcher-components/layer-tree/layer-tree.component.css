@@ -3,36 +3,43 @@
 }
 
 
-  #categorie-title{
-      color: black;
-      font-size: 0.8em;
-  }
-
-  #layer-title{
-      font-size: 0.7em;
-      line-height: 100%
-  }
-
-  .shift {
-    position: relative;
-    left: 30px;
-  }
-
-  .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 2px;
-    vertical-align: middle;
-    border-top: 4px solid;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
+#categorie-title{
+    color: black;
+    font-size: 0.8em;
 }
 
+#layer-title{
+    font-size: 0.7em;
+    line-height: 100%
+}
 
-h3 {
-  font-size: 0.8em;
-  font-weight: bold;
+.shift {
+  position: relative;
+  left: 30px;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.metadata-circle {
+  cursor:pointer;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  font-size: 10px;
+  color: #fff;
+  line-height: 12px;
+  text-align: center;
+  background: #7092be;
 }
 
 h4 {

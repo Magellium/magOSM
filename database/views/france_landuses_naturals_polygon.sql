@@ -62,7 +62,7 @@ CREATE MATERIALIZED VIEW france_landuses_naturals_polygon AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		way
+		way AS "the_geom"
 		FROM france_polygon
 		WHERE 	landuse IS NOT NULL
 			OR "natural" IS NOT NULL

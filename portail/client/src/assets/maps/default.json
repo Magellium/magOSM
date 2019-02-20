@@ -81,16 +81,7 @@
                 "type":"WMS",
                 "download_kml":true,
                 "download_shp":true
-            },
-            {
-                "layername": "magosm:france_pnr_polygon",
-                "nom_court": "Parcs Naturels Régionaux",
-                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_pnr_polygon.sld",
-                "type":"WMTS",
-                "download_kml":true,
-                "download_shp":true
-            }                       	           
-             	
+            }             	
         ]
     },
     {
@@ -213,6 +204,15 @@
                 "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/d14edc3925684255847b0bc155c18bc3",
                  "sld_url":"http://magosm.magellium.com/geoserver/styles/france_landuses_naturals_v3.sld",
                 "type":"WMTS"
+            },
+            {
+                "layername": "magosm:france_pnr_polygon",
+                "nom_court": "Parcs Naturels Régionaux",
+                "md_url": "http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/a3b4c3fea4234b769083983c57db4d2e",
+                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_pnr_polygon.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true
             }
             
         ]

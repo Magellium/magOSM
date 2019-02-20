@@ -6,8 +6,8 @@
 
 .lds-grid {
     display: inline-block;
-    position: relative;
-    
+    position: absolute;
+    left: 50%;
     width: 64px;
     height: 64px;
   }
@@ -115,6 +115,8 @@
 
 .ol-attribution.ol-uncollapsible{
     height:1.3em;
+    z-index: 2;
+    
 }
 
 .tool-box-extraction {
@@ -139,4 +141,9 @@
 .ol-zoom {
   left: 10px;
 	top: 60px;
+}
+
+h3 {
+  font-size: 0.8rem;
+  font-weight: bold;
 }

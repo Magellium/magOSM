@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?><sld:StyledLayerDescriptor version="1.0.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" xmlns:sld="http://www.opengis.net/sld">
   <sld:NamedLayer>
-    <sld:Name>france_departements_polygon
+    <sld:Name>france_pnr_polygon
      Style
     </sld:Name>
     <sld:UserStyle>
-      <sld:Name>france_departements_polygon
+      <sld:Name>france_pnr_polygon
       Style
      </sld:Name>
       <sld:Title/>
       <sld:FeatureTypeStyle>
-        <sld:Name>france_departements_polygon
+        <sld:Name>france_pnr_polygon
        Style
       </sld:Name>
         <sld:Rule>
-          <sld:Name>Départements</sld:Name>
-          <sld:Title>Départements</sld:Title>
+          <sld:Name>Parcs Naturels Regionaux</sld:Name>
+          <sld:Title>Parcs Naturels Regionaux</sld:Title>
+          <ogc:Filter>
+                        <ogc:And>
+                    <ogc:PropertyIsEqualTo>
+                                        <ogc:PropertyName>boundary</ogc:PropertyName>
+                                        <ogc:Literal>protected_area</ogc:Literal>
+                    </ogc:PropertyIsEqualTo>
+                    <ogc:PropertyIsEqualTo>
+                                        <ogc:PropertyName>protection_title</ogc:PropertyName>
+                                        <ogc:Literal>parc naturel régional</ogc:Literal>
+                    </ogc:PropertyIsEqualTo>
+                        </ogc:And>
+          </ogc:Filter>
           <sld:PolygonSymbolizer uom="http://www.opengeospatial.org/se/units/pixel">
             <sld:Fill>
-              <sld:CssParameter name="fill">#bbcad9</sld:CssParameter>
+              <sld:CssParameter name="fill">#98BC88</sld:CssParameter>
             </sld:Fill>
             <sld:Stroke>
-              <sld:CssParameter name="stroke">#4d6c92</sld:CssParameter>
+              <sld:CssParameter name="stroke">#ACD09C</sld:CssParameter>
               <sld:CssParameter name="stroke-width">1</sld:CssParameter>
             </sld:Stroke>
           </sld:PolygonSymbolizer>
         </sld:Rule>
-        <sld:Rule>
-          <sld:Name>Départements Label</sld:Name>
-          <sld:Title>Départements Label</sld:Title>
+                <sld:Rule>
+          <sld:Name>Parcs Naturels Regionaux Label</sld:Name>
+          <sld:Title>Parcs Naturels Regionaux Label</sld:Title>
           <MaxScaleDenominator>3000000</MaxScaleDenominator>
             <sld:TextSymbolizer>
               

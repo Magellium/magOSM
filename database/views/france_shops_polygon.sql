@@ -1,5 +1,5 @@
 
---DROP VIEW france_shops_polygon;
+DROP VIEW france_shops_polygon;
 CREATE OR REPLACE VIEW france_shops_polygon AS 
 	SELECT
 		osm_id,
@@ -41,7 +41,7 @@ CREATE OR REPLACE VIEW france_shops_polygon AS
 		tags->'osm_changeset' AS "osm_changeset",*/
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		way
+		way AS "the_geom"
 	FROM france_polygon 
 	WHERE shop IS NOT NULL;
 GRANT SELECT ON TABLE france_shops_polygon TO isogeo;

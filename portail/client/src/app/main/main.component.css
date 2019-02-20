@@ -20,6 +20,12 @@ app-alert{
 
 app-permalink {
     position: absolute;
-    top: 10px;
-    left: 400px;
+    top: 12px;
+    left: 350px;
 }  
+
+#report-bug {
+  position: absolute;
+  top: 12px;
+  left: 425px;
+} 

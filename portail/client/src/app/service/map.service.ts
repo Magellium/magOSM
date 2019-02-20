@@ -161,7 +161,7 @@ export class MapService {
       });
       options.attributions = [new ol.Attribution({
         html: '' +
-          '<a href="https://www.magellium.fr/">Magellium pour les flux WMS/WFS</a>'
+          '<a href="http://magosm.magellium.com/aide.html#ogc-services-tos">© Magellium pour les flux WMS/WFS</a>'
       })
       ];
       var wmts = new ol.source.WMTS(options);
@@ -211,7 +211,7 @@ export class MapService {
         params: { 'LAYERS': layername },
         attributions: [new ol.Attribution({
           html: '' +
-            '<a href="https://www.magellium.fr/">Magellium pour les flux WMS/WFS</a>'
+            '<a href="http://magosm.magellium.com/aide.html#ogc-services-tos">© Magellium pour les flux WMS/WFS</a>'
         })
         ]
       }));
@@ -266,7 +266,7 @@ export class MapService {
       });
       options.attributions = [new ol.Attribution({
         html: '' +
-          '<a href="https://www.magellium.fr/">Magellium pour les flux WMS/WFS</a>'
+          '<a href="http://magosm.magellium.com/aide.html#ogc-services-tos">© Magellium pour les flux WMS/WFS</a>'
       })
       ];
 

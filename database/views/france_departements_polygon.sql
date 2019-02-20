@@ -17,8 +17,8 @@ CREATE MATERIALIZED VIEW france_departements_polygon AS
 		tags->'note' AS "note",
 		tags->'osm_version' AS "osm_version",
 		tags->'osm_timestamp' AS "osm_timestamp",
-		way
+		way AS "the_geom"
 	FROM france_polygon 
 	WHERE boundary ='administrative' and admin_level='6' and tags->'ref:INSEE' is not null;
 GRANT SELECT ON TABLE france_departements_polygon TO isogeo;
-CREATE INDEX france_departements_polygon_gist ON france_departements_polygon USING gist (way);
+CREATE INDEX france_departements_polygon_gist ON france_departements_polygon USING gist (the_geom);
