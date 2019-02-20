@@ -1,0 +1,42 @@
+image: node:latest
+
+cache:
+  paths:
+    - portail/client/node_modules/
+
+
+stages:
+  - build
+  - page
+build_job:
+  stage: build
+  tags:
+    - "shared insecure docker"
+  only:
+    - develop
+  script:
+    - pwd
+    - mkdir public
+    - cd portail/client
+    - npm install 
+    - ./node_modules/@angular/cli/bin/ng build --prod
+    - cp -r dist/* ../../public
+  artifacts:
+    paths:
+      - portail/client/dist
+      - public
+    expire_in: 1 week
+
+pages:
+  stage: page
+  tags:
+    - "shared insecure docker"
+  script:
+    - pwd
+    - ls
+    - cp -r portail/client/dist/* public
+  artifacts:
+    paths:
+    - public
+  only:
+  - develop
