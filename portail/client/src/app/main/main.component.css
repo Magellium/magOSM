@@ -17,3 +17,8 @@ app-alert{
     scroll-behavior: unset;
     position: absolute;
   }
+
+  #github-logo{
+    height: 14px;
+    margin-bottom: 4px;
+  }
