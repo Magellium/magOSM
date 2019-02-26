@@ -122,6 +122,7 @@
                 "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/778ed1a0c08f4d238b665957195e826f",
                 "sld_url":"http://magosm.magellium.com/geoserver/styles/france_railway_line_v2.sld",
                 "type":"WMTS",
+                "maxScaleDenominator":1000000,
                 "download_kml":true,
                 "download_shp":true
             }
@@ -132,6 +133,7 @@
                 "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/cef59d77b3154d6490f3cb084a196f4b",
                 "sld_url":"http://magosm.magellium.com/geoserver/styles/france_cycleways_line.sld",
                 "type":"WMTS",
+                "maxScaleDenominator":300000,
                 "download_kml":true,
                 "download_shp":true
             },
