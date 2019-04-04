@@ -41,12 +41,13 @@
                                 display: flex;
                                 align-items: center;
                             ">
-                                <input #ref
+                               
+                               <input #ref
                                     type="range" min ="0" max="100" step ="2.5"
                                     value ="{{feature.opacity}}"
                                     (change)="changeOpacity($event,feature,ref.value);false"
-                                    style="width:60px; padding-right: 10px;"
                                 />
+                               
 
                                 <span *ngIf="mapService.isInRange(feature.layername)==false" 
                                     style="cursor:pointer;margin: 3px"

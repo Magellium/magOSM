@@ -66,12 +66,15 @@
         align-items: stretch;
 	}
 
-/*supprime le padding par défaut de ie11*/
-	.input-range {
-		padding: 0px 0px 0px 0px; 
-	}
+/*Opacity slider
+See styles.css for more information*/
 
-/* Partie sur le le menu des couches */
+input[type=range] {
+  width:75%; 
+  padding: 0px 0px 0px 0px;
+}
+
+/* Partie sur le menu des couches */
 
 h4 {
     font-size: 14px;

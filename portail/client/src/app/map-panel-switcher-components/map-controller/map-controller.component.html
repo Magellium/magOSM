@@ -11,7 +11,10 @@
   </span>  
   <li id="input-range-height-ref" class="card-header p-2"><h4>Transparence</h4></li>
   <li id="input-range">
-      <input class="input-range" #ref type="range" min="0" max="100" step="2.5" value="{{baseLayerOpacityRange}}" (change)="changeOpacity(ref.value)"
+      <input class="input-range" 
+        #ref type="range" min="0" max="100" step="2.5" 
+        value="{{baseLayerOpacityRange}}" 
+        (change)="changeOpacity(ref.value)"
       />
   </li>
 </ul>
