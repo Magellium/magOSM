@@ -169,6 +169,7 @@ export class MapComponent implements OnInit {
     this.currentResolution = this.view.getResolution();
     this.currentScale = this.mapService.getScaleFromResolution(this.view.getResolution(), this.map.getView().getProjection().getUnits(), true);
     this.updateScale();
+    this.updateZoomLevel();
   }
 
   initLayersFromConfig() {
@@ -195,6 +196,7 @@ export class MapComponent implements OnInit {
   onZoom(event) {
     this.currentScale = this.mapService.getScaleFromResolution(this.view.getResolution(), this.map.getView().getProjection().getUnits(), true);
     this.updateScale();
+    this.updateZoomLevel();
     this.computeSingleLegend();
   }
 
@@ -204,6 +206,11 @@ export class MapComponent implements OnInit {
     document.getElementById('map-scale').innerHTML = 'Echelle : 1/' + strScale + '    ';
   }
 
+  updateZoomLevel(){
+    let zoom = this.map.getView().getZoom();
+    //console.log(zoom)
+    document.getElementById('map-zoom-level').innerHTML = '<center>' + zoom +'</center>';
+  }
 
 
   updateState(newSelectedLayer) {//fonction appelée lorsque l'utilisateur choisi un nouvel indicateur
@@ -215,7 +222,8 @@ export class MapComponent implements OnInit {
       this.currentLayer = layer;
       if (newSelectedLayer.maxScaleDenominator) {
         if (this.mapService.getScale() > newSelectedLayer.maxScaleDenominator && !layer.getVisible()) {
-          alert("cette couche n'est visible qu'a partir du " + newSelectedLayer.maxScaleDenominator + " ème")
+          var minZoom = this.mapService.getZoomFromScale(newSelectedLayer.maxScaleDenominator);
+          alert("Impossible d'afficher la couche à ce niveau.\nZoomez jusqu'au niveau " + minZoom + " (échelle du 1/" + newSelectedLayer.maxScaleDenominator +"ème) pour voir la couche.")
         }
       }
       layer.setVisible(!layer.getVisible());

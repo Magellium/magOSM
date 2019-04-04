@@ -401,6 +401,12 @@ export class MapService {
     return id_layers;
   }
 
+  getZoomFromScale(scale) {
+    var resolution = this.getResolutionFromScale(scale, this.map.getView().getProjection().getUnits());
+    var zoom = Math.ceil(this.map.getView().getZoomForResolution(resolution)); // Zoom level rounded up
+    return zoom;
+  }
+
   isInRange(id){
     if (this.layers[id]) {
       var maxResolution=this.layers[id].getMaxResolution();
