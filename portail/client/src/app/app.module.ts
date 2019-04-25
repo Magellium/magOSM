@@ -21,6 +21,7 @@ import { MapService } from './service/map.service';
 import { PermalinkComponent } from './permalink/permalink.component';
 import { UserContextService } from './service/user-context.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FeatureMainInfoComponent } from './feature-panel-components/feature-main-info/feature-main-info.component';
 
 // Define the routes
 const ROUTES = [
@@ -45,6 +46,7 @@ const ROUTES = [
     LayerTreeComponent,
     OrderByPipeComponent,
     PermalinkComponent,
+    FeatureMainInfoComponent,
   ],
   imports: [ 
     NguiAutoCompleteModule,

@@ -1,3 +1,6 @@
+  #headingMapController{
+    font-size: 1rem;
+  }
   .layerbar-nav {
     position: absolute;
     top: 0;
@@ -12,61 +15,18 @@
     text-indent: 20px;
   }
 
-  .layerbar-nav li a {
-    color: #999999;
-    display: block;
-    text-decoration: none;
-  }
-
-  .layerbar-nav li a:hover {
-    color: #fff;
-    background: rgba(255,255,255,0.2);
-    text-decoration: none;
-  }
-
-  .layerbar-nav li a:active, .layerbar-nav li a:focus {
-    text-decoration: none;
-  }
-
-  .layerbar-nav > .layerbar-brand {
-    height: 55px;
-    line-height: 55px;
-    font-size: 18px;
-  }
-
-  .layerbar-nav > .layerbar-brand a {
-    color: #999999;
-  }
-
-  .layerbar-nav > .layerbar-brand a:hover {
-    color: #fff;
-    background: none;
+  ul{
+    padding-left:0px;
   }
 
 #baseLayerCombo{
 	border-style: none;
 	background-color: #eceeef;
-    color: #464a4c;
-    font-size: 12px;
+  color: #464a4c;
+  font-size: 12px;
 }
 
-/*Applique manuellement ce fix https://github.com/twbs/bootstrap/pull/23810/commits/73593b1782fa1331c1045336411e3da8a3a1d1c8*/
-	.input-group {
-        align-items: center;
-	}
-
-	.input-group-addon,
-	.input-group-btn,
-	.input-group .form-control {
-        display: flex;
-        align-items: left;
-	}
-
-	.input-group-btn {
-        align-items: stretch;
-	}
-
-/*Opacity slider
+/*Opacity slider 
 See styles.css for more information*/
 
 input[type=range] {
@@ -79,10 +39,4 @@ input[type=range] {
 h4 {
     font-size: 14px;
     font-weight: bold;
-}
-
-.layer-item   {
-    font-size: 14px;
-    line-height: 2;
-    padding-left: 1em;
 }
