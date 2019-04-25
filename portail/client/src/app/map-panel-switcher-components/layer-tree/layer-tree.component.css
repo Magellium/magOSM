@@ -1,11 +1,5 @@
 #headingMenu{
-    font-size: 1vw;
-}
-
-
-#categorie-title{
-    color: black;
-    font-size: 0.8em;
+    font-size: 1rem;
 }
 
 #layer-title{
@@ -113,4 +107,8 @@ h4 {
 /* Slider cursor; see styles.css for more details */
 input[type=range] {
   width: 60px; 
+}
+
+.form-check-label{
+  padding-left: 10px;
 }

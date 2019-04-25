@@ -15,15 +15,16 @@
   </tr>
 </tbody></table>
 
-<div class="card" id="panel-switcher-wrapper" style="overflow-x: hidden;" title="Comment démarrer?"
+<div class="card row" id="panel-switcher-wrapper" style="overflow-y:auto;" title="Comment démarrer?"
   data-container="body"
   data-toggle="popover"
   data-content="Sélectionnez une ou plusieurs couches de données dans le menu de droite, zoomez sur une zone puis cliquez sur un objet pour obtenir des informations"
   data-placement="right"
 >
   <div class="panel-switcher-nav" role="tab">
-    <a id="panel-switcher-close" href="#" class="btn btn-default pull-right toggle">
-      <b style="z-index:10;position:relative;min-width:25px;;" class="glyphicon glyphicon-remove">x</b>
+    <!-- To close the panel switcher -->
+    <a id="panel-switcher-close" href="#" class="btn btn-outline-secondary btn-sm pull-right toggle">
+      <b class="glyphicon glyphicon-remove">X</b>
     </a>
     <app-layer-tree [hidden]="panelToShow != 'layerTree'" [userContext]="userContext" id="layerTree"></app-layer-tree>
     <app-map-controller *ngIf="panelToShow == 'carte'" [userContext]="userContext"></app-map-controller>
