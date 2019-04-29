@@ -31,8 +31,8 @@
   </div>
   <div id=external_links> <!-- Tags related to external links (do NOT write them in config) like Wikipedia, national databases, ... -->
     <span *ngFor="let k of keys" title="Voir la base de données relative à l'objet et à sa couche">
-      <span *ngIf="k == 'wikipedia'"><a target="_blank" href="https://fr.wikipedia.org/wiki/{{selectedFeature.get(k)}}" title="Voir l'objet sur Wikipedia"><img src="/assets/images/wikipedia_50_39px.png"></a><br></span>
-      <span *ngIf="k == 'wikidata'"><a target="_blank" href="https://www.wikidata.org/wiki/{{selectedFeature.get(k)}}" title="Voir l'objet sur Wikidata"><img src="/assets/images/wikidata_50_35px.png"></a><br></span>
+      <span *ngIf="k == 'wikipedia'"><a target="_blank" href="https://fr.wikipedia.org/wiki/{{selectedFeature.get(k)}}" title="Voir l'objet sur Wikipedia"><img src="assets/images/wikipedia_50_39px.png"></a><br></span>
+      <span *ngIf="k == 'wikidata'"><a target="_blank" href="https://www.wikidata.org/wiki/{{selectedFeature.get(k)}}" title="Voir l'objet sur Wikidata"><img src="assets/images/wikidata_50_35px.png"></a><br></span>
       <span *ngIf="k == 'ref-FR-FINESS'"><a target="_blank" href="http://finess.sante.gouv.fr/fininter/jsp/actionRechercheAvancee.do?noFiness={{selectedFeature.get(k)}}">Base nationale FINESS</a><br></span>
       <span *ngIf="k == 'ref-UAI'"><a target="_blank" href="https://www.education.gouv.fr/pid24302/annuaire-resultat-recherche.html?lycee_name={{selectedFeature.get(k)}}">Education Nationale</a><br></span>
       <span *ngIf="k == 'ref-FR-GendarmerieNationale'"><a target="_blank" href="https://www.data.gouv.fr/fr/datasets/liste-des-unites-de-gendarmerie-accueillant-du-public-comprenant-leur-geolocalisation-et-leurs-horaires-douverture/">Base sur data.gouv.fr</a><br></span>

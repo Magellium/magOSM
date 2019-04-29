@@ -89,6 +89,12 @@
   white-space: normal;
 }
 
+/* .dropdown-menu .dropdown-header{
+  color:white;
+  background-color: #545b62;
+  border-color: #4e555b;
+} */
+
 .flex .logo{
   text-align:center;
   width:30%;

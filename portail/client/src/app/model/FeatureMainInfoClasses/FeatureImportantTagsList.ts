@@ -24,23 +24,26 @@ export class FeatureImportantTagsList {
   public getAddrTagsList() : Array<string>{ //For a special display (Addr_tags are written like an adress)
     let used_addr= Array<string>();
     let addrTags= Array<string>();
-    this.list.filter(x=> x.importance === 'no')[0].tagList.list.filter(x => x.key.startsWith('addr')).forEach(function(x){
-      addrTags.push(x.key);
-    });
-    //group housenumber and street
-    if (addrTags.indexOf('addr-housenumber')>=0 && addrTags.indexOf('addr-street')>=0){
-      used_addr.push('addr-housenumber');
-      used_addr.push('addr-street');
-    }
-    //group postcode and city
-    if (addrTags.indexOf('addr-postcode')>=0 && addrTags.indexOf('addr-city')>=0){
-      used_addr.push('addr-postcode');
-      used_addr.push('addr-city');
-    }
-    for (let addr in addrTags){
-      if(used_addr.indexOf(addrTags[addr])<0){
-        // add others addr tags if they exist
-        used_addr.push(addrTags[addr]);
+    let noImportance = this.list.filter(x => x.importance === 'no')[0];
+    if (noImportance != undefined){
+      noImportance.tagList.list.filter(x => x.key.startsWith('addr')).forEach(function(x){
+        addrTags.push(x.key);
+      });
+      //group housenumber and street
+      if (addrTags.indexOf('addr-housenumber')>=0 && addrTags.indexOf('addr-street')>=0){
+        used_addr.push('addr-housenumber');
+        used_addr.push('addr-street');
+      }
+      //group postcode and city
+      if (addrTags.indexOf('addr-postcode')>=0 && addrTags.indexOf('addr-city')>=0){
+        used_addr.push('addr-postcode');
+        used_addr.push('addr-city');
+      }
+      for (let addr in addrTags){
+        if(used_addr.indexOf(addrTags[addr])<0){
+          // add others addr tags if they exist
+          used_addr.push(addrTags[addr]);
+        }
       }
     }
     return used_addr;

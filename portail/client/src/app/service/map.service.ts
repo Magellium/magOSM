@@ -401,6 +401,10 @@ export class MapService {
     return id_layers;
   }
 
+  getNumberOfVisibleLayers(){
+    return this.getVisibleLayersIdArrayList().length;
+  }
+
   getZoomFromScale(scale) {
     var resolution = this.getResolutionFromScale(scale, this.map.getView().getProjection().getUnits());
     var zoom = Math.ceil(this.map.getView().getZoomForResolution(resolution)); // Zoom level rounded up
