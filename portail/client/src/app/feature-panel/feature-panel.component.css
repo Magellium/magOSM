@@ -3,19 +3,16 @@
  }
  
   #headingFeaturePanel{
-    font-size: 1vw;
+    font-size: 14pxvw;
 }
 
-  #categorie-title{
-    font-size: 0.9vw;
-}
 
   #layer-title{
     font-size: 0.8vw;
 }
 
    .btn {
-  font-size: 1.2vw;
+  font-size: 14px;
 }
 
   .btn-secondary {
@@ -39,90 +36,37 @@
     background-color: #960606;
   }
 
-  .accordionFeaturePanel{
-  height: 300px;
-  width: 300px;
-  resize: both;
-  overflow: auto;
-  }
-
   b {
-    font-size: 0.9em;
+    font-size: 1.0rem;
 }
 
 /* Panneau masquable */
 
   #featurepanel-wrapper {
-    margin-left: -400px;
+    margin-left: -500px;
     left: 0;
     top: 0vw;
-    width: 400px;
+    width: 500px;
     position: fixed;
     height: 100%;
-    overflow-y: auto;
+    overflow: auto;
     z-index: 1000;
     transition: all 0.5s ease-in 0s;
     -webkit-transition: all 0.5s ease-in 0s;
     -moz-transition: all 0.5s ease-in 0s;
     -ms-transition: all 0.5s ease-in 0s;
     -o-transition: all 0.5s ease-in 0s;
+    background-color: rgba(255, 255, 255, 0.8);
   }
 
-  .featurepanel-nav {
-    position: absolute;
-    top: 0;
-    width: 400px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .featurepanel-nav, #featureContainer {
+    background-color: rgba(255, 255, 255, 1);
   }
 
-  .featurepanel-nav li {
-    line-height: 50px;
-    text-indent: 20px;
-  }
-
-  .featurepanel-nav li a {
-    color: #999999;
-    display: block;
-    text-decoration: none;
-  }
-
-  .featurepanel-nav li a:hover {
-    color: #fff;
-    background: rgba(255,255,255,0.2);
-    text-decoration: none;
-  }
-
-  .featurepanel-nav li a:active, .featurepanel-nav li a:focus {
-    text-decoration: none;
-  }
-
-  .featurepanel-nav > .featurepanel-brand {
-    height: 55px;
-    line-height: 55px;
-    font-size: 18px;
-  }
-
-  .featurepanel-nav > .featurepanel-brand a {
-    color: #999999;
-  }
-
-  .featurepanel-nav > .featurepanel-brand a:hover {
-    color: #fff;
-    background: none;
-  }
-
-  #featurepanel-toggle {
-    right: 0;
-    position: fixed;
-    z-index: 1;
-    top: 130px;
-  }
 
   #featurepanel-wrapper.active {
-    left: 400px;
-    width: 400px;
+    left: 500px;
+    width: 500px;
     transition: all 0.5s ease-out 0s;
     -webkit-transition: all 0.5s ease-out 0s;
     -moz-transition: all 0.5s ease-out 0s;
@@ -130,7 +74,86 @@
     -o-transition: all 0.5s ease-out 0s;
   }
 
-  .toggle {
+  .featurepanel-nav .toggle {
+    position:absolute;
+    right:0px;
     margin: 5px 5px 0 0;
     line-height: .5;
   }
+
+.dropdown-menu{
+  width:100%;
+}
+.dropdown-menu .dropdown-item{
+  hyphens:auto;
+  white-space: normal;
+}
+
+/* .dropdown-menu .dropdown-header{
+  color:white;
+  background-color: #545b62;
+  border-color: #4e555b;
+} */
+
+.flex .logo{
+  text-align:center;
+  width:30%;
+  font-size:0.7em;
+  align-content:center;
+}
+
+.logo a{
+  padding:2px;
+}
+
+.logo_OSM{
+  margin-left:10px;
+}
+
+table{
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:10px;
+  width:95%;
+}
+
+table td{
+  padding:0.55rem;
+}
+
+table .row1,table .row2{
+  width:50%;
+}
+
+#selectedLayer{
+  text-align: right;
+  padding:0px 8px 0px 5px;
+}
+
+.flex{
+  display:flex;
+  justify-content:space-between;
+  height:auto;
+}
+
+.flex .text{
+  width:65%;
+}
+
+#historique{
+  padding: .75rem;
+  text-align: center;
+}
+
+/* New rules if the width of the screen is under 500px */
+@media screen and (max-width: 500px)
+{
+  #featurepanel-wrapper {
+    margin-left: -100%;
+    width: 100%;
+  }
+  #featurepanel-wrapper.active {
+    left: 100%;
+    width: 100%;
+  }
+}

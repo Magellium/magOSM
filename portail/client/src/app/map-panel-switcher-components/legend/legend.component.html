@@ -1,12 +1,11 @@
 <div class="card-header p-2 text-center" role="tab" id="headingLegende">
   <div data-toggle="collapse" href="#collapseLegend" aria-expanded="true" aria-controls="collapseLegend">
-    <h3>Légende</h3>
-    <h4>{{legendTitle}}</h4>
+    <b>Légende</b>
   </div>
 </div>
 
 <div id="collapseLegend" class="collapse show" role="tabpanel" aria-labelledby="headingLegend">
-  <div id="legendContainer" style="width:100%;height:auto;overflow-y:scroll;">
+  <div id="legendContainer" style="width:100%;height:auto;">
     <div *ngIf="legendUrls" id="legend" class="legend">
       <ng-container *ngFor="let legendUrl of legendUrls; let i = index">
         <div *ngIf="legendSubTitles">{{legendSubTitles[i]}}</div>

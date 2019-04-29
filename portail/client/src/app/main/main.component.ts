@@ -76,10 +76,11 @@ export class MainComponent {
   ngOnInit() {
     
     ol.Feature.prototype.getDisplayLabel= function(){
+      //console.log('getDisplayLabel')
       if(this.getKeys().indexOf('name')>0)
         return this.get('name');
       else
-        return this.get('osm_id');
+        return Math.abs(this.get('osm_id'));
     }
 
 

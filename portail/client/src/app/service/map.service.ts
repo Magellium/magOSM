@@ -201,7 +201,7 @@ export class MapService {
   }
   addWMSLayer(layerconfig: any, show: boolean = false) {
     let id = layerconfig.layername;
-    console.log(id);
+    //console.log(id);
     let layername = layerconfig.layername;
     if (this.layers[id] == null) {
 
@@ -399,6 +399,27 @@ export class MapService {
       }
     }
     return id_layers;
+  }
+
+  getNumberOfVisibleLayers(){
+    return this.getVisibleLayersIdArrayList().length;
+  }
+
+  getZoomFromScale(scale) {
+    var resolution = this.getResolutionFromScale(scale, this.map.getView().getProjection().getUnits());
+    var zoom = Math.ceil(this.map.getView().getZoomForResolution(resolution)); // Zoom level rounded up
+    return zoom;
+  }
+
+  //Find the Layer of one object (useful for the list of nearby features, and for the style of main_info)
+  getLayerOfOneFeature(feature){
+    for (let i in config.LAYERS){
+      for (let j in config.LAYERS[i].features){
+        if (feature.getId().startsWith(config.LAYERS[i].features[j].layername.replace('magosm:',""))){
+          return config.LAYERS[i].features[j];
+        }
+      }
+    }
   }
 
   isInRange(id){

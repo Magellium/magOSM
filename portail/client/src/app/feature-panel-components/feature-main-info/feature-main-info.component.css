@@ -1,0 +1,48 @@
+#main_info_container{
+    padding-top:0px;
+    padding-bottom:5px;
+    padding-left:5px;
+    display:flex;
+    height:auto;
+}
+#high{
+    font-size:1.1em;
+    font-weight:bold;
+}
+
+#medium{
+    font-size:1.0em;
+}
+
+#low{
+    font-size:0.9em;
+}
+
+#no{
+    font-size:0.8em;
+}
+
+#addr{
+    font-size:0.8em;  
+    font-weight: bold;
+}
+
+#writed_info{
+    width:70%;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+}
+
+#external_links{
+    width:30%;
+    text-align: right;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    height:auto;
+    margin:5px 8px 5px 0px;
+    font-size:0.9em;
+}
