@@ -16,15 +16,22 @@
           <div id="features_nearby_list" class="dropdown">
             <button class="btn btn-secondary btn-lg btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
             (click)="dropdownMenuSelected()" style="font-size:0.8em;">
-              <a *ngIf="selectedFeatures.length>2;else more">{{selectedFeatures.length-1}} éléments situés à proximité</a>
-              <ng-template #more>
-                  <a>1 élément situé à proximité</a>
-              </ng-template>
+              <a>{{selectedFeatures.length-1}} élément(s) à proximité</a> <!-- -1 because the selectedFeature is in the selectedFeatureS -->
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <span *ngFor="let k of selectedFeatures">
-                <a *ngIf="k!=selectedFeature;" class="dropdown-item" (click)="onSelect(k)">{{getLabelToDisplay(k)}}</a>
-              </span> 
+              <span *ngIf="mapService.getNumberOfVisibleLayers()>1;else onlyOneLayer;">
+                <span *ngFor="let nearbyFeaturesLayer of nearbyFeatures.list">
+                  <a class="dropdown-header mb-2 bg-secondary text-white">{{nearbyFeaturesLayer.layer.nom_court}}</a> <!-- Display the name of the layer -->
+                  <span *ngFor="let feature of nearbyFeaturesLayer.featuresList">
+                    <a *ngIf="feature != selectedFeature" class="dropdown-item" (click)="onSelect(feature)">{{getLabelToDisplay(feature,nearbyFeaturesLayer.layer)}}</a>
+                  </span>
+                </span> 
+              </span>
+              <ng-template #onlyOneLayer>
+                <span *ngFor="let feature of selectedFeatures">
+                    <a *ngIf="feature != selectedFeature" class="dropdown-item" (click)="onSelect(feature)">{{getLabelToDisplay(feature,selectedLayer)}}</a>
+                </span>
+              </ng-template>
             </div>
           </div>
         </div>
@@ -74,7 +81,7 @@
                         </div>
                         <div class="logo">
                             <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Key:{{formatKey(k)}}" title="Rechercher {{formatKey(k)}} sur le Wiki d'OpenStreetMap">Wiki OSM</a>
-                            <a target="_blank" href="https://taginfo.openstreetmap.fr/keys/{{formatKey(k)}}#overview"title="Rechercher {{formatKey(k)}} sur TagInfo"><img src="/assets/images/taginfo_30_11px.png"></a>
+                            <a target="_blank" href="https://taginfo.openstreetmap.fr/keys/{{formatKey(k)}}#overview"title="Rechercher {{formatKey(k)}} sur TagInfo"><img src="assets/images/taginfo_30_11px.png"></a>
                             <a target="_blank" href="http://overpass-turbo.eu/?key={{formatKey(k)}}&template=key" title="Requête sur {{formatKey(k)}} avec Overpass Turbo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAABJklEQVQoz13RP0oDYRCH4UcShdRbWWjSWWgOEEFLSWNj5SG2DHxa5RBaWOQM5gASraKdILugblaTEAvBP6BC0M4iWxhnuoHfDPO+QElkU3Dhy5ueYFOkpKiymlhfZiCXyWT6YjXlWbqmLZHratm1q6Url2irKRGJpRJBXaSiIlIXJBKxiIZLE4eqs4XF0aoDD/oaHHgytG/VkoWil6zac+VR4Nynb4lj29atWbNu27Ebnz6c82pq7N7YnWtdXdfuisnUKy+GYk0dqYkTJyZSHU2xoRd6Mi3LVuw4MzJyZseKZS2ZHkHmVF1ZRdPAQFNFWd2pTKChLxdULdqQSm1YVBXkszcjsaQAteXWra15UH9RH3n27Gge9V9ZYz++jeZl/df9Pq/7F7ojeX4atkuXAAAAAElFTkSuQmCC"></a> 
                         </div>
                         </div>
@@ -87,7 +94,7 @@
                           <div class="logo">
                             <span *ngIf="selectedFeature.get(k) != undefined && !(isValueIrrelevant(k))"> <!-- If the value is NonGeneric, we don't display the logos -->
                               <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Tag:{{formatKey(k)}}%3D{{selectedFeature.get(k)}}" title="Rechercher {{formatKey(k)}}:{{selectedFeature.get(k)}} sur le Wiki d'OpenstreetMap">Wiki OSM</a>
-                              <a target="_blank" href="https://taginfo.openstreetmap.fr/tags/{{formatKey(k)}}={{selectedFeature.get(k)}}#overview" title="Rechercher {{formatKey(k)}}:{{selectedFeature.get(k)}} sur TagInfo"><img src="/assets/images/taginfo_30_11px.png"></a>
+                              <a target="_blank" href="https://taginfo.openstreetmap.fr/tags/{{formatKey(k)}}={{selectedFeature.get(k)}}#overview" title="Rechercher {{formatKey(k)}}:{{selectedFeature.get(k)}} sur TagInfo"><img src="assets/images/taginfo_30_11px.png"></a>
                               <a target="_blank" href="http://overpass-turbo.eu/?key={{formatKey(k)}}&value={{selectedFeature.get(k)}}&template=key-value" title="Requête sur {{formatKey(k)}}:{{selectedFeature.get(k)}} avec Overpass Turbo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAABJklEQVQoz13RP0oDYRCH4UcShdRbWWjSWWgOEEFLSWNj5SG2DHxa5RBaWOQM5gASraKdILugblaTEAvBP6BC0M4iWxhnuoHfDPO+QElkU3Dhy5ueYFOkpKiymlhfZiCXyWT6YjXlWbqmLZHratm1q6Url2irKRGJpRJBXaSiIlIXJBKxiIZLE4eqs4XF0aoDD/oaHHgytG/VkoWil6zac+VR4Nynb4lj29atWbNu27Ebnz6c82pq7N7YnWtdXdfuisnUKy+GYk0dqYkTJyZSHU2xoRd6Mi3LVuw4MzJyZseKZS2ZHkHmVF1ZRdPAQFNFWd2pTKChLxdULdqQSm1YVBXkszcjsaQAteXWra15UH9RH3n27Gge9V9ZYz++jeZl/df9Pq/7F7ojeX4atkuXAAAAAElFTkSuQmCC"></a>
                             </span>
                           </div>
@@ -122,23 +129,35 @@
                           <tr>
                             <td>{{k}}</td>
                             <td>
-                              <span *ngIf="k == 'osm_id' && selectedFeature.get(k)>0" >
-                                <a>{{selectedFeature.get(k)}}</a>
-                                <a class="logo_OSM" target="_blank" href="http://www.openstreetmap.org/{{osm_type}}/{{selectedFeature.get(k)}}" title="Voir l'objet sur openstreetmap.org"><img src="/assets/images/osm_logo_25px.png"></a>
+                              <span [ngSwitch]="k">
+                                <span *ngSwitchCase="'osm_id'">
+                                  <span *ngIf="selectedFeature.get(k)>0; else negative">
+                                      <a>{{selectedFeature.get(k)}}</a>
+                                      <a class="logo_OSM" target="_blank" href="http://www.openstreetmap.org/{{osm_type}}/{{selectedFeature.get(k)}}" title="Voir l'objet sur openstreetmap.org"><img src="assets/images/osm_logo_25px.png"></a>
+                                  </span>
+                                  <ng-template #negative>
+                                      <a>{{selectedFeature.get(k)*-1}}</a>
+                                      <a class="logo_OSM" target="_blank" href="http://www.openstreetmap.org/relation/{{selectedFeature.get(k)*-1}}" title="Voir l'objet sur openstreetmap.org"><img src="assets/images/osm_logo_25px.png"></a>
+                                  </ng-template>
+                                </span>
+                                <span *ngSwitchCase="'osm_type'">
+                                    <a>{{osm_type}}</a>
+                                </span>
+                                <!-- Those both elements are not in technical_keys (because of the JS code), but we can't find them in the initial list of keys.
+                                <span *ngSwitchCase="'osm_user'">
+                                    <a target="_blank" href="http://www.openstreetmap.org/user/{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a>
+                                </span>
+                                <span *ngSwitchCase="'osm_changeset'">
+                                    <a target="_blank" href="http://www.openstreetmap.org/changeset/{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a>
+                                </span>
+                                -->
+                                <span *ngSwitchDefault>
+                                  <span *ngIf="selectedFeature.get(k) != undefined; else undefined">{{selectedFeature.get(k)}}</span>
+                                  <ng-template #undefined>
+                                    <span>n/a</span>
+                                  </ng-template>
+                                </span>
                               </span>
-                              <span *ngIf="k == 'osm_id' && selectedFeature.get(k)<0" >
-                                <a>{{selectedFeature.get(k)*-1}}</a>
-                                <a class="logo_OSM" target="_blank" href="http://www.openstreetmap.org/relation/{{selectedFeature.get(k)*-1}}" title="Voir l'objet sur openstreetmap.org"><img src="/assets/images/osm_logo_25px.png"></a>
-                              <span *ngIf="k == 'osm_type'">
-                                <a>{{osm_type}}</a>
-                              </span>
-                              </span>
-                              <!-- Those both elements are not in technical_keys (because of the JS code), but we can't find them in the initial list of keys.
-                              <span *ngIf="k == 'osm_user'" ><a  target="_blank" href="http://www.openstreetmap.org/user/{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span> 
-                              <span *ngIf="k == 'osm_changeset'" ><a  target="_blank" href="http://www.openstreetmap.org/changeset/{{selectedFeature.get(k)}}">{{selectedFeature.get(k)}}</a> </span>
-                              -->
-                              <span *ngIf="selectedFeature.get(k) != undefined && k != 'osm_id' && k != 'osm_user' && k != 'osm_changeset'" >{{selectedFeature.get(k)}} </span>
-                              <span *ngIf="selectedFeature.get(k) == undefined && k != 'osm_id' && k != 'osm_user' && k != 'osm_changeset'" >n/a</span>
                             </td>
                           </tr>
                         </ng-container>
