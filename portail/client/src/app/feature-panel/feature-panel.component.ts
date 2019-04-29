@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Layer } from '../model/Layer';
 import { MapService } from '../service/map.service';
+import { NearbyFeaturesService } from '../service/nearbyFeatures.service';
 import { FeatureMainInfoComponent } from 'app/feature-panel-components/feature-main-info/feature-main-info.component';
+import { NearbyFeaturesList } from '../model/NearbyFeaturesClasses/NearbyFeaturesList';
+
 
 declare var $: any;
 declare var config: any;
@@ -31,7 +34,8 @@ export class FeaturePanelComponent implements OnInit {
   keys: Array<String> = [];
   osm_type: String;
   technical_keys: Array<String> = [];
-  constructor(private mapService: MapService) { }
+  nearbyFeatures: NearbyFeaturesList;
+  constructor(private mapService: MapService, private nearbyFeaturesService : NearbyFeaturesService) { }
 
   ngOnInit() {
     var self=this;
@@ -44,6 +48,7 @@ export class FeaturePanelComponent implements OnInit {
     this.selectedFeature = this.selectedFeatures[0];
     this.processAttributes();
     this.updateSelectedLayer(this.selectedFeature);
+    this.updateNearbyFeaturesList();
   }
 
   onSelect(feature) {
@@ -52,6 +57,7 @@ export class FeaturePanelComponent implements OnInit {
     this.mapService.cleanSelection();
     this.mapService.addToSelection(feature);
     this.updateSelectedLayer(this.selectedFeature);
+    this.updateNearbyFeaturesList();
   }
 
   ngOnChanges(...args: any[]) {//si l'@Input() selectedFeature change, cette fonction est lancée
@@ -68,6 +74,7 @@ export class FeaturePanelComponent implements OnInit {
     this.selectedFeature = this.selectedFeatures[0];
     this.processAttributes();
     this.updateSelectedLayer(this.selectedFeature);
+    this.updateNearbyFeaturesList();
   }
 
   ngAfterViewInit() {
@@ -115,22 +122,31 @@ export class FeaturePanelComponent implements OnInit {
     return key.replace(/-/g,':');
   }
 
+
+  public updateNearbyFeaturesList(){
+    if (this.selectedFeatures.length>1){
+      this.nearbyFeatures = this.nearbyFeaturesService.getNearbyFeaturesList(this.selectedFeatures, this.selectedFeature);
+      console.log(this.nearbyFeatures);
+      console.log(this.selectedFeatures);
+    }
+  }
+
   //For the list of nearby features, this function is called for each features on the dropdown-menu
-  public getLabelToDisplay(feature) :string{
-    var layer = this.mapService.getLayerOfOneFeature(feature);
+  public getLabelToDisplay(feature,layer) :string{
     var featureImportantTagsList = this.featureMainInfoComponent.getKeyAndLabelForAllLevelsOfImportance(feature,layer); 
+    var severalLayers : boolean = (this.mapService.getNumberOfVisibleLayers()>1);
 
     if (!featureImportantTagsList.isEmpty()){ //if the list is not null, return the high important key
     var highImportanceList = featureImportantTagsList.list.filter(x => x.importance=== "high");
       if (highImportanceList.length >0){// If highImportanceList is not empty
         var highImportanceTag = highImportanceList[0].tagList;
         if (!highImportanceTag.isEmpty()){
-        return feature.get(highImportanceList[0].tagList.list[0].key);
+            return feature.get(highImportanceList[0].tagList.list[0].key);
         }
       }
     }
     //if the list is null (ie there is nothing to display) or there is no high important key to display, return the name of the layer and the osm_id.
-    return layer.nom_court+' : '+Math.abs(feature.get('osm_id'));
+    return "Objet n°" + Math.abs(feature.get('osm_id')).toString();
   }
  
   //the selectedLayer changes when the user clicks on a feature which belongs to on another layer
