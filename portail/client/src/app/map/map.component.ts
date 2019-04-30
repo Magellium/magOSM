@@ -209,7 +209,7 @@ export class MapComponent implements OnInit {
   updateZoomLevel(){
     let zoom = this.map.getView().getZoom();
     //console.log(zoom)
-    document.getElementById('map-zoom-level').innerHTML = '<center>' + zoom +'</center>';
+    document.getElementById('map-zoom-level').innerHTML = '<center>' + Math.round(zoom) +'</center>';
   }
 
 
