@@ -63,6 +63,9 @@
     background-color: rgba(255, 255, 255, 1);
   }
 
+  .featurepanel-nav{
+    width:100%;
+  }
 
   #featurepanel-wrapper.active {
     left: 500px;
@@ -89,12 +92,6 @@
   white-space: normal;
 }
 
-/* .dropdown-menu .dropdown-header{
-  color:white;
-  background-color: #545b62;
-  border-color: #4e555b;
-} */
-
 .flex .logo{
   text-align:center;
   width:30%;
@@ -115,6 +112,7 @@ table{
   margin-right:auto;
   margin-top:10px;
   width:95%;
+  hyphens:auto;
 }
 
 table td{
