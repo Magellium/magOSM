@@ -4,6 +4,7 @@
 
 CREATE MATERIALIZED VIEW magosm.france_telecom_fibre_connection_point AS 
  SELECT france_point.osm_id,
+    france_point.man_made,
     france_point.operator,
     france_point.ref,
     france_point.name,
@@ -29,6 +30,7 @@ CREATE MATERIALIZED VIEW magosm.france_telecom_fibre_connection_point AS
   WHERE (france_point.tags -> 'telecom'::text) = 'connection_point'::text AND (france_point.tags -> 'telecom:medium'::text) = 'fibre'::text
 UNION
  SELECT france_polygon.osm_id,
+    france_polygon.man_made,
     france_polygon.operator,
     france_polygon.ref,
     france_polygon.name,
