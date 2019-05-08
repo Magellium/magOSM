@@ -26,7 +26,7 @@ CREATE MATERIALIZED VIEW magosm.france_telecom_exchange_point AS
     ''::text AS osm_original_geom,
     'node'::text AS osm_type
    FROM magosm.france_point
-  WHERE (france_point.tags -> 'telecom'::text) = 'central_office'::text OR (france_point.tags -> 'telecom'::text) = 'exchange'::text OR (france_point.tags -> 'man_made:medium'::text) = 'telephone_office'::text
+  WHERE (france_point.tags -> 'telecom'::text) = 'central_office'::text OR (france_point.tags -> 'telecom'::text) = 'exchange'::text OR (france_point.tags -> 'man_made'::text) = 'telephone_office'::text
 UNION
  SELECT france_polygon.osm_id,
     france_polygon.man_made,
@@ -51,7 +51,7 @@ UNION
     st_asewkt(france_polygon.way) AS osm_original_geom,
     'way'::text AS osm_type
    FROM magosm.france_polygon
-  WHERE (france_polygon.tags -> 'telecom'::text) = 'central_office'::text OR (france_polygon.tags -> 'telecom'::text) = 'exchange'::text OR (france_polygon.tags -> 'man_made:medium'::text) = 'telephone_office'::text
+  WHERE (france_polygon.tags -> 'telecom'::text) = 'central_office'::text OR (france_polygon.tags -> 'telecom'::text) = 'exchange'::text OR (france_polygon.tags -> 'man_made'::text) = 'telephone_office'::text
 WITH DATA;
 
 ALTER TABLE magosm.france_telecom_exchange_point
