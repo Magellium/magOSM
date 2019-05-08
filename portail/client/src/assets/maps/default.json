@@ -808,7 +808,7 @@
             },
 			{
                 "layername": "magosm.france_telecom_copper_connection_point",
-                "nom_court": "Sous-répartiteur cuivre",
+                "nom_court": "Sous-répartiteurs cuivre",
                 "maxScaleDenominator":1000000,
                 "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/c18bdca514a14d12a72712c2051682df",
                 "sld_url":"http://magosm.magellium.com/geoserver/styles/france_telecom_copper_connection_point.sld",
