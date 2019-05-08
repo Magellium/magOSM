@@ -13,7 +13,7 @@ Tout le monde peut participer à améliorer la carte en ajoutant ou en mettant �
 * <a href="https://www.openstreetmap.fr/" target="_blank">Association OpenStreetMap France</a>
 
 ### Remonter une anomalie ou proposer une amélioration
-Vous pouvez [rapporter une anomalie](https://github.com/magellium/magosm/issues/new). Merci de fournir autant de détails que possible (copies d'écran, étapes pour reproduire etc.).
+Si vous voulez rapporter une anomalie sur le portail magOSM, ou bien proposer une amélioration, vous pouvez [ouvrir une issue](https://github.com/magellium/magosm/issues/new). Pour une anomalie, merci de fournir autant de détails que possible (copies d'écran, étapes pour reproduire etc.).
 
 ### Proposer une nouvelle couche thématique
 Un guide est disponible ici : [Contribution.md](Contribution.md) !

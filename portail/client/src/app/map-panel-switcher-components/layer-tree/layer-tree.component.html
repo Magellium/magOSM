@@ -1,14 +1,13 @@
-
 <div class="card-header p-2 text-center" role="tab" id="headingMenu">
   <div data-toggle="collapse" href="#collapseLegend" aria-expanded="true" aria-controls="collapseLegend">
-    <h3>Thématiques</h3>
+    <b>Thématiques</b>
   </div>
 </div>
-<div role="tablist" aria-multiselectable="true" style="overflow-y: hidden; overflow-x: hidden; width:100%;" >
+<div role="tablist" aria-multiselectable="true">
     <div *ngFor="let categorie of layervariables" class="card">
         <div class="card-header" role="tab" id="categorie{{categorie.id_categorie}}">
             <h6 class="mb-0">
-                <a id="categorie-title" class="collapsed" data-toggle="collapse" data-parent="#menuaccordion" [attr.href]="'#collapse'+categorie.id_categorie"
+                <a class="categorie-title collapsed" data-toggle="collapse" data-parent="#menuaccordion" [attr.href]="'#collapse'+categorie.id_categorie"
                     [title]="categorie.help || categorie.categorie"
                     [attr.aria-controls]="'#collapse'+categorie.id_categorie" aria-expanded="false"
                 >
@@ -41,12 +40,13 @@
                                 display: flex;
                                 align-items: center;
                             ">
-                                <input #ref
+                               
+                               <input #ref
                                     type="range" min ="0" max="100" step ="2.5"
                                     value ="{{feature.opacity}}"
                                     (change)="changeOpacity($event,feature,ref.value);false"
-                                    style="width:60px; padding-right: 10px;"
                                 />
+                               
 
                                 <span *ngIf="mapService.isInRange(feature.layername)==false" 
                                     style="cursor:pointer;margin: 3px"
