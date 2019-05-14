@@ -1,4 +1,4 @@
- {
+{
 
     "PARAMS":[
             {
@@ -718,6 +718,123 @@
             
         ]
     },
+     		{
+        "categorie": "Télécommunications",
+        "id_categorie": 31,
+        "features": [
+            {
+                "layername": "magosm:france_telecom_exchange_point",
+                "nom_court": "Noeuds de raccordement",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/2b7786757e4649ed8c34dbf22fcf7dbb",
+                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_telecom_exchange_point.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"ref-FR-PTT","label":"Référence PTT"},
+                            {"priority":2, "osm_key":"ref-FR-Orange","label":"Référence Orange"},
+                            {"priority":3, "osm_key":"ref-FR-SFR","label":"Référence SFR"},
+                            {"priority":4, "osm_key":"ref","label":"Référence"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"},
+                            {"priority":2,"osm_key":"owner","label":"Propriétaire"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"name","label":"Nom"},
+                            {"priority":2,"osm_key":"description","label":"Description"},
+                            {"priority":3,"osm_key":"street_cabinet","label":"Type de répartiteur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"telecom-medium","label":"Type de câble"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:france_telecom_fibre_connection_point",
+                "nom_court": "Points de mutualisation Fibre",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/8f6ddf33399d4bc5b7a6ad34efb382a1",
+                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_telecom_fibre_connection_point.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"ref-FR-ARCEP","label":"Référence ARCEP"},
+                            {"priority":2,"osm_key":"ref-FR-Orange","label":"Référence Orange"},
+                            {"priority":3,"osm_key":"ref-FR-SFR","label":"Référence SFR"},
+                            {"priority":4, "osm_key":"ref","label":"Référence"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"},
+                            {"priority":2,"osm_key":"owner","label":"Propriétaire"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"name","label":"Nom"},
+                            {"priority":2,"osm_key":"description","label":"Description"},
+                            {"priority":3,"osm_key":"street_cabinet","label":"Type de répartiteur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"ref-FR-Orange-NRO","label":"Référence Orange NRO"}
+                        ]
+                    }
+                ]
+            },
+			{
+                "layername": "magosm:france_telecom_copper_connection_point",
+                "nom_court": "Sous-répartiteurs cuivre",
+                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/c18bdca514a14d12a72712c2051682df",
+                "sld_url":"http://magosm.magellium.com/geoserver/styles/france_telecom_copper_connection_point.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"ref-FR-PTT","label":"Référence PTT"},
+                            {"priority":2, "osm_key":"ref","label":"Référence"},
+                            {"priority":3,"osm_key":"ref-FR-Orange","label":"Référence Orange"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"},
+                            {"priority":2,"osm_key":"owner","label":"Propriétaire"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"name","label":"Nom"},
+                            {"priority":2,"osm_key":"description","label":"Description"},
+                            {"priority":3,"osm_key":"street_cabinet","label":"Type de répartiteur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"ref-FR-PTT-NRA","label":"Référence PTT NRA"},
+                            {"osm_key":"telecom-medium","label":"Type de câble"}
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
     {
         "categorie": "Mes couches",
         "help": "Pour ajouter une couche, faîtes un glissé/déposé d'un fichier ShapeFile (ou de son URL) dans la carte.",
@@ -729,12 +846,15 @@
         {"osm_key":"phone"},
         {"osm_key":"fax"},
         {"osm_key":"opening_hours"},
-        {"osm_key":"source"},
         {"osm_key":"website"},
         {"osm_key":"wiki"},
         {"osm_key":"addr"},
-        {"osm_key":"ref:"},
+        {"osm_key":"ref"},
         {"osm_key":"name"},
-        {"osm_key":"building:"}
+        {"osm_key":"building"},
+        {"osm_key":"note"},
+        {"osm_key":"colour"},
+        {"osm_key":"location"},
+        {"osm_key":"source"}
     ]
 }
