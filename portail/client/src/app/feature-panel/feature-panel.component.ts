@@ -151,8 +151,8 @@ export class FeaturePanelComponent implements OnInit {
   // The function reads the config
   public isValueIrrelevant(tag : string) : boolean{
     let isValueIrrelevant = false;
-    config.OSM_KEYS_WITH_IRRELEVANT_VALUE.forEach(function(n){
-      if (tag.includes(n.osm_key)){
+    config.OSM_KEYS_WITH_IRRELEVANT_VALUE_FOR_EXTERNAL_LINKS.forEach(function(n){
+      if (tag.startsWith(n.osm_key)){
         isValueIrrelevant=true;
       }
     })
