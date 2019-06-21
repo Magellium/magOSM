@@ -32,7 +32,7 @@ export class FeaturePanelComponent implements OnInit {
   private panelOpen = true;
 
   keys: Array<String> = [];
-  osm_type: String;
+  osm_type: String = "node";
   technical_keys: Array<String> = [];
   nearbyFeatures: NearbyFeaturesList;
   constructor(private mapService: MapService, private nearbyFeaturesService : NearbyFeaturesService) { }
@@ -85,20 +85,15 @@ export class FeaturePanelComponent implements OnInit {
     let geomType = this.selectedFeature.getGeometry().getType();
     let clefs = this.selectedFeature.getKeys();
     //Determine the osm_type
-    if (geomType == "Point") {
-      this.osm_type = "node";
+    // It's NOT easy because : polygon are simplified so the geomType is a Point. Some relations have a positive osm_id and route=*, the other relation have a negative osm_id
+    if (clefs.indexOf('osm_type') >= 0) {
+      this.osm_type = this.selectedFeature.get('osm_type');
+    } else { 
+      this.osm_type = "way";
     }
-    else {
-      if ((clefs.indexOf("route") >= 0)) {
-        this.osm_type = "relation";
-      } else {
-        this.osm_type = "way";
-      }
-
+    if ((clefs.indexOf("route") >= 0) || this.selectedFeature.get('osm_id') < 0) {
+          this.osm_type = "relation";
     }
-    if (clefs.indexOf("osm_type") >= 0) {
-        this.osm_type = this.selectedFeature.get("osm_type");
-      } 
 
     this.technical_keys=[];
     this.keys=[];
@@ -158,8 +153,8 @@ export class FeaturePanelComponent implements OnInit {
   // The function reads the config
   public isValueIrrelevant(tag : string) : boolean{
     let isValueIrrelevant = false;
-    config.OSM_KEYS_WITH_IRRELEVANT_VALUE.forEach(function(n){
-      if (tag.includes(n.osm_key)){
+    config.OSM_KEYS_WITH_IRRELEVANT_VALUE_FOR_EXTERNAL_LINKS.forEach(function(n){
+      if (tag.startsWith(n.osm_key)){
         isValueIrrelevant=true;
       }
     })

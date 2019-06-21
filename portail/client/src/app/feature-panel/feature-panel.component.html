@@ -164,7 +164,12 @@
                         <!-- Historic of the object -->
                           <tr id=historique>
                             <td colspan="2">
-                              <a target="_blank" href="http://osmlab.github.io/osm-deep-history/#/{{osm_type}}/{{selectedFeature.get('osm_id')}}" title="Voir les modifications de l'objet dans la base OSM au fil du temps">Historique de l'objet OSM</a>
+                                <span *ngIf="selectedFeature.get('osm_id')>0; else negative2">
+                                  <a target="_blank" href="http://osmlab.github.io/osm-deep-history/#/{{osm_type}}/{{selectedFeature.get('osm_id')}}" title="Voir les modifications de l'objet dans la base OSM au fil du temps">Historique de l'objet OSM</a>
+                                </span>
+                                <ng-template #negative2>
+                                    <a target="_blank" href="http://osmlab.github.io/osm-deep-history/#/{{osm_type}}/{{selectedFeature.get('osm_id')*-1}}" title="Voir les modifications de l'objet dans la base OSM au fil du temps">Historique de l'objet OSM</a>
+                                </ng-template>  
                             </td>
                           </tr>
                       </tbody>

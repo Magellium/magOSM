@@ -842,7 +842,7 @@
         "features": []
     }
     ],
-    "OSM_KEYS_WITH_IRRELEVANT_VALUE":[
+    "OSM_KEYS_WITH_IRRELEVANT_VALUE_FOR_EXTERNAL_LINKS":[
         {"osm_key":"phone"},
         {"osm_key":"fax"},
         {"osm_key":"opening_hours"},
@@ -855,6 +855,9 @@
         {"osm_key":"note"},
         {"osm_key":"colour"},
         {"osm_key":"location"},
-        {"osm_key":"source"}
+        {"osm_key":"source"},
+        {"osm_key":"type"},
+        {"osm_key":"description"},
+        {"osm_key":"email"}
     ]
 }
