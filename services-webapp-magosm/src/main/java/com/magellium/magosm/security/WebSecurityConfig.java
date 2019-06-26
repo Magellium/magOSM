@@ -1,4 +1,4 @@
-package fr.magellium.magosm;
+package com.magellium.magosm.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

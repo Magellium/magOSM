@@ -1,4 +1,4 @@
-package fr.magellium.magosm;
+package com.magellium.magosm.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

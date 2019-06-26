@@ -1,4 +1,4 @@
-package fr.magellium.magosm;
+package com.magellium.magosm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
