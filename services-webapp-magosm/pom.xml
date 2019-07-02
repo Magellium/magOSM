@@ -70,6 +70,17 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+  			<groupId>com.bedatadriven</groupId>
+  			<artifactId>jackson-datatype-jts</artifactId>
+  			<version>2.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.vladmihalcea</groupId>
+		    <artifactId>hibernate-types-52</artifactId>
+		    <version>2.4.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>

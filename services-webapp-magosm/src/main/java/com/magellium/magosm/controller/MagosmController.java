@@ -12,6 +12,6 @@ public class MagosmController {
 	@GetMapping(value="/hello")
 	public String hello() {
 		
-		return "test 2";
+		return "coucou";
 	}
 }

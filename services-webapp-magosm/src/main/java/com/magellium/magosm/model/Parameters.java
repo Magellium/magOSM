@@ -12,4 +12,9 @@ public class Parameters {
 	 */
 	public static final String MAIN_APPLICATION_SCHEMA = "application";
 
+	/**
+	 * MAGOSM_DATA_SCHEMA.
+	 */
+	public static final String MAGOSM_DATA_SCHEMA = "magosm";
+
 }
