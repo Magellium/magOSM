@@ -1,0 +1,11 @@
+<div id=list>
+  <a *ngIf="changesList.length > 0; else empty;">
+    <a *ngFor="let change of changesList" class="col-1-4" 
+    routerLink="/changements/{{id}}/{{change.id}}">
+      <div id=change>
+          {{change.osm_id}} : {{change.change_type}}
+      </div>
+    </a>
+  </a>
+  <ng-template #empty>Pas d'objet</ng-template>
+</div>

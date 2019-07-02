@@ -22,14 +22,32 @@ import { PermalinkComponent } from './permalink/permalink.component';
 import { UserContextService } from './service/user-context.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FeatureMainInfoComponent } from './feature-panel-components/feature-main-info/feature-main-info.component';
+import { MainChangesComponent } from './changes/main-changes/main-changes.component';
+import { ChangesMapComponent } from './changes/changes-map/changes-map.component';
+import { ChangesByThematicComponent } from './changes/changes-by-thematic/changes-by-thematic.component';
+import { ChangeDetailsComponent } from './changes/change-details/change-details.component';
 
 // Define the routes
 const ROUTES = [
   {
+    path: 'changements',
+    component: MainChangesComponent,
+    data: { title: 'Suivi de changement' }
+  },
+  {
+    path: 'changements/:id',
+    component : ChangesByThematicComponent,
+  }, 
+  {
+    path: 'changements/:id/:change_id',
+    component : ChangeDetailsComponent,
+  },
+  {
     path: '',
     redirectTo: '/carte',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+    data: { title: 'Portail'}
+  },
 ];
 
 @NgModule({
@@ -47,6 +65,10 @@ const ROUTES = [
     OrderByPipeComponent,
     PermalinkComponent,
     FeatureMainInfoComponent,
+    MainChangesComponent,
+    ChangesMapComponent,
+    ChangesByThematicComponent,
+    ChangeDetailsComponent,
   ],
   imports: [ 
     NguiAutoCompleteModule,
