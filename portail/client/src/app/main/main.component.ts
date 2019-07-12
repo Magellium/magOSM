@@ -6,6 +6,7 @@ import { LayerChangeService} from '../service/layer-change.service';
 import { UserContextService } from '../service/user-context.service';
 import { UserContext } from '../model/UserContext';
 import { HttpClient } from '@angular/common/http';
+import { ConfigService } from 'app/service/config.service';
 
 declare var $: any;
 declare var ol: any;
@@ -32,22 +33,24 @@ export class MainComponent {
   jsonContextLoaded=false;
 
 
-  getConfig() {
+  /*getConfig() {
     // now returns an Observable of Config
     var conf=this.route.snapshot.queryParams['config'];
     if(conf==undefined){
       conf="default.json"
     }
     return this.http.get<any>(this.configUrl+conf);
-  }
+  }*/
 
   config: any;
 
-  loadConfig() {
-  this.getConfig()
+  loadConfigAndUserContext() {
+  this.configService.getConfig()
     .subscribe(resp => {
-      
       window["config"]=resp;
+      // on charge le  contexte utilisateur
+      this.userContext = this.userContextService.loadUserContextFromPermalink();
+      console.log(this.userContext)
       this.jsonContextLoaded=true;
       console.log(resp);
       this.showPopovers();
@@ -58,9 +61,11 @@ export class MainComponent {
     private route: ActivatedRoute,
     private http: HttpClient,
     public layerChangeService: LayerChangeService,
-    public userContextService: UserContextService
+    public userContextService: UserContextService,
+    public configService: ConfigService
 ) {
-    this.loadConfig();
+  console.log('constructor')
+    this.loadConfigAndUserContext();
     this.layerChangeService.getAnnounceLayerChangeEventEmitter().subscribe(
       newSelectedLayer=>{
         this.onMenuLayerChange(newSelectedLayer);
@@ -74,7 +79,8 @@ export class MainComponent {
   }
 
   ngOnInit() {
-    
+    console.log('onInit')
+
     ol.Feature.prototype.getDisplayLabel= function(){
       //console.log('getDisplayLabel')
       if(this.getKeys().indexOf('name')>0)
@@ -82,10 +88,6 @@ export class MainComponent {
       else
         return Math.abs(this.get('osm_id'));
     }
-
-
-    // on charge le  contexte utilisateur
-    this.userContext = this.userContextService.loadUserContextFromPermalink();
   }
 
   ngAfterViewInit() {
