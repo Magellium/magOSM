@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -22,32 +22,35 @@ import { PermalinkComponent } from './permalink/permalink.component';
 import { UserContextService } from './service/user-context.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FeatureMainInfoComponent } from './feature-panel-components/feature-main-info/feature-main-info.component';
-import { MainChangesComponent } from './changes/main-changes/main-changes.component';
-import { ChangesMapComponent } from './changes/changes-map/changes-map.component';
+import { ChangesMainComponent } from './changes/main-changes/changes-main.component';
+import { ChangesDetailledMapComponent } from './changes/changes-detailled-map/changes-detailled-map.component';
 import { ChangesByThematicComponent } from './changes/changes-by-thematic/changes-by-thematic.component';
 import { ChangeDetailsComponent } from './changes/change-details/change-details.component';
+import { ChangesConfigPanelComponent } from './changes/changes-config-panel/changes-config-panel.component';
+import { ChangesMapComponent } from './changes/changes-map/changes-map.component';
+import { ChangesHeaderComponent } from './changes/changes-header/changes-header.component';
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
+import { ConfigService } from './service/config.service';
 
 // Define the routes
 const ROUTES = [
   {
-    path: 'changements',
-    component: MainChangesComponent,
-    data: { title: 'Suivi de changement' }
-  },
-  {
-    path: 'changements/:id',
-    component : ChangesByThematicComponent,
-  }, 
-  {
-    path: 'changements/:id/:change_id',
-    component : ChangeDetailsComponent,
-  },
-  {
     path: '',
     redirectTo: '/carte',
     pathMatch: 'full',
-    data: { title: 'Portail'}
   },
+  {
+    path: 'carte',
+    component: MainComponent,
+    data: { title: 'Portail' }
+  },
+  {
+    path: 'changements',
+    component: ChangesMainComponent,
+    data: { title: 'Suivi de changement' }
+  },
+  { path: '**', redirectTo: '/carte' },
 ];
 
 @NgModule({
@@ -65,15 +68,19 @@ const ROUTES = [
     OrderByPipeComponent,
     PermalinkComponent,
     FeatureMainInfoComponent,
-    MainChangesComponent,
-    ChangesMapComponent,
+    ChangesMainComponent,
+    ChangesDetailledMapComponent,
     ChangesByThematicComponent,
     ChangeDetailsComponent,
+    ChangesConfigPanelComponent,
+    ChangesMapComponent,
+    ChangesHeaderComponent,
   ],
   imports: [ 
     NguiAutoCompleteModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
         {
@@ -82,9 +89,12 @@ const ROUTES = [
         }
       ]),
     HttpModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    NgxMyDatePickerModule.forRoot(),
+    MyDateRangePickerModule
   ],
   providers: [
+    ConfigService,
     MapService,
     LayerChangeService, 
     UserContextService,
