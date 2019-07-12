@@ -1,6 +1,9 @@
-Test
-<div id="overview-position" style="top:100px;"></div>
-<div
-id="map" (drop)="onDrop($event)" (dragover)="onDragOver($event)"
-></div>
+<div id="map" (drop)="onDrop($event)" (dragover)="onDragOver($event)"></div>
 <div id="mouse-position"></div>
+<div id="layerswitcher">
+    Légende
+    <div *ngFor="let layername of layerNamesList">
+        <input type="checkbox" id="layername" name="layername" (click)="onSelect($event,layername)" checked>
+        <label for="scales">{{layername}}</label>
+    </div>
+</div>

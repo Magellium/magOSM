@@ -1,0 +1,19 @@
+body{
+    background-clip: border-box;
+border: 1px solid rgba(0,0,0,.125);
+border-radius: .25rem;
+}
+
+form{
+    margin-bottom: 5px;
+}
+
+#title{
+    font-size:1rem;
+    font-weight: bolder;
+    text-align: center !important;
+}
+
+.invalid-tooltip{
+    position: relative;
+}

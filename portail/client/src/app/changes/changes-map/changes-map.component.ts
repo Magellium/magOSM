@@ -1,70 +1,56 @@
-import { Input, Component, AfterViewInit } from '@angular/core';
+import { Input, Component, OnInit} from '@angular/core';
 import { UserContext } from '../../model/UserContext';
 import { UserContextService } from '../../service/user-context.service';
 import { MapService } from '../../service/map.service';
+import { ConfigService } from 'app/service/config.service';
 
 declare var ol: any;
-declare var config: any;
+declare var $: any;
 
 @Component({
   selector: 'app-changes-map',
   templateUrl: './changes-map.component.html',
   styleUrls: ['./changes-map.component.css']
 })
-export class ChangesMapComponent implements AfterViewInit {
+export class ChangesMapComponent implements OnInit {
 
   @Input() public change : any;
+  @Input('userContext') userContext: UserContext;
 
-  constructor(public mapService: MapService) { }
+  constructor(
+    public mapService: MapService,
+    public userContextService : UserContextService,
+    public configService : ConfigService
+) { }
 
   // map parameters
   private view: any;
-  private userContextService : UserContextService;
-  private userContext : UserContext;
-  private map: any;
+  public map: any;
+  public layerNamesList: Array<string> = ["1","2","3","4","5","6","7","8"];
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit(){
-    console.log(this.change);
     this.initMap();
   }
 
   initMap(){
-
-    console.log(this.change);
-
     var mousePositionControl = new ol.control.MousePosition({
       coordinateFormat: function (coords) {
         return ol.coordinate.format(coords, 'Lat : {y}° Lon : {x}° (WGS84)', 4)
       },
-      projection: 'EPSG:3857',
+      projection: 'EPSG:4326',
       className: 'custom-mouse-position',
       target: document.getElementById('mouse-position'),
       undefinedHTML: '&nbsp;'
     });
-
-    let center: number[] = this.getMapCenter();
+    
+    let center: number[] = [this.userContext.lon, this.userContext.lat];
     this.view = new ol.View({
       projection: 'EPSG:3857',
-      center: center,
-      zoom: 14,
-      minZoom: 3,
-      //maxZoom: 18
+      center: ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'),
+      zoom: this.userContext.z,
+      //minZoom: 6,
     })
-
-    var overviewMapControl = new ol.control.OverviewMap({
-      view: new ol.View({
-        maxZoom: 6,
-        minZoom: 6,
-        zoom: 6,
-      }),
-      collapsed: false,
-      collapsible: false,
-      target : "overview-position"
-    });  
-
+    
     //Map creation
     this.map = new ol.Map({
       controls: ol.control.defaults({
@@ -73,86 +59,58 @@ export class ChangesMapComponent implements AfterViewInit {
         })
       }).extend([
         mousePositionControl,
-        //new ol.control.ScaleLine(),
-        overviewMapControl,
+        new ol.control.ScaleLine(),
       ]),
       target: 'map',
       view: this.view,
-      layers: [
-        new ol.layer.Tile({
-        source: new ol.source.OSM(),
-        projection : 'EPSG:3857',
-        opacity:0.5
-        })
-      ]
     });
 
-    this.map.addLayer(this.getVectorPoint());
-    //this.mapService.setMap(this.map, this.userContext);
-
-    //this.map.on('click', this.onClick.bind(this));
-    //this.map.on('moveend', this.onZoom.bind(this)); 
-  }
-  
-
-  public getMapCenter(){
-    if (this.change.the_geom_old == null) {
-      return [this.change.the_geom_new.coordinates[0], this.change.the_geom_new.coordinates[1]]
-    } else {
-      if (this.change.the_geom_new == null){
-        return [this.change.the_geom_old.coordinates[0], this.change.the_geom_old.coordinates[1]]
-      }
-      else {
-        return [(this.change.the_geom_new.coordinates[0]+this.change.the_geom_old.coordinates[0])/2, (this.change.the_geom_new.coordinates[1]+this.change.the_geom_old.coordinates[1])/2]
-      }
-    }
-  }
-
-  public getVectorPoint(){
-    //Point with the_geom_new
-    let redColor = this.getStyledCircle([180,0,0,1])
-    let greenColor = this.getStyledCircle([0,180,0,1])
-    //let yellowColor = this.getStyledCircle([255,255,0,1])
-    let features=[];
-    if (this.change.the_geom_new != null) {
-      var newPoint = new ol.Feature({
-        geometry: new ol.geom.Point(this.change.the_geom_new.coordinates),
-        name: "Nouvel emplacement",
-      });
-    newPoint.setStyle(greenColor);
-    features.push(newPoint);
-    }
-    if (this.change.the_geom_old != null && this.change.change_type != 3) {
-      var oldPoint = new ol.Feature({
-        geometry: new ol.geom.Point(this.change.the_geom_old.coordinates),
-        name: "Ancien emplacement",
-      });
-    oldPoint.setStyle(redColor);
-    features.push(oldPoint);
-    }
-    console.log(oldPoint);
-    var vectorSource = new ol.source.Vector({
-      features: features,
+    $('.ol-zoom-in, .ol-zoom-out').tooltip({
+      placement: 'right'
     });
 
-    var vectorPoint = new ol.layer.Vector({
-      source: vectorSource,
+
+    this.mapService.setMap(this.map, this.userContext);
+    this.mapService.initLayers();
+    this.mapService.initStyles();
+    console.log(this.mapService.changesStyles);
+    console.log(this.mapService.changesPointStyles);
+
+    //// Pour ajouter de la surbrillance au passage de la souris. Ralentit beaucoup lorsqu'il y a beaucoup d'objets. 
+
+    // var highlightStyle = new ol.style.Style({
+    //   stroke: new ol.style.Stroke({
+    //     color: [0,0,0,0.6],
+    //     width: 15
+    //   }),
+    //   fill: new ol.style.Fill({
+    //     color: [0,0,0,0.2]
+    //   }),
+    //   zIndex: 1
+    // });
+    // var selectPointerMove = new ol.interaction.Select({
+    //   condition: ol.events.condition.pointerMove,
+    //   style : highlightStyle,
+    //   hitTolerance : 2
+    // });
+    // this.map.addInteraction(selectPointerMove);
+
+    var self = this;
+    this.map.on('pointermove', function(e) {
+      if (e.dragging) return; // si il y a déplacement de la carte, on arrête
+       
+      var pixel = self.map.getEventPixel(e.originalEvent);
+      var hit = self.map.hasFeatureAtPixel(pixel, {hitTolerance:2}); // on vérifie si il y a un objet à l'endroit de l'événement
+       
+      self.map.getTargetElement().style.cursor = hit ? 'pointer' : ''; // si besoin, on change le curseur
     });
-    return vectorPoint;
   }
 
-  public getStyledCircle(colortab){
-    let colorStyle = new ol.style.Style({   
-      image: new ol.style.Circle({
-        radius: 4,
-        stroke: new ol.style.Stroke({
-            color: colortab
-        }),
-        fill: new ol.style.Fill({
-            color: colortab
-        })
-      })
-    });
-    return colorStyle;
+  onSelect($event,layername){
+    console.log($event);
+    var layer = this.mapService.getLayerByTitle(layername-1);
+    var isVisible = layer.getVisible()
+    layer.setVisible(!isVisible);
   }
+
 }

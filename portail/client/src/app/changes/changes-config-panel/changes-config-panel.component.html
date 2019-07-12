@@ -1,0 +1,34 @@
+<body>  
+  <div id="title">Rechercher des changements</div>
+  <form [formGroup]="changesFilterForm" class="container" novalidate>
+    <div class="form-group">
+        <label for="thematicSelection">Thématique</label>
+        <select class="custom-select mr-sm-2" id="thematicSelection" formControlName="thematic" required>
+          <ng-container *ngFor="let thematic of thematicsList">
+            <option value="{{thematic.id}}">{{thematic.name}}</option>
+          </ng-container>
+        </select>
+        <div *ngIf="thematic.invalid && (thematic.dirty || thematic.touched)"
+          class="alert alert-danger">
+          <div *ngIf="thematic.errors.required">
+            Sélectionnez une thématique
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="mydaterange">Période de temps</label>
+        <my-date-range-picker name="mydaterange" placeholder="Dates de début et de fin" [options]="myDateRangePickerOptions"
+        formControlName="dates" required></my-date-range-picker>
+    </div>
+    <div class="form-group">
+      <label for="zone">Emprise géographique</label>
+      <div id="zone" style="font-size:0.8rem; margin-left:10px;">
+        Déplacez-vous sur la carte pour sélectionner la zone de recherche
+      </div>
+    </div>
+    <div class=submitButton style="text-align:center;">
+      <button type="button" class="btn btn-success" (click)="onSubmit()">Lancer la recherche</button>
+    </div>
+  </form>
+</body>
+
