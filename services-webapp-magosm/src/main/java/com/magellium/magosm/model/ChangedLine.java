@@ -1,14 +1,23 @@
 package com.magellium.magosm.model;
 
-import javax.persistence.*;
-
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-
 import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import com.bedatadriven.jackson.datatype.jts.serialization.GeometryDeserializer;
 import com.bedatadriven.jackson.datatype.jts.serialization.GeometrySerializer;
@@ -18,17 +27,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 
-import com.magellium.magosm.model.Thematic;
-
-/**
- * The persistent class for the ChangedPointDetailled database table.
- */
-
 @Entity
-@Table(name = "mp_changes_analysis_point", schema = Parameters.MAGOSM_DATA_SCHEMA)
+@Table(name = "mp_changes_analysis_line", schema = Parameters.MAGOSM_DATA_SCHEMA)
 @TypeDef(name = "hstore", typeClass = PostgreSQLHStoreType.class)
-@NamedQuery(name = "ChangedPoint.findAll", query = "SELECT p FROM ChangedPoint p")
-public class ChangedPoint implements ChangedObject {
+@NamedQuery(name = "ChangedLine.findAll", query = "SELECT l FROM ChangedLine l")
+public class ChangedLine implements ChangedObject {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -167,7 +170,7 @@ public class ChangedPoint implements ChangedObject {
 	
 	@Override
 	public String getType() {
-		return "Point";
+		return "Line";
 	}
 
 }

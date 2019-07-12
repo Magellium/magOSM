@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 
 @Entity
-@Table(name = "views", schema = Parameters.MAGOSM_DATA_SCHEMA)
+@Table(name = "thematics", schema = Parameters.MAGOSM_DICTIONNARY_SCHEMA)
 @NamedQuery(name = "Thematic.findAll", query = "SELECT t FROM Thematic t")
 public class Thematic {
 
@@ -23,9 +23,14 @@ public class Thematic {
 	@Column(name = "name", unique=true)
 	private String name;
 	
+	@Column(name = "view_name")
+	private String view_name;
+	
+
 	@Column(name = "osm2pgsql_request")
 	private String osm2pgsql_request;
 	
+	@JsonIgnore
 	@Column(name = "changes_request")
 	private String changes_request;
 
@@ -60,6 +65,11 @@ public class Thematic {
 		this.changes_request = changes_request;
 	}
 	
-	
-	
+	public String getView_name() {
+		return view_name;
+	}
+
+	public void setView_name(String view_name) {
+		this.view_name = view_name;
+	}
 }

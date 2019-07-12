@@ -16,5 +16,9 @@ public class Parameters {
 	 * MAGOSM_DATA_SCHEMA.
 	 */
 	public static final String MAGOSM_DATA_SCHEMA = "magosm";
+	/**
+	 * MAGOSM_DICTIONNARY_SCHEMA.
+	 */
+	public static final String MAGOSM_DICTIONNARY_SCHEMA = "dictionnary";
 
 }
