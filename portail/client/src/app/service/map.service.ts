@@ -2,15 +2,20 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { UserContext } from '../model/UserContext';
 
 import * as shapefile from 'shapefile'
+import { Change } from 'app/model/ChangesClasses/Change';
+import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
+import { ConfigService } from './config.service';
 
 declare var ol: any;
 declare var _paq: any;
 declare var window: any;
-declare var config: any;
+//declare var config: any;
 declare var fetch: any;
 
 @Injectable()
 export class MapService {
+
+  public config: any;
 
   public map: any;
   public ol: any;
@@ -28,6 +33,13 @@ export class MapService {
   private baseLayer: any;
   private baseLayerName: string;
   private opacityRange = 30;
+
+  //Suivi de changements
+  public changesStyles = new Map();
+  public changesPointStyles = new Map();
+  private hover : any;
+  //public pointStyles;
+
   @Output() announceOpacityChangeEvent: EventEmitter<any> = new EventEmitter();
   //legende
   public legendUrls: string[];//au niveau infra-communal il y a autant d'urls de légendes que de couches visibles
@@ -38,7 +50,13 @@ export class MapService {
   wmtsResult: any;
 
 
-  constructor() { }
+  constructor(
+    private configService: ConfigService
+  ) { 
+    this.configService.getConfig().subscribe(config => {
+      this.config=config;
+    })
+  }
 
   setMap(map, userContext: UserContext) {
     this.map = map;
@@ -206,7 +224,7 @@ export class MapService {
     if (this.layers[id] == null) {
 
       var layerSource = new ol.source.TileWMS(({
-        url: config.PARAMS[0].geoserver_baseurl + '/wms?',
+        url: this.config.PARAMS[0].geoserver_baseurl + '/wms?',
         crossOrigin: 'anonymous',
         params: { 'LAYERS': layername },
         attributions: [new ol.Attribution({
@@ -313,7 +331,7 @@ export class MapService {
       return;
     }*/
 
-    let url = config.PARAMS[0].geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
+    let url = this.config.PARAMS[0].geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
     //let url = config.PARAMS[0].geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=50000&outputFormat=application%2Fvnd.google-earth.kml%2Bxml&typeName="+layer.layername;
     //let url = config.PARAMS[0].geoserver_baseurl + "/wms/kml?layers="+layer.layername;
 
@@ -342,7 +360,7 @@ export class MapService {
     }*/
 
     //let url = config.PARAMS[0].geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
-    let url = config.PARAMS[0].geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=500000&outputFormat=shape-zip&typeName=" + layer.layername + "&srsName=EPSG:3857&bbox=" + bbox;
+    let url = this.config.PARAMS[0].geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=500000&outputFormat=shape-zip&typeName=" + layer.layername + "&srsName=EPSG:3857&bbox=" + bbox;
     //let url = config.PARAMS[0].geoserver_baseurl + "/wms/kml?layers="+layer.layername;
 
     //piwik
@@ -350,6 +368,14 @@ export class MapService {
 
     window.open(url, "_blank");
   }
+
+  getBoundingBox() {
+    let format = new ol.format.WKT();
+    let extent = ol.geom.Polygon.fromExtent(this.map.getView().calculateExtent());
+    var wkt = format.writeGeometry(extent);
+    return wkt;
+  }
+
 
   getResolutionFromScale(scale, units) {
     var resolution = scale / (this.INCHES_PER_UNIT[units] * this.DOTS_PER_INCH);
@@ -413,10 +439,10 @@ export class MapService {
 
   //Find the Layer of one object (useful for the list of nearby features, and for the style of main_info)
   getLayerOfOneFeature(feature){
-    for (let i in config.LAYERS){
-      for (let j in config.LAYERS[i].features){
-        if (feature.getId().startsWith(config.LAYERS[i].features[j].layername.replace('magosm:',""))){
-          return config.LAYERS[i].features[j];
+    for (let i in this.config.LAYERS){
+      for (let j in this.config.LAYERS[i].features){
+        if (feature.getId().startsWith(this.config.LAYERS[i].features[j].layername.replace('magosm:',""))){
+          return this.config.LAYERS[i].features[j];
         }
       }
     }
@@ -506,6 +532,157 @@ export class MapService {
 
   public getOpacityRange() {
     return this.opacityRange;
+  }
+
+  ///// Partie dédiée au suivi de changement ///////
+  public addChanges(changesList : Array<Change>, changeTypesList : Array<ChangeType>): any{
+    console.log("Ajout des éléménts")
+    let featureLayers = new Array();
+    for (var i=0;i<8;i++) {
+      featureLayers[i] = new Array();
+    }
+    changesList.forEach(element => {
+      let newFeature = this.setFeature(element);
+      if (element.change_type<8){
+      featureLayers[element.change_type-1].push(newFeature); 
+      }
+      else{
+        featureLayers[7].push(newFeature);
+      }     
+    });
+    // On a complété un tableau de 8 tableaux qui contient les objets pour chaque type de changement.
+
+    var heatMapFeatures = new Array();
+    featureLayers.forEach(val => {
+      heatMapFeatures = heatMapFeatures.concat(val);
+    })
+    // Rafraîchir les layers avec nos nouvelles données
+    this.map.getLayers().forEach(layer => {
+      if (layer.type == "VECTOR"){
+        if (layer.get('title') != 'heatMap'){
+          layer.getSource().clear();
+          var title = layer.get('title');
+          var val = Number(title);
+          console.log(title)
+          layer.getSource().addFeatures(featureLayers[title]);
+        }
+        else {
+          layer.getSource().clear();
+          layer.getSource().addFeatures(heatMapFeatures);
+        }
+      }
+    });
+    
+  };
+
+  public setFeature(change : Change){
+    let changeType:number = change.change_type;
+    //Choix de la géométrie. On prend the_geom_new sauf s'il est vide, auquel cas the_geom_old ne l'est pas, donc on le sélectionne
+    let the_geom = change.the_geom_new;
+    if (the_geom == null){
+      the_geom = change.the_geom_old;
+    }
+
+    var newFeature = (new ol.format.GeoJSON()).readFeature(the_geom);
+    newFeature.set('change_type', changeType);
+
+    return newFeature;
+  }
+
+
+  initLayers(){
+    var list = [1,2,3,4,5,6,7,8];
+
+    var styleFunction = function(feature, resolution){
+      var self = this;
+      let style : any;
+      var change_type = feature.get('change_type');
+      let type = self.config.CHANGES_TYPES.filter(x => x.id=== change_type)[0].type;
+      if (feature.getGeometry().getType() == 'Point'){
+        style = self.changesPointStyles.get(type);
+      } else {
+        style = self.changesStyles.get(type);
+      }
+      return [style];
+    }.bind(this);
+
+    for (var i in list){ 
+      var newVector = new ol.layer.Vector({
+        source: new ol.source.Vector({}),
+        zIndex: 10+i,
+        title : i,
+        style : styleFunction
+      });
+      this.map.addLayer(newVector);
+    }
+
+    /// Initialisation de la HeatMap : basé sur https://stackoverflow.com/questions/56780705/creating-heatmap-in-openlayers-with-vector-source-containing-linestrings
+    var vectorHeatMap = new ol.layer.Heatmap({
+      source : new ol.source.Vector({}),
+      zIndex: 1000,
+      title : 'heatMap',
+      //minResolution : 100,
+      radius : 2,
+      blur : 10,
+    });
+  
+  var defaultStyleFunction = vectorHeatMap.getStyleFunction();
+  vectorHeatMap.setStyle(function(feature, resolution){
+    var style = defaultStyleFunction(feature, resolution);
+    var geom = feature.getGeometry();
+    var geomType = geom.getType();
+    switch(geomType){
+      case "Polygon":
+        style[0].setGeometry(geom.getInteriorPoint());
+        break;
+      case "MultiPolygon":
+        style[0].setGeometry(geom.getInteriorPoints()[0]);
+        break;
+      case "LineString":
+        style[0].setGeometry(new ol.geom.Point(geom.getCoordinateAt(0.5)));
+        break;
+      case "MultiLineString":
+        let middlePointNumber =  Math.round((geom.getCoordinates().length)/2);
+        style[0].setGeometry(new ol.geom.Point(geom.getCoordinates()[middlePointNumber]));
+        break;
+      case "Point":
+        style[0].setGeometry(geom);
+        break;   
+    }
+    return style;
+  })
+    this.map.addLayer(vectorHeatMap);
+  }
+
+  initStyles(){
+    for (var type of ["new","modified","deleted","other"]){
+      let style=new ol.style.Style();
+      let pointstyle = new ol.style.Style(); //because Point styles are differents from other styles... We need an image : a circle here.
+
+      var conf = this.config.STYLE.filter(x => x.type=== type)[0];
+      var fill = new ol.style.Fill({color: conf.fillcolor});
+      var stroke = new ol.style.Stroke({color: conf.strokecolor, width : 5});
+      var pointStroke = new ol.style.Stroke({color: conf.strokecolor, width : 3});
+
+      style.setFill(fill);
+      style.setStroke(stroke);
+      style.setZIndex(1);
+      let circle=new ol.style.Circle({radius:1, stroke: pointStroke, fill:fill});
+      pointstyle.setImage(circle);
+      this.changesStyles.set(type, style);
+      this.changesPointStyles.set(type, pointstyle);
+    };
+  }
+
+  getLayerByTitle(title){
+    var layers = this.map.getLayers().getArray();
+    for (var layer of layers) {
+      console.log(layer.get('title'));
+      if (layer.get('title') == title){
+        return layer;
+      }
+    }
+    return null;
   }
 
 }
