@@ -1,0 +1,12 @@
+.main{
+    display:flex;
+    height:90%;
+}
+
+.map{
+    width:80%;
+}
+
+.panel-config{
+    width:20%;
+}

@@ -1,0 +1,15 @@
+<div *ngIf="jsonContextLoaded">
+    <!-- <div class="header">
+        <app-changes-header></app-changes-header>
+    </div> -->
+    <div class="main">
+        <div class="panel-config">
+            <app-changes-config-panel
+            [changeTypesList]="changeTypesList">   
+            </app-changes-config-panel>
+        </div>
+        <div class="map">
+            <app-changes-map [userContext]="userContext"></app-changes-map>
+        </div>
+    </div>
+</div>
