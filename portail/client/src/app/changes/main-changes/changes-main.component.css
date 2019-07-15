@@ -4,6 +4,7 @@
         z-index: 2;
         left: 0px;
         width: 20%;
+        min-width: 290px;
         overflow: hidden;
         overflow-y: hidden;
         scroll-behavior: unset;

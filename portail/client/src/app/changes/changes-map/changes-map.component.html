@@ -1,7 +1,9 @@
-<div style="position: relative">
-    <div id="map" (drop)="onDrop($event)" (dragover)="onDragOver($event)"></div>
+<div style="position:relative;">
+    <div id="map" class="map"
+    (drop)="onDrop($event)" (dragover)="onDragOver($event)"></div>
     <div id="mouse-position"></div>
     <app-apiadresse (citySelected)="onCitySelected($event)"></app-apiadresse>
+    <app-change-details></app-change-details>
     <div *ngIf="layerswitcherdisplay" id="layerswitcher">
         Légende
         <table>

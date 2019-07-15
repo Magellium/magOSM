@@ -39,7 +39,7 @@ export class MapService {
   public changesPointStyles = new Map();
   private hover : any;
   public changesLayer = new Map();
-  public numberOfChangeByType = new Map();
+  public numberOfChangeByType = new Map<any,number>();
   public legendDisplay : boolean = false;
   //public pointStyles;
 
@@ -594,6 +594,12 @@ export class MapService {
       let type = self.config.CHANGES_TYPES.filter(x => x.id=== change_type)[0].type;
       if (feature.getGeometry().getType() == 'Point'){
         style = self.changesPointStyles.get(type);
+        if (resolution<10){
+          style.getImage().setRadius(5*(1+1/resolution));
+        }
+        else{
+          style.getImage().setRadius(1);
+        }
       } else {
         style = self.changesStyles.get(type);
       }
@@ -605,7 +611,8 @@ export class MapService {
         source: new ol.source.Vector({}),
         zIndex: 10+element.id,
         title : element.name,
-        style : styleFunction
+        style : styleFunction,
+        maxResolution : this.map.getView().getResolutionForZoom(10)
       });
       this.map.addLayer(newVector);
       this.changesLayer.set(element, newVector); 
@@ -614,13 +621,14 @@ export class MapService {
     /// Initialisation de la HeatMap : basé sur https://stackoverflow.com/questions/56780705/creating-heatmap-in-openlayers-with-vector-source-containing-linestrings
     var vectorHeatMap = new ol.layer.Heatmap({
       source : new ol.source.Vector({}),
-      zIndex: 1000,
+      zIndex: 2,
       title : 'heatMap',
-      //minResolution : 100,
+      //minResolution : 80,
+      minResolution : this.map.getView().getResolutionForZoom(12),
       radius : 2,
       blur : 10,
     });
-  
+
   var defaultStyleFunction = vectorHeatMap.getStyleFunction();
   vectorHeatMap.setStyle(function(feature, resolution){
     var style = defaultStyleFunction(feature, resolution);

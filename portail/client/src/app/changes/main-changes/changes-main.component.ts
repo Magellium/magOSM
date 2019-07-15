@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MapService } from 'app/service/map.service';
 import { ApiRequestService } from 'app/service/api-request.service';
@@ -13,29 +13,31 @@ import { UserContextService } from 'app/service/user-context.service';
 })
 export class ChangesMainComponent implements OnInit {
 
-  public jsonContextLoaded : boolean = false;
-  config : any;
-  private userContext : UserContext;
+  public jsonContextLoaded: boolean = false;
+  config: any;
+  public userContext: UserContext;
+
+  constructor(
+    public mapService: MapService,
+    public apiRequestService: ApiRequestService,
+    public configService: ConfigService,
+    public userContextService: UserContextService
+  ) {
+    this.loadConfigAndUserContext();
+  }
 
   loadConfigAndUserContext() {
+    let self = this;
     this.configService.getConfig()
       .subscribe(resp => {
-        window["config"]=resp;
+        window["config"] = resp;
         // on charge le  contexte utilisateur
-        this.userContext = this.userContextService.loadUserContextFromPermalink();
-        this.jsonContextLoaded=true;
+        self.userContext = this.userContextService.loadUserContextFromPermalink();
+        self.jsonContextLoaded = true;
       });
   }
 
-  constructor(
-    public mapService : MapService, 
-    public apiRequestService : ApiRequestService,
-    public configService : ConfigService,
-    public userContextService : UserContextService
-    ) {
-      this.loadConfigAndUserContext();
-     }
-
   ngOnInit() {
+    this.loadConfigAndUserContext();
   }
 }

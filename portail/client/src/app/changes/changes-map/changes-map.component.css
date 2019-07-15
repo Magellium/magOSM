@@ -20,8 +20,8 @@
 
 #layerswitcher {
 	position:absolute;
-	right:10px;
-	top:10px;
+	right:5px;
+	top:5px;
 	line-height:1.2;
 }
 
@@ -39,3 +39,10 @@ app-apiadresse{
 	left:160px;
 }
 
+app-change-details{
+	position:absolute;
+	right:10px;
+	bottom:300px;
+	width:100px;
+	height:100px;
+}

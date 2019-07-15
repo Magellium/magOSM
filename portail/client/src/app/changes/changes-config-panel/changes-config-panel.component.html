@@ -1,25 +1,25 @@
-<body>  
-  <div id="title">Rechercher des changements</div>
+<div class="body">
+  <div class="title">Rechercher des changements</div>
   <form [formGroup]="changesFilterForm" class="container" novalidate>
     <div class="form-group">
-        <label for="thematicSelection">Thématique</label>
-        <select class="custom-select mr-sm-2" id="thematicSelection" formControlName="thematic" required>
-          <ng-container *ngFor="let thematic of thematicsList">
-            <option value="{{thematic.id}}">{{thematic.name}}</option>
-          </ng-container>
-        </select>
-        <div *ngIf="thematic.invalid && (thematic.dirty || thematic.touched)"
-          class="alert alert-danger">
-          <div *ngIf="thematic.errors.required">
-            Sélectionnez une thématique
-          </div>
-        </div>
+      <label for="mydaterange">Période de temps</label>
+      <my-date-range-picker id="mydaterange" name="mydaterange" placeholder="Dates de début et de fin"
+        [options]="myDateRangePickerOptions" formControlName="dates" required></my-date-range-picker>
     </div>
     <div class="form-group">
-      <label for="mydaterange">Période de temps</label>
-        <my-date-range-picker name="mydaterange" placeholder="Dates de début et de fin" [options]="myDateRangePickerOptions"
-        formControlName="dates" required></my-date-range-picker>
+      <label for="thematicSelection">Thématique</label>
+      <select class="custom-select mr-sm-2" id="thematicSelection" formControlName="thematic" required>
+        <ng-container *ngFor="let thematic of thematicsList">
+          <option value="{{thematic.id}}">{{thematic.name}}</option>
+        </ng-container>
+      </select>
+      <div *ngIf="thematic.invalid && (thematic.dirty || thematic.touched)" class="alert alert-danger">
+        <div *ngIf="thematic.errors.required">
+          Sélectionnez une thématique
+        </div>
+      </div>
     </div>
+
     <div class="form-group">
       <label for="zone">Emprise géographique</label>
       <div id="zone" style="font-size:0.8rem; margin-left:10px;">
@@ -30,10 +30,21 @@
       <button type="button" class="btn btn-success" (click)="onSubmit()">Lancer la recherche</button>
     </div>
   </form>
-
-  <div>Compte-rendu</div>
-    <!-- <div *ngFor="for type in mapService.numberOfChangeByType | keyvalue">
-      {{type.key}} -> {{type.value}}
-    </div> -->
-</body>
-
+  <div *ngIf="displayReport" id="report" style="border-top: 1px solid rgba(0,0,0,.125);">
+    <div class="title">Récapitulatif</div>
+    <table>
+      <tr>
+        <th>Catégorie</th>
+        <th>Nombre d'entités</th>
+      </tr>
+      <!-- <div *ngFor="let type of mapService.numberOfChangeByType | keyvalue"> -->
+      <tr *ngFor="let type of mapService.numberOfChangeByType | keyvalue" class="reportTable">
+        <td>{{type.key.name}}
+            <span class="metadata-circle" title="{{type.key.label}}"><b>?</b></span>
+        </td>
+        <td style="text-align:center">{{type.value}}</td>
+      </tr>
+      <!-- </div> -->
+    </table>
+  </div>
+</div>

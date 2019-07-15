@@ -5,6 +5,7 @@ import { MapService } from '../../service/map.service';
 import { ConfigService } from 'app/service/config.service';
 import { ApiRequestService } from 'app/service/api-request.service';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
+import { e } from '@angular/core/src/render3';
 
 declare var ol: any;
 declare var $: any;
@@ -49,11 +50,13 @@ export class ChangesMapComponent implements OnInit {
       target: document.getElementById('mouse-position'),
       undefinedHTML: '&nbsp;'
     });
-    
-    let center: number[] = [this.userContext.lon, this.userContext.lat];
+    let center: number[]
+    if(this.userContext){  
+      center = [this.userContext.lon, this.userContext.lat];
+    }
     this.view = new ol.View({
       projection: 'EPSG:3857',
-      center: ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'),
+      center: center?ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'):null,
       zoom: this.userContext.z,
       //minZoom: 6,
     })
@@ -108,13 +111,23 @@ export class ChangesMapComponent implements OnInit {
 
     var self = this;
     this.map.on('pointermove', function(e) {
+      var layerfilter = function(layer){
+        return layer.get('title')!="heatMap"
+      };
       if (e.dragging) return; // si il y a déplacement de la carte, on arrête
        
       var pixel = self.map.getEventPixel(e.originalEvent);
-      var hit = self.map.hasFeatureAtPixel(pixel, {hitTolerance:2}); // on vérifie si il y a un objet à l'endroit de l'événement
+      var hit = self.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter: layerfilter}); // on vérifie si il y a un objet à l'endroit de l'événement
        
       self.map.getTargetElement().style.cursor = hit ? 'pointer' : ''; // si besoin, on change le curseur
     });
+
+    // this.map.on('click', function(event){
+    //   if (event.dragging) return;
+
+    //   var pixel = self.map.getEventPixel(event.originalEvent);
+    //   var hit = self.map.hasFeatureAtPixel(pixel, {hitTolerance:2})
+    //     })
   }
 
   onSelect($event,changeType : ChangeType){

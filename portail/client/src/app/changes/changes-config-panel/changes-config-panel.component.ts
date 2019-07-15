@@ -6,7 +6,7 @@ import { MapService } from '../../service/map.service';
 import { ApiRequestService } from '../../service/api-request.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Change } from 'app/model/ChangesClasses/Change';
-import { IMyDrpOptions } from 'mydaterangepicker';
+import { IMyDrpOptions, IMyDateRangeModel } from 'mydaterangepicker';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 
 
@@ -32,9 +32,12 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   public changesRequest : ChangesRequest = new ChangesRequest();
   public selectedThematic : Thematic;
   public changesList : Array<Change>;
+  public displayReport : boolean = false;
 
 
-  constructor(public http: Http, public mapService: MapService, public apiRequestService : ApiRequestService) { }
+  constructor(public http: Http, public mapService: MapService, public apiRequestService : ApiRequestService) { 
+    
+  }
 
   ngOnInit() {
     this.apiRequestService.searchThematics().subscribe(data => {
@@ -47,7 +50,9 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    //this.mapService.initLayers();
+     let dropdownMenu = $('#mydatepicker');
+    //   // detach it and append it to the body
+       $('body').append(dropdownMenu.detach());
   }
 
   onSubmit(){
@@ -75,6 +80,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
           this.changesList = JSON.parse(res['_body']);
           console.log(this.changesList);
           this.mapService.addChanges(this.changesList);
+          this.displayReport = true;
         })
   }
 
@@ -123,5 +129,6 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     return true;
 
   }
+
 
 }
