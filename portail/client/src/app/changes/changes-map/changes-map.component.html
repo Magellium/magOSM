@@ -1,25 +1,28 @@
-<div id="map" (drop)="onDrop($event)" (dragover)="onDragOver($event)"></div>
-<div id="mouse-position"></div>
-<div *ngIf="layerswitcherdisplay" id="layerswitcher">
-    Légende
-    <table>
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr *ngFor="let layer of layersMap | keyvalue">
-            <td>
-                <input type="checkbox" id="layername" name="layer.key" (click)="onSelect($event,layer.key)" checked>
-                <span *ngIf="layer.key.name != null; else otherlayer">
-                    <label style="padding-left:2px;" title="{{layer.key.label}}">{{layer.key.name}}</label>
-                </span>
-                <ng-template #otherlayer>
-                    {{layer.key}}
-                </ng-template>
-            </td>
-            <td>
-                <b class="cercle" [ngStyle]="{'background-color': layer.key.color}"></b>
-            </td>
-        </tr>
-    </table>
+<div style="position: relative">
+    <div id="map" (drop)="onDrop($event)" (dragover)="onDragOver($event)"></div>
+    <div id="mouse-position"></div>
+    <app-apiadresse (citySelected)="onCitySelected($event)"></app-apiadresse>
+    <div *ngIf="layerswitcherdisplay" id="layerswitcher">
+        Légende
+        <table>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let layer of layersMap | keyvalue">
+                <td>
+                    <input type="checkbox" id="layername" name="layer.key" (click)="onSelect($event,layer.key)" checked>
+                    <span *ngIf="layer.key.name != null; else otherlayer">
+                        <label style="padding-left:2px;" title="{{layer.key.label}}">{{layer.key.name}}</label>
+                    </span>
+                    <ng-template #otherlayer>
+                        {{layer.key}}
+                    </ng-template>
+                </td>
+                <td>
+                    <b class="cercle" [ngStyle]="{'background-color': layer.key.color}"></b>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

@@ -1,15 +1,14 @@
-<div *ngIf="jsonContextLoaded">
+<div *ngIf="jsonContextLoaded" style="overflow: hidden">
     <!-- <div class="header">
         <app-changes-header></app-changes-header>
     </div> -->
     <div class="main">
-        <div class="panel-config">
-            <app-changes-config-panel
-            [changeTypesList]="changeTypesList">   
-            </app-changes-config-panel>
+        <div class="panel-config" div style="position: absolute; width: 20vw; max-height: 100vh;">
+            <app-changes-config-panel [changeTypesList]="changeTypesList"></app-changes-config-panel>
         </div>
         <div class="map">
             <app-changes-map [userContext]="userContext"></app-changes-map>
+            <app-header></app-header>
         </div>
     </div>
 </div>

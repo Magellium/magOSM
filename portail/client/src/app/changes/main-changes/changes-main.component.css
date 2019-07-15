@@ -1,12 +1,17 @@
-.main{
-    display:flex;
-    height:90%;
-}
-
-.map{
-    width:80%;
-}
-
 .panel-config{
-    width:20%;
+        position: absolute;
+        top: 15%;
+        z-index: 2;
+        left: 0px;
+        width: 20%;
+        overflow: hidden;
+        overflow-y: hidden;
+        scroll-behavior: unset;
+        position: absolute;
 }
+
+app-permalink {
+    position: absolute;
+    top: 12px;
+    left: 350px;
+}  

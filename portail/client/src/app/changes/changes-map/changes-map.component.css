@@ -1,5 +1,6 @@
-#map{
+.map {
 	height: 100vh;
+	width: 100vw;
 }
 
 #mouse-position, #layername, #layerswitcher {
@@ -30,6 +31,11 @@ b.cercle {
   height: 12px;
   margin: 2px auto;
   border-radius: 50%;
+}
 
+app-apiadresse{
+	position:absolute;
+	top:10px;
+	left:160px;
 }
 
