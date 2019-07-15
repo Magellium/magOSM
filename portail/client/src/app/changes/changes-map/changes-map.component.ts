@@ -3,6 +3,8 @@ import { UserContext } from '../../model/UserContext';
 import { UserContextService } from '../../service/user-context.service';
 import { MapService } from '../../service/map.service';
 import { ConfigService } from 'app/service/config.service';
+import { ApiRequestService } from 'app/service/api-request.service';
+import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 
 declare var ol: any;
 declare var $: any;
@@ -20,13 +22,18 @@ export class ChangesMapComponent implements OnInit {
   constructor(
     public mapService: MapService,
     public userContextService : UserContextService,
-    public configService : ConfigService
+    public configService : ConfigService,
+    public apiRequestService : ApiRequestService
 ) { }
 
   // map parameters
   private view: any;
   public map: any;
-  public layerNamesList: Array<string> = ["1","2","3","4","5","6","7","8"];
+  public layersMap : any;
+  public layerswitcherdisplay : boolean = true;
+
+  //
+  private changeTypesList : Array<ChangeType>;
 
   ngOnInit() {
     this.initMap();
@@ -65,16 +72,20 @@ export class ChangesMapComponent implements OnInit {
       view: this.view,
     });
 
-    $('.ol-zoom-in, .ol-zoom-out').tooltip({
-      placement: 'right'
+    this.mapService.setMap(this.map, this.userContext);
+
+    this.apiRequestService.searchChangeTypes().subscribe(data => {
+      this.changeTypesList = JSON.parse(data['_body']);
+      this.changeTypesList.sort((a,b) => a.id - b.id);
+      console.log(this.changeTypesList);
+      this.mapService.initLayers(this.changeTypesList);
+      this.mapService.initStyles();
+      console.log(this.mapService.changesStyles);
+      console.log(this.mapService.changesPointStyles);
+      this.layersMap = this.mapService.changesLayer;
+      console.log(this.layersMap);
     });
 
-
-    this.mapService.setMap(this.map, this.userContext);
-    this.mapService.initLayers();
-    this.mapService.initStyles();
-    console.log(this.mapService.changesStyles);
-    console.log(this.mapService.changesPointStyles);
 
     //// Pour ajouter de la surbrillance au passage de la souris. Ralentit beaucoup lorsqu'il y a beaucoup d'objets. 
 
@@ -106,10 +117,9 @@ export class ChangesMapComponent implements OnInit {
     });
   }
 
-  onSelect($event,layername){
-    console.log($event);
-    var layer = this.mapService.getLayerByTitle(layername-1);
-    var isVisible = layer.getVisible()
+  onSelect($event,changeType : ChangeType){
+    var layer = this.mapService.changesLayer.get(changeType);
+    var isVisible = layer.getVisible();
     layer.setVisible(!isVisible);
   }
 

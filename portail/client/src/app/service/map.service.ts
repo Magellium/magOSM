@@ -38,6 +38,9 @@ export class MapService {
   public changesStyles = new Map();
   public changesPointStyles = new Map();
   private hover : any;
+  public changesLayer = new Map();
+  public numberOfChangeByType = new Map();
+  public legendDisplay : boolean = false;
   //public pointStyles;
 
   @Output() announceOpacityChangeEvent: EventEmitter<any> = new EventEmitter();
@@ -535,41 +538,32 @@ export class MapService {
   }
 
   ///// Partie dédiée au suivi de changement ///////
-  public addChanges(changesList : Array<Change>, changeTypesList : Array<ChangeType>): any{
-    console.log("Ajout des éléménts")
-    let featureLayers = new Array();
-    for (var i=0;i<8;i++) {
-      featureLayers[i] = new Array();
-    }
+  public addChanges(changesList : Array<Change>): any{
+    let featureLayers = new Map();
+
+    this.changesLayer.forEach((element, key) => {
+        featureLayers.set(key.id, []);
+    });
     changesList.forEach(element => {
       let newFeature = this.setFeature(element);
-      if (element.change_type<8){
-      featureLayers[element.change_type-1].push(newFeature); 
-      }
-      else{
-        featureLayers[7].push(newFeature);
-      }     
+      featureLayers.get(element.change_type).push(newFeature);    
     });
-    // On a complété un tableau de 8 tableaux qui contient les objets pour chaque type de changement.
+    // On a complété un Map de 8 tableaux qui contiennent chacun les objets pour chaque type de changement.
 
     var heatMapFeatures = new Array();
     featureLayers.forEach(val => {
       heatMapFeatures = heatMapFeatures.concat(val);
     })
     // Rafraîchir les layers avec nos nouvelles données
-    this.map.getLayers().forEach(layer => {
-      if (layer.type == "VECTOR"){
-        if (layer.get('title') != 'heatMap'){
-          layer.getSource().clear();
-          var title = layer.get('title');
-          var val = Number(title);
-          console.log(title)
-          layer.getSource().addFeatures(featureLayers[title]);
-        }
-        else {
-          layer.getSource().clear();
-          layer.getSource().addFeatures(heatMapFeatures);
-        }
+    this.changesLayer.forEach((layer, key) => {
+      if (key != 'heatMap'){
+        layer.getSource().clear();
+        layer.getSource().addFeatures(featureLayers.get(key.id));
+        this.numberOfChangeByType.set(key, featureLayers.get(key.id).length);
+      }
+      else {
+        layer.getSource().clear();
+        layer.getSource().addFeatures(heatMapFeatures);
       }
     });
     
@@ -590,8 +584,8 @@ export class MapService {
   }
 
 
-  initLayers(){
-    var list = [1,2,3,4,5,6,7,8];
+  initLayers(changeTypesList : Array<ChangeType>){
+
 
     var styleFunction = function(feature, resolution){
       var self = this;
@@ -606,15 +600,16 @@ export class MapService {
       return [style];
     }.bind(this);
 
-    for (var i in list){ 
+    changeTypesList.forEach(element => {
       var newVector = new ol.layer.Vector({
         source: new ol.source.Vector({}),
-        zIndex: 10+i,
-        title : i,
+        zIndex: 10+element.id,
+        title : element.name,
         style : styleFunction
       });
       this.map.addLayer(newVector);
-    }
+      this.changesLayer.set(element, newVector); 
+    })
 
     /// Initialisation de la HeatMap : basé sur https://stackoverflow.com/questions/56780705/creating-heatmap-in-openlayers-with-vector-source-containing-linestrings
     var vectorHeatMap = new ol.layer.Heatmap({
@@ -651,6 +646,7 @@ export class MapService {
     }
     return style;
   })
+    this.changesLayer.set("heatMap", vectorHeatMap);
     this.map.addLayer(vectorHeatMap);
   }
 

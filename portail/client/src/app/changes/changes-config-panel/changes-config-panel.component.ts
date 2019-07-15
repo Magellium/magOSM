@@ -74,7 +74,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
         (res) => {
           this.changesList = JSON.parse(res['_body']);
           console.log(this.changesList);
-          this.mapService.addChanges(this.changesList, this.changeTypesList);
+          this.mapService.addChanges(this.changesList);
         })
   }
 

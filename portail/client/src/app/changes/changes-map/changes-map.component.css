@@ -1,5 +1,5 @@
 #map{
-    height: 100vh;
+	height: 100vh;
 }
 
 #mouse-position, #layername, #layerswitcher {
@@ -21,4 +21,15 @@
 	position:absolute;
 	right:10px;
 	top:10px;
+	line-height:1.2;
 }
+
+b.cercle {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 2px auto;
+  border-radius: 50%;
+
+}
+

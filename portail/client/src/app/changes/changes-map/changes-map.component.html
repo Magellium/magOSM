@@ -1,9 +1,25 @@
 <div id="map" (drop)="onDrop($event)" (dragover)="onDragOver($event)"></div>
 <div id="mouse-position"></div>
-<div id="layerswitcher">
+<div *ngIf="layerswitcherdisplay" id="layerswitcher">
     Légende
-    <div *ngFor="let layername of layerNamesList">
-        <input type="checkbox" id="layername" name="layername" (click)="onSelect($event,layername)" checked>
-        <label for="scales">{{layername}}</label>
-    </div>
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let layer of layersMap | keyvalue">
+            <td>
+                <input type="checkbox" id="layername" name="layer.key" (click)="onSelect($event,layer.key)" checked>
+                <span *ngIf="layer.key.name != null; else otherlayer">
+                    <label style="padding-left:2px;" title="{{layer.key.label}}">{{layer.key.name}}</label>
+                </span>
+                <ng-template #otherlayer>
+                    {{layer.key}}
+                </ng-template>
+            </td>
+            <td>
+                <b class="cercle" [ngStyle]="{'background-color': layer.key.color}"></b>
+            </td>
+        </tr>
+    </table>
 </div>
