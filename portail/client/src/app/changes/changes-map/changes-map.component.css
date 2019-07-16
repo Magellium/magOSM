@@ -39,10 +39,14 @@ app-apiadresse{
 	left:160px;
 }
 
-app-change-details{
+#featureDetailsPanel{
 	position:absolute;
-	right:10px;
-	bottom:300px;
-	width:100px;
-	height:100px;
+	/* right:0px;
+	top:0px;
+	width: 300px; */
+	/* height: 100vh; */
+	z-index: 10;
+	top: calc(10% + 265px);
+	right:calc(2% - 15px);
+	width:calc(20% + 30px);
 }

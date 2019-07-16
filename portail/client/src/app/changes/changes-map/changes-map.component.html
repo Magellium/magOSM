@@ -3,7 +3,11 @@
     (drop)="onDrop($event)" (dragover)="onDragOver($event)"></div>
     <div id="mouse-position"></div>
     <app-apiadresse (citySelected)="onCitySelected($event)"></app-apiadresse>
-    <app-change-details></app-change-details>
+    <app-change-details 
+        id="featureDetailsPanel"
+        *ngIf="selectedFeature" 
+        [selectedFeature]="selectedFeature">
+    </app-change-details>
     <div *ngIf="layerswitcherdisplay" id="layerswitcher">
         Légende
         <table>

@@ -1,0 +1,6 @@
+.change-details{    
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    background-color: rgba(255,255,255,1);
+    border-radius: .25rem;
+    }

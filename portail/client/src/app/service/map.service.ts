@@ -554,12 +554,23 @@ export class MapService {
     featureLayers.forEach(val => {
       heatMapFeatures = heatMapFeatures.concat(val);
     })
+    let displayFeaturesAtAllLevelOfZoom : boolean = false;
+    console.log(heatMapFeatures.length);
+    if (heatMapFeatures.length < 50){
+      displayFeaturesAtAllLevelOfZoom = true;
+    }
     // Rafraîchir les layers avec nos nouvelles données
     this.changesLayer.forEach((layer, key) => {
       if (key != 'heatMap'){
         layer.getSource().clear();
         layer.getSource().addFeatures(featureLayers.get(key.id));
         this.numberOfChangeByType.set(key, featureLayers.get(key.id).length);
+        if (displayFeaturesAtAllLevelOfZoom){
+          layer.setMaxResolution(100000);
+        }
+        else{
+          layer.setMaxResolution(this.map.getView().getResolutionForZoom(12));
+        }
       }
       else {
         layer.getSource().clear();
@@ -623,7 +634,6 @@ export class MapService {
       source : new ol.source.Vector({}),
       zIndex: 2,
       title : 'heatMap',
-      //minResolution : 80,
       minResolution : this.map.getView().getResolutionForZoom(12),
       radius : 2,
       blur : 10,

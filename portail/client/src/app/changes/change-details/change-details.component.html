@@ -1,14 +1,4 @@
-<ng-container *ngIf="init">
+<div class="change-details">
+L'Objet s'affiche !
 
-    {{change.osm_id}} {{change.change_type}}
-<ng-container *ngIf="change.the_geom_new != null">
-  Nouveau : {{change.the_geom_new.coordinates}}
-</ng-container>
-<ng-container *ngIf="change.the_geom_old != null">
-  Ancien : {{change.the_geom_old.coordinates}}
-</ng-container>
-    <app-changes-map #changesMap
-      [change]="change"
-    ></app-changes-map>
-
-</ng-container>
+</div>

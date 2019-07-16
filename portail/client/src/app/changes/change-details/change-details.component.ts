@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Http } from "@angular/http";
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -9,6 +9,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./change-details.component.css']
 })
 export class ChangeDetailsComponent implements OnInit {
+
+  @Input() selectedFeature : any;
 
   private baseUrl = 'http://localhost/services-webapp-magosm/'
   private change;
@@ -23,14 +25,14 @@ export class ChangeDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.change_id = +this.route.snapshot.paramMap.get('change_id');
-    let url = this.baseUrl+'changedpoints/'+this.change_id;
-    this.http.get(url).subscribe(data => {
-      // Read the result field from the JSON response.
-      this.change = JSON.parse(data['_body']);
-      console.log(this.change);
-      this.init = true;
-    })
+    // this.change_id = +this.route.snapshot.paramMap.get('change_id');
+    // let url = this.baseUrl+'changedpoints/'+this.change_id;
+    // this.http.get(url).subscribe(data => {
+    //   // Read the result field from the JSON response.
+    //   this.change = JSON.parse(data['_body']);
+    //   console.log(this.change);
+    //   this.init = true;
+    // })
   }
 
 }

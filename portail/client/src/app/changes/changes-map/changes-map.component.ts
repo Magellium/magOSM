@@ -35,6 +35,7 @@ export class ChangesMapComponent implements OnInit {
 
   //
   private changeTypesList : Array<ChangeType>;
+  public selectedFeature : any;
 
   ngOnInit() {
     this.initMap();
@@ -109,28 +110,37 @@ export class ChangesMapComponent implements OnInit {
     // });
     // this.map.addInteraction(selectPointerMove);
 
-    var self = this;
-    this.map.on('pointermove', function(e) {
-      var layerfilter = function(layer){
-        return layer.get('title')!="heatMap"
-      };
-      if (e.dragging) return; // si il y a déplacement de la carte, on arrête
-       
-      var pixel = self.map.getEventPixel(e.originalEvent);
-      var hit = self.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter: layerfilter}); // on vérifie si il y a un objet à l'endroit de l'événement
-       
-      self.map.getTargetElement().style.cursor = hit ? 'pointer' : ''; // si besoin, on change le curseur
-    });
 
-    // this.map.on('click', function(event){
-    //   if (event.dragging) return;
-
-    //   var pixel = self.map.getEventPixel(event.originalEvent);
-    //   var hit = self.map.hasFeatureAtPixel(pixel, {hitTolerance:2})
-    //     })
+    this.map.on('pointermove', this.onPointerMove.bind(this));
+    this.map.on('click', this.onClick.bind(this));
+      
   }
 
-  onSelect($event,changeType : ChangeType){
+  public onPointerMove(e){
+    if (e.dragging) return; // si il y a déplacement de la carte, on arrête
+       
+      var pixel = this.map.getEventPixel(e.originalEvent);
+      var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter: this.heatMapFilter}); // on vérifie si il y a un objet à l'endroit de l'événement
+       
+      this.map.getTargetElement().style.cursor = hit ? 'pointer' : ''; // si besoin, on change le curseur
+
+  }
+
+  public onClick(event){
+      this.selectedFeature = null;
+      var pixel = this.map.getEventPixel(event.originalEvent);
+      var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter : this.heatMapFilter});
+      if (hit){
+        this.selectedFeature = this.map.getFeaturesAtPixel(pixel, {hitTolerance:2})[0];
+        console.log(this.selectedFeature);
+      }
+  }
+
+  public heatMapFilter(layer){
+    return layer.get('title')!="heatMap";
+  }
+
+  public onSelect($event,changeType : ChangeType){
     var layer = this.mapService.changesLayer.get(changeType);
     var isVisible = layer.getVisible();
     layer.setVisible(!isVisible);
