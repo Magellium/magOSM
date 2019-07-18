@@ -3,7 +3,7 @@
 	width: 100vw;
 }
 
-#mouse-position, #layername, #layerswitcher {
+#mouse-position-2, #layername, #layerswitcher {
 	padding: 1px 5px;
 	border-radius: 3px;
 	display: inline-block;
@@ -11,10 +11,10 @@
 	background: rgba(255, 255, 255, 0.6);
 }
 
-#mouse-position{
-	position:relative;
+#mouse-position-2{
+	position:absolute;
 	left: 150px;
-	bottom: 35px;
+	bottom: 8px;
 	font-size: 0.7em;
 }
 
@@ -41,12 +41,9 @@ app-apiadresse{
 
 #featureDetailsPanel{
 	position:absolute;
-	/* right:0px;
+	right:0px;
 	top:0px;
-	width: 300px; */
-	/* height: 100vh; */
+	width: 500px;
+	height: 100vh;
 	z-index: 10;
-	top: calc(10% + 265px);
-	right:calc(2% - 15px);
-	width:calc(20% + 30px);
 }

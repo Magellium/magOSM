@@ -47,8 +47,8 @@ export class ChangesMapComponent implements OnInit {
         return ol.coordinate.format(coords, 'Lat : {y}° Lon : {x}° (WGS84)', 4)
       },
       projection: 'EPSG:4326',
-      className: 'custom-mouse-position',
-      target: document.getElementById('mouse-position'),
+      className: 'custom-mouse-position-2',
+      target: document.getElementById('mouse-position-2'),
       undefinedHTML: '&nbsp;'
     });
     let center: number[]
@@ -128,6 +128,7 @@ export class ChangesMapComponent implements OnInit {
 
   public onClick(event){
       this.selectedFeature = null;
+      console.log(this.selectedFeature);
       var pixel = this.map.getEventPixel(event.originalEvent);
       var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter : this.heatMapFilter});
       if (hit){

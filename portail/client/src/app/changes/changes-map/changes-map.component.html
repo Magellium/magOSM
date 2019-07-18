@@ -1,12 +1,13 @@
-<div style="position:relative;">
-    <div id="map" class="map"
-    (drop)="onDrop($event)" (dragover)="onDragOver($event)"></div>
-    <div id="mouse-position"></div>
+<div style="position:relative">
+    <div id="map" class="map"></div>
     <app-apiadresse (citySelected)="onCitySelected($event)"></app-apiadresse>
+    <div id="mouse-position-2"></div>
     <app-change-details 
         id="featureDetailsPanel"
         *ngIf="selectedFeature" 
-        [selectedFeature]="selectedFeature">
+        [selectedFeature]="selectedFeature"
+        [changeTypesList]="changeTypesList"
+        [userContext]="userContext">
     </app-change-details>
     <div *ngIf="layerswitcherdisplay" id="layerswitcher">
         Légende
