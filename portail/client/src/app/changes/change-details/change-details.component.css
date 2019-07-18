@@ -1,6 +1,42 @@
-.change-details{    
+/* .detailspanel-wrapper{    
     background-clip: border-box;
     border: 1px solid rgba(0,0,0,.125);
     background-color: rgba(255,255,255,1);
     border-radius: .25rem;
-    }
+    height:100%;
+    } */
+
+#detailspanel-close.toggle {
+    position:absolute;
+    right:0px;
+    margin: 5px 5px 0 0;
+    line-height: .5;
+}
+
+/* The panel is hidden when the close button is pushed */
+#detailspanel {
+    margin-right: -700px;
+    right: 0;
+    top: 0vw;
+    width: 700px;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    z-index: 1000;
+    transition: all 0.5s ease-in 0s;
+    -webkit-transition: all 0.5s ease-in 0s;
+    -moz-transition: all 0.5s ease-in 0s;
+    -ms-transition: all 0.5s ease-in 0s;
+    -o-transition: all 0.5s ease-in 0s;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+#detailspanel.active {
+    right: 700px;
+    width: 700px;
+    transition: all 0.5s ease-out 0s;
+    -webkit-transition: all 0.5s ease-out 0s;
+    -moz-transition: all 0.5s ease-out 0s;
+    -ms-transition: all 0.5s ease-out 0s;
+    -o-transition: all 0.5s ease-out 0s;
+  }

@@ -1,7 +1,7 @@
 import { Input, Component, AfterViewInit } from '@angular/core';
 import { UserContext } from '../../model/UserContext';
-import { UserContextService } from '../../service/user-context.service';
 import { MapService } from '../../service/map.service';
+import { Change } from 'app/model/ChangesClasses/Change';
 
 declare var ol: any;
 declare var config: any;
@@ -11,59 +11,35 @@ declare var config: any;
   templateUrl: './changes-detailled-map.component.html',
   styleUrls: ['./changes-detailled-map.component.css']
 })
-export class ChangesDetailledMapComponent implements AfterViewInit {
+export class ChangesDetailledMapComponent {
 
-  @Input() public change : any;
+  @Input() public userContext : UserContext;
+  @Input() public mainChange : Change;
 
   constructor(public mapService: MapService) { }
 
   // map parameters
   private view: any;
-  private userContextService : UserContextService;
-  private userContext : UserContext;
   private map: any;
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit(){
-    console.log(this.change);
+    console.log("detailled map user context", this.userContext)
     this.initMap();
   }
 
+  // ngOnChanges([...args: any[]]){
+
+  // }
+
   initMap(){
-
-    console.log(this.change);
-
-    var mousePositionControl = new ol.control.MousePosition({
-      coordinateFormat: function (coords) {
-        return ol.coordinate.format(coords, 'Lat : {y}° Lon : {x}° (WGS84)', 4)
-      },
-      projection: 'EPSG:3857',
-      className: 'custom-mouse-position',
-      target: document.getElementById('mouse-position'),
-      undefinedHTML: '&nbsp;'
-    });
-
-    let center: number[] = this.getMapCenter();
+    let center = [this.userContext.lon, this.userContext.lat]
+    console.log(center);
     this.view = new ol.View({
       projection: 'EPSG:3857',
-      center: center,
+      center: ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'),
       zoom: 14,
       minZoom: 3,
-      //maxZoom: 18
     })
-
-    var overviewMapControl = new ol.control.OverviewMap({
-      view: new ol.View({
-        maxZoom: 6,
-        minZoom: 6,
-        zoom: 6,
-      }),
-      collapsed: false,
-      collapsible: false,
-      target : "overview-position"
-    });  
 
     //Map creation
     this.map = new ol.Map({
@@ -71,12 +47,8 @@ export class ChangesDetailledMapComponent implements AfterViewInit {
         attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
           collapsible: false
         })
-      }).extend([
-        mousePositionControl,
-        //new ol.control.ScaleLine(),
-        overviewMapControl,
-      ]),
-      target: 'map',
+      }),
+      target: 'detailled-map',
       view: this.view,
       layers: [
         new ol.layer.Tile({
@@ -87,72 +59,48 @@ export class ChangesDetailledMapComponent implements AfterViewInit {
       ]
     });
 
-    this.map.addLayer(this.getVectorPoint());
-    //this.mapService.setMap(this.map, this.userContext);
+    let layers = this.getVectorLayers();
+    console.log(layers);
+    layers.forEach(layer => {
+      var extent = layer.getSource().getExtent();
+      console.log(extent);
+      this.map.getView().fit(extent, {size : this.map.getSize(), maxZoom : 19});
+      this.map.addLayer(layer);
+    })
+    console.log(this.map.getLayers());
 
-    //this.map.on('click', this.onClick.bind(this));
-    //this.map.on('moveend', this.onZoom.bind(this)); 
   }
   
-
-  public getMapCenter(){
-    if (this.change.the_geom_old == null) {
-      return [this.change.the_geom_new.coordinates[0], this.change.the_geom_new.coordinates[1]]
-    } else {
-      if (this.change.the_geom_new == null){
-        return [this.change.the_geom_old.coordinates[0], this.change.the_geom_old.coordinates[1]]
-      }
-      else {
-        return [(this.change.the_geom_new.coordinates[0]+this.change.the_geom_old.coordinates[0])/2, (this.change.the_geom_new.coordinates[1]+this.change.the_geom_old.coordinates[1])/2]
-      }
-    }
-  }
-
-  public getVectorPoint(){
-    //Point with the_geom_new
-    let redColor = this.getStyledCircle([180,0,0,1])
-    let greenColor = this.getStyledCircle([0,180,0,1])
-    //let yellowColor = this.getStyledCircle([255,255,0,1])
-    let features=[];
-    if (this.change.the_geom_new != null) {
-      var newPoint = new ol.Feature({
-        geometry: new ol.geom.Point(this.change.the_geom_new.coordinates),
-        name: "Nouvel emplacement",
-      });
-    newPoint.setStyle(greenColor);
-    features.push(newPoint);
-    }
-    if (this.change.the_geom_old != null && this.change.change_type != 3) {
-      var oldPoint = new ol.Feature({
-        geometry: new ol.geom.Point(this.change.the_geom_old.coordinates),
-        name: "Ancien emplacement",
-      });
-    oldPoint.setStyle(redColor);
-    features.push(oldPoint);
-    }
-    console.log(oldPoint);
-    var vectorSource = new ol.source.Vector({
-      features: features,
-    });
-
-    var vectorPoint = new ol.layer.Vector({
-      source: vectorSource,
-    });
-    return vectorPoint;
-  }
-
-  public getStyledCircle(colortab){
-    let colorStyle = new ol.style.Style({   
-      image: new ol.style.Circle({
-        radius: 4,
-        stroke: new ol.style.Stroke({
-            color: colortab
-        }),
-        fill: new ol.style.Fill({
-            color: colortab
+  public 
+  public getVectorLayers(): Array<any>{
+    let layers = [];
+    if (this.mainChange.theGeomOld != null) {
+      var oldFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomOld);
+      var oldLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features : [oldFeature]}),
+        title: "Ancien emplacement"
         })
-      })
-    });
-    return colorStyle;
+      if (this.mainChange.type == "Point"){
+        oldLayer.setStyle(this.mapService.changesPointStyles.get("deleted"));
+      } else {
+        oldLayer.setStyle(this.mapService.changesStyles.get("deleted"))
+      }
+      layers.push(oldLayer);
+    }
+    if (this.mainChange.theGeomNew != null) {
+      var newFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomNew);
+      var newLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features : [newFeature]}),
+        title: "Nouvel emplacement"
+        })
+      if (this.mainChange.type == "Point"){
+        newLayer.setStyle(this.mapService.changesPointStyles.get("new"));
+      } else {
+        newLayer.setStyle(this.mapService.changesStyles.get("new"))
+      }
+      layers.push(newLayer);
+    }
+    return layers;
   }
+
 }

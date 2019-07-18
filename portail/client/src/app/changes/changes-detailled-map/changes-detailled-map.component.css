@@ -1,17 +1,4 @@
-#map{
-    width:600px;
-    height:600px;
-}
-
-.ol-zoom{
-    top:10px;
-}
-
-#overview-position{
-    top:100px;
-    left:10%,
-}
-
-.ol-overviewmap-map{
-    top:100px
+#detailled-map {
+	height: 300px;
+	width: 400px;
 }
