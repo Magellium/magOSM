@@ -12,6 +12,10 @@ export class ApiRequestService {
   private thematicsSuffix =  'thematics';
   private changesSuffix = 'changesrequest';
   private changeTypesSuffix = 'change_types';
+  private featurechangesSuffix = 'featurechangesrequest';
+  public beginDate : Date;
+  public endDate : Date;
+  public thematic : number;
 
   constructor(public http: Http) { }
 
@@ -21,10 +25,17 @@ export class ApiRequestService {
 
   public searchChanges(data, options): Observable<any> {
     return this.http.post(this.baseUrl+this.changesSuffix, data, options).pipe(
-      catchError(error => observableThrowError(error)))
-  }
+      catchError(error => observableThrowError(error))
+    )
+  };
 
-  public searchChangeTypes(): Observable<any>{
+  public searchChangeTypes(): Observable<any> {
     return this.http.get(this.baseUrl + this.changeTypesSuffix)
-  }
+  };
+
+  public searchFeatureChanges(data, options) : Observable<any> {
+    return this.http.post(this.baseUrl+this.featurechangesSuffix, data, options).pipe(
+      catchError(error => observableThrowError(error))
+    )
+  };
 }
