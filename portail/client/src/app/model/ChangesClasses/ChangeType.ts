@@ -1,7 +1,7 @@
 export class ChangeType{
     id : number
-    name : String
-    short_name : String
-    label : String
-    color : String
+    name : string
+    short_name : string
+    label : string
+    color : string
 }

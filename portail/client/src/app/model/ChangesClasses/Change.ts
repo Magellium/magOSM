@@ -1,13 +1,15 @@
 export class Change{
-    osm_id : number //BigInt !!
+    osmId : number
     id : number
-    change_type:number
-    tags_new
-    tags_old
-    timestamp: String
-    version_new : number
-    version_old : number
-    type : String
-    the_geom_new
-    the_geom_old
+    changeType:number
+    tagsNew : Map<string, string>
+    tagsOld : Map<string, string>
+    timestamp: string
+    versionNew : number
+    versionOld : number
+    type : string
+    theGeomNew
+    theGeomOld
+
+    constructor(){};
 }
