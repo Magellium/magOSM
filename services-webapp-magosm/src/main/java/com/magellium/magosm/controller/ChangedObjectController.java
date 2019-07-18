@@ -22,6 +22,7 @@ import com.magellium.magosm.model.ChangedObject;
 import com.magellium.magosm.model.ChangedPoint;
 import com.magellium.magosm.model.ChangedPolygon;
 import com.magellium.magosm.model.ChangesRequest;
+import com.magellium.magosm.model.FeatureChangesRequest;
 import com.magellium.magosm.model.Thematic;
 import com.magellium.magosm.repository.ChangedLineRepository;
 import com.magellium.magosm.repository.ChangedPointRepository;
@@ -53,12 +54,12 @@ public class ChangedObjectController {
 		List<ChangedPolygon> polygons = changedPolygonRepository.findByThematic(thematic);
 		List<ChangedLine> lines = changedLineRepository.findByThematic(thematic);
 
-		List<ChangedObject> objets = ChangedObject.test(points);
-		List<ChangedObject> objetsPolygon = ChangedObject.test(polygons);
-		List<ChangedObject> objetsLine = ChangedObject.test(lines);
+		List<ChangedObject> objets = ChangedObject.getObjectsListFromList(points);
+		List<ChangedObject> objetsPolygon = ChangedObject.getObjectsListFromList(polygons);
+		List<ChangedObject> objetsLine = ChangedObject.getObjectsListFromList(lines);
 		objets.addAll(objetsPolygon);
 		objets.addAll(objetsLine);
-		log.info("Tous les changements points+polygons+lines sont affichés avec du détail.");
+		log.info("Tous les changements points+polygons+lines pour la thématique " + id + " sont affichés avec du détail.");
 		return objets;	
 	}
 	
@@ -71,12 +72,36 @@ public class ChangedObjectController {
 		List<ChangedPoint> points = changedPointRepository.findByThematicByPeriodByBbox(changesRequest.getThematic(), changesRequest.getBeginDate(), changesRequest.getEndDate(), changesRequest.getBbox());
 		List<ChangedPolygon> polygons = changedPolygonRepository.findByThematicByPeriodByBbox(changesRequest.getThematic(), changesRequest.getBeginDate(), changesRequest.getEndDate(), changesRequest.getBbox());
 		List<ChangedLine> lines = changedLineRepository.findByThematicByPeriodByBbox(changesRequest.getThematic(), changesRequest.getBeginDate(), changesRequest.getEndDate(), changesRequest.getBbox());
-		List<ChangedObject> objets = ChangedObject.test(points);
-		List<ChangedObject> objetsPolygon = ChangedObject.test(polygons);
-		List<ChangedObject> objetsLine = ChangedObject.test(lines);
+		List<ChangedObject> objets = ChangedObject.getObjectsListFromList(points);
+		List<ChangedObject> objetsPolygon = ChangedObject.getObjectsListFromList(polygons);
+		List<ChangedObject> objetsLine = ChangedObject.getObjectsListFromList(lines);
 		objets.addAll(objetsPolygon);
 		objets.addAll(objetsLine);
 		log.info(objets.size() + " changements points+polygons+lines sur une période et une thématique sont affichés avec du détail.");
 		return objets;
 		}
+	
+	@PostMapping(path="/featurechangesrequest", consumes = "application/json", produces = "application/json")
+	public @ResponseBody List<ChangedObject> getAllChangesByOsmIdByPeriod(@RequestBody FeatureChangesRequest featureChangesRequest) throws JarException, UnsupportedCallbackException{
+		log.info("OSM id : " + featureChangesRequest.getOsm_id());
+		log.info("Date de début : " + featureChangesRequest.getBeginDate());
+		log.info("Date de fin : " + featureChangesRequest.getEndDate());
+		log.info("Type : " + featureChangesRequest.getType());
+		List<ChangedObject> objects;
+		switch (featureChangesRequest.getType()) {
+		case "Point" : 
+			objects = ChangedObject.getObjectsListFromList(changedPointRepository.findByOsmIdByPeriod(featureChangesRequest.getOsm_id(), featureChangesRequest.getBeginDate(), featureChangesRequest.getEndDate(), featureChangesRequest.getThematic()));
+			break;
+		case "Line" :
+			objects = ChangedObject.getObjectsListFromList(changedLineRepository.findByOsmIdByPeriod(featureChangesRequest.getOsm_id(), featureChangesRequest.getBeginDate(), featureChangesRequest.getEndDate(), featureChangesRequest.getThematic()));
+			break;
+		case "Polygon" :
+			objects = ChangedObject.getObjectsListFromList(changedPolygonRepository.findByOsmIdByPeriod(featureChangesRequest.getOsm_id(), featureChangesRequest.getBeginDate(), featureChangesRequest.getEndDate(), featureChangesRequest.getThematic()));
+			break;
+		default:
+			objects = null;
+		}
+		log.info(objects.size());
+		return objects;
+	}
 }

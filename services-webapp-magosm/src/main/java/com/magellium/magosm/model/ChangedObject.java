@@ -17,7 +17,7 @@ public interface ChangedObject {
 	public String getType();
 
 	
-	public static List<ChangedObject> test(List<?> list){
+	public static List<ChangedObject> getObjectsListFromList(List<?> list){
 		Logger log = LogManager.getLogger(ChangedObject.class);
 		List<ChangedObject> objets = new ArrayList<ChangedObject>();
 		for (int i=0; i<list.size() ;i++) {

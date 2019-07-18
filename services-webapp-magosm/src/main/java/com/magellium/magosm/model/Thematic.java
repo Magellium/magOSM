@@ -26,20 +26,12 @@ public class Thematic {
 	@Column(name = "view_name")
 	private String view_name;
 	
-
 	@Column(name = "osm2pgsql_request")
 	private String osm2pgsql_request;
 	
 	@JsonIgnore
 	@Column(name = "changes_request")
 	private String changes_request;
-
-
-
-	/*
-	 * @OneToMany(mappedBy = "layer_old", cascade = CascadeType.ALL)
-	 * private List<ChangedPoint> points;
-	 */
 	
 	public Integer getId() {
 		return this.id;

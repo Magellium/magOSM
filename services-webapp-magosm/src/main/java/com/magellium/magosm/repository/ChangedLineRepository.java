@@ -1,5 +1,6 @@
 package com.magellium.magosm.repository;
 
+import java.math.BigInteger;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,13 @@ public interface ChangedLineRepository extends JpaRepository<ChangedLine, Intege
 	@Query(value = "select p from ChangedLine p where p.thematic.id = :thematic "
 			+ "And p.timestamp > :date1 "
 			+ "And p.timestamp < :date2 "
-			+ "And (st_intersects(p.the_geom_new, ST_GeomFromText(:bbox,3857)) = TRUE OR st_intersects(p.the_geom_old, ST_GeomFromText(:bbox,3857)) = TRUE)")
+			+ "And (st_intersects(p.theGeomNew, ST_GeomFromText(:bbox,3857)) = TRUE OR st_intersects(p.theGeomOld, ST_GeomFromText(:bbox,3857)) = TRUE)")
 	List<ChangedLine> findByThematicByPeriodByBbox(@Param("thematic") Integer thematic, @Param("date1") Date date1, @Param("date2") Date date2, @Param("bbox") String bbox);
+	
+	@Query(value = "select p from ChangedLine p where p.osmId = :osm_id "
+			+ "And p.timestamp > :date1 "
+			+ "And p.timestamp < :date2 "
+			+ "And p.thematic.id = :thematic")
+	List<ChangedLine> findByOsmIdByPeriod(@Param("osm_id") BigInteger osm_id, @Param("date1") Date date1, @Param("date2") Date date2, @Param("thematic") Integer thematic);
 
 }

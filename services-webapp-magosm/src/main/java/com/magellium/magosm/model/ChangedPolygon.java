@@ -39,12 +39,11 @@ public class ChangedPolygon implements ChangedObject {
 	private Integer id;
 	
 	@Column(name = "osm_id")
-	private BigInteger osm_id;
+	private BigInteger osmId;
 	
 	@Column(name = "change_type")
-	private Integer change_type;
+	private Integer changeType;
 	
-	@JsonIgnore
 	@Column(name = "timestamp")
 	private Timestamp timestamp;
 	
@@ -56,29 +55,28 @@ public class ChangedPolygon implements ChangedObject {
 	@Column(name = "the_geom_old")
 	@JsonSerialize(using = GeometrySerializer.class)
 	@JsonDeserialize(contentUsing = GeometryDeserializer.class)
-	private Geometry the_geom_old;
+	private Geometry theGeomOld;
 	
 	@Column(name = "the_geom_new")
 	@JsonSerialize(using = GeometrySerializer.class)
 	@JsonDeserialize(contentUsing = GeometryDeserializer.class)
-	private Geometry the_geom_new;
+	private Geometry theGeomNew;
 
 	@Column(name = "version_old")
-	private Integer version_old;
+	private Integer versionOld;
 	
 	@Column(name = "version_new")
-	private Integer version_new;
+	private Integer versionNew;
 	
-	@JsonIgnore
 	@Type(type = "hstore")
 	@Column(name = "tags_old")
-	private Map<String, String> tags_old = new HashMap<>();
+	private Map<String, String> tagsOld = new HashMap<>();
 	
-	@JsonIgnore
 	@Type(type = "hstore")
 	@Column(name = "tags_new")
-	private Map<String, String> tags_new = new HashMap<>();
+	private Map<String, String> tagsNew = new HashMap<>();
 	
+	private final static String type = "Polygon";
 	
 	public Integer getId() {
 		return id;
@@ -88,20 +86,20 @@ public class ChangedPolygon implements ChangedObject {
 		this.id = id;
 	}
 
-	public BigInteger getOsm_id() {
-		return osm_id;
+	public BigInteger getOsmId() {
+		return osmId;
 	}
 
-	public void setOsm_id(BigInteger osm_id) {
-		this.osm_id = osm_id;
+	public void setOsmId(BigInteger osmId) {
+		this.osmId = osmId;
 	}
 
-	public Integer getChange_type() {
-		return change_type;
+	public Integer getChangeType() {
+		return changeType;
 	}
 
-	public void setChange_type(Integer change_type) {
-		this.change_type = change_type;
+	public void setChangeType(Integer changeType) {
+		this.changeType = changeType;
 	}
 
 	public Timestamp getTimestamp() {
@@ -120,55 +118,54 @@ public class ChangedPolygon implements ChangedObject {
 		this.thematic = thematic;
 	}
 
-	public Geometry getThe_geom_old() {
-		return the_geom_old;
+	public Geometry getTheGeomOld() {
+		return theGeomOld;
 	}
 
-	public void setThe_geom_old(Geometry the_geom_old) {
-		this.the_geom_old = the_geom_old;
+	public void setTheGeomOld(Geometry theGeomOld) {
+		this.theGeomOld = theGeomOld;
 	}
 
-	public Geometry getThe_geom_new() {
-		return the_geom_new;
+	public Geometry getTheGeomNew() {
+		return theGeomNew;
 	}
 
-	public void setThe_geom_new(Geometry the_geom_new) {
-		this.the_geom_new = the_geom_new;
+	public void setTheGeomNew(Geometry theGeomNew) {
+		this.theGeomNew = theGeomNew;
 	}
 
-
-	public Integer getVersion_old() {
-		return version_old;
+	public Integer getVersionOld() {
+		return versionOld;
 	}
 
-	public void setVersion_old(Integer version_old) {
-		this.version_old = version_old;
+	public void setVersionOld(Integer versionOld) {
+		this.versionOld = versionOld;
 	}
 
-	public Integer getVersion_new() {
-		return version_new;
+	public Integer getVersionNew() {
+		return versionNew;
 	}
 
-	public void setVersion_new(Integer version_new) {
-		this.version_new = version_new;
+	public void setVersionNew(Integer versionNew) {
+		this.versionNew = versionNew;
 	}
 
-	public Map<String, String> getTags_new() {
-		return tags_new;
+	public Map<String, String> getTagsOld() {
+		return tagsOld;
 	}
 
-	public void setTags_new(Map<String, String> tags_new) {
-		this.tags_new = tags_new;
+	public void setTagsOld(Map<String, String> tagsOld) {
+		this.tagsOld = tagsOld;
 	}
 
-	public Map<String, String> getTags_old() {
-		return tags_old;
+	public Map<String, String> getTagsNew() {
+		return tagsNew;
 	}
 
-	public void setTags_old(Map<String, String> tags_old) {
-		this.tags_old = tags_old;
+	public void setTagsNew(Map<String, String> tagsNew) {
+		this.tagsNew = tagsNew;
 	}
-	
+
 	@Override
 	public String getType() {
 		return "Polygon";
