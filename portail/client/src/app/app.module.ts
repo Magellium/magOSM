@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { ApiAdresseComponent } from './apiadresse/apiadresse.component';
@@ -34,7 +34,7 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { ConfigService } from './service/config.service';
 
 // Define the routes
-const ROUTES = [
+const ROUTES: Routes = [
   {
     path: '',
     redirectTo: '/carte',
