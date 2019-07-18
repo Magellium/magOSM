@@ -23,7 +23,12 @@ export class ChangesMainComponent implements OnInit {
     public configService: ConfigService,
     public userContextService: UserContextService
   ) {
+    // let self = this;
     this.loadConfigAndUserContext();
+    // window.onresize = function () {
+    //   self.mapService.map.updateSize();
+    // }
+
   }
 
   loadConfigAndUserContext() {

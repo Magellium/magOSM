@@ -1,6 +1,6 @@
-.panel-config{
+#panel-config{
         position: absolute;
-        top: 15%;
+        top: 13%;
         z-index: 2;
         left: 0px;
         width: 20%;
