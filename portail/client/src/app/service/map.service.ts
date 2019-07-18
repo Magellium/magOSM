@@ -5,6 +5,7 @@ import * as shapefile from 'shapefile'
 import { Change } from 'app/model/ChangesClasses/Change';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 import { ConfigService } from './config.service';
+import { a } from '@angular/core/src/render3';
 
 declare var ol: any;
 declare var _paq: any;
@@ -537,17 +538,29 @@ export class MapService {
     return this.opacityRange;
   }
 
+  //////////////////////////////////////////////////
   ///// Partie dédiée au suivi de changement ///////
+  //////////////////////////////////////////////////
+
   public addChanges(changesList : Array<Change>): any{
     let featureLayers = new Map();
-
+    let alreadyTested = new Array<number>();
     this.changesLayer.forEach((element, key) => {
         featureLayers.set(key.id, []);
     });
     changesList.forEach(element => {
-      let newFeature = this.setFeature(element);
-      featureLayers.get(element.change_type).push(newFeature);    
+      let osmId = element.osmId;
+      if (alreadyTested.indexOf(osmId) < 0){
+        let featuresWithSameId = changesList.filter(x => x.osmId === osmId);
+        if (featuresWithSameId.length > 1){
+          element = this.getChangesMergeForOneFeature(featuresWithSameId);
+        }
+        let newFeature = this.setFeature(element);
+        featureLayers.get(element.changeType).push(newFeature);
+        alreadyTested.push(osmId); 
+      } 
     });
+    
     // On a complété un Map de 8 tableaux qui contiennent chacun les objets pour chaque type de changement.
 
     var heatMapFeatures = new Array();
@@ -581,15 +594,17 @@ export class MapService {
   };
 
   public setFeature(change : Change){
-    let changeType:number = change.change_type;
-    //Choix de la géométrie. On prend the_geom_new sauf s'il est vide, auquel cas the_geom_old ne l'est pas, donc on le sélectionne
-    let the_geom = change.the_geom_new;
+    let changeType:number = change.changeType;
+    //Choix de la géométrie. On prend theGeomNew sauf s'il est vide, auquel cas theGeomOld ne l'est pas, donc on le sélectionne
+    let the_geom = change.theGeomNew;
     if (the_geom == null){
-      the_geom = change.the_geom_old;
+      the_geom = change.theGeomOld;
     }
 
     var newFeature = (new ol.format.GeoJSON()).readFeature(the_geom);
-    newFeature.set('change_type', changeType);
+    newFeature.set('changeType', changeType);
+    newFeature.set('osmId', change.osmId);
+    newFeature.set('geom_type', change.type);
 
     return newFeature;
   }
@@ -601,8 +616,8 @@ export class MapService {
     var styleFunction = function(feature, resolution){
       var self = this;
       let style : any;
-      var change_type = feature.get('change_type');
-      let type = self.config.CHANGES_TYPES.filter(x => x.id=== change_type)[0].type;
+      var changeType = feature.get('changeType');
+      let type = self.config.CHANGES_TYPES.filter(x => x.id=== changeType)[0].type;
       if (feature.getGeometry().getType() == 'Point'){
         style = self.changesPointStyles.get(type);
         if (resolution<10){
@@ -619,7 +634,13 @@ export class MapService {
 
     changeTypesList.forEach(element => {
       var newVector = new ol.layer.Vector({
-        source: new ol.source.Vector({}),
+        source: new ol.source.Vector({attributions: [
+          new ol.Attribution({
+            html: '' +
+                '<a href="http://magosm.magellium.com/">© Magellium pour les changements</a>'
+          })
+        ]
+        }),
         zIndex: 10+element.id,
         title : element.name,
         style : styleFunction,
@@ -688,15 +709,90 @@ export class MapService {
     };
   }
 
-  getLayerByTitle(title){
-    var layers = this.map.getLayers().getArray();
-    for (var layer of layers) {
-      console.log(layer.get('title'));
-      if (layer.get('title') == title){
-        return layer;
-      }
+  public getChangesMergeForOneFeature(changes : Array<Change>): Change{
+    console.log(changes);
+    let changesOrderByTimestamp = changes.sort(function(a,b){ return a.timestamp == b.timestamp ? 0 : +(a.timestamp > b.timestamp) || -1; })
+    while (changesOrderByTimestamp.length > 1){
+      console.log(changesOrderByTimestamp);
+      let change1 = changesOrderByTimestamp.pop();
+      let change2 = changesOrderByTimestamp.pop();
+      changesOrderByTimestamp.push(this.mergeTwoChanges(change1, change2));
     }
-    return null;
+    console.log(changesOrderByTimestamp[0]);
+    return changesOrderByTimestamp[0];
+
+  }
+
+  public mergeTwoChanges(change1 : Change, change2 : Change): Change{
+    let firstChange : Change;
+    let secondChange : Change;
+    let newChange : Change = new Change();
+    if (change1.timestamp < change2.timestamp){
+      firstChange = change1;
+      secondChange = change2;
+    } else {
+      firstChange = change2;
+      secondChange = change1;
+    }
+    newChange.timestamp = secondChange.timestamp;
+    newChange.osmId=firstChange.osmId;
+    newChange.type= firstChange.type;
+    newChange.versionOld = firstChange.versionOld;
+    newChange.versionNew = secondChange.versionNew;
+    newChange.tagsOld = firstChange.tagsOld;
+    newChange.tagsNew = secondChange.tagsNew;
+    newChange.theGeomOld = firstChange.theGeomOld;
+    newChange.theGeomNew = secondChange.theGeomNew; // Attention, dans ce cas, si on a une Création puis une Suppression, on n'a aucune géométrie !
+    switch(firstChange.changeType){
+      case 1:
+        if ([5,6].indexOf(secondChange.changeType)> -1 ){
+          newChange.changeType = 7;
+          newChange.theGeomNew = secondChange.theGeomOld; // C'est pourquoi on rattrape le tout ici
+          newChange.tagsNew = secondChange.tagsOld;
+        } else {
+          newChange.changeType = 1;
+        }
+        break;
+      case 2: 
+        if ([5,6].indexOf(secondChange.changeType)> -1 ){
+          newChange.changeType = 7;
+        } else {
+          newChange.changeType = 2;
+        } 
+        break;
+      case 3:
+        newChange.changeType = 3;
+        if ([34,5,6].indexOf(secondChange.changeType)> -1){
+          newChange.changeType = secondChange.changeType;
+        }
+        if (secondChange.changeType == 4){
+          newChange.changeType = 34;
+        }
+        break;
+      case 4:
+        newChange.changeType = 34;
+        if ([4,5,6].indexOf(secondChange.changeType)> -1){
+          newChange.changeType = secondChange.changeType;
+        }
+        break;
+      case 34:
+        newChange.changeType=34;
+        if ([5,6].indexOf(secondChange.changeType)>-1){
+          newChange.changeType = secondChange.changeType;
+        }
+        break;
+      case 5:
+        newChange.changeType = 7;
+        break;
+      case 6:
+        break;
+      case 7:
+        newChange.changeType = secondChange.changeType;   
+    }
+    if (newChange.theGeomNew == null && newChange.theGeomOld == null){
+      console.log(newChange.osmId);
+    }
+    return newChange;
   }
 
 }
