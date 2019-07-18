@@ -74,6 +74,9 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     });
     var data = JSON.stringify(changesRequest);
     console.log(data);
+    this.apiRequestService.beginDate = this.changesRequest.beginDate;
+    this.apiRequestService.endDate = this.changesRequest.endDate;
+    this.apiRequestService.thematic = this.changesRequest.thematic;
     this.apiRequestService.searchChanges(data, options)
       .subscribe(
         (res) => {
@@ -102,7 +105,6 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   initDateForm(date: Date) {
     this.myDateRangePickerOptions = {
       // options du composant pour les deux dates
-      sunHighlight: true,
       dayLabels: { su: "Dim", mo: "Lun", tu: "Mar", we: "Mer", th: "Jeu", fr: "Ven", sa: "Sam" },
       monthLabels: { 1: "Jan", 2: "Fév", 3: "Mar", 4: "Avr", 5: "Mai", 6: "Juin", 7: "Juil", 8: "Aoû", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Déc" },
       disableSince:{ 
@@ -118,6 +120,8 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
       dateFormat:"dd/mm/yyyy",
       selectBeginDateTxt:"Choisir la date de début",
       selectEndDateTxt:"Choisir la date de fin",
+      editableDateRangeField: false,
+      openSelectorOnInputClick : true
     };
   }
 
