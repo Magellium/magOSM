@@ -1,8 +1,10 @@
 <div class="body">
-  <div class="title">Rechercher des changements</div>
+    <div class="card-header p-2 text-center" style="word-wrap: break-word;">
+        <b>Rechercher des changements</b>
+    </div>
   <form [formGroup]="changesFilterForm" class="container" novalidate>
     <div class="form-group">
-      <label for="mydaterange">Période de temps</label>
+      <label for="mydaterange" style="margin-top:5px">Période de temps</label>
       <my-date-range-picker id="mydaterange" name="mydaterange" placeholder="Dates de début et de fin"
         [options]="myDateRangePickerOptions" formControlName="dates" required></my-date-range-picker>
     </div>
@@ -31,15 +33,17 @@
     </div>
   </form>
   <div *ngIf="displayReport" id="report" style="border-top: 1px solid rgba(0,0,0,.125);">
-    <div class="title">Récapitulatif</div>
-    <table>
+      <div class="card-header p-2 text-center" style="word-wrap: break-word;">
+          <b>Récapitulatif</b>
+      </div>
+    <table style="border-left : 5px;">
       <tr>
-        <th>Catégorie</th>
+        <th style="padding-left:5px;">Catégorie</th>
         <th>Nombre d'entités</th>
       </tr>
       <!-- <div *ngFor="let type of mapService.numberOfChangeByType | keyvalue"> -->
-      <tr *ngFor="let type of mapService.numberOfChangeByType | keyvalue" class="reportTable">
-        <td>{{type.key.name}}
+      <tr *ngFor="let type of reportInfos | keyvalue" class="reportTable">
+        <td class="categorie">{{type.key.name}}
             <span class="metadata-circle" title="{{type.key.label}}"><b>?</b></span>
         </td>
         <td style="text-align:center">{{type.value}}</td>

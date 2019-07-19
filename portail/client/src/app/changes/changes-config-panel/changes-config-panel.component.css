@@ -46,6 +46,9 @@ table{
     background: #7092be;
   }
 
+.categorie{
+    padding-left:5px;
+}
 /* 
 ::ng-deep .mydrp { position:absolute !important;  }
 ::ng-deep .selectorarrow { position:absolute !important; }

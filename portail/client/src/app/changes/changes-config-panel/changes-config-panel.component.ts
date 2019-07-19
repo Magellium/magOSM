@@ -34,6 +34,9 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   public changesList : Array<Change>;
   public displayReport : boolean = false;
 
+  //report
+  public reportInfos : Map<ChangeType, number> = new Map();
+
 
   constructor(public http: Http, public mapService: MapService, public apiRequestService : ApiRequestService) { 
     
@@ -83,7 +86,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
           this.changesList = JSON.parse(res['_body']);
           console.log(this.changesList);
           this.mapService.addChanges(this.changesList);
-          this.displayReport = true;
+          this.initReport();
         })
   }
 
@@ -123,6 +126,11 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
       editableDateRangeField: false,
       openSelectorOnInputClick : true
     };
+  }
+
+  initReport(){
+    this.reportInfos = this.mapService.numberOfChangeByType;
+    this.displayReport = true;
   }
 
   public formValidation(){

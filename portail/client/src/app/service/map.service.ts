@@ -40,8 +40,12 @@ export class MapService {
   public changesPointStyles = new Map();
   private hover : any;
   public changesLayer = new Map();
-  public numberOfChangeByType = new Map<any,number>();
+  public numberOfChangeByType = new Map<ChangeType,number>();
   public legendDisplay : boolean = false;
+  public changesLayersArray : Array<any> = [];
+  public changesLayersCollection ;
+  public changesLayersGroup = new ol.layer.Group({});
+  public heatMapLayer = new ol.layer.Heatmap({});
   //public pointStyles;
 
   @Output() announceOpacityChangeEvent: EventEmitter<any> = new EventEmitter();
@@ -545,8 +549,8 @@ export class MapService {
   public addChanges(changesList : Array<Change>): any{
     let featureLayers = new Map();
     let alreadyTested = new Array<number>();
-    this.changesLayer.forEach((element, key) => {
-        featureLayers.set(key.id, []);
+    this.changesLayersArray.forEach(layer => {
+        featureLayers.set(layer.get('id'), []);
     });
     changesList.forEach(element => {
       let osmId = element.osmId;
@@ -560,38 +564,35 @@ export class MapService {
         alreadyTested.push(osmId); 
       } 
     });
-    
     // On a complété un Map de 8 tableaux qui contiennent chacun les objets pour chaque type de changement.
 
-    var heatMapFeatures = new Array();
-    featureLayers.forEach(val => {
-      heatMapFeatures = heatMapFeatures.concat(val);
-    })
-    let displayFeaturesAtAllLevelOfZoom : boolean = false;
-    console.log(heatMapFeatures.length);
-    if (heatMapFeatures.length < 50){
-      displayFeaturesAtAllLevelOfZoom = true;
-    }
-    // Rafraîchir les layers avec nos nouvelles données
-    this.changesLayer.forEach((layer, key) => {
-      if (key != 'heatMap'){
+    this.changesLayersArray.forEach(layer => {
+        let title = layer.get('title');
+        let id = layer.get('id');
         layer.getSource().clear();
-        layer.getSource().addFeatures(featureLayers.get(key.id));
-        this.numberOfChangeByType.set(key, featureLayers.get(key.id).length);
-        if (displayFeaturesAtAllLevelOfZoom){
-          layer.setMaxResolution(100000);
-        }
-        else{
-          layer.setMaxResolution(this.map.getView().getResolutionForZoom(12));
-        }
-      }
-      else {
-        layer.getSource().clear();
-        layer.getSource().addFeatures(heatMapFeatures);
+        layer.getSource().addFeatures(featureLayers.get(id));
+        this.numberOfChangeByType.set(layer.get('changetype'), featureLayers.get(id).length);
+    }); 
+    this.refreshHeatMap();
+  };
+
+  public refreshHeatMap(){
+    let features : Array<any> = new Array<any>();
+    let length : number = 0;
+    this.changesLayersArray.forEach(layer => {
+      if (layer.getVisible()){
+        features = features.concat(layer.getSource().getFeatures());
       }
     });
-    
-  };
+    this.heatMapLayer.getSource().clear();
+    this.heatMapLayer.getSource().addFeatures(features);
+    if (features.length < 50){
+      this.changesLayersGroup.setMaxResolution(10000);
+    }
+    else{
+      this.changesLayersGroup.setMaxResolution(this.map.getView().getResolutionForZoom(10));
+    }
+  }
 
   public setFeature(change : Change){
     let changeType:number = change.changeType;
@@ -611,7 +612,7 @@ export class MapService {
 
 
   initLayers(changeTypesList : Array<ChangeType>){
-
+      //On crée un Array contenant les layers que l'on place dans un LayerGroup que l'on associe à la map.
 
     var styleFunction = function(feature, resolution){
       var self = this;
@@ -642,26 +643,34 @@ export class MapService {
         ]
         }),
         zIndex: 10+element.id,
+        id : element.id,
         title : element.name,
+        changetype : element,
         style : styleFunction,
-        maxResolution : this.map.getView().getResolutionForZoom(10)
       });
-      this.map.addLayer(newVector);
-      this.changesLayer.set(element, newVector); 
-    })
+      this.changesLayersArray.push(newVector);
 
+    })
+    this.changesLayersGroup = new ol.layer.Group({
+      layers:this.changesLayersArray,
+      maxResolution : this.map.getView().getResolutionForZoom(10)
+    });
+    this.map.addLayer(this.changesLayersGroup);
+  }
+
+  initHeatMap(){
     /// Initialisation de la HeatMap : basé sur https://stackoverflow.com/questions/56780705/creating-heatmap-in-openlayers-with-vector-source-containing-linestrings
-    var vectorHeatMap = new ol.layer.Heatmap({
+    this.heatMapLayer = new ol.layer.Heatmap({
       source : new ol.source.Vector({}),
       zIndex: 2,
-      title : 'heatMap',
+      title : 'Carte de chaleur',
       minResolution : this.map.getView().getResolutionForZoom(12),
       radius : 2,
       blur : 10,
     });
 
-  var defaultStyleFunction = vectorHeatMap.getStyleFunction();
-  vectorHeatMap.setStyle(function(feature, resolution){
+  var defaultStyleFunction = this.heatMapLayer.getStyleFunction();
+  this.heatMapLayer.setStyle(function(feature, resolution){
     var style = defaultStyleFunction(feature, resolution);
     var geom = feature.getGeometry();
     var geomType = geom.getType();
@@ -685,8 +694,8 @@ export class MapService {
     }
     return style;
   })
-    this.changesLayer.set("heatMap", vectorHeatMap);
-    this.map.addLayer(vectorHeatMap);
+    //this.changesLayer.set("Carte de chaleur", this.heatMapLayer);
+    this.map.addLayer(this.heatMapLayer);
   }
 
   initStyles(){

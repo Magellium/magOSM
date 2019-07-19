@@ -10,24 +10,27 @@
         [userContext]="userContext">
     </app-change-details>
     <div *ngIf="layerswitcherdisplay" id="layerswitcher">
-        Légende
+            <div class="card-header p-2 text-center" style="word-wrap: break-word;">
+                <input type="checkbox" id="selectAll" name="selectAll" (click)="onSelectAll(this)" checked>
+                <b style="margin-left:10px">Légende</b>
+            </div>
         <table>
-            <tr>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr *ngFor="let layer of layersMap | keyvalue">
+            <tr *ngFor="let changetype of changeTypesList">
                 <td>
-                    <input type="checkbox" id="layername" name="layer.key" (click)="onSelect($event,layer.key)" checked>
-                    <span *ngIf="layer.key.name != null; else otherlayer">
-                        <label style="padding-left:2px;" title="{{layer.key.label}}">{{layer.key.name}}</label>
-                    </span>
-                    <ng-template #otherlayer>
-                        {{layer.key}}
-                    </ng-template>
+                    <input type="checkbox" id="layer.key" name="layer" (click)="onSelect($event,changetype.id)" checked>
+                    <label class="panelSwitcherLayerName" title="{{changetype.label}}">{{changetype.name}}</label>
                 </td>
                 <td>
-                    <b class="cercle" [ngStyle]="{'background-color': layer.key.color}"></b>
+                    <b class="cercle" [ngStyle]="{'background-color': changetype.color}"></b>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="heatMap" name="layer" (click)="onSelect($event,'heatMap')" checked>
+                    <label class="panelSwitcherLayerName">Carte de chaleur</label>
+                </td>
+                <td>
+                    <b class="cercle" style="background: linear-gradient(0.25turn,#00f, #0ff, #0f0, #ff0, #f00);"></b>
                 </td>
             </tr>
         </table>

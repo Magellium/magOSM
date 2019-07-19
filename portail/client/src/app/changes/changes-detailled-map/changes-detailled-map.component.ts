@@ -27,10 +27,6 @@ export class ChangesDetailledMapComponent {
     this.initMap();
   }
 
-  // ngOnChanges([...args: any[]]){
-
-  // }
-
   initMap(){
     let center = [this.userContext.lon, this.userContext.lat]
     console.log(center);
@@ -71,7 +67,6 @@ export class ChangesDetailledMapComponent {
 
   }
   
-  public 
   public getVectorLayers(): Array<any>{
     let layers = [];
     if (this.mainChange.theGeomOld != null) {

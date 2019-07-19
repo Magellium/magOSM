@@ -83,10 +83,10 @@ export class ChangesMapComponent implements OnInit {
       this.changeTypesList.sort((a,b) => a.id - b.id);
       console.log(this.changeTypesList);
       this.mapService.initLayers(this.changeTypesList);
+      this.mapService.initHeatMap();
       this.mapService.initStyles();
-      console.log(this.mapService.changesStyles);
-      console.log(this.mapService.changesPointStyles);
-      this.layersMap = this.mapService.changesLayer;
+      console.log("Styles",this.mapService.changesStyles, this.mapService.changesPointStyles);
+      this.layersMap = this.mapService.changesLayersArray;
       console.log(this.layersMap);
     });
 
@@ -103,17 +103,30 @@ export class ChangesMapComponent implements OnInit {
     //   }),
     //   zIndex: 1
     // });
-    // var selectPointerMove = new ol.interaction.Select({
-    //   condition: ol.events.condition.pointerMove,
-    //   style : highlightStyle,
-    //   hitTolerance : 2
-    // });
-    // this.map.addInteraction(selectPointerMove);
 
 
+    var selectPointerMove = new ol.interaction.Select({
+      condition: ol.events.condition.pointerMove,
+      //style : this.highlightStyleFunction,
+      hitTolerance : 2,
+      layerFilter: this.heatMapFilter
+    });
+    this.map.addInteraction(selectPointerMove);
+
+    selectPointerMove.on('select', function(e){
+      let layer = selectPointerMove.getLayer()
+      console.log(layer);
+    })
     this.map.on('pointermove', this.onPointerMove.bind(this));
     this.map.on('click', this.onClick.bind(this));
       
+  }
+
+  public highlightStyleFunction(feature, resolution){
+    let featureStyle = feature.getStyleFunction();
+    console.log(featureStyle);
+    featureStyle.getStroke().setWidth(15);
+    return [featureStyle];
   }
 
   public onPointerMove(e){
@@ -128,7 +141,6 @@ export class ChangesMapComponent implements OnInit {
 
   public onClick(event){
       this.selectedFeature = null;
-      console.log(this.selectedFeature);
       var pixel = this.map.getEventPixel(event.originalEvent);
       var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter : this.heatMapFilter});
       if (hit){
@@ -138,13 +150,27 @@ export class ChangesMapComponent implements OnInit {
   }
 
   public heatMapFilter(layer){
-    return layer.get('title')!="heatMap";
+    return layer.get('title')!="Carte de chaleur";
   }
 
-  public onSelect($event,changeType : ChangeType){
-    var layer = this.mapService.changesLayer.get(changeType);
+  public onSelect($event, id){
+    if (id != "heatMap"){
+    var layer = this.mapService.changesLayersArray.filter(x => x.get('id') === id)[0];
     var isVisible = layer.getVisible();
     layer.setVisible(!isVisible);
+    this.mapService.refreshHeatMap();
+    } else {
+      var isVisible = this.mapService.heatMapLayer.getVisible();
+      this.mapService.heatMapLayer.setVisible(!isVisible);
+    }
+  }
+
+  public onSelectAll(source){
+    console.log(source.checked);
+    let checkboxes = document.getElementsByName("layer") as NodeListOf<HTMLInputElement>;
+    checkboxes.forEach(checkbox => {
+      checkbox.checked = source.checked;
+    })
   }
 
 }
