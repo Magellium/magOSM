@@ -613,26 +613,7 @@ export class MapService {
 
   initLayers(changeTypesList : Array<ChangeType>){
       //On crée un Array contenant les layers que l'on place dans un LayerGroup que l'on associe à la map.
-
-    var styleFunction = function(feature, resolution){
-      var self = this;
-      let style : any;
-      var changeType = feature.get('changeType');
-      let type = self.config.CHANGES_TYPES.filter(x => x.id=== changeType)[0].type;
-      if (feature.getGeometry().getType() == 'Point'){
-        style = self.changesPointStyles.get(type);
-        if (resolution<10){
-          style.getImage().setRadius(5*(1+1/resolution));
-        }
-        else{
-          style.getImage().setRadius(1);
-        }
-      } else {
-        style = self.changesStyles.get(type);
-      }
-      return [style];
-    }.bind(this);
-
+    console.log(this.config);
     changeTypesList.forEach(element => {
       var newVector = new ol.layer.Vector({
         source: new ol.source.Vector({attributions: [
@@ -646,7 +627,7 @@ export class MapService {
         id : element.id,
         title : element.name,
         changetype : element,
-        style : styleFunction,
+        style : this.mainStyleFunction.bind(this),
       });
       this.changesLayersArray.push(newVector);
 
@@ -696,26 +677,6 @@ export class MapService {
   })
     //this.changesLayer.set("Carte de chaleur", this.heatMapLayer);
     this.map.addLayer(this.heatMapLayer);
-  }
-
-  initStyles(){
-    for (var type of ["new","modified","deleted","other"]){
-      let style=new ol.style.Style();
-      let pointstyle = new ol.style.Style(); //because Point styles are differents from other styles... We need an image : a circle here.
-
-      var conf = this.config.STYLE.filter(x => x.type=== type)[0];
-      var fill = new ol.style.Fill({color: conf.fillcolor});
-      var stroke = new ol.style.Stroke({color: conf.strokecolor, width : 5});
-      var pointStroke = new ol.style.Stroke({color: conf.strokecolor, width : 3});
-
-      style.setFill(fill);
-      style.setStroke(stroke);
-      style.setZIndex(1);
-      let circle=new ol.style.Circle({radius:1, stroke: pointStroke, fill:fill});
-      pointstyle.setImage(circle);
-      this.changesStyles.set(type, style);
-      this.changesPointStyles.set(type, pointstyle);
-    };
   }
 
   public getChangesMergeForOneFeature(changes : Array<Change>): Change{
@@ -802,6 +763,41 @@ export class MapService {
       console.log(newChange.osmId);
     }
     return newChange;
+  }
+
+  //Cela permet de réutiliser l'affichage lors du passage de la souris ou de la sélection :
+  //Voir : https://stackoverflow.com/questions/35184546/openlayers3-same-style-for-selected-features-only-one-changed-property
+  public mainStyleFunction(feature, resolution : number, selected : boolean, type?){
+    let style = new ol.style.Style({});
+    //Récupérer la conf
+    var changeType = feature.get('changeType');
+    let chtype = type ? type : this.config.CHANGES_TYPES.filter(x => x.id=== changeType)[0].type;
+    var conf = this.config.STYLE.filter(x => x.type=== chtype)[0];
+      
+    var fill = new ol.style.Fill({color: conf.fillcolor});
+    style.setZIndex(1);    
+
+    if (feature.getGeometry().getType() == 'Point'){
+      var pointStroke = new ol.style.Stroke({color: conf.strokecolor, width : selected ? 10 : 3});
+      let circle=new ol.style.Circle({radius:1, stroke: pointStroke, fill:fill});
+      style.setImage(circle);
+
+      if (resolution<10){
+        style.getImage().setRadius(5*(1+1/resolution));
+      }
+      else{
+        style.getImage().setRadius(1);
+      }
+    } 
+    else {
+      var stroke = new ol.style.Stroke({color: conf.strokecolor, width : selected ? 10 : 5});
+      style.setFill(fill);
+      style.setStroke(stroke);
+    }
+    // if (selected){
+    //   style.setMaxResolution(this.map.getView().getResolutionForZoom(10));
+    // }
+    return [style];
   }
 
 }
