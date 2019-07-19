@@ -84,50 +84,40 @@ export class ChangesMapComponent implements OnInit {
       console.log(this.changeTypesList);
       this.mapService.initLayers(this.changeTypesList);
       this.mapService.initHeatMap();
-      this.mapService.initStyles();
       console.log("Styles",this.mapService.changesStyles, this.mapService.changesPointStyles);
       this.layersMap = this.mapService.changesLayersArray;
       console.log(this.layersMap);
     });
 
 
-    //// Pour ajouter de la surbrillance au passage de la souris. Ralentit beaucoup lorsqu'il y a beaucoup d'objets. 
+    //// Pour ajouter de la surbrillance au passage de la souris et au clic sur un objet
 
-    // var highlightStyle = new ol.style.Style({
-    //   stroke: new ol.style.Stroke({
-    //     color: [0,0,0,0.6],
-    //     width: 15
-    //   }),
-    //   fill: new ol.style.Fill({
-    //     color: [0,0,0,0.2]
-    //   }),
-    //   zIndex: 1
-    // });
-
-
+    var self = this;
     var selectPointerMove = new ol.interaction.Select({
       condition: ol.events.condition.pointerMove,
-      //style : this.highlightStyleFunction,
+      style : function(feature,resolution){
+        return self.mapService.mainStyleFunction(feature, resolution, true);},
       hitTolerance : 2,
       layerFilter: this.heatMapFilter
-    });
-    this.map.addInteraction(selectPointerMove);
-
-    selectPointerMove.on('select', function(e){
-      let layer = selectPointerMove.getLayer()
-      console.log(layer);
     })
+    this.map.addInteraction(selectPointerMove);
+    
+    var selectFeatureClick = new ol.interaction.Select({
+      condition: ol.events.condition.click,
+      style : function(feature,resolution){
+        return self.mapService.mainStyleFunction(feature, resolution, true);},
+      hitTolerance : 2,
+      layerFilter: this.heatMapFilter
+    })
+    this.map.addInteraction(selectFeatureClick);
+
+    // Au passage de la souris, change le curseur
     this.map.on('pointermove', this.onPointerMove.bind(this));
+    // Au clic sur un objet
     this.map.on('click', this.onClick.bind(this));
       
   }
 
-  public highlightStyleFunction(feature, resolution){
-    let featureStyle = feature.getStyleFunction();
-    console.log(featureStyle);
-    featureStyle.getStroke().setWidth(15);
-    return [featureStyle];
-  }
 
   public onPointerMove(e){
     if (e.dragging) return; // si il y a déplacement de la carte, on arrête
@@ -145,7 +135,6 @@ export class ChangesMapComponent implements OnInit {
       var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter : this.heatMapFilter});
       if (hit){
         this.selectedFeature = this.map.getFeaturesAtPixel(pixel, {hitTolerance:2})[0];
-        console.log(this.selectedFeature);
       }
   }
 
