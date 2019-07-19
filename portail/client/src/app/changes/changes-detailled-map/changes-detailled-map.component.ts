@@ -66,33 +66,28 @@ export class ChangesDetailledMapComponent {
     console.log(this.map.getLayers());
 
   }
-  
+
   public getVectorLayers(): Array<any>{
+    let self = this;
     let layers = [];
     if (this.mainChange.theGeomOld != null) {
       var oldFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomOld);
       var oldLayer = new ol.layer.Vector({
         source: new ol.source.Vector({features : [oldFeature]}),
-        title: "Ancien emplacement"
-        })
-      if (this.mainChange.type == "Point"){
-        oldLayer.setStyle(this.mapService.changesPointStyles.get("deleted"));
-      } else {
-        oldLayer.setStyle(this.mapService.changesStyles.get("deleted"))
-      }
+        title: "Ancien emplacement",
+        style : function(feature,resolution){
+          return self.mapService.mainStyleFunction(feature, resolution, false, "deleted");}
+        });
       layers.push(oldLayer);
     }
     if (this.mainChange.theGeomNew != null) {
       var newFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomNew);
       var newLayer = new ol.layer.Vector({
         source: new ol.source.Vector({features : [newFeature]}),
-        title: "Nouvel emplacement"
-        })
-      if (this.mainChange.type == "Point"){
-        newLayer.setStyle(this.mapService.changesPointStyles.get("new"));
-      } else {
-        newLayer.setStyle(this.mapService.changesStyles.get("new"))
-      }
+        title: "Nouvel emplacement",
+        style : function(feature,resolution){
+          return self.mapService.mainStyleFunction(feature, resolution, false, "new");}
+        });
       layers.push(newLayer);
     }
     return layers;
