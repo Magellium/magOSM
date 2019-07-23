@@ -1,71 +1,126 @@
 <div class="card row active" id="detailspanel">
-    <a id="detailspanel-close" href="#/changements" class="btn btn-outline-secondary btn-sm toggle">
-        <b class="glyphicon glyphicon-remove">X</b>
-    </a>
-    <!-- Title -->
-    <div class="card-header p-2 text-center" role="tab" id="headingDetailsPanel" style="word-wrap: break-word;">
-        <b>Informations sur l'objet</b>
-    </div>
-
-    <div id="detailsContainer" *ngIf="mainChange">
-        <div id="top_infos">
-            <div class="badge badge-secondary" [ngStyle]="{'background-color': changeType.color}">{{changeType.name}}</div>
-            <div>Objet n° : {{mainChange.osmId}}</div>
-            <div>Nombre de changement(s) : {{featureChangesList.length}}</div>
-            <div>Dernier timestamp : {{timestampDate.toLocaleString('fr-FR', {timeZone: 'UTC'})}}</div>
-            <div>Dernier user : {{mainChange.tagsNew.osm_user}}</div>
-            <div>Dernier changeset : {{mainChange.tagsNew.osm_changeset}}</div>
+    <div id="details-panel-nav" style="width:100%;">
+        <a id="detailspanel-close" href="#/changements" class="btn btn-outline-secondary btn-sm toggle">
+            <b class="glyphicon glyphicon-remove">X</b>
+        </a>
+        <!-- Title -->
+        <div class="card-header p-2 text-center" role="tab" id="headingDetailsPanel" style="word-wrap: break-word;">
+            <b>Informations sur l'objet modifié</b>
         </div>
-        <app-changes-detailled-map
-        *ngIf="userContext"
-        [userContext]="userContext"
-        [mainChange]="mainChange"
-        id="MapChangement">
-        </app-changes-detailled-map>
-        <!--- Accordion with the 2 tables --->
-        <div class="list-group" id="panel_accordion" aria-multiselectable="true">
-            <div class="card">
-                <div class="card-header">
-                    <h6 class="mb-0">
-                        <a id="OsmAttributeComparison" class="categorie-title" data-toggle="collapse" data-parent="panel_accordion" href="#collapseAttributeComparisonTable" title="Tableau de comparaison des attributs entre les deux versions de l'objet" >
-                        Comparaison des attributs
-                        </a>
-                    </h6>
-                </div>                    
-                <div id="collapseAttributeComparisonTable" class="card-collapse collapse in show">
-                    <table>
+
+        <div id="detailsContainer" *ngIf="mainChange" style="position:relative;">
+            <div id="top_infos" style="background-color: rgba(255,255,255,1);">
+                <div id="changeType">
+                    <span class="badge badge-secondary" [ngStyle]="{'background-color': changeType.color}">{{changeType.name}}</span>
+                </div>
+                <table class="table table-bordered" style="width:97%;line-height:0.8em;margin: 2px auto 5px auto">
+                    <colgroup>
+                        <col style="width:50%;">
+                        <col style="width:50%;">
+                    </colgroup>
+                    <thead>
                         <tr>
-                            <th>Version</th>
-                            <th>{{mainChange.versionOld}}</th>
-                            <th>{{mainChange.versionNew}}</th>
+                            <th colspan="2" style="width:100%;text-align: center; text-transform : capitalize;">
+                                <a>{{osmType}} {{mainChange.osmId}}</a>
+                                <a class="logo" title="Voir l'objet sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/{{osmType}}/{{mainChange.osmId}}"><img src="assets/images/osm_logo_25px.png"></a>
+                            </th>
                         </tr>
-                        <tr *ngFor="let tag of tagsList">
-                            <td>{{tag.key}}</td>
-                            <td>{{tag.valueOld}}</td>
-                            <td>{{tag.valueNew}}</td>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Nombre de changement(s)</th>
+                            <td>{{featureChangesList.length}}</td>
                         </tr>
-                    </table>
-                </div>
+                        <tr>
+                            <th>Dernier timestamp</th>
+                            <td>{{timestampDate.toLocaleString('fr-FR', {timeZone: 'UTC'})}}</td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">Dernier user</th>
+                            <td>
+                                <a>{{mainChange.tagsNew.osm_user}}</a>
+                                <a class="logo" title="Voir l'utilisateur sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/user/{{mainChange.tagsNew.osm_user}}"><img src="assets/images/osm_logo_25px.png"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Dernier changeset
+                                <a class="metadata-circle" target="_blank" href="https://wiki.openstreetmap.org/wiki/FR:Groupes_de_modifications" title="Voir la définition sur le wiki"><b>?</b></a>
+                            </th>
+                            <td>
+                                <a>{{mainChange.tagsNew.osm_changeset}}</a>
+                                <a class="logo" title="Voir le changeset sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/changeset/{{mainChange.tagsNew.osm_changeset}}"><img src="assets/images/osm_logo_25px.png"></a>
+                                <a class="logo" title="Voir le changeset sur OSMCha" target="_blank" href="https://osmcha.mapbox.com/changesets/{{mainChange.tagsNew.osm_changeset}}/"><img src="https://osmcha.mapbox.com/favicon.ico" style="height:25px;width:25px;"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <!-- <div class="card">
-                <div class="card-header">
-                    <h6 class="mb-0">
-                        <a class="categorie-title" data-toggle="collapse" data-parent="panel_accordion" 
-                        href="#collapseMap" title="Carte de comparaison des géométries entre les deux versions"
-                        (click)="loadMap()">
-                            Comparaison des géométries
-                        </a>
-                    </h6>
-                </div>
-                <div id="collapseMap" class="card-collapse collapse in">
-                        <app-changes-detailled-map
-                        *ngIf="userContext && mapLoader"
-                        [userContext]="userContext"
-                        [mainChange]="mainChange"
-                        id="MapChangement">
-                        </app-changes-detailled-map>
-                </div>
-            </div> -->
+
+            <app-changes-detailled-map
+            *ngIf="userContext"
+            [userContext]="userContext"
+            [mainChange]="mainChange"
+            id="MapChangement">
+            </app-changes-detailled-map>
+
+            <!--- Accordion with the 2 tables --->
+            <!-- <div class="list-group" id="panel_accordion" aria-multiselectable="true">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <a id="OsmAttributeComparison" class="categorie-title" data-toggle="collapse" data-parent="panel_accordion" href="#collapseAttributeComparisonTable" title="Tableau de comparaison des attributs entre les deux versions de l'objet" >
+                            Comparaison des attributs
+                            </a>
+                        </h6>
+                    </div>                    
+                    <div id="collapseAttributeComparisonTable" class="card-collapse collapse in show"> -->
+                        <table class="table table-hover table-bordered" id="tags">
+                            <colgroup>
+                                <col style="width:30%">
+                                <col *ngIf="mainChange.versionOld">
+                                <col *ngIf="mainChange.versionNew">
+                            </colgroup>
+                            <thead>
+                                <tr style="text-align: center">
+                                    <th>Version</th>
+                                    <th *ngIf="mainChange.versionOld">{{mainChange.versionOld}}</th>
+                                    <th *ngIf="mainChange.versionNew">{{mainChange.versionNew}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tag of tagsList" [ngClass]="getHTMLTableClass(tag)">
+                                    <th>{{tag.key}}</th>
+                                    <td *ngIf="mainChange.versionOld">{{tag.valueOld}}</td>
+                                    <td *ngIf="mainChange.versionNew">{{tag.valueNew}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <!-- </div> -->
+                    <div *ngIf="featureChangesList.length > 1">
+                        <a>Voir les versions intermédiaires sur</a>
+                        <a target="_blank" href="http://osm.virtuelle-loipe.de/history/?type={{osmType}}&ref={{mainChange.osmId}}">OSM History Browser</a>
+                    </div>
+                <!-- </div> -->
+                <!-- <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <a class="categorie-title" data-toggle="collapse" data-parent="panel_accordion" 
+                            href="#collapseMap" title="Carte de comparaison des géométries entre les deux versions"
+                            (click)="loadMap()">
+                                Comparaison des géométries
+                            </a>
+                        </h6>
+                    </div>
+                    <div id="collapseMap" class="card-collapse collapse in">
+                            <app-changes-detailled-map
+                            *ngIf="userContext && mapLoader"
+                            [userContext]="userContext"
+                            [mainChange]="mainChange"
+                            id="MapChangement">
+                            </app-changes-detailled-map>
+                    </div>
+                </div> -->
+            <!-- </div> -->
         </div>
     </div>
 </div>

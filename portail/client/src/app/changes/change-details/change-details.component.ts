@@ -30,6 +30,7 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   public timestampDate : Date;
   public tagsList : Array<Tag>;
   public mapLoader : boolean = false;
+  public osmType : string;
 
   constructor(
     public apiRequestService : ApiRequestService,
@@ -64,14 +65,13 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
       headers : headers
     });
     var data = JSON.stringify(this.featureChangesRequest);
-    console.log(data);
     this.apiRequestService.searchFeatureChanges(data, options)
       .subscribe(
         (res) => {
           this.featureChangesList = JSON.parse(res['_body']);
           console.log(this.featureChangesList);
-          //this.mainChange = this.featureChangesList[0];
           this.mainChange = this.mapService.getChangesMergeForOneFeature(this.featureChangesList);
+          this.osmType = this.mapService.getOsmTypeOfFeature(this.mainChange);
           this.changeType = this.changeTypesList.filter(x => x.id === this.mainChange.changeType)[0];
           this.timestampDate = new Date(this.mainChange.timestamp);
           this.getTagsList();
@@ -88,7 +88,6 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
     if (this.mainChange.tagsOld != null){
       keys = keys.concat(Object.keys(this.mainChange.tagsOld));
     }
-    console.log("clés", keys);
     keys.forEach(key => {
       if (['osm_changeset','osm_uid', 'osm_user'].indexOf(key) <0 && usedKeys.indexOf(key) < 0){
         this.tagsList.push(new Tag(key, this.mainChange.tagsNew === null ? null : this.mainChange.tagsNew[key], this.mainChange.tagsOld === null ? null : this.mainChange.tagsOld[key]))
@@ -114,5 +113,17 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
 
   public loadMap(){
     this.mapLoader = true;
+  }
+
+  public getHTMLTableClass(tag : Tag){
+    if (tag.valueNew == null){
+      return 'table-danger'
+    }
+    if (tag.valueOld == null){
+      return 'table-success'
+    }
+    if (tag.valueNew != tag.valueOld){
+      return 'table-warning'
+    }
   }
 }
