@@ -143,6 +143,11 @@
 	top: 60px;
 }
 
+app-changes-detailled-map .ol-zoom{
+  left: 10px;
+	top: 10px;
+}
+
 h3 {
   font-size: 0.8rem;
   font-weight: bold;
