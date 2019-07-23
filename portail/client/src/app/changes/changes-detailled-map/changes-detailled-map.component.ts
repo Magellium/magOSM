@@ -18,13 +18,23 @@ export class ChangesDetailledMapComponent {
 
   constructor(public mapService: MapService) { }
 
+  //To prevent ngOnChanges before ngOnInit
+  private initialized : boolean = false;
+
   // map parameters
   private view: any;
   private map: any;
 
   ngOnInit() {
-    console.log("detailled map user context", this.userContext)
     this.initMap();
+    this.updateMap();
+    this.initialized=true;
+  }
+
+  ngOnChanges(...args: any[]){
+    if (this.initialized){
+      this.updateMap();
+    }
   }
 
   initMap(){
@@ -43,7 +53,9 @@ export class ChangesDetailledMapComponent {
         attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
           collapsible: false
         })
-      }),
+      }).extend([
+        new ol.control.ScaleLine(),
+      ]),
       target: 'detailled-map',
       view: this.view,
       layers: [
@@ -54,7 +66,9 @@ export class ChangesDetailledMapComponent {
         })
       ]
     });
+  }
 
+  updateMap(){
     let layers = this.getVectorLayers();
     console.log(layers);
     layers.forEach(layer => {
@@ -64,7 +78,6 @@ export class ChangesDetailledMapComponent {
       this.map.addLayer(layer);
     })
     console.log(this.map.getLayers());
-
   }
 
   public getVectorLayers(): Array<any>{
@@ -73,7 +86,13 @@ export class ChangesDetailledMapComponent {
     if (this.mainChange.theGeomOld != null) {
       var oldFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomOld);
       var oldLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features : [oldFeature]}),
+        source: new ol.source.Vector({features : [oldFeature], attributions: [
+          new ol.Attribution({
+            html: '' +
+                '<a href="http://magosm.magellium.com/">© Magellium</a>'
+          })
+        ]
+        }),
         title: "Ancien emplacement",
         style : function(feature,resolution){
           return self.mapService.mainStyleFunction(feature, resolution, false, "deleted");}
@@ -83,7 +102,13 @@ export class ChangesDetailledMapComponent {
     if (this.mainChange.theGeomNew != null) {
       var newFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomNew);
       var newLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features : [newFeature]}),
+        source: new ol.source.Vector({features : [newFeature], attributions: [
+          new ol.Attribution({
+            html: '' +
+                '<a href="http://magosm.magellium.com/">© Magellium</a>'
+          })
+        ]
+        }),
         title: "Nouvel emplacement",
         style : function(feature,resolution){
           return self.mapService.mainStyleFunction(feature, resolution, false, "new");}
