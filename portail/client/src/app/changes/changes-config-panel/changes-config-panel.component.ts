@@ -6,7 +6,7 @@ import { MapService } from '../../service/map.service';
 import { ApiRequestService } from '../../service/api-request.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Change } from 'app/model/ChangesClasses/Change';
-import { IMyDrpOptions, IMyDateRangeModel } from 'mydaterangepicker';
+import { IMyDrpOptions, IMyDateRange, IMyDate } from 'mydaterangepicker';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 
 
@@ -22,6 +22,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
 
   //date
   public myDateRangePickerOptions : IMyDrpOptions;
+  public model : IMyDateRange;
 
   //form
   public changesFilterForm : FormGroup;
@@ -92,14 +93,15 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
 
   public getChangesRequestValues(){
     this.changesRequest.thematic=this.changesFilterForm.controls.thematic.value;
+    console.log(this.changesFilterForm.controls.dates.value);
     this.changesRequest.beginDate=this.changesFilterForm.controls.dates.value.beginJsDate;
     this.changesRequest.endDate=this.changesFilterForm.controls.dates.value.endJsDate;
   }
 
   initForm() {
     this.changesFilterForm = new FormGroup({
-      'thematic': new FormControl(this.criteriaFilter.thematic, [Validators.required]),
-      'dates':new FormControl(this.criteriaFilter.dates,[]),
+      'thematic': new FormControl(16,[Validators.required]),
+      'dates': new FormControl(this.model,[]),
     });
   }
 
@@ -124,8 +126,21 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
       selectBeginDateTxt:"Choisir la date de début",
       selectEndDateTxt:"Choisir la date de fin",
       editableDateRangeField: false,
-      openSelectorOnInputClick : true
+      openSelectorOnInputClick : true,
     };
+    var today = {
+      year: date.getFullYear(),
+      month: date.getMonth()+1,
+      day: date.getDate()
+    };
+
+    var oneMonthBefore = {
+    year: date.getFullYear(),
+    month: date.getMonth()+1,
+    day: date.getDate()-7
+  }
+
+    this.model = {endDate: today, beginDate : oneMonthBefore};
   }
 
   initReport(){

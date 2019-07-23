@@ -6,7 +6,7 @@
     <div class="form-group">
       <label for="mydaterange" style="margin-top:5px">Période de temps</label>
       <my-date-range-picker id="mydaterange" name="mydaterange" placeholder="Dates de début et de fin"
-        [options]="myDateRangePickerOptions" formControlName="dates" required></my-date-range-picker>
+        [options]="myDateRangePickerOptions" [selDateRange]="model" formControlName="dates" required></my-date-range-picker>
     </div>
     <div class="form-group">
       <label for="thematicSelection">Thématique</label>
