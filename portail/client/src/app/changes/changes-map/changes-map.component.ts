@@ -5,7 +5,6 @@ import { MapService } from '../../service/map.service';
 import { ConfigService } from 'app/service/config.service';
 import { ApiRequestService } from 'app/service/api-request.service';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
-import { e } from '@angular/core/src/render3';
 
 declare var ol: any;
 declare var $: any;
@@ -25,12 +24,17 @@ export class ChangesMapComponent implements OnInit {
     public userContextService : UserContextService,
     public configService : ConfigService,
     public apiRequestService : ApiRequestService
-) { }
+) {   
+  $("#selectAll").click(function(){
+    console.log("coucou");
+    $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+  }); 
+}
 
   // map parameters
   private view: any;
   public map: any;
-  public layersMap : any;
+  public layersArray : any;
   public layerswitcherdisplay : boolean = true;
 
   //
@@ -84,30 +88,29 @@ export class ChangesMapComponent implements OnInit {
       console.log(this.changeTypesList);
       this.mapService.initLayers(this.changeTypesList);
       this.mapService.initHeatMap();
-      console.log("Styles",this.mapService.changesStyles, this.mapService.changesPointStyles);
-      this.layersMap = this.mapService.changesLayersArray;
-      console.log(this.layersMap);
+      this.layersArray = this.mapService.changesLayersArray;
+      console.log(this.layersArray);
     });
 
 
     //// Pour ajouter de la surbrillance au passage de la souris et au clic sur un objet
 
     var self = this;
-    var selectPointerMove = new ol.interaction.Select({
-      condition: ol.events.condition.pointerMove,
-      style : function(feature,resolution){
-        return self.mapService.mainStyleFunction(feature, resolution, true);},
-      hitTolerance : 2,
-      layerFilter: this.heatMapFilter
-    })
-    this.map.addInteraction(selectPointerMove);
+    // var selectPointerMove = new ol.interaction.Select({
+    //   condition: ol.events.condition.pointerMove,
+    //   style : function(feature,resolution){
+    //     return self.mapService.mainStyleFunction(feature, resolution, true);},
+    //   hitTolerance : 2,
+    //   filter: function(feature, layer){return self.heatMapFilter (layer);}
+    // })
+    // this.map.addInteraction(selectPointerMove);
     
     var selectFeatureClick = new ol.interaction.Select({
       condition: ol.events.condition.click,
       style : function(feature,resolution){
         return self.mapService.mainStyleFunction(feature, resolution, true);},
       hitTolerance : 2,
-      layerFilter: this.heatMapFilter
+      filter: function(feature, layer){return self.heatMapFilter (layer);}
     })
     this.map.addInteraction(selectFeatureClick);
 
@@ -154,12 +157,12 @@ export class ChangesMapComponent implements OnInit {
     }
   }
 
-  public onSelectAll(source){
-    console.log(source.checked);
-    let checkboxes = document.getElementsByName("layer") as NodeListOf<HTMLInputElement>;
-    checkboxes.forEach(checkbox => {
-      checkbox.checked = source.checked;
-    })
-  }
+  // public onSelectAll(source){
+  //   console.log(source.checked);
+  //   let checkboxes = document.getElementsByName("layer") as NodeListOf<HTMLInputElement>;
+  //   checkboxes.forEach(checkbox => {
+  //     checkbox.checked = source.checked;
+  //   })
+  // }
 
 }
