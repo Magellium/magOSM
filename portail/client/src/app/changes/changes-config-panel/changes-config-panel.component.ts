@@ -93,9 +93,15 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
 
   public getChangesRequestValues(){
     this.changesRequest.thematic=this.changesFilterForm.controls.thematic.value;
-    console.log(this.changesFilterForm.controls.dates.value);
-    this.changesRequest.beginDate=this.changesFilterForm.controls.dates.value.beginJsDate;
-    this.changesRequest.endDate=this.changesFilterForm.controls.dates.value.endJsDate;
+
+    //To have the time in UTC and not with the local timezone.
+    let iMyBeginDate = this.changesFilterForm.controls.dates.value.beginDate;
+    let beginDate : Date = new Date(Date.UTC(iMyBeginDate.year, iMyBeginDate.month-1, iMyBeginDate.day));
+    let iMyEndDate = this.changesFilterForm.controls.dates.value.endDate;
+    let endDate : Date = new Date(Date.UTC(iMyEndDate.year, iMyEndDate.month-1, iMyEndDate.day));
+
+    this.changesRequest.beginDate=beginDate;
+    this.changesRequest.endDate=endDate;
   }
 
   initForm() {
@@ -131,14 +137,14 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     var today = {
       year: date.getFullYear(),
       month: date.getMonth()+1,
-      day: date.getDate()
+      day: date.getDate(),
     };
 
     var oneMonthBefore = {
     year: date.getFullYear(),
     month: date.getMonth()+1,
-    day: date.getDate()-7
-  }
+    day: date.getDate()-7,
+    };
 
     this.model = {endDate: today, beginDate : oneMonthBefore};
   }
