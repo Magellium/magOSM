@@ -22,9 +22,8 @@ import { PermalinkComponent } from './permalink/permalink.component';
 import { UserContextService } from './service/user-context.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FeatureMainInfoComponent } from './feature-panel-components/feature-main-info/feature-main-info.component';
-import { ChangesMainComponent } from './changes/main-changes/changes-main.component';
+import { ChangesMainComponent } from './changes/changes-main/changes-main.component';
 import { ChangesDetailledMapComponent } from './changes/changes-detailled-map/changes-detailled-map.component';
-import { ChangesByThematicComponent } from './changes/changes-by-thematic/changes-by-thematic.component';
 import { ChangeDetailsComponent } from './changes/change-details/change-details.component';
 import { ChangesConfigPanelComponent } from './changes/changes-config-panel/changes-config-panel.component';
 import { ChangesMapComponent } from './changes/changes-map/changes-map.component';
@@ -32,6 +31,7 @@ import { ChangesHeaderComponent } from './changes/changes-header/changes-header.
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { ConfigService } from './service/config.service';
+import { HelpComponent } from './help/help.component';
 
 // Define the routes
 const ROUTES: Routes = [
@@ -39,6 +39,11 @@ const ROUTES: Routes = [
     path: '',
     redirectTo: '/carte',
     pathMatch: 'full',
+  },
+  { 
+    path : 'changements-aide.html',
+    component : HelpComponent,
+    data : {title : 'Aide pour le suivi de changement'}
   },
   {
     path: 'carte',
@@ -70,11 +75,11 @@ const ROUTES: Routes = [
     FeatureMainInfoComponent,
     ChangesMainComponent,
     ChangesDetailledMapComponent,
-    ChangesByThematicComponent,
     ChangeDetailsComponent,
     ChangesConfigPanelComponent,
     ChangesMapComponent,
     ChangesHeaderComponent,
+    HelpComponent,
   ],
   imports: [ 
     NguiAutoCompleteModule,
@@ -82,12 +87,15 @@ const ROUTES: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot([
-        {
-          path: 'carte',
-          component: MainComponent
-        }
-      ]),
+    RouterModule.forRoot(
+      // [
+      //   {
+      //     path: 'carte',
+      //     component: MainComponent
+      //   }
+      // ]
+      ROUTES
+      ),
     HttpModule,
     RouterModule.forRoot(ROUTES),
     NgxMyDatePickerModule.forRoot(),
