@@ -145,24 +145,30 @@ export class ChangesMapComponent implements OnInit {
     return layer.get('title')!="Carte de chaleur";
   }
 
-  public onSelect($event, id){
+  public onSelect(id){
+    console.log(event);
+    let elem = document.getElementById(id) as HTMLInputElement;
+    let isChecked = elem.checked;
     if (id != "heatMap"){
-    var layer = this.mapService.changesLayersArray.filter(x => x.get('id') === id)[0];
-    var isVisible = layer.getVisible();
-    layer.setVisible(!isVisible);
-    this.mapService.refreshHeatMap();
-    } else {
-      var isVisible = this.mapService.heatMapLayer.getVisible();
-      this.mapService.heatMapLayer.setVisible(!isVisible);
+      var layer = this.mapService.changesLayersArray.filter(x => x.get('id') === Number(id))[0];
+      layer.setVisible(isChecked);
+      this.mapService.refreshHeatMap();
+    } 
+    else {
+      this.mapService.heatMapLayer.setVisible(isChecked);
     }
   }
 
-  // public onSelectAll(source){
-  //   console.log(source.checked);
-  //   let checkboxes = document.getElementsByName("layer") as NodeListOf<HTMLInputElement>;
-  //   checkboxes.forEach(checkbox => {
-  //     checkbox.checked = source.checked;
-  //   })
-  // }
+  public onSelectAll(event){
+    let isChecked = event.target.checked;
+    let checkboxes = document.getElementsByName("layer") as NodeListOf<HTMLInputElement>;
+    checkboxes.forEach(checkbox => {
+      console.log(checkbox);
+      if (checkbox.checked != isChecked){
+        checkbox.checked = isChecked;
+        this.onSelect(checkbox.id);
+      }
+    })
+  }
 
 }

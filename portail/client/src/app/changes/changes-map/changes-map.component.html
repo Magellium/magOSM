@@ -11,13 +11,18 @@
     </app-change-details>
     <div *ngIf="layerswitcherdisplay" id="layerswitcher">
             <div class="card-header p-2 text-center" style="word-wrap: break-word;">
-                <input type="checkbox" id="selectAll" name="selectAll" (click)="onSelectAll(this)" checked>
                 <b style="margin-left:10px">Légende</b>
             </div>
         <table>
+            <tr>
+                <td>
+                    <input type="checkbox" id="selectAll" name="selectAll" (click)="onSelectAll($event)" checked>
+                    <label class="panelSwitcherLayerName">Tout (dé)sélectionner</label>
+                </td>
+            </tr>
             <tr *ngFor="let changetype of changeTypesList">
                 <td>
-                    <input type="checkbox" id="layer.key" name="layer" (click)="onSelect($event,changetype.id)" checked>
+                    <input type="checkbox" id="{{changetype.id}}" name="layer" (change)="onSelect(changetype.id)" checked>
                     <label class="panelSwitcherLayerName" title="{{changetype.label}}">{{changetype.name}}</label>
                 </td>
                 <td>
@@ -26,7 +31,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="heatMap" name="layer" (click)="onSelect($event,'heatMap')" checked>
+                    <input type="checkbox" id="heatMap" name="layer" (change)="onSelect('heatMap')" checked>
                     <label class="panelSwitcherLayerName">Carte de chaleur</label>
                 </td>
                 <td>
