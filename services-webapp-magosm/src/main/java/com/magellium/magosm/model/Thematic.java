@@ -23,6 +23,7 @@ public class Thematic {
 	@Column(name = "name", unique=true)
 	private String name;
 	
+	@JsonIgnore
 	@Column(name = "view_name")
 	private String view_name;
 	
@@ -32,6 +33,18 @@ public class Thematic {
 	@JsonIgnore
 	@Column(name = "changes_request")
 	private String changes_request;
+	
+	public ThematicCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(ThematicCategory category) {
+		this.category = category;
+	}
+
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_category")
+	private ThematicCategory category;
 	
 	public Integer getId() {
 		return this.id;
