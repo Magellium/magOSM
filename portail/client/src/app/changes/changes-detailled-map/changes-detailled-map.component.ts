@@ -55,6 +55,7 @@ export class ChangesDetailledMapComponent {
         })
       }).extend([
         new ol.control.ScaleLine(),
+        new ol.control.FullScreen(),
       ]),
       target: 'detailled-map',
       view: this.view,
