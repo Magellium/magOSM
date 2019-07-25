@@ -7,10 +7,10 @@
 
 /* The panel is hidden when the close button is pushed */
 #detailspanel {
-    margin-right: -500px;
+    margin-right: -600px;
     right: 0;
     top: 0vw;
-    width: 500px;
+    width: 600px;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -24,8 +24,8 @@
   }
 
 #detailspanel.active {
-    right: 500px;
-    width: 500px;
+    right: 600px;
+    width: 600px;
     transition: all 0.5s ease-out 0s;
     -webkit-transition: all 0.5s ease-out 0s;
     -moz-transition: all 0.5s ease-out 0s;
