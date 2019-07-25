@@ -11,8 +11,14 @@
     <div class="form-group">
       <label for="thematicSelection">Thématique</label>
       <select class="custom-select mr-sm-2" id="thematicSelection" formControlName="thematic" required>
-        <ng-container *ngFor="let thematic of thematicsList">
-          <option value="{{thematic.id}}">{{thematic.name}}</option>
+          <!-- <ng-container *ngFor="let thematic of thematicsList">
+              <option value="{{thematic.id}}" disabled>{{thematic.name}}</option>
+          </ng-container> -->
+        <ng-container *ngFor="let category of categoryMap | keyvalue">
+          <option class="mb-2 bg-secondary text-white" disabled>{{category.key}}</option>
+          <ng-container *ngFor="let thematic of category.value">
+            <option value="{{thematic.id}}">{{thematic.name}}</option>
+          </ng-container>
         </ng-container>
       </select>
       <div *ngIf="thematic.invalid && (thematic.dirty || thematic.touched)" class="alert alert-danger">
@@ -28,10 +34,15 @@
         Déplacez-vous sur la carte pour sélectionner la zone de recherche
       </div>
     </div>
-    <div class=submitButton style="text-align:center;">
+    <div class=submitButton style="text-align:center;padding:5px">
       <button type="button" class="btn btn-success" (click)="onSubmit()">Lancer la recherche</button>
     </div>
   </form>
+
+  <div *ngIf="nothingToDisplay" class="alert alert-danger" role="alert">
+    Aucun changement n'a été trouvé pour cette requête.
+  </div>
+
   <div *ngIf="displayReport" id="report" style="border-top: 1px solid rgba(0,0,0,.125);">
       <div class="card-header p-2 text-center" style="word-wrap: break-word;">
           <b>Récapitulatif</b>

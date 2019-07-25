@@ -8,9 +8,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Change } from 'app/model/ChangesClasses/Change';
 import { IMyDrpOptions, IMyDateRange, IMyDate } from 'mydaterangepicker';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
+import { ThematicCategory } from 'app/model/ChangesClasses/ThematicCategory';
+import { forEach } from '@angular/router/src/utils/collection';
 
 
 declare var $: any;
+declare var config: any;
+
 @Component({
   selector: 'app-changes-config-panel',
   templateUrl: './changes-config-panel.component.html',
@@ -30,10 +34,12 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
 
   //data
   private thematicsList : Array<Thematic>;
+  public categoryMap : Map<string,Array<Thematic>> = new Map<string,Array<Thematic>>();
   public changesRequest : ChangesRequest = new ChangesRequest();
   public selectedThematic : Thematic;
   public changesList : Array<Change>;
   public displayReport : boolean = false;
+  public nothingToDisplay : boolean = false;
 
   //report
   public reportInfos : Map<ChangeType, number> = new Map();
@@ -46,7 +52,17 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.apiRequestService.searchThematics().subscribe(data => {
       this.thematicsList = JSON.parse(data['_body']);
-      console.log(this.thematicsList);
+      // Group thematics by category to display them
+      this.thematicsList.forEach(thematic => {
+        let value = this.categoryMap.has(thematic.category.name);
+        if (value){
+          this.categoryMap.get(thematic.category.name).push(thematic);
+        }
+        else {
+          this.categoryMap.set(thematic.category.name, [thematic]);
+        }
+      })
+      console.log(this.categoryMap);
     })
     let date = new Date();
     this.initDateForm(date);
@@ -60,6 +76,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(){
+    this.nothingToDisplay = false;
     if (this.formValidation()){
       this.getChangesRequestValues();
       this.changesRequest.bbox = this.mapService.getBoundingBox();
@@ -85,6 +102,10 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
       .subscribe(
         (res) => {
           this.changesList = JSON.parse(res['_body']);
+          if (this.changesList.length < 1){
+            this.nothingToDisplay = true;
+            //alert('Aucun changement à afficher, veuillez modifier votre requête');
+          }
           console.log(this.changesList);
           this.mapService.addChanges(this.changesList);
           this.initReport();
@@ -106,7 +127,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
 
   initForm() {
     this.changesFilterForm = new FormGroup({
-      'thematic': new FormControl(16,[Validators.required]),
+      'thematic': new FormControl(11,[Validators.required]),
       'dates': new FormControl(this.model,[]),
     });
   }
@@ -123,10 +144,10 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
         month: date.getMonth()+1,
         day: date.getDate()+1
       },
-      disableUntil: { //Pour ne garder que 30 jours pour l'intervalle
+      disableUntil: { //On conserve un intervalle de temps donné par la variable DAYS_INTERVALL
         year: date.getFullYear(),
-        month: date.getMonth(),
-        day: date.getDate()
+        month: date.getMonth()+1,
+        day: date.getDate()-config.DAYS_INTERVAL_FOR_CHANGES_MONITORING
       },
       dateFormat:"dd/mm/yyyy",
       selectBeginDateTxt:"Choisir la date de début",
@@ -143,7 +164,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     var oneMonthBefore = {
     year: date.getFullYear(),
     month: date.getMonth()+1,
-    day: date.getDate()-7,
+    day: date.getDate()-15,
     };
 
     this.model = {endDate: today, beginDate : oneMonthBefore};
