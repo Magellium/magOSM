@@ -1,3 +1,101 @@
-<p>
-  help works!
-</p>
+<body>
+  <div class="container mainContent">
+    <div class="row">
+      <div class="d-none d-xl-block d-xs-none d-sm-none d-md-none d-lg-none bd-toc">
+        <nav id="navbar-example3" class="navbar navbar-light bg-light" style="position: fixed;right: 30px;">
+          <a class="navbar-brand" href="#"></a>
+          <nav class="nav nav-pills flex-column">
+            <a class="nav-link active" href="#suivi-changement">Suivi de changement</a>
+            <a class="nav-link" href="#types-changements">Les types de changements</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link ml-3 my-1" href="#creation">Création</a>
+              <a class="nav-link ml-3 my-1" href="#ajout">Ajout</a>
+              <a class="nav-link ml-3 my-1" href="#modif-tag">Modification de tag(s)</a>
+              <a class="nav-link ml-3 my-1" href="#modif-geom">Modification de géométrie</a>
+              <a class="nav-link ml-3 my-1" href="#modif-tag-et-geom">Modification de tag(s) et de géométrie</a>
+              <a class="nav-link ml-3 my-1" href="#retrait">Retrait</a>
+              <a class="nav-link ml-3 my-1" href="#suppression">Suppression</a>
+              <a class="nav-link ml-3 my-1" href="#autre">Autre</a>
+            </nav>
+            <a class="nav-link" href="#aide-interpretation">Aide à l'interprétation</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link ml-3 my-1" href="#regroupement-changement">Regroupement des changements</a>
+              <a class="nav-link ml-3 my-1" href="#scission-chemin">Scission d'un chemin</a>
+            </nav>
+          </nav>
+        </nav>
+      </div>
+      <div style="max-width:80%" class="col-sm">
+
+        <h1 id="suivi-changement">Suivi de changement</h1>
+
+        <h1 id="types-changements">Les différents types de changements</h1>
+
+        Les changements peuvent être catégorisés en différents types décrits ci-dessous. Cela permet de connaître directement la nature du changement dans la plupart des cas.
+        <br><br>
+        <h2 id="creation">Création</h2>
+        Objet qui n'existait pas dans OpenStreetMap, rajouté au cours de la période et qui entre dans la requête.
+
+        <h2 id="ajout">Ajout</h2>
+        Objet qui existait déjà dans OpenStreetMap au début de la période, mais qui n'entrait pas dans la requête, car :
+        <ul>
+          <li>soit il n'était pas contenu dans l'emprise géographique sélectionnée</li>
+          <li>soit il ne contenait pas les combinaisons d'attributs nécessaires pour appartenir à la thématique choisie</li>
+        </ul>
+
+        <h2 id="modif-tag">Modification de tag(s)</h2>
+        Objet présent dans la requête au début et à la fin de la période, qui a uniquement subi une ou des modification(s) d'attribut(s) (clé/valeur) n'affectant pas son appartenance à la thématique choisie
+        
+        <h2 id="modif-geom">Modification de géométrie</h2>
+        Objet présent dans la requête au début et à la fin de la période, qui a uniquement subi une ou des modification(s) de géométrie, tels que :
+        <ul>
+          <li>un déplacement</li>
+          <li>pour un way : un rajout ou une suppression de points</li>
+          <li>pour une relation : un rajout ou une suppression de membre(s)</li>
+        </ul>
+
+        <h2 id="modif-tag-et-geom">Modification de tag(s) et de géométrie</h2>
+        Objet présent dans la requête au début et à la fin de la période, qui a subi une ou des modifications d'attributs <b>et</b> de géométrie. 
+
+        <h2 id="retrait">Retrait</h2>
+        Objet présent dans la requête au début de la période, mais plus à la fin, et toujours existant dans OpenStreetMap. De fait:
+        <ul>
+            <li>soit il n'est plus contenu dans l'emprise géographique sélectionnée</li>
+            <li>soit il ne contient plus les combinaisons d'attributs nécessaires pour appartenir à la thématique choisie</li>
+        </ul>
+
+        <h2 id="suppression">Suppression</h2>
+        Objet existant dans OpenStreetMap et présent dans la requête au début de la période, puis supprimé d'OpenStreetMap au cours de la période.
+
+        <h2 id="autre">Autre</h2>
+        Objet n'ayant pas subi de modification de géométrie, ni d'attributs, mais dont la version a quand même augmenté. Quelques cas peuvent expliquer cette situation :
+        <ul>
+          <li>pour un way : un point appartenant à ce way a été remplacé par un autre point exactement au même endroit</li>
+          <li>pour une relation : un membre a été remplacé par un autre membre exactement au même endroit</li>
+          <li>...</li>
+        </ul>
+        Ce cas de figure est impossible pour un node.
+
+
+        <h1 id="aide-interpretation">Aide à l'interprétation</h1>
+        Le portail de suivi de changements, et notamment le panneau au clic sur un objet, permet d'afficher les métadonnées liées au changement, les éventuels changements d'attributs et de géométrie.
+        
+        
+        <h2 id="regroupement-changement">Regroupement des changements</h2>
+        Si plusieurs changements interviennent sur un même objet au cours de la période, le changement affiché par défaut est la fusion des différents changements. 
+        Par exemple : si un objet est créé puis modifié, on indiquera une <b>création</b>.<br><br>
+        Il est ensuite possible de visualiser les changements intermédiaires dans le détail, les uns après les autres.<br><br>
+
+        <h2 id="scission-chemin">Scission d'un chemin</h2>
+        C'est un cas qui arrive fréquemment sur un way. Un contributeur peut scinder le way afin de rajouter des attributs sur une portion (rajout d'un pont, par exemple).
+        Dans ce cas, on a alors : 
+        <ul>
+          <li>Le way initial qui subit une <b>modification de géométrie</b></li>
+          <li>Un nouveau way contigu à au way initial, qui est donc <b>créé</b></li>
+        </ul>
+ 
+      </div>
+    </div>
+  </div>
+</body>
+
