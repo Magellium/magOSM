@@ -872,5 +872,6 @@
         {"id":5, "type":"deleted"},
         {"id":6, "type":"deleted"},
         {"id":7, "type":"other"}
-    ]
+    ],
+    "DAYS_INTERVAL_FOR_CHANGES_MONITORING":30
 }
