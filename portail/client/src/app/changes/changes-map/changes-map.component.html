@@ -22,7 +22,7 @@
             </tr>
             <tr *ngFor="let changetype of changeTypesList">
                 <td>
-                    <input type="checkbox" id="{{changetype.id}}" name="layer" (change)="onSelect(changetype.id)" checked>
+                    <input type="checkbox" id="{{changetype.id}}" name="layer" (click)="onSelect(changetype.id)" checked>
                     <label class="panelSwitcherLayerName" title="{{changetype.label}}">{{changetype.name}}</label>
                 </td>
                 <td>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="heatMap" name="layer" (change)="onSelect('heatMap')" checked>
+                    <input type="checkbox" id="heatMap" name="layer" (click)="onSelect('heatMap')" checked>
                     <label class="panelSwitcherLayerName">Carte de chaleur</label>
                 </td>
                 <td>

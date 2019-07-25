@@ -145,8 +145,8 @@ export class ChangesMapComponent implements OnInit {
     return layer.get('title')!="Carte de chaleur";
   }
 
+  // Actions pour la légende //
   public onSelect(id){
-    console.log(event);
     let elem = document.getElementById(id) as HTMLInputElement;
     let isChecked = elem.checked;
     if (id != "heatMap"){
@@ -162,8 +162,7 @@ export class ChangesMapComponent implements OnInit {
   public onSelectAll(event){
     let isChecked = event.target.checked;
     let checkboxes = document.getElementsByName("layer") as NodeListOf<HTMLInputElement>;
-    checkboxes.forEach(checkbox => {
-      console.log(checkbox);
+    Array.from(checkboxes).forEach(checkbox => {
       if (checkbox.checked != isChecked){
         checkbox.checked = isChecked;
         this.onSelect(checkbox.id);
