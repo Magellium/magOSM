@@ -578,7 +578,6 @@ export class MapService {
 
   public refreshHeatMap(){
     let features : Array<any> = new Array<any>();
-    let length : number = 0;
     this.changesLayersArray.forEach(layer => {
       if (layer.getVisible()){
         features = features.concat(layer.getSource().getFeatures());
@@ -613,7 +612,6 @@ export class MapService {
 
   initLayers(changeTypesList : Array<ChangeType>){
       //On crée un Array contenant les layers que l'on place dans un LayerGroup que l'on associe à la map.
-    console.log(this.config);
     changeTypesList.forEach(element => {
       var newVector = new ol.layer.Vector({
         source: new ol.source.Vector({attributions: [
@@ -630,8 +628,8 @@ export class MapService {
         style : this.mainStyleFunction.bind(this),
       });
       this.changesLayersArray.push(newVector);
-
     })
+    console.log("changesLayersArray", this.changesLayersArray)
     this.changesLayersGroup = new ol.layer.Group({
       layers:this.changesLayersArray,
       maxResolution : this.map.getView().getResolutionForZoom(10)
@@ -680,15 +678,12 @@ export class MapService {
   }
 
   public getChangesMergeForOneFeature(changes : Array<Change>): Change{
-    console.log(changes);
     let changesOrderByTimestamp = changes.sort(function(a,b){ return a.timestamp == b.timestamp ? 0 : +(a.timestamp > b.timestamp) || -1; })
     while (changesOrderByTimestamp.length > 1){
-      console.log(changesOrderByTimestamp);
       let change1 = changesOrderByTimestamp.pop();
       let change2 = changesOrderByTimestamp.pop();
       changesOrderByTimestamp.push(this.mergeTwoChanges(change1, change2));
     }
-    console.log(changesOrderByTimestamp[0]);
     return changesOrderByTimestamp[0];
 
   }
@@ -719,6 +714,7 @@ export class MapService {
           newChange.changeType = 7;
           newChange.theGeomNew = secondChange.theGeomOld; // C'est pourquoi on rattrape le tout ici
           newChange.tagsNew = secondChange.tagsOld;
+          newChange.versionNew = secondChange.versionOld;
         } else {
           newChange.changeType = 1;
         }
@@ -759,15 +755,16 @@ export class MapService {
       case 7:
         newChange.changeType = secondChange.changeType;   
     }
-    if (newChange.theGeomNew == null && newChange.theGeomOld == null){
-      console.log(newChange.osmId);
-    }
+    // if (newChange.theGeomNew == null && newChange.theGeomOld == null){
+    //   console.log(newChange.osmId);
+    // }
     return newChange;
   }
 
   //Cela permet de réutiliser l'affichage lors du passage de la souris ou de la sélection :
   //Voir : https://stackoverflow.com/questions/35184546/openlayers3-same-style-for-selected-features-only-one-changed-property
   public mainStyleFunction(feature, resolution : number, selected : boolean, type?){
+    let maxResol = this.map.getView().getResolutionForZoom(10);
     let style = new ol.style.Style({});
     //Récupérer la conf
     var changeType = feature.get('changeType');
@@ -775,29 +772,47 @@ export class MapService {
     var conf = this.config.STYLE.filter(x => x.type=== chtype)[0];
       
     var fill = new ol.style.Fill({color: conf.fillcolor});
-    style.setZIndex(1);    
+    style.setZIndex(1);
+    if (resolution < this.changesLayersGroup.getMaxResolution()){    
+      if (feature.getGeometry().getType() == 'Point'){
+        var pointStroke = new ol.style.Stroke({color: conf.strokecolor, width : selected ? 10 : 3});
+        let circle=new ol.style.Circle({radius:1, stroke: pointStroke, fill:fill});
+        style.setImage(circle);
 
-    if (feature.getGeometry().getType() == 'Point'){
-      var pointStroke = new ol.style.Stroke({color: conf.strokecolor, width : selected ? 10 : 3});
-      let circle=new ol.style.Circle({radius:1, stroke: pointStroke, fill:fill});
-      style.setImage(circle);
-
-      if (resolution<10){
-        style.getImage().setRadius(5*(1+1/resolution));
-      }
-      else{
-        style.getImage().setRadius(1);
-      }
-    } 
-    else {
-      var stroke = new ol.style.Stroke({color: conf.strokecolor, width : selected ? 10 : 5});
-      style.setFill(fill);
-      style.setStroke(stroke);
+        if (resolution<10){
+          style.getImage().setRadius(4*(1+1/resolution));
+        }
+        else{
+          style.getImage().setRadius(1);
+        }
+      } 
+      else {
+        var stroke = new ol.style.Stroke({color: conf.strokecolor, width : selected ? 10 : 5});
+        style.setFill(fill);
+        style.setStroke(stroke);
     }
-    // if (selected){
-    //   style.setMaxResolution(this.map.getView().getResolutionForZoom(10));
-    // }
+      // if (selected){
+      //   style.setMaxResolution(this.map.getView().getResolutionForZoom(10));
+      // }
+    }
     return [style];
+  }
+
+  public getOsmTypeOfFeature(feature : Change){
+    let geometryType = feature.type;
+    switch(geometryType){
+      case 'Point':
+        return 'node';
+        break;
+      case 'Line':
+      case 'Polygon':
+        if (feature.osmId>0){
+          return 'way';
+        } else {
+          return 'relation'
+        }
+        break;
+    }
   }
 
 }

@@ -6,11 +6,8 @@ import { MapService } from '../../service/map.service';
 import { ApiRequestService } from '../../service/api-request.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Change } from 'app/model/ChangesClasses/Change';
-import { IMyDrpOptions, IMyDateRange, IMyDate } from 'mydaterangepicker';
+import { IMyDrpOptions, IMyDateRange } from 'mydaterangepicker';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
-import { ThematicCategory } from 'app/model/ChangesClasses/ThematicCategory';
-import { forEach } from '@angular/router/src/utils/collection';
-
 
 declare var $: any;
 declare var config: any;
@@ -147,7 +144,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
       disableUntil: { //On conserve un intervalle de temps donné par la variable DAYS_INTERVALL
         year: date.getFullYear(),
         month: date.getMonth()+1,
-        day: date.getDate()-config.DAYS_INTERVAL_FOR_CHANGES_MONITORING
+        day: date.getDate()-1-config.DAYS_INTERVAL_FOR_CHANGES_MONITORING
       },
       dateFormat:"dd/mm/yyyy",
       selectBeginDateTxt:"Choisir la date de début",
