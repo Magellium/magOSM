@@ -7,65 +7,29 @@
         <div class="card-header p-2 text-center" role="tab" id="headingDetailsPanel" style="word-wrap: break-word;">
             <b>Informations sur l'objet</b>
         </div>
+        <div id="detailsContainer" *ngIf="mainChange" style="position:relative;background-color: rgba(255,255,255,1);">
+        <div style="width:100%;text-align: center; text-transform : capitalize;">
+            <a>{{osmType}} {{mainChange.osmId}}</a>
+            <a class="logo" title="Voir l'objet sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/{{osmType}}/{{mainChange.osmId}}"><img src="assets/images/osm_logo_25px.png"></a>
+        </div>
 
-        <div id="detailsContainer" *ngIf="mainChange" style="position:relative;">
+        <div class="custom-slider" style="background-color: rgba(255,255,255,1);margin-bottom:50px">
+            <ng5-slider *ngIf="displaySlider" 
+                [(value)]="minValue"
+                [(highValue)]="maxValue"
+                [options]="options"
+                (userChangeEnd)="onUserChangeEnd($event)"
+                style="display:block;width:90%;margin-left:auto;margin-right:auto;">
+            </ng5-slider>
+        </div>
+        
             <div id="top_infos" style="background-color: rgba(255,255,255,1);">
-                <div style="width:100%;text-align: center; text-transform : capitalize;">
-                    <a>{{osmType}} {{mainChange.osmId}}</a>
-                    <a class="logo" title="Voir l'objet sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/{{osmType}}/{{mainChange.osmId}}"><img src="assets/images/osm_logo_25px.png"></a>
-                </div>
-
-                <div id="version-selector" style="display:flex; flex-wrap:nowrap;">
-                    <div id="versions-selector" style="width:30%">
-                        Versions à comparer
-                        <table>
-                            <!-- <thead>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Version</td>
-                                </tr>
-                            </thead> -->
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <input type="radio" name="id1">
-                                    </td>
-                                    <td>
-                                        <input type="radio" name="id2" checked>
-                                    </td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="radio" name="id1">
-                                    </td>
-                                    <td>
-                                        <input type="radio" name="id2">
-                                    </td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="radio" name="id1" checked>
-                                    </td>
-                                    <td>
-                                        <input type="radio" name="id2">
-                                    </td>
-                                    <td>3</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="map" style="width:70%;">
-                        <app-changes-detailled-map
-                        *ngIf="userContext"
-                        [userContext]="userContext"
-                        [mainChange]="mainChange"
-                        id="MapChangement">
-                        </app-changes-detailled-map>
-                    </div>
-                </div>
+                <app-changes-detailled-map
+                *ngIf="userContext"
+                [userContext]="userContext"
+                [mainChange]="mainChange"
+                id="MapChangement">
+                </app-changes-detailled-map>
 
                 <div id="changeType">
                     <span class="badge badge-secondary" [ngStyle]="{'background-color': changeType.color}">{{changeType.name}}</span>
