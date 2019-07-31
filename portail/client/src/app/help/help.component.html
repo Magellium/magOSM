@@ -5,7 +5,12 @@
         <nav id="navbar-example3" class="navbar navbar-light bg-light" style="position: fixed;right: 30px;">
           <a class="navbar-brand" href="#"></a>
           <nav class="nav nav-pills flex-column">
-            <a class="nav-link active" href="#suivi-changement">Suivi de changement</a>
+            <a class="nav-link active" href="#suivi-changement">Le suivi de changement</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link ml-3 my-1" href="#changement">Qu'est-ce qu'un changement ?</a>
+              <a class="nav-link ml-3 my-1" href="#interet">Pourquoi faire du suivi de changement ?</a>
+              <a class="nav-link ml-3 my-1" href="#outil">Pourquoi cet outil ?</a>
+            </nav>
             <a class="nav-link" href="#types-changements">Les types de changements</a>
             <nav class="nav nav-pills flex-column">
               <a class="nav-link ml-3 my-1" href="#creation">Création</a>
@@ -27,8 +32,25 @@
       </div>
       <div style="max-width:80%" class="col-sm">
 
-        <h1 id="suivi-changement">Suivi de changement</h1>
+        <h1 id="suivi-changement">Le suivi de changement</h1>
+          <h2 id="changement">Qu'est-ce qu'un changement ?</h2>
+          Dans OpenStreetMap, un changement a lieu lorsqu'un objet est modifié dans la base de données mondiale d'OSM. Cet évènement intervient lorsqu'un objet est créé, supprimé, ou bien modifié.
+          Ainsi, dès lorsqu'un objet subit une quelconque action, il est modifié, et son numéro de version va augmenter.
+          <br>Chaque changement est contenu dans un <a target="_blank" href="https://wiki.openstreetmap.org/wiki/FR:Groupes_de_modifications">changeset (ou groupe de modifications)</a>, qui liste tous les objets modifiés par un utilisateur entre le moment où il a téléchargé les données et le moment où il remet en ligne les données modifiées. 
+          <br><br>
+          <h2 id="interet">Pourquoi faire du suivi de changement ?</h2>
+          A chaque instant, des objets sont modifiés dans OpenStreetMap, partout dans le monde et sur toutes les thématiques possibles. 
+          Il n'est donc pas évident de visualiser ces changements, notamment lorsque l'on veut filtrer ces changements un minimum.
+          En effet, afin de rendre ces recherches 
+        <br><br>
+          <h2 id="outil">Pourquoi cet outil ?</h2>
+          Cet outil permet d'effectuer du suivi de changement sur la France entière. Contrairement à d'autres outils, il est possible de visualiser les changements sur une large zone géographique en une seule requête. Il permet donc une indépendance vis-à-vis des API comme celles d'OpenStreetMap ou d'<a target="_blank" href="http://www.overpass-api.de/">Overpass</a>.
+          <br>
+          De plus, les changements sont classés par thématique, qui sont pour le moment similaires à celles visibles sur le <a target="_blank" href="https://magosm.magellium.com/portail/">portail de magOSM</a>. Par rapport à l'analyse d'un changeset, cela permet de savoir où et quand sont intervenus les changements une thématique.
+          <br>
+          Enfin, ces changements déjà catégorisés en 7 types de changements, détaillés ci-dessous.
 
+        <br><br>
         <h1 id="types-changements">Les différents types de changements</h1>
 
         Les changements peuvent être catégorisés en différents types décrits ci-dessous. Cela permet de connaître directement la nature du changement dans la plupart des cas.
@@ -72,9 +94,9 @@
         <ul>
           <li>pour un way : un point appartenant à ce way a été remplacé par un autre point exactement au même endroit</li>
           <li>pour une relation : un membre a été remplacé par un autre membre exactement au même endroit</li>
-          <li>...</li>
+          <li>un <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Change_rollback">revert</a> (aussi appelé "change rollback") : un changeset créé est annulé par la suite. Ainsi, il y a potentiellement des objets supprimés qui sont remis dans la base OSM : seul son numéro de version a changé</li>
         </ul>
-        Ce cas de figure est impossible pour un node.
+
 
 
         <h1 id="aide-interpretation">Aide à l'interprétation</h1>
