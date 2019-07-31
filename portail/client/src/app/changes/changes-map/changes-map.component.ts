@@ -5,6 +5,7 @@ import { MapService } from '../../service/map.service';
 import { ConfigService } from 'app/service/config.service';
 import { ApiRequestService } from 'app/service/api-request.service';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
+import { Change } from 'app/model/ChangesClasses/Change';
 
 declare var ol: any;
 declare var $: any;
@@ -83,7 +84,9 @@ export class ChangesMapComponent implements OnInit {
     this.mapService.setMap(this.map, this.userContext);
 
     this.apiRequestService.searchChangeTypes().subscribe(data => {
-      this.changeTypesList = JSON.parse(data['_body']);
+      console.log(data);
+      console.log(JSON.parse(data['_body']) as Array<ChangeType>);
+      this.changeTypesList = JSON.parse(data['_body']) as Array<ChangeType>;
       this.changeTypesList.sort((a,b) => a.id - b.id);
       console.log(this.changeTypesList);
       this.mapService.initLayers(this.changeTypesList);
@@ -168,6 +171,10 @@ export class ChangesMapComponent implements OnInit {
         this.onSelect(checkbox.id);
       }
     })
+  }
+
+  public getChangeTypeStyle(changeType : ChangeType){
+    return "rgba("+changeType.color.R+","+changeType.color.G+","+changeType.color.B+")"
   }
 
 }
