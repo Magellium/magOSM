@@ -1,14 +1,19 @@
 #panel-config{
         position: absolute;
-        top: 13%;
+        top: 120px;
         z-index: 2;
         left: 0px;
         width: 20%;
-        min-width: 290px;
-        overflow: hidden;
-        overflow-y: hidden;
-        scroll-behavior: unset;
+        min-width: 200px;
+        /* overflow: hidden;
+        overflow-y: hidden; */
+}
+
+@media (max-width:800px){
+    #panel-config{
         position: absolute;
+        top: 50px;
+    }
 }
 
 app-permalink {
@@ -16,3 +21,9 @@ app-permalink {
     top: 12px;
     left: 350px;
 }  
+
+#report-bug {
+    position: absolute;
+    top: 12px;
+    left: 360px;
+  } 
