@@ -2,8 +2,8 @@ export class Change{
     osmId : number
     id : number
     changeType:number
-    tagsNew : Map<string, string>
-    tagsOld : Map<string, string>
+    tagsNew
+    tagsOld
     timestamp: string
     versionNew : number
     versionOld : number
