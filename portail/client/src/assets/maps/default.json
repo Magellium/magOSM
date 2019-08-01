@@ -857,21 +857,5 @@
         {"osm_key":"location"},
         {"osm_key":"source"}
     ],
-    "STYLE":[
-        {"type":"new", "fillcolor":[0,128,0,0.2], "strokecolor":[0,128,0,1]},
-        {"type":"modified", "fillcolor":[255,165,0,0.2], "strokecolor":[255,165,0,1]},
-        {"type":"deleted", "fillcolor":[255,0,0,0.2], "strokecolor":[255,0,0,1]},
-        {"type":"other","fillcolor":[75,0,130,0.2], "strokecolor":[75,0,130,1]}
-    ],
-    "CHANGES_TYPES":[
-        {"id":1, "type":"new"},
-        {"id":2, "type":"new"},
-        {"id":3, "type":"modified"},
-        {"id":4, "type":"modified"},
-        {"id":34, "type":"modified"},
-        {"id":5, "type":"deleted"},
-        {"id":6, "type":"deleted"},
-        {"id":7, "type":"other"}
-    ],
     "DAYS_INTERVAL_FOR_CHANGES_MONITORING":30
 }
