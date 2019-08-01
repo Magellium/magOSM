@@ -28,10 +28,10 @@ import { ChangeDetailsComponent } from './changes/change-details/change-details.
 import { ChangesConfigPanelComponent } from './changes/changes-config-panel/changes-config-panel.component';
 import { ChangesMapComponent } from './changes/changes-map/changes-map.component';
 import { ChangesHeaderComponent } from './changes/changes-header/changes-header.component';
-import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { ConfigService } from './service/config.service';
 import { HelpComponent } from './help/help.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 // Define the routes
 const ROUTES: Routes = [
@@ -41,9 +41,9 @@ const ROUTES: Routes = [
     pathMatch: 'full',
   },
   { 
-    path : 'changements-aide.html',
+    path : 'changements-aide',
     component : HelpComponent,
-    data : {title : 'Aide pour le suivi de changement'}
+    data : {title : 'Aide au suivi de changement'}
   },
   {
     path: 'carte',
@@ -98,8 +98,8 @@ const ROUTES: Routes = [
       ),
     HttpModule,
     RouterModule.forRoot(ROUTES),
-    NgxMyDatePickerModule.forRoot(),
-    MyDateRangePickerModule
+    MyDateRangePickerModule,
+    Ng5SliderModule
   ],
   providers: [
     ConfigService,
@@ -108,6 +108,6 @@ const ROUTES: Routes = [
     UserContextService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
