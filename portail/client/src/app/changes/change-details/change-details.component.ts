@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, EventEmitter } from '@angular/core';
 import { ApiRequestService } from 'app/service/api-request.service';
 import { MapService } from 'app/service/map.service';
 import { SliderService } from 'app/service/slider.service';
@@ -9,14 +9,12 @@ import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 import { Tag } from 'app/model/ChangesClasses/Tag';
 import { UserContext } from 'app/model/UserContext';
 import { Options, LabelType } from 'ng5-slider';
-import { stringify } from '@angular/core/src/render3/util';
 
 declare var $: any;
-
 @Component({
   selector: 'app-change-details',
   templateUrl: './change-details.component.html',
-  styleUrls: ['./change-details.component.scss']
+  styleUrls: ['./change-details.component.css']
 })
 export class ChangeDetailsComponent implements OnInit, OnChanges {
 
@@ -34,12 +32,19 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   public tagsList : Array<Tag>;
   public mapLoader : boolean = false;
   public osmType : string;
+  public lastUser : string;
+  public lastChangeset : string;
+  public osmId : number;
+  private numberOfChangesToDisplay : number;
+  public transitionalChangesetArray : Array<number>;
+  public noChangeInInterval : boolean = false;
 
   //slider
   public displaySlider : boolean = false;
   public minValue: number;
   public maxValue: number;
   public options: Options;
+  public manualRefresh: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     public apiRequestService : ApiRequestService,
@@ -94,16 +99,74 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
         (res) => {
           this.featureChangesList = JSON.parse(res['_body']);
           console.log(this.featureChangesList);
+          this.numberOfChangesToDisplay = this.featureChangesList.length;
           this.mainChange = this.mapService.getChangesMergeForOneFeature(JSON.parse(JSON.stringify(this.featureChangesList)));
-          this.osmType = this.mapService.getOsmTypeOfFeature(this.mainChange);
-          this.changeType = this.changeTypesList.filter(x => x.id === this.mainChange.changeType)[0];
-          this.timestampDate = new Date(this.mainChange.timestamp);
+          this.setDataToDisplay();
           this.initSlider();
-          this.getTagsList();
         });
   }
 
-  public getTagsList(){ //Distinguer les cas où new/old est nul
+  public setDataToDisplay(){
+    this.osmId = Math.abs(this.mainChange.osmId);
+    this.osmType = this.mapService.getOsmTypeOfFeature(this.mainChange);
+    this.changeType = this.changeTypesList.filter(x => x.id === this.mainChange.changeType)[0];
+    this.timestampDate = new Date(this.mainChange.timestamp);
+    this.lastUser = this.mainChange.tagsNew ? this.mainChange.tagsNew.osm_user : undefined;
+    this.lastChangeset = this.mainChange.tagsNew ? this.mainChange.tagsNew.osm_changeset : undefined;
+
+    this.getTagsList();
+    if (this.mainChange.changeType == 6){
+      var xmlhttp= new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var xmlDoc = xmlhttp.responseXML;
+          let x = xmlDoc.getElementsByTagName(this.osmType);
+          for (let i = 0; i< x.length; i++){
+            if (x[i].attributes.getNamedItem("visible").value == "false"){
+              console.log(x[i].attributes);
+              this.timestampDate = new Date(x[i].attributes.getNamedItem("timestamp").value);
+              this.lastUser = x[i].attributes.getNamedItem("user").value;
+              this.lastChangeset=x[i].attributes.getNamedItem("changeset").value;
+            }
+          } 
+        } 
+      }.bind(this);
+      xmlhttp.open("GET", "https://www.openstreetmap.org/api/0.6/"+this.osmType+"/"+this.osmId+"/history", true);
+      xmlhttp.send();
+    }
+    this.transitionalChangesetArray = this.getTransitionalChangesets();
+  }
+
+  public getTransitionalChangesets(){
+    let transitionalVersionArray = [];
+    let transitionalChangesetArray = [];
+    if (this.numberOfChangesToDisplay == 1){
+      if (this.mainChange.versionNew && this.mainChange.versionOld && this.mainChange.versionNew - 1 > this.mainChange.versionOld){
+        for (var i = this.mainChange.versionOld + 1; i < this.mainChange.versionNew; i++){
+          transitionalVersionArray.push(i);
+        }
+        var xmlhttp= new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var xmlDoc = xmlhttp.responseXML;
+          let x = xmlDoc.getElementsByTagName("node");
+          for (let i = 0; i< x.length; i++){
+            x[i].attributes.getNamedItem("version").value
+            if (transitionalVersionArray.indexOf(Number(x[i].attributes.getNamedItem("version").value))>-1){
+              transitionalChangesetArray.push(x[i].attributes.getNamedItem("changeset").value);
+            }
+          } 
+        } 
+      }.bind(this);
+      xmlhttp.open("GET", "https://www.openstreetmap.org/api/0.6/"+this.osmType+"/"+this.osmId+"/history", true);
+      xmlhttp.send();
+      }
+    }
+    return transitionalChangesetArray;
+  }
+
+
+  public getTagsList(){
     this.tagsList = [];
     let keys = new Array<string>();
     let usedKeys = new Array<string>();
@@ -119,11 +182,6 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
         usedKeys.push(key);
       }  
     });
-    console.log(this.tagsList);
-  }
-
-  public loadMap(){
-    this.mapLoader = true;
   }
 
   public getHTMLTableClass(tag : Tag){
@@ -138,71 +196,46 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
     }
   }
 
-
+  // Slider part //
   public initSlider(){
-    var stepsArray = this.sliderService.getStepsArray(this.featureChangesRequest.beginDate, this.featureChangesRequest.endDate);
-    var ticksArray = this.sliderService.getTicksArray(this.featureChangesList, stepsArray);
+    this.sliderService.initSlider(this.featureChangesRequest.beginDate, this.featureChangesRequest.endDate, this.featureChangesList, this.changeType);
 
-    this.minValue = this.featureChangesRequest.beginDate.getTime();
-    this.maxValue = this.featureChangesRequest.endDate.getTime();
-    this.options = {
-      stepsArray : stepsArray.map((date : number) => {return {value : date, legend : new Date(date).toLocaleDateString('fr-FR')}}),
-      translate: this.sliderService.translate,
-      noSwitching: true,
-      // showOuterSelectionBars:true
-      showTicks: true,
-      ticksArray : ticksArray,
-      ticksTooltip : (value : number): string => {
-        return new Date(stepsArray[value]).toLocaleDateString('fr-FR');
-      },
-      //readOnly : ticksArray.length<2,
-      showSelectionBar:false,
-
-      //showTicksValues: true,
-      getTickColor: (value: number): string => {
-        if (value == 6) {
-          return 'blue';
-        }
-        if (value == 2){
-          return 'red'
-        }
-        return '#2AE02A';
-      },
-      getSelectionBarColor: (minValue : number, maxValue : number): string => {
-        return this.changeType.color;
-      }
-    };
-    // var elements = document.getElementsByClassName('ng5-slider-selected');
-    // for (let i =0; i<elements.length;i++){
-    //   elements[i].classList.remove('ng5-slider-selected');
-    // }
-    // console.log(elements);
-
+    this.minValue = this.sliderService.getMinValue();
+    this.maxValue = this.sliderService.getMaxValue();
+    this.options = this.sliderService.getOptions();
+    this.options.getSelectionBarColor = (minValue : number, maxValue : number): string => {
+      return this.getRGBA(this.changeType);
+    }
     this.displaySlider = true;
+  
   }
 
   public onUserChangeEnd(event){
 
     let changesList = [];
+    var numberofChangesOld = this.numberOfChangesToDisplay;
     this.featureChangesList.forEach(change => {
       let changeTime = new Date(change.timestamp).getTime();
       if (changeTime > event.value && changeTime < event.highValue+1000*60*60*24){
         changesList.push(change);
       }
     })
-    console.log(changesList);
-    if (changesList.length>0){
-      this.mainChange = this.mapService.getChangesMergeForOneFeature(JSON.parse(JSON.stringify(changesList)));
-      this.osmType = this.mapService.getOsmTypeOfFeature(this.mainChange);
-      this.changeType = this.changeTypesList.filter(x => x.id === this.mainChange.changeType)[0];
-      this.timestampDate = new Date(this.mainChange.timestamp);
-      this.getTagsList();
-      console.log(this.changeType.color);
-      this.options.getSelectionBarColor = (minValue : number, maxValue : number): string => {
-        return this.changeType.color;
+    this.numberOfChangesToDisplay = changesList.length;
+    if (numberofChangesOld != this.numberOfChangesToDisplay){
+      console.log(changesList);
+      if (changesList.length>0){
+        this.noChangeInInterval = false;
+        this.mainChange = this.mapService.getChangesMergeForOneFeature(JSON.parse(JSON.stringify(changesList)));
+        this.setDataToDisplay();
+        //refresh the slider to change the color of the bar
+        this.manualRefresh.emit();
+      } else {
+        this.noChangeInInterval = true;
       }
-    } else {
-      alert("Pas de changement dans l'intervalle");
     }
+  }
+
+  public getRGBA(changeType : ChangeType){
+    return "rgba("+changeType.color.R+","+changeType.color.G+","+changeType.color.B+")"
   }
 }
