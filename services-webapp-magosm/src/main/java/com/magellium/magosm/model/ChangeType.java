@@ -1,5 +1,9 @@
 package com.magellium.magosm.model;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
 
 @Entity
 @Table(name = "changes_types", schema = Parameters.MAGOSM_DICTIONNARY_SCHEMA)
@@ -24,11 +31,12 @@ public class ChangeType {
 	@Column(name = "short_name")
 	private String short_name;
 	
-	@Column(name = "color")
-	private String color;
-	
 	@Column(name = "label")
 	private String label;
+	
+	@Type(type = "hstore")
+	@Column(name = "color")
+	private Map<String, String> color = new HashMap<>();
 
 	public Integer getId() {
 		return id;
@@ -55,11 +63,13 @@ public class ChangeType {
 		this.short_name = short_name;
 	}
 
-	public String getColor() {
+
+
+	public Map<String, String> getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(Map<String, String> color) {
 		this.color = color;
 	}
 
