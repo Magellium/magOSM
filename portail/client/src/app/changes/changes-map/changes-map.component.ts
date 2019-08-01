@@ -9,6 +9,7 @@ import { Change } from 'app/model/ChangesClasses/Change';
 
 declare var ol: any;
 declare var $: any;
+declare var config: any;
 
 @Component({
   selector: 'app-changes-map',
@@ -84,8 +85,6 @@ export class ChangesMapComponent implements OnInit {
     this.mapService.setMap(this.map, this.userContext);
 
     this.apiRequestService.searchChangeTypes().subscribe(data => {
-      console.log(data);
-      console.log(JSON.parse(data['_body']) as Array<ChangeType>);
       this.changeTypesList = JSON.parse(data['_body']) as Array<ChangeType>;
       this.changeTypesList.sort((a,b) => a.id - b.id);
       console.log(this.changeTypesList);
@@ -175,6 +174,32 @@ export class ChangesMapComponent implements OnInit {
 
   public getChangeTypeStyle(changeType : ChangeType){
     return "rgba("+changeType.color.R+","+changeType.color.G+","+changeType.color.B+")"
+  }
+
+  onCitySelected(city) {
+
+    if (city.geometry) {
+      // on calcule le zoom pour l'adapter au résultat de la recherche en fonction du type d'objet trouvé :
+      // type : (housenumber | street  | locality | municipality)
+      var zoomlevel = 14;
+      var type = city.properties.type;
+      if (type == 'housenumber') {
+        zoomlevel = 19;
+      } else if (type == 'street') {
+        zoomlevel = 16;
+      } else if (type == 'locality') {
+        zoomlevel = 16;
+      } else if (type == 'municipality') {
+        zoomlevel = 14;
+      };
+      // On fait le zoom
+      this.zoomTo(city.geometry.coordinates, zoomlevel);
+    }
+  }
+
+  zoomTo(location, zoomlevel) {
+    this.map.getView().setCenter(ol.proj.transform(location, 'EPSG:4326', config.PROJECTION_CODE), 16);
+    this.map.getView().setZoom(zoomlevel);
   }
 
 }
