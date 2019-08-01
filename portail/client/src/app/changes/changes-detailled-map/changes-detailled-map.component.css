@@ -1,5 +1,6 @@
 #detailled-map {
 	height: 300px;
-	/* width: 50%; */
+	width: 97%;
 	margin: 2px auto 5px auto;
+	background-color: rgba(255,255,255,1);
 }

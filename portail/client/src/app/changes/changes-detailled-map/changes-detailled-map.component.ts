@@ -24,9 +24,11 @@ export class ChangesDetailledMapComponent {
   // map parameters
   private view: any;
   private map: any;
+  public layer : any;
 
   ngOnInit() {
     this.initMap();
+    this.initLayer();
     this.updateMap();
     this.initialized=true;
   }
@@ -55,7 +57,7 @@ export class ChangesDetailledMapComponent {
         })
       }).extend([
         new ol.control.ScaleLine(),
-        new ol.control.FullScreen(),
+        new ol.control.FullScreen({tipLabel : "Mode plein-écran"}),
       ]),
       target: 'detailled-map',
       view: this.view,
@@ -70,53 +72,44 @@ export class ChangesDetailledMapComponent {
   }
 
   updateMap(){
-    let layers = this.getVectorLayers();
-    console.log(layers);
-    layers.forEach(layer => {
-      var extent = layer.getSource().getExtent();
-      console.log(extent);
-      this.map.getView().fit(extent, {size : this.map.getSize(), maxZoom : 19});
-      this.map.addLayer(layer);
-    })
-    console.log(this.map.getLayers());
+    this.updateLayer();
+    var extent = this.layer.getSource().getExtent();
+    this.map.getView().fit(extent, {size : this.map.getSize(), maxZoom : 19});
   }
 
-  public getVectorLayers(): Array<any>{
+  public updateLayer(): void{
     let self = this;
-    let layers = [];
-    if (this.mainChange.theGeomOld != null) {
-      var oldFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomOld);
-      var oldLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features : [oldFeature], attributions: [
-          new ol.Attribution({
-            html: '' +
-                '<a href="http://magosm.magellium.com/">© Magellium</a>'
-          })
-        ]
-        }),
-        title: "Ancien emplacement",
-        style : function(feature,resolution){
-          return self.mapService.mainStyleFunction(feature, resolution, false, "deleted");}
-        });
-      layers.push(oldLayer);
+    let features = [];
+    this.layer.getSource().clear();
+
+    if (this.mainChange.theGeomOld != null && this.mainChange.changeType != 3) {
+      let oldFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomOld);
+      oldFeature.setStyle(function(feature,resolution){
+          return self.mapService.mainStyleFunction(feature, resolution, false, 6, true);}
+        );
+      features.push(oldFeature);
     }
     if (this.mainChange.theGeomNew != null) {
-      var newFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomNew);
-      var newLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features : [newFeature], attributions: [
-          new ol.Attribution({
-            html: '' +
-                '<a href="http://magosm.magellium.com/">© Magellium</a>'
-          })
-        ]
-        }),
-        title: "Nouvel emplacement",
-        style : function(feature,resolution){
-          return self.mapService.mainStyleFunction(feature, resolution, false, "new");}
-        });
-      layers.push(newLayer);
+      self = this;
+      let newFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomNew);
+      newFeature.setStyle(function(feature,resolution){
+          return self.mapService.mainStyleFunction(feature, resolution, false, (self.mainChange.changeType == 3) ? 3 : 1, true);}
+        );
+      features.push(newFeature);
     }
-    return layers;
+    this.layer.getSource().addFeatures(features);
   }
 
+  public initLayer(){
+    this.layer = new ol.layer.Vector({
+      source: new ol.source.Vector({attributions: [
+        new ol.Attribution({
+          html: '' +
+              '<a href="http://magosm.magellium.com/">© Magellium</a>'
+        })
+      ]
+      }),
+    });
+    this.map.addLayer(this.layer);
+  }
 }
