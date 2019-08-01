@@ -117,54 +117,56 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     let beginDate : Date = new Date(Date.UTC(iMyBeginDate.year, iMyBeginDate.month-1, iMyBeginDate.day));
     let iMyEndDate = this.changesFilterForm.controls.dates.value.endDate;
     let endDate : Date = new Date(Date.UTC(iMyEndDate.year, iMyEndDate.month-1, iMyEndDate.day));
-
+    endDate.setUTCSeconds(endDate.getUTCSeconds()-1);
     this.changesRequest.beginDate=beginDate;
     this.changesRequest.endDate=endDate;
   }
 
   initForm() {
     this.changesFilterForm = new FormGroup({
-      'thematic': new FormControl(11,[Validators.required]),
+      'thematic': new FormControl(16,[Validators.required]),
       'dates': new FormControl(this.model,[]),
     });
   }
 
   get thematic(){return this.changesFilterForm.get('thematic'); }
-
-  initDateForm(date: Date) {
+  
+  initDateForm(today: Date) {
+    var disableUntil : Date = new Date(new Date().setDate(today.getDate()-1-config.DAYS_INTERVAL_FOR_CHANGES_MONITORING));
+    var twoWeeksBefore : Date = new Date(new Date().setDate(today.getDate()-14));
     this.myDateRangePickerOptions = {
       // options du composant pour les deux dates
       dayLabels: { su: "Dim", mo: "Lun", tu: "Mar", we: "Mer", th: "Jeu", fr: "Ven", sa: "Sam" },
       monthLabels: { 1: "Jan", 2: "Fév", 3: "Mar", 4: "Avr", 5: "Mai", 6: "Juin", 7: "Juil", 8: "Aoû", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Déc" },
       disableSince:{ 
-        year: date.getFullYear(),
-        month: date.getMonth()+1,
-        day: date.getDate()+1
+        year: today.getFullYear(),
+        month: today.getMonth()+1,
+        day: today.getDate()+1
       },
       disableUntil: { //On conserve un intervalle de temps donné par la variable DAYS_INTERVALL
-        year: date.getFullYear(),
-        month: date.getMonth()+1,
-        day: date.getDate()-1-config.DAYS_INTERVAL_FOR_CHANGES_MONITORING
+        year: disableUntil.getFullYear(),
+        month: disableUntil.getMonth()+1,
+        day: disableUntil.getDate()
       },
       dateFormat:"dd/mm/yyyy",
       selectBeginDateTxt:"Choisir la date de début",
       selectEndDateTxt:"Choisir la date de fin",
       editableDateRangeField: false,
       openSelectorOnInputClick : true,
+      width: '100%',
     };
-    var today = {
-      year: date.getFullYear(),
-      month: date.getMonth()+1,
-      day: date.getDate(),
-    };
-
-    var oneMonthBefore = {
-    year: date.getFullYear(),
-    month: date.getMonth()+1,
-    day: date.getDate()-15,
+    var td = {
+      year: today.getFullYear(),
+      month: today.getMonth()+1,
+      day: today.getDate(),
     };
 
-    this.model = {endDate: today, beginDate : oneMonthBefore};
+    var twoWksBefore = {
+    year: twoWeeksBefore.getFullYear(),
+    month: twoWeeksBefore.getMonth()+1,
+    day: twoWeeksBefore.getDate(),
+    };
+    this.model = {endDate: td, beginDate : twoWksBefore};
   }
 
   initReport(){

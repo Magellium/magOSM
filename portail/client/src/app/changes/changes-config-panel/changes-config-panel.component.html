@@ -11,9 +11,6 @@
     <div class="form-group">
       <label for="thematicSelection">Thématique</label>
       <select class="custom-select mr-sm-2" id="thematicSelection" formControlName="thematic" required>
-          <!-- <ng-container *ngFor="let thematic of thematicsList">
-              <option value="{{thematic.id}}" disabled>{{thematic.name}}</option>
-          </ng-container> -->
         <ng-container *ngFor="let category of categoryMap | keyvalue">
           <option class="mb-2 bg-secondary text-white" disabled>{{category.key}}</option>
           <ng-container *ngFor="let thematic of category.value">
@@ -43,14 +40,18 @@
     Aucun changement n'a été trouvé pour cette requête.
   </div>
 
-  <div *ngIf="displayReport" id="report" style="border-top: 1px solid rgba(0,0,0,.125);">
+  <div *ngIf="displayReport" id="report" style="border-top: 1px solid rgba(0,0,0,.125)">
       <div class="card-header p-2 text-center" style="word-wrap: break-word;">
           <b>Récapitulatif</b>
       </div>
-    <table style="border-left : 5px;">
+      <div style="text-align:center; font-size:0.8em">
+        Du {{changesRequest.beginDate.toLocaleString('fr-FR', {timeZone: 'UTC'})}}
+         au {{changesRequest.endDate.toLocaleString('fr-FR', {timeZone: 'UTC'})}}
+      </div>
+    <table style="border-left : 5px;max-height:100px;">
       <tr>
-        <th style="padding-left:5px;">Catégorie</th>
-        <th>Nombre d'entités</th>
+        <th style="padding-left:5px">Catégorie</th>
+        <th style="text-align:center;">Nombre d'entités</th>
       </tr>
       <!-- <div *ngFor="let type of mapService.numberOfChangeByType | keyvalue"> -->
       <tr *ngFor="let type of reportInfos | keyvalue" class="reportTable">

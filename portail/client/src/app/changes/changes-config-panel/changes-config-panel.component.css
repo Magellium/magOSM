@@ -3,7 +3,9 @@
     border: 1px solid rgba(0,0,0,.125);
     background-color: rgba(255,255,255,0.8);
     border-radius: .25rem;
-    height:auto;
+    overflow: auto;
+    /* height:auto; */
+    /* overflow:auto; */
 }
 
 form{
