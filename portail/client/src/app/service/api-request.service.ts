@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { throwError as observableThrowError, Observable} from 'rxjs';
 import { Http } from '@angular/http';
 import { catchError } from 'rxjs/operators';
+import { Thematic } from 'app/model/ChangesClasses/Thematic';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ApiRequestService {
   private featurechangesSuffix = 'featurechangesrequest';
   public beginDate : Date;
   public endDate : Date;
-  public thematic : number;
+  public thematic : Thematic;
 
   constructor(public http: Http) { }
 

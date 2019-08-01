@@ -11,6 +11,7 @@ import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 
 declare var $: any;
 declare var config: any;
+declare var _paq : any;
 
 @Component({
   selector: 'app-changes-config-panel',
@@ -36,7 +37,6 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   public selectedThematic : Thematic;
   public changesList : Array<Change>;
   public displayReport : boolean = false;
-  public nothingToDisplay : boolean = false;
 
   //report
   public reportInfos : Map<ChangeType, number> = new Map();
@@ -49,6 +49,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.apiRequestService.searchThematics().subscribe(data => {
       this.thematicsList = JSON.parse(data['_body']);
+      console.log(this.thematicsList);
       // Group thematics by category to display them
       this.thematicsList.forEach(thematic => {
         let value = this.categoryMap.has(thematic.category.name);
@@ -73,9 +74,9 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(){
-    this.nothingToDisplay = false;
     if (this.formValidation()){
       this.getChangesRequestValues();
+      console.log(this.selectedThematic);
       this.changesRequest.bbox = this.mapService.getBoundingBox();
       console.log(this.changesRequest);
       this.emitChanges(this.changesRequest);
@@ -94,24 +95,28 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     console.log(data);
     this.apiRequestService.beginDate = this.changesRequest.beginDate;
     this.apiRequestService.endDate = this.changesRequest.endDate;
-    this.apiRequestService.thematic = this.changesRequest.thematic;
+    this.apiRequestService.thematic = this.selectedThematic;
     this.apiRequestService.searchChanges(data, options)
       .subscribe(
         (res) => {
           this.changesList = JSON.parse(res['_body']);
-          if (this.changesList.length < 1){
-            this.nothingToDisplay = true;
-            //alert('Aucun changement à afficher, veuillez modifier votre requête');
-          }
           console.log(this.changesList);
           this.mapService.addChanges(this.changesList);
-          this.initReport();
-        })
+          
+          if (this.changesList.length < 1){
+            this.displayReport = false;
+          } else {
+
+            this.initReport();
+          };
+          //// Matomo
+          _paq.push(['trackEvent', 'changes_request', this.changesRequest.beginDate, this.changesRequest.endDate, this.selectedThematic.viewName, this.changesList.length]);
+        });
   }
 
   public getChangesRequestValues(){
     this.changesRequest.thematic=this.changesFilterForm.controls.thematic.value;
-
+    this.selectedThematic = this.thematicsList.filter(x => x.id === Number(this.changesRequest.thematic))[0];
     //To have the time in UTC and not with the local timezone.
     let iMyBeginDate = this.changesFilterForm.controls.dates.value.beginDate;
     let beginDate : Date = new Date(Date.UTC(iMyBeginDate.year, iMyBeginDate.month-1, iMyBeginDate.day));

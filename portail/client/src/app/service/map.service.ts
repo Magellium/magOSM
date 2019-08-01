@@ -568,7 +568,6 @@ export class MapService {
     // On a complété un Map de 8 tableaux qui contiennent chacun les objets pour chaque type de changement.
 
     this.changesLayersArray.forEach(layer => {
-        let title = layer.get('title');
         let id = layer.get('id');
         layer.getSource().clear();
         layer.getSource().addFeatures(featureLayers.get(id));
@@ -603,6 +602,8 @@ export class MapService {
     }
 
     var newFeature = (new ol.format.GeoJSON()).readFeature(the_geom);
+    // var geom =newFeature.getGeometry()
+    // newFeature.setGeometry(geom.simplify(5));
     newFeature.set('changeType', changeType);
     newFeature.set('osmId', change.osmId);
     newFeature.set('geom_type', change.type);
@@ -784,7 +785,7 @@ export class MapService {
 
     var fill = new ol.style.Fill({color: fillcolor});
     style.setZIndex(1);
-    if (resolution < this.changesLayersGroup.getMaxResolution()){    
+    if (small || resolution < this.changesLayersGroup.getMaxResolution()){    
       if (feature.getGeometry().getType() == 'Point'){
         var pointStroke = new ol.style.Stroke({color: strokecolor, width : selected ? 10 : 3});
         let circle=new ol.style.Circle({radius:1, stroke: pointStroke, fill:fill});

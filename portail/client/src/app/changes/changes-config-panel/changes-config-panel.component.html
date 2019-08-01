@@ -36,9 +36,13 @@
     </div>
   </form>
 
-  <div *ngIf="nothingToDisplay" class="alert alert-danger" role="alert">
+  <div *ngIf="changesList && changesList.length < 1" class="alert alert-danger" role="alert">
     Aucun changement n'a été trouvé pour cette requête.
   </div>
+  <div *ngIf="changesList && changesList.length > 0" class="alert alert-success" role="alert">
+    {{changesList.length}} résultats ont été trouvés
+  </div>
+
 
   <div *ngIf="displayReport" id="report" style="border-top: 1px solid rgba(0,0,0,.125)">
       <div class="card-header p-2 text-center" style="word-wrap: break-word;">

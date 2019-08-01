@@ -11,6 +11,8 @@ import { UserContext } from 'app/model/UserContext';
 import { Options, LabelType } from 'ng5-slider';
 
 declare var $: any;
+declare var _paq : any;
+
 @Component({
   selector: 'app-change-details',
   templateUrl: './change-details.component.html',
@@ -54,7 +56,6 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     var self=this;
-    //this.initSlider();
     $("#detailspanel-close").click(function(e) {
       console.log("Au clic sur la croix !")
       e.preventDefault();
@@ -74,6 +75,8 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
         $("#detailspanel").toggleClass("active");
       }
     }
+     //// Matomo
+     _paq.push(['trackEvent', 'changed_feature_selected'])
   }
 
   public setFeatureChangesRequest(){
@@ -81,7 +84,7 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
     this.featureChangesRequest.type = this.selectedFeature.get('geom_type');
     this.featureChangesRequest.beginDate = this.apiRequestService.beginDate;
     this.featureChangesRequest.endDate = this.apiRequestService.endDate;
-    this.featureChangesRequest.thematic = this.apiRequestService.thematic;
+    this.featureChangesRequest.thematic = this.apiRequestService.thematic.id;
   }
 
   public getFeatureChanges(){

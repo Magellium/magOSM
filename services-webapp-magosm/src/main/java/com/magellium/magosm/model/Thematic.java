@@ -23,10 +23,10 @@ public class Thematic {
 	@Column(name = "name", unique=true)
 	private String name;
 	
-	@JsonIgnore
 	@Column(name = "view_name")
-	private String view_name;
+	private String viewName;
 	
+	@JsonIgnore
 	@Column(name = "osm2pgsql_request")
 	private String osm2pgsql_request;
 	
@@ -69,12 +69,30 @@ public class Thematic {
 	public void setChangesRequest(String changes_request) {
 		this.changes_request = changes_request;
 	}
-	
-	public String getView_name() {
-		return view_name;
+
+	public String getViewName() {
+		return viewName;
 	}
 
-	public void setView_name(String view_name) {
-		this.view_name = view_name;
+	public void setViewName(String viewName) {
+		this.viewName = viewName;
 	}
+
+	public String getOsm2pgsql_request() {
+		return osm2pgsql_request;
+	}
+
+	public void setOsm2pgsql_request(String osm2pgsql_request) {
+		this.osm2pgsql_request = osm2pgsql_request;
+	}
+
+	public String getChanges_request() {
+		return changes_request;
+	}
+
+	public void setChanges_request(String changes_request) {
+		this.changes_request = changes_request;
+	}
+	
+
 }
