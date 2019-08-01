@@ -6,6 +6,7 @@ import { Change } from 'app/model/ChangesClasses/Change';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 import { ConfigService } from './config.service';
 import { a } from '@angular/core/src/render3';
+import { Color } from 'app/model/ChangesClasses/Color';
 
 declare var ol: any;
 declare var _paq: any;
@@ -38,7 +39,6 @@ export class MapService {
   //Suivi de changements
   public changesStyles = new Map();
   public changesPointStyles = new Map();
-  private hover : any;
   public changesLayer = new Map();
   public numberOfChangeByType = new Map<ChangeType,number>();
   public legendDisplay : boolean = false;
@@ -46,6 +46,7 @@ export class MapService {
   public changesLayersCollection ;
   public changesLayersGroup = new ol.layer.Group({});
   public heatMapLayer = new ol.layer.Heatmap({});
+  public changeTypeArrayList : Array<ChangeType>;
   //public pointStyles;
 
   @Output() announceOpacityChangeEvent: EventEmitter<any> = new EventEmitter();
@@ -611,6 +612,7 @@ export class MapService {
 
 
   initLayers(changeTypesList : Array<ChangeType>){
+    this.changeTypeArrayList = changeTypesList;
       //On crée un Array contenant les layers que l'on place dans un LayerGroup que l'on associe à la map.
     changeTypesList.forEach(element => {
       var newVector = new ol.layer.Vector({
@@ -640,7 +642,13 @@ export class MapService {
   initHeatMap(){
     /// Initialisation de la HeatMap : basé sur https://stackoverflow.com/questions/56780705/creating-heatmap-in-openlayers-with-vector-source-containing-linestrings
     this.heatMapLayer = new ol.layer.Heatmap({
-      source : new ol.source.Vector({}),
+      source : new ol.source.Vector({attributions: [
+        new ol.Attribution({
+          html: '' +
+              '<a href="http://magosm.magellium.com/">© Magellium pour les changements</a>'
+          })
+        ]
+      }),
       zIndex: 2,
       title : 'Carte de chaleur',
       minResolution : this.map.getView().getResolutionForZoom(12),
@@ -665,7 +673,7 @@ export class MapService {
         break;
       case "MultiLineString":
         let middlePointNumber =  Math.round((geom.getCoordinates().length)/2);
-        style[0].setGeometry(new ol.geom.Point(geom.getCoordinates()[middlePointNumber]));
+        style[0].setGeometry(new ol.geom.Point(geom.getCoordinates()[middlePointNumber][0]));
         break;
       case "Point":
         style[0].setGeometry(geom);
@@ -763,31 +771,34 @@ export class MapService {
 
   //Cela permet de réutiliser l'affichage lors du passage de la souris ou de la sélection :
   //Voir : https://stackoverflow.com/questions/35184546/openlayers3-same-style-for-selected-features-only-one-changed-property
-  public mainStyleFunction(feature, resolution : number, selected : boolean, type?){
+  public mainStyleFunction(feature, resolution : number, selected : boolean, changeTypeId? : number, small? : boolean ){
     let maxResol = this.map.getView().getResolutionForZoom(10);
     let style = new ol.style.Style({});
-    //Récupérer la conf
-    var changeType = feature.get('changeType');
-    let chtype = type ? type : this.config.CHANGES_TYPES.filter(x => x.id=== changeType)[0].type;
-    var conf = this.config.STYLE.filter(x => x.type=== chtype)[0];
-      
-    var fill = new ol.style.Fill({color: conf.fillcolor});
+
+    //Récupérer la conf pour les couleurs
+    var changeType = changeTypeId ? changeTypeId : feature.get('changeType');
+    let color : Color = this.changeTypeArrayList.filter(x => x.id === changeType)[0].color;
+    let fillcolor = [color.R, color.G, color.B, 0.2];
+    let strokecolor = [color.R, color.G, color.B, 1];
+
+
+    var fill = new ol.style.Fill({color: fillcolor});
     style.setZIndex(1);
     if (resolution < this.changesLayersGroup.getMaxResolution()){    
       if (feature.getGeometry().getType() == 'Point'){
-        var pointStroke = new ol.style.Stroke({color: conf.strokecolor, width : selected ? 10 : 3});
+        var pointStroke = new ol.style.Stroke({color: strokecolor, width : selected ? 10 : 3});
         let circle=new ol.style.Circle({radius:1, stroke: pointStroke, fill:fill});
         style.setImage(circle);
 
         if (resolution<10){
-          style.getImage().setRadius(4*(1+1/resolution));
+          style.getImage().setRadius(small ? 2*(1+1/resolution) : 4*(1+1/resolution));
         }
         else{
           style.getImage().setRadius(1);
         }
       } 
       else {
-        var stroke = new ol.style.Stroke({color: conf.strokecolor, width : selected ? 10 : 5});
+        var stroke = new ol.style.Stroke({color: strokecolor, width : selected ? 10 : 5});
         style.setFill(fill);
         style.setStroke(stroke);
     }
