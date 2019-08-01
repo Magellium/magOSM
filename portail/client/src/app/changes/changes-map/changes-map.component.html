@@ -26,12 +26,12 @@
                     <label class="panelSwitcherLayerName" title="{{changetype.label}}">{{changetype.name}}</label>
                 </td>
                 <td>
-                    <b class="cercle" [ngStyle]="{'background-color': changetype.color}"></b>
+                    <b class="cercle" [ngStyle]="{'background-color': getChangeTypeStyle(changetype)}"></b>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="heatMap" name="layer" (click)="onSelect('heatMap')" checked>
+                    <input type="checkbox" id="heatMap" name="heatMap" (click)="onSelect('heatMap')" checked>
                     <label class="panelSwitcherLayerName">Carte de chaleur</label>
                 </td>
                 <td>
