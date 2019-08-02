@@ -30,7 +30,8 @@ import { ChangesMapComponent } from './changes/changes-map/changes-map.component
 import { ChangesHeaderComponent } from './changes/changes-header/changes-header.component';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { ConfigService } from './service/config.service';
-import { HelpComponent } from './help/help.component';
+import { HelpComponent } from './help-components/help/help.component';
+import { HelpChangeTypeComponent } from './help-components/help-subsection/help-subsection.component';
 import { Ng5SliderModule } from 'ng5-slider';
 
 // Define the routes
@@ -80,6 +81,7 @@ const ROUTES: Routes = [
     ChangesMapComponent,
     ChangesHeaderComponent,
     HelpComponent,
+    HelpChangeTypeComponent,
   ],
   imports: [ 
     NguiAutoCompleteModule,

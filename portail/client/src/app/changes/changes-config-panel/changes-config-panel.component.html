@@ -59,8 +59,9 @@
       </tr>
       <!-- <div *ngFor="let type of mapService.numberOfChangeByType | keyvalue"> -->
       <tr *ngFor="let type of reportInfos | keyvalue" class="reportTable">
-        <td class="categorie">{{type.key.name}}
-            <span class="metadata-circle" title="{{type.key.label}}"><b>?</b></span>
+        <td class="categorie">
+            <a>{{type.key.short_name}}</a>
+            <span [routerLink]="['/changements-aide']" fragment="{{type.key.ref}}" class="metadata-circle" title="Description sur la page d'aide"><b>?</b></span>
         </td>
         <td style="text-align:center">{{type.value}}</td>
       </tr>

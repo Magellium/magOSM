@@ -28,7 +28,6 @@ export class ChangesMapComponent implements OnInit {
     public apiRequestService : ApiRequestService
 ) {   
   $("#selectAll").click(function(){
-    console.log("coucou");
     $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
   }); 
 }
@@ -44,6 +43,7 @@ export class ChangesMapComponent implements OnInit {
   public selectedFeature : any;
 
   ngOnInit() {
+    console.log("Init Map !")
     this.initMap();
   }
 
@@ -176,6 +176,7 @@ export class ChangesMapComponent implements OnInit {
     return "rgba("+changeType.color.R+","+changeType.color.G+","+changeType.color.B+")"
   }
 
+  // Recherche de lieux //
   onCitySelected(city) {
 
     if (city.geometry) {

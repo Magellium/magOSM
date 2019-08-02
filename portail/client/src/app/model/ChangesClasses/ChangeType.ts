@@ -2,6 +2,7 @@ import { Color } from "./Color";
 
 export class ChangeType{
     id : number
+    ref : string
     name : string
     short_name : string
     label : string

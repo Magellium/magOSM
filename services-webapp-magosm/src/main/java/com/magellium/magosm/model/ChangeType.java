@@ -34,6 +34,9 @@ public class ChangeType {
 	@Column(name = "label")
 	private String label;
 	
+	@Column(name = "ref")
+	private String ref;
+
 	@Type(type = "hstore")
 	@Column(name = "color")
 	private Map<String, String> color = new HashMap<>();
@@ -63,7 +66,14 @@ public class ChangeType {
 		this.short_name = short_name;
 	}
 
+	
+	public String getRef() {
+		return ref;
+	}
 
+	public void setRef(String ref) {
+		this.ref = ref;
+	}
 
 	public Map<String, String> getColor() {
 		return color;
