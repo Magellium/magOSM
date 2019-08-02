@@ -566,13 +566,13 @@ export class MapService {
       } 
     });
     // On a complété un Map de 8 tableaux qui contiennent chacun les objets pour chaque type de changement.
-
+    this.numberOfChangeByType = new Map<ChangeType,number>();
     this.changesLayersArray.forEach(layer => {
         let id = layer.get('id');
         layer.getSource().clear();
         layer.getSource().addFeatures(featureLayers.get(id));
         this.numberOfChangeByType.set(layer.get('changetype'), featureLayers.get(id).length);
-    }); 
+    });
     this.refreshHeatMap();
   };
 
@@ -584,6 +584,7 @@ export class MapService {
       }
     });
     this.heatMapLayer.getSource().clear();
+    this.heatMapLayer.getSource().refresh();
     this.heatMapLayer.getSource().addFeatures(features);
     if (features.length < 50){
       this.changesLayersGroup.setMaxResolution(10000);
@@ -613,6 +614,7 @@ export class MapService {
 
 
   initLayers(changeTypesList : Array<ChangeType>){
+    this.changesLayersArray = new Array<any>();
     this.changeTypeArrayList = changeTypesList;
       //On crée un Array contenant les layers que l'on place dans un LayerGroup que l'on associe à la map.
     changeTypesList.forEach(element => {
@@ -632,7 +634,6 @@ export class MapService {
       });
       this.changesLayersArray.push(newVector);
     })
-    console.log("changesLayersArray", this.changesLayersArray)
     this.changesLayersGroup = new ol.layer.Group({
       layers:this.changesLayersArray,
       maxResolution : this.map.getView().getResolutionForZoom(10)
