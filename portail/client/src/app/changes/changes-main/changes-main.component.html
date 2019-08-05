@@ -1,4 +1,4 @@
-<div *ngIf="jsonContextLoaded" class="container-fluid" style="overflow-x:hidden;">
+<div *ngIf="userContext" class="container-fluid" style="overflow-x:hidden;">
     <div>
         <div id="panel-config">
         <app-changes-config-panel [changeTypesList]="changeTypesList"></app-changes-config-panel>
@@ -8,8 +8,11 @@
         <div class="map">
             <app-header></app-header>
             <app-changes-map [userContext]="userContext"></app-changes-map>
-            <span id="report-bug" class="d-none d-md-block">
-                <a href="https://github.com/Magellium/magOSM/" target="_blank"> Signaler une anomalie</a>
+            <span id="help" class="d-none d-md-block">
+                    <a [routerLink]="['/changements-aide']" target="_blank">Voir l'aide</a>
+            </span>
+            <span id="report-bug" class="d-none d-md-block">-
+                <a href="https://github.com/Magellium/magOSM/" target="_blank">Signaler une anomalie</a>
             </span>
         </div>
     </div>

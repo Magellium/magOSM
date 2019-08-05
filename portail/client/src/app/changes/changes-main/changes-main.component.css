@@ -22,8 +22,14 @@ app-permalink {
     left: 350px;
 }  
 
-#report-bug {
+#help {
     position: absolute;
     top: 12px;
-    left: 360px;
+    left: 350px;
   } 
+
+  #report-bug{
+      position : absolute;
+      top : 12px;
+      left : 425px;
+  }

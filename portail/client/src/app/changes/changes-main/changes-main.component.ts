@@ -23,26 +23,25 @@ export class ChangesMainComponent implements OnInit {
     public configService: ConfigService,
     public userContextService: UserContextService
   ) {
-    // let self = this;
     this.loadConfigAndUserContext();
-    // window.onresize = function () {
-    //   self.mapService.map.updateSize();
-    // }
-
   }
 
-  loadConfigAndUserContext() {
+  ngOnInit() {
+    //this.loadConfigAndUserContext();
+  }
+
+  public loadConfigAndUserContext() {
     let self = this;
     this.configService.getConfig()
       .subscribe(resp => {
         window["config"] = resp;
         // on charge le  contexte utilisateur
-        self.userContext = this.userContextService.loadUserContextFromPermalink();
-        self.jsonContextLoaded = true;
+        // self.userContext = this.userContextService.loadUserContextFromPermalink();
+        this.userContextService.setContext().subscribe({ 
+          next(val) {
+            self.userContext = val;
+          }
+        })
       });
-  }
-
-  ngOnInit() {
-    this.loadConfigAndUserContext();
   }
 }
