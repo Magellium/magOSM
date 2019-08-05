@@ -9,8 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vividsolutions.jts.geom.Geometry;
 
-
-public interface ChangedPointSummary extends ChangedObject {
+public interface ChangedPolygonSummary extends ChangedObject {
 	BigInteger getOsmId();
 	Integer getChangeType();
 	Timestamp getTimestamp();
@@ -24,4 +23,5 @@ public interface ChangedPointSummary extends ChangedObject {
 	Geometry getTheGeomOld();
 	
 	String getType();
+
 }

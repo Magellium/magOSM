@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,14 +16,14 @@ import com.magellium.magosm.model.ChangedPointSummary;
 import com.magellium.magosm.model.Thematic;
 
 @Repository
-public interface ChangedPointRepository extends JpaRepository<ChangedPoint, UUID>, CrudRepository<ChangedPoint, UUID> {
+public interface ChangedPointRepository extends JpaRepository<ChangedPoint, Integer>, CrudRepository<ChangedPoint, Integer> {
 	List<ChangedPoint> findByThematic(Optional<Thematic> thematic);
 	
 	@Query(value = "select p from ChangedPoint p where p.thematic.id = :thematic "
 			+ "And p.timestamp > :date1 "
 			+ "And p.timestamp < :date2 "
 			+ "And (st_intersects(p.theGeomNew, ST_GeomFromText(:bbox,3857)) = TRUE OR st_intersects(p.theGeomOld, ST_GeomFromText(:bbox,3857)) = TRUE)")
-	List<ChangedPoint> findByThematicByPeriodByBbox(@Param("thematic") Integer thematic, @Param("date1") Date date1, @Param("date2") Date date2, @Param("bbox") String bbox);
+	List<ChangedPointSummary> findByThematicByPeriodByBbox(@Param("thematic") Integer thematic, @Param("date1") Date date1, @Param("date2") Date date2, @Param("bbox") String bbox);
 	
 	@Query(value = "select p from ChangedPoint p where p.osmId = :osm_id "
 			+ "And p.timestamp > :date1 "
@@ -32,5 +31,7 @@ public interface ChangedPointRepository extends JpaRepository<ChangedPoint, UUID
 			+ "And p.thematic.id = :thematic")
 	List<ChangedPoint> findByOsmIdByPeriod(@Param("osm_id") BigInteger osm_id, @Param("date1") Date date1, @Param("date2") Date date2, @Param("thematic") Integer thematic);
 	
-	List<ChangedPointSummary> findByOsmId(BigInteger osm_id);
+	
+	// ChangedPointSummary
+	//List<ChangedPointSummary> findByChangeType(Integer chgType);
 }

@@ -11,6 +11,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.magellium.magosm.model.ChangedPolygon;
+import com.magellium.magosm.model.ChangedPolygonSummary;
 import com.magellium.magosm.model.Thematic;
 
 public interface ChangedPolygonRepository extends JpaRepository<ChangedPolygon, Integer>, CrudRepository<ChangedPolygon, Integer>{
@@ -20,7 +21,7 @@ public interface ChangedPolygonRepository extends JpaRepository<ChangedPolygon, 
 			+ "And p.timestamp > :date1 "
 			+ "And p.timestamp < :date2 "
 			+ "And (st_intersects(p.theGeomNew, ST_GeomFromText(:bbox,3857)) = TRUE OR st_intersects(p.theGeomOld, ST_GeomFromText(:bbox,3857)) = TRUE)")
-	List<ChangedPolygon> findByThematicByPeriodByBbox(@Param("thematic") Integer thematic, @Param("date1") Date date1, @Param("date2") Date date2, @Param("bbox") String bbox);
+	List<ChangedPolygonSummary> findByThematicByPeriodByBbox(@Param("thematic") Integer thematic, @Param("date1") Date date1, @Param("date2") Date date2, @Param("bbox") String bbox);
 	
 	@Query(value = "select p from ChangedPolygon p where p.osmId = :osm_id "
 			+ "And p.timestamp > :date1 "

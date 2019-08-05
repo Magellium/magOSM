@@ -1,6 +1,8 @@
 package com.magellium.magosm.controller;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 import java.util.jar.JarException;
 
 import javax.security.auth.callback.UnsupportedCallbackException;
@@ -10,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,10 +38,10 @@ public class ChangedPointController {
 		return changedPointRepository.findAll();			
 	}
 	
-	@PostMapping(path="/pointchangesrequest", consumes = "application/json", produces = "application/json")
-	public @ResponseBody List<ChangedPointSummary> getAllChangesByOsmId(@RequestBody FeatureChangesRequest featureChangesRequest) throws JarException, UnsupportedCallbackException{
-		log.info("OSM id : " + featureChangesRequest.getOsm_id());
-		return changedPointRepository.findByOsmId(featureChangesRequest.getOsm_id());
-	}
+//	@GetMapping(path="/point/{id}", produces = "application/json")
+//	public @ResponseBody List<ChangedPointSummary> getAllChangesByChangeType(@PathVariable Integer id){
+//		log.info("id : " + id);
+//		return changedPointRepository.findByChangeType(id);
+//	}
 }
 

@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.magellium.magosm.model.ChangedLine;
+import com.magellium.magosm.model.ChangedLineSummary;
 import com.magellium.magosm.model.ChangedObject;
+import com.magellium.magosm.model.ChangedObjectSummary;
 import com.magellium.magosm.model.ChangedPoint;
+import com.magellium.magosm.model.ChangedPointSummary;
 import com.magellium.magosm.model.ChangedPolygon;
+import com.magellium.magosm.model.ChangedPolygonSummary;
 import com.magellium.magosm.model.ChangesRequest;
 import com.magellium.magosm.model.FeatureChangesRequest;
 import com.magellium.magosm.model.Thematic;
@@ -69,9 +73,9 @@ public class ChangedObjectController {
 		log.info("Date : " + changesRequest.getBeginDate());
 		log.info("Date : " + changesRequest.getEndDate());
 		log.info("Box : " + changesRequest.getBbox());
-		List<ChangedPoint> points = changedPointRepository.findByThematicByPeriodByBbox(changesRequest.getThematic(), changesRequest.getBeginDate(), changesRequest.getEndDate(), changesRequest.getBbox());
-		List<ChangedPolygon> polygons = changedPolygonRepository.findByThematicByPeriodByBbox(changesRequest.getThematic(), changesRequest.getBeginDate(), changesRequest.getEndDate(), changesRequest.getBbox());
-		List<ChangedLine> lines = changedLineRepository.findByThematicByPeriodByBbox(changesRequest.getThematic(), changesRequest.getBeginDate(), changesRequest.getEndDate(), changesRequest.getBbox());
+		List<ChangedPointSummary> points = changedPointRepository.findByThematicByPeriodByBbox(changesRequest.getThematic(), changesRequest.getBeginDate(), changesRequest.getEndDate(), changesRequest.getBbox());
+		List<ChangedPolygonSummary> polygons = changedPolygonRepository.findByThematicByPeriodByBbox(changesRequest.getThematic(), changesRequest.getBeginDate(), changesRequest.getEndDate(), changesRequest.getBbox());
+		List<ChangedLineSummary> lines = changedLineRepository.findByThematicByPeriodByBbox(changesRequest.getThematic(), changesRequest.getBeginDate(), changesRequest.getEndDate(), changesRequest.getBbox());
 		List<ChangedObject> objets = ChangedObject.getObjectsListFromList(points);
 		List<ChangedObject> objetsPolygon = ChangedObject.getObjectsListFromList(polygons);
 		List<ChangedObject> objetsLine = ChangedObject.getObjectsListFromList(lines);
