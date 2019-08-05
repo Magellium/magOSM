@@ -1,5 +1,8 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { ApiRequestService } from 'app/service/api-request.service';
+import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
+import { Color } from 'app/model/ChangesClasses/Color';
 
 declare var $;
 
@@ -8,9 +11,12 @@ declare var $;
   templateUrl: './help.component.html',
   styleUrls: ['./help.component.css']
 })
-export class HelpComponent implements AfterViewInit {
+export class HelpComponent implements OnInit, AfterViewInit {
 
-  constructor(router: Router) {
+  public changeTypesList : Array<ChangeType>
+  constructor(
+    router: Router,
+    public apiRequestService : ApiRequestService) {
     /* Lorsque le composant est chargé depuis une URL contenant une ancre :
     * - l'élément du DOM avec l'id correspondant à l'ancre n'est pas encore chargé
     * - on attend donc la fin de la navigation pour scroller jusqu'à l'ancre
@@ -24,6 +30,12 @@ export class HelpComponent implements AfterViewInit {
         }
       }
     });
+  }
+  ngOnInit(){
+    this.apiRequestService.searchChangeTypes().subscribe(data => {
+      this.changeTypesList = JSON.parse(data['_body']) as Array<ChangeType>;
+      console.log(this.changeTypesList);
+    })
   }
 
   ngAfterViewInit() {
@@ -46,6 +58,11 @@ export class HelpComponent implements AfterViewInit {
       if (element) { element.scrollIntoView(true); }
         });
 
+  }
+
+  public getColorForRef(ref : string) : string{
+    let color : Color = this.changeTypesList.filter(x => x.ref === ref)[0].color;
+    return "rgba("+color.R+","+color.G+","+color.B+")";
   }
 
 

@@ -10,6 +10,7 @@ export class HelpChangeTypeComponent{
   @Input() header : string;
   @Input() content : string;
   @Input() ref : string;
+  @Input() color : string;
   constructor() { }
 
 }

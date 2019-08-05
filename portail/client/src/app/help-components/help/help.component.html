@@ -31,7 +31,7 @@
           </nav>
         </nav>
       </div>
-      <div style="max-width:80%" class="col-sm">
+      <div style="max-width:80%" class="col-sm" *ngIf="changeTypesList">
 
         <h1><a id="suivi-changement"></a>Le suivi de changement</h1>
           <app-help-subsection ref="changement" header="Qu'est-ce qu'un changement ?">
@@ -53,12 +53,12 @@
 
         <h1 id="types-changements">Les différents types de changements</h1>
         Les changements peuvent être catégorisés en différents types décrits ci-dessous. Cela permet de connaître directement la nature du changement dans la plupart des cas.
-
-        <app-help-subsection header="Création" ref="creation">
+          <br><br>
+        <app-help-subsection header="Création" ref="creation" [color]="getColorForRef('creation')">
             Objet qui n'existait pas dans OpenStreetMap, rajouté au cours de la période de temps sélectionnée, et qui entre dans la requête.
         </app-help-subsection>
 
-        <app-help-subsection header="Ajout" ref="ajout">
+        <app-help-subsection header="Ajout" ref="ajout" [color]="getColorForRef('ajout')">
             Objet qui existait déjà dans OpenStreetMap au début de la période, mais qui n'entrait pas dans la requête, car :
             <ul>
               <li>soit il n'était pas contenu dans l'emprise géographique sélectionnée</li>
@@ -66,11 +66,11 @@
             </ul>
         </app-help-subsection>
 
-        <app-help-subsection header="Modification de tag(s)" ref="modif-tag">
+        <app-help-subsection header="Modification de tag(s)" ref="modif-tag" [color]="getColorForRef('modif-tag')">
             Objet présent dans la requête au début et à la fin de la période, qui a uniquement subi une ou des modification(s) d'attribut(s) (clé/valeur) n'affectant pas son appartenance à la thématique choisie
         </app-help-subsection>
                
-        <app-help-subsection header="Modification de géométrie" ref="modif-geom">
+        <app-help-subsection header="Modification de géométrie" ref="modif-geom" [color]="getColorForRef('modif-geom')">
             Objet présent dans la requête au début et à la fin de la période, qui a uniquement subi une ou des modification(s) de géométrie, tels que :
             <ul>
               <li>un déplacement</li>
@@ -79,11 +79,11 @@
             </ul>
         </app-help-subsection>
 
-        <app-help-subsection ref="modif-tag-et-geom" header="Modification de tag(s) et de géométrie">
+        <app-help-subsection ref="modif-tag-et-geom" header="Modification de tag(s) et de géométrie" [color]="getColorForRef('modif-tag-et-geom')">
           Objet présent dans la requête au début et à la fin de la période, qui a subi une ou des modifications d'attributs <b>et</b> de géométrie. 
         </app-help-subsection>
 
-        <app-help-subsection ref="retrait" header="Retrait">
+        <app-help-subsection ref="retrait" header="Retrait" [color]="getColorForRef('retrait')">
           Objet présent dans la requête au début de la période, mais plus à la fin, et toujours existant dans OpenStreetMap. De fait:
           <ul>
               <li>soit il n'est plus contenu dans l'emprise géographique sélectionnée</li>
@@ -91,11 +91,11 @@
           </ul>
         </app-help-subsection>
 
-        <app-help-subsection ref="suppression" header="Suppression">
+        <app-help-subsection ref="suppression" header="Suppression" [color]="getColorForRef('suppression')">
           Objet existant dans OpenStreetMap et présent dans la requête au début de la période, puis supprimé d'OpenStreetMap au cours de la période.
         </app-help-subsection> 
         
-        <app-help-subsection ref="autre" header="Autre">
+        <app-help-subsection ref="autre" header="Autre" [color]="getColorForRef('autre')">
             Objet n'ayant pas subi de modification de géométrie, ni d'attributs, mais dont la version a quand même augmenté. Quelques cas peuvent expliquer cette situation :
             <ul>
               <li>pour un way : un point appartenant à ce way a été remplacé par un autre point exactement au même endroit</li>

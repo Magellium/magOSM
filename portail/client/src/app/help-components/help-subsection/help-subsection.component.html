@@ -1,6 +1,8 @@
 <header>
   <a [href]="ref" [id]="ref"></a>
-  <h2 [innerText]="header"></h2>
+  <h2 [innerText]="header" style="text-align:left;float:left;"></h2>
+  <b style="text-align:right;float:right;" class="cercle" [ngStyle]="{'background-color': color}"></b>
+  <hr style="clear:both;"/>
 </header>
 <section>
   <div class="content">
