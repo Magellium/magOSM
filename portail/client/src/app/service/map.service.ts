@@ -556,9 +556,9 @@ export class MapService {
     changesList.forEach(element => {
       let osmId = element.osmId;
       if (alreadyTested.indexOf(osmId) < 0){
-        let featuresWithSameId = changesList.filter(x => x.osmId === osmId);
-        if (featuresWithSameId.length > 1){
-          element = this.getChangesMergeForOneFeature(featuresWithSameId);
+        let featuresWithSameOsmId = changesList.filter(x => x.osmId === osmId);
+        if (featuresWithSameOsmId.length > 1){
+          element = this.getChangesMergeForOneFeature(featuresWithSameOsmId);
         }
         let newFeature = this.setFeature(element);
         featureLayers.get(element.changeType).push(newFeature);
