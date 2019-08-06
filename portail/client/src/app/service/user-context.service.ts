@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { MapService } from './map.service';
 import { UserContext } from '../model/UserContext';
 import { ConfigService } from './config.service';
+import { Observable } from 'rxjs';
+import { nextTick } from 'q';
 
 declare var ol;
 declare var _paq: any;
@@ -20,19 +22,7 @@ export class UserContextService {
     private location: Location,
     private route: ActivatedRoute
   ) {
-    this.configService.getConfig().subscribe(config => {
-      this.defaultUserContext=config.DEFAULTUSERCONTEXT[0];
-      console.log(this.defaultUserContext)
-
-      this.context = new UserContext();
-      this.context.initFromRoute(this.route);
-      if(!this.context.isValid()){
-        this.context = this.defaultUserContext;
-        //this.location.go('/carte');
-      }
-      console.log(this.context)
-  
-    })
+    this.setContext();
 
   }
 
@@ -47,8 +37,24 @@ export class UserContextService {
   }
 
   loadUserContextFromPermalink(): UserContext{
-    console.log(this.context)
-    return this.context;
+      return this.context;
+  }
+
+  public setContext():Observable<UserContext>{
+    var obs = new Observable<UserContext>(resolve => {
+      this.configService.getConfig().subscribe(config => {
+        this.defaultUserContext=config.DEFAULTUSERCONTEXT[0];
+
+        this.context = new UserContext();
+        this.context.initFromRoute(this.route);
+        if(!this.context.isValid()){
+          this.context = this.defaultUserContext;
+          resolve.next(this.context);
+        }
+      });
+
+    })
+    return obs;
   }
 
 }

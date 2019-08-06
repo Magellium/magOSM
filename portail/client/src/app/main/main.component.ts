@@ -44,19 +44,6 @@ export class MainComponent {
 
   config: any;
 
-  loadConfigAndUserContext() {
-  this.configService.getConfig()
-    .subscribe(resp => {
-      window["config"]=resp;
-      // on charge le  contexte utilisateur
-      this.userContext = this.userContextService.loadUserContextFromPermalink();
-      console.log(this.userContext)
-      this.jsonContextLoaded=true;
-      console.log(resp);
-      this.showPopovers();
-    });
-}
-
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -64,7 +51,6 @@ export class MainComponent {
     public userContextService: UserContextService,
     public configService: ConfigService
 ) {
-  console.log('constructor')
     this.loadConfigAndUserContext();
     this.layerChangeService.getAnnounceLayerChangeEventEmitter().subscribe(
       newSelectedLayer=>{
@@ -78,9 +64,26 @@ export class MainComponent {
     this.map.updateState(newSelectedLayer)
   }
 
-  ngOnInit() {
-    console.log('onInit')
+  loadConfigAndUserContext() {
+    this.configService.getConfig()
+      .subscribe(resp => {
+        let self=this;
+        window["config"]=resp;
+        // on charge le  contexte utilisateur
+        // this.userContext = this.userContextService.loadUserContextFromPermalink();
+        this.userContextService.setContext().subscribe({ 
+          next(val) {
+            self.userContext = val;
+            console.log(self.userContext)
+            self.jsonContextLoaded=true;
+            console.log(resp);
+            self.showPopovers();
+          }
+        })
+      });
+  }
 
+  ngOnInit() {
     ol.Feature.prototype.getDisplayLabel= function(){
       //console.log('getDisplayLabel')
       if(this.getKeys().indexOf('name')>0)
