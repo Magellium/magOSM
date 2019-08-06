@@ -4,12 +4,13 @@ import { Http } from '@angular/http';
 import { catchError } from 'rxjs/operators';
 import { Thematic } from 'app/model/ChangesClasses/Thematic';
 
+declare var config : any;
 @Injectable({
   providedIn: 'root'
 })
 export class ApiRequestService {
 
-  private baseUrl = 'http://localhost/services-webapp-magosm/';
+  private baseUrl = config.WEBAPP_BASE_URL;
   private thematicsSuffix =  'thematics';
   private changesSuffix = 'changesrequest';
   private changeTypesSuffix = 'change_types';
