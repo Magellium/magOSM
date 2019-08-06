@@ -27,7 +27,7 @@
                     class="panelSwitcherLayerName" title="Voir + sur la page d'aide">{{changetype.short_name}}</label>
                 </td>
                 <td>
-                    <b class="cercle" [ngStyle]="{'background-color': getChangeTypeStyle(changetype)}"></b>
+                    <b class="cercle" [ngStyle]="{'background-color': changetype.relatedColor.getRGBA()}"></b>
                 </td>
             </tr>
             <tr>

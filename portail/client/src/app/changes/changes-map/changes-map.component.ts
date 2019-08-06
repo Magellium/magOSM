@@ -85,7 +85,8 @@ export class ChangesMapComponent implements OnInit {
     this.mapService.setMap(this.map, this.userContext);
 
     this.apiRequestService.searchChangeTypes().subscribe(data => {
-      this.changeTypesList = JSON.parse(data['_body']) as Array<ChangeType>;
+      let array = JSON.parse(data['_body']) as any[];
+      this.changeTypesList = array.map(element => new ChangeType(element));
       this.changeTypesList.sort((a,b) => a.id - b.id);
       console.log(this.changeTypesList);
       this.mapService.initLayers(this.changeTypesList);
@@ -170,10 +171,6 @@ export class ChangesMapComponent implements OnInit {
         this.onSelect(checkbox.id);
       }
     })
-  }
-
-  public getChangeTypeStyle(changeType : ChangeType){
-    return "rgba("+changeType.color.R+","+changeType.color.G+","+changeType.color.B+")"
   }
 
   // Recherche de lieux //

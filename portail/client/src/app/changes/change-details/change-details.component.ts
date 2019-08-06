@@ -40,7 +40,9 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   private numberOfChangesToDisplay : number;
   public transitionalChangesetArray : Array<number>;
   public noChangeInInterval : boolean = false;
-
+  // Double apostrophes in hstore
+  public deleteDoubleApostrophe : RegExp = new RegExp("''");
+  
   //slider
   public displaySlider : boolean = false;
   public minValue: number;
@@ -207,7 +209,7 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
     this.maxValue = this.sliderService.getMaxValue();
     this.options = this.sliderService.getOptions();
     this.options.getSelectionBarColor = (minValue : number, maxValue : number): string => {
-      return this.getRGBA(this.changeType);
+      return this.changeType.relatedColor.getRGBA();
     }
     this.displaySlider = true;
   
@@ -236,9 +238,5 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
         this.noChangeInInterval = true;
       }
     }
-  }
-
-  public getRGBA(changeType : ChangeType){
-    return "rgba("+changeType.color.R+","+changeType.color.G+","+changeType.color.B+")"
   }
 }

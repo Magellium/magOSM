@@ -32,9 +32,14 @@ export class HelpComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnInit(){
+    // this.apiRequestService.searchChangeTypes().subscribe(data => {
+    //   console.log(data);
+    //   this.changeTypesList = JSON.parse(data['_body']) as Array<ChangeType>;
+    //   console.log(this.changeTypesList);
+    // })
     this.apiRequestService.searchChangeTypes().subscribe(data => {
-      this.changeTypesList = JSON.parse(data['_body']) as Array<ChangeType>;
-      console.log(this.changeTypesList);
+      let array = JSON.parse(data['_body']) as any[];
+      this.changeTypesList = array.map(element => new ChangeType(element));
     })
   }
 
@@ -45,10 +50,10 @@ export class HelpComponent implements OnInit, AfterViewInit {
     });
 
 
-    /* rustine pour que la navbar de Bootstrap cohabitent avec Angular et sa gestion des href :
+    /* rustine pour que la navbar de Bootstrap cohabite avec Angular et sa gestion des href :
     * - Bootstrap a besoin d'une href correspondant à une ancre (ex: href="#umap")
     * - Angular a besoin d'un chemin complet pour suivre un lien (ex: aide.html#umap)
-    * ==> on conserve le format qui va bien à Bootstrapau au
+    * ==> on conserve le format qui va bien à Bootstrap au
     * ==> clic sur un élément du menu, on stop la navigation native d'Angular pour scroller vers l'ancre
     */
     $(".nav-link").click(function(event) {
@@ -61,8 +66,8 @@ export class HelpComponent implements OnInit, AfterViewInit {
   }
 
   public getColorForRef(ref : string) : string{
-    let color : Color = this.changeTypesList.filter(x => x.ref === ref)[0].color;
-    return "rgba("+color.R+","+color.G+","+color.B+")";
+    let change : ChangeType = this.changeTypesList.filter(x => x.ref === ref)[0];
+    return change.relatedColor.getRGBA()
   }
 
 

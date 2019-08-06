@@ -38,7 +38,7 @@
             <div id="top_infos" style="background-color: rgba(255,255,255,0.3);">
 
                 <div id="changeType">
-                    <h4><span class="badge badge-secondary" [ngStyle]="{'background-color': getRGBA(changeType)}">{{changeType.name}}</span></h4>
+                    <h4><span class="badge badge-secondary" [ngStyle]="{'background-color': changeType.relatedColor.getRGBA()}">{{changeType.name}}</span></h4>
                 </div>
 
                 <app-changes-detailled-map
@@ -107,8 +107,10 @@
                 <tbody>
                     <tr *ngFor="let tag of tagsList" [ngClass]="getHTMLTableClass(tag)">
                         <th>{{tag.key}}</th>
-                        <td *ngIf="mainChange.versionOld">{{tag.valueOld}}</td>
-                        <td *ngIf="mainChange.versionNew">{{tag.valueNew}}</td>
+                        <!-- <td *ngIf="mainChange.versionOld">{{tag.valueOld.replace(deleteDoubleApostrophe,"'")}}</td>
+                        <td *ngIf="mainChange.versionNew">{{tag.valueNew.replace(deleteDoubleApostrophe,"'")}}</td> -->
+                        <td *ngIf="mainChange.versionOld">{{tag.valueOld ? tag.valueOld.replace(deleteDoubleApostrophe,"'") : ""}}</td>
+                        <td *ngIf="mainChange.versionNew">{{tag.valueNew ? tag.valueNew.replace(deleteDoubleApostrophe,"'") : ""}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -1,9 +1,14 @@
 export class Color{
-    R : number
-    G : number
-    B : number
+    R : string
+    G : string
+    B : string
 
     public getRGBA(): string{
-        return "rgba("+this.R+","+this.G+","+this.B+")"
-      }
+      return "rgba("+this.R+","+this.G+","+this.B+")"
+    }
+
+    constructor(data: any) {
+      Object.assign(this, data);
+    }
+
 }
