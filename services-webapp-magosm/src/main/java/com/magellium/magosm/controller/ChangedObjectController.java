@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.magellium.magosm.model.ChangedLine;
 import com.magellium.magosm.model.ChangedLineSummary;
 import com.magellium.magosm.model.ChangedObject;
-import com.magellium.magosm.model.ChangedObjectSummary;
 import com.magellium.magosm.model.ChangedPoint;
 import com.magellium.magosm.model.ChangedPointSummary;
 import com.magellium.magosm.model.ChangedPolygon;
