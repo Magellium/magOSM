@@ -2,6 +2,7 @@ import { Input, Component, AfterViewInit } from '@angular/core';
 import { UserContext } from '../../model/UserContext';
 import { MapService } from '../../service/map.service';
 import { Change } from 'app/model/ChangesClasses/Change';
+import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 
 declare var ol: any;
 declare var config: any;
@@ -15,6 +16,7 @@ export class ChangesDetailledMapComponent {
 
   @Input() public userContext : UserContext;
   @Input() public mainChange : Change;
+  @Input() public changeTypesList : Array<ChangeType>;
 
   constructor(public mapService: MapService) { }
 
@@ -87,15 +89,20 @@ export class ChangesDetailledMapComponent {
       oldFeature.setStyle(function(feature,resolution){
           return self.mapService.mainStyleFunction(feature, resolution, false, 6, true);}
         );
+      oldFeature.set('label', 'Ancienne géométrie')
+      oldFeature.set('color', this.changeTypesList.filter(x => x.id === 6)[0].relatedColor.getRGBA());
       features.push(oldFeature);
     }
     if (this.mainChange.theGeomNew != null) {
       self = this;
+      let changeId = (self.mainChange.changeType == 3) ? 3 : 1;
       let newFeature = (new ol.format.GeoJSON()).readFeature(this.mainChange.theGeomNew);
       newFeature.setStyle(function(feature,resolution){
-          return self.mapService.mainStyleFunction(feature, resolution, false, (self.mainChange.changeType == 3) ? 3 : 1, true);}
+          return self.mapService.mainStyleFunction(feature, resolution, false, changeId, true);}
         );
       features.push(newFeature);
+      newFeature.set('color', this.changeTypesList.filter(x => x.id === changeId)[0].relatedColor.getRGBA());
+      newFeature.set('label', (changeId ==3) ? "Géométrie de l'objet" : 'Nouvelle géométrie');
     }
     this.layer.getSource().addFeatures(features);
   }

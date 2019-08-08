@@ -1,6 +1,29 @@
-#detailled-map {
-	height: 300px;
+#main {
 	width: 97%;
 	margin: 2px auto 5px auto;
+	background-clip: border-box;
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: .25rem;
+	overflow: auto;
+}
+
+#detailled-map {
+	height: 300px;
 	background-color: rgba(255,255,255,1);
 }
+
+.cercle {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin-left:5px;
+	margin-right:20px;
+  }
+
+
+table{
+	text-align:center;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+  }

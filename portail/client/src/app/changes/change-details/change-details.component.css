@@ -99,11 +99,11 @@ a[href]{
     background:#ffe4d1;
     height: 2px;
     opacity: 0.1;
-  }
-   .custom-slider .ng5-slider .ng5-slider-selection {
+  }*/
+/* ::ng-slider .custom-slider .ng5-slider .ng5-slider-selection {
      background: orange;
    }
-*/
+    */
 ::ng-deep .custom-slider .ng5-slider .ng5-slider-pointer {
     width: 8px;
     height: 25px;

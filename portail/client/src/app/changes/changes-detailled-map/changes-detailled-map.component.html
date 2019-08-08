@@ -1,2 +1,14 @@
-<div id="detailled-map"></div>
+<div id="main">
+    <div id="detailled-map"></div>
+    <div *ngIf="layer" id="legend">
+        <table>
+            <ng-container *ngFor="let feature of layer.getSource().getFeatures()">
+                <td>{{feature.get('label')}}</td>
+                <td>
+                    <div class="cercle" [ngStyle]="{'background-color':feature.get('color')}"></div>
+                </td>
+            </ng-container>
+        </table>
+    </div>
+</div>
 <!-- <div id="length">Distance moyenne de déplacement : </div> -->

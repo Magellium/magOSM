@@ -9,6 +9,7 @@ import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 import { Tag } from 'app/model/ChangesClasses/Tag';
 import { UserContext } from 'app/model/UserContext';
 import { Options, LabelType } from 'ng5-slider';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 declare var $: any;
 declare var _paq : any;
@@ -38,9 +39,9 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   public lastChangeset : string;
   public osmId : number;
   private numberOfChangesToDisplay : number;
-  public transitionalChangesetArray : Array<number>;
+  public transitionalChangesetMap : Map<number,number>; //<version, changesetNumber>
   public noChangeInInterval : boolean = false;
-  // Double apostrophes in hstore
+  // To replace double apostrophes in hstore by only one.
   public deleteDoubleApostrophe : RegExp = new RegExp("''");
   
   //slider
@@ -49,11 +50,13 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   public maxValue: number;
   public options: Options;
   public manualRefresh: EventEmitter<void> = new EventEmitter<void>();
+  public background : SafeStyle = this.sanitizer.bypassSecurityTrustStyle('rgba(100,100,100)');
 
   constructor(
     public apiRequestService : ApiRequestService,
     public mapService : MapService,
-    public sliderService : SliderService
+    public sliderService : SliderService,
+    private sanitizer : DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -127,47 +130,49 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
           var xmlDoc = xmlhttp.responseXML;
           let x = xmlDoc.getElementsByTagName(this.osmType);
           for (let i = 0; i< x.length; i++){
-            if (x[i].attributes.getNamedItem("visible").value == "false"){
-              console.log(x[i].attributes);
+            if (x[i].attributes.getNamedItem("visible").value == "false" || i == x.length - 1){
               this.timestampDate = new Date(x[i].attributes.getNamedItem("timestamp").value);
               this.lastUser = x[i].attributes.getNamedItem("user").value;
               this.lastChangeset=x[i].attributes.getNamedItem("changeset").value;
+              this.mainChange.versionNew = x[i].attributes.getNamedItem("version").value;
             }
-          } 
+          }
+          this.getTransitionalChangesets(); 
         } 
       }.bind(this);
       xmlhttp.open("GET", "https://www.openstreetmap.org/api/0.6/"+this.osmType+"/"+this.osmId+"/history", true);
       xmlhttp.send();
+    } else {
+    this.getTransitionalChangesets();
     }
-    this.transitionalChangesetArray = this.getTransitionalChangesets();
   }
 
   public getTransitionalChangesets(){
     let transitionalVersionArray = [];
-    let transitionalChangesetArray = [];
-    if (this.numberOfChangesToDisplay == 1){
-      if (this.mainChange.versionNew && this.mainChange.versionOld && this.mainChange.versionNew - 1 > this.mainChange.versionOld){
-        for (var i = this.mainChange.versionOld + 1; i < this.mainChange.versionNew; i++){
-          transitionalVersionArray.push(i);
-        }
-        var xmlhttp= new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
+    this.transitionalChangesetMap = new Map<number, number>();
+    // (If creation and more than 2 changes) OR (if deletion and more than 2 changes) OR (if versionOld and versionNew exists and more than 2 changes)
+    if ((this.mainChange.changeType==1 || this.mainChange.versionNew > 1) || (this.mainChange.changeType == 6 || this.mainChange.versionNew || this.mainChange.versionNew > this.mainChange.versionOld + 1 ) || (this.mainChange.versionNew && this.mainChange.versionOld && this.mainChange.versionNew - 1 > this.mainChange.versionOld)){
+      
+      for (var i = (this.mainChange.versionOld ? this.mainChange.versionOld : 0) + 1; i < (this.mainChange.versionNew); i++){
+        transitionalVersionArray.push(i); //We have all the versions numbers we have to find !
+      }
+
+      var xmlhttp= new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
           var xmlDoc = xmlhttp.responseXML;
-          let x = xmlDoc.getElementsByTagName("node");
+          let x = xmlDoc.getElementsByTagName(this.osmType);
           for (let i = 0; i< x.length; i++){
-            x[i].attributes.getNamedItem("version").value
             if (transitionalVersionArray.indexOf(Number(x[i].attributes.getNamedItem("version").value))>-1){
-              transitionalChangesetArray.push(x[i].attributes.getNamedItem("changeset").value);
+              this.transitionalChangesetMap.set(Number(x[i].attributes.getNamedItem("version").value), x[i].attributes.getNamedItem("changeset").value);
             }
           } 
         } 
       }.bind(this);
-      xmlhttp.open("GET", "https://www.openstreetmap.org/api/0.6/"+this.osmType+"/"+this.osmId+"/history", true);
-      xmlhttp.send();
-      }
+    xmlhttp.open("GET", "https://www.openstreetmap.org/api/0.6/"+this.osmType+"/"+this.osmId+"/history", true);
+    xmlhttp.send();
+
     }
-    return transitionalChangesetArray;
   }
 
 

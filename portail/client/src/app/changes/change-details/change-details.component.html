@@ -29,22 +29,25 @@
                 [manualRefresh]="manualRefresh"
                 style="margin-bottom:30px;">
             </ng5-slider>
-            <div *ngIf="noChangeInInterval" class="alert alert-danger" role="alert">
-                Aucun changement dans l'intervalle considéré
-            </div>
         </div>
         
 
             <div id="top_infos" style="background-color: rgba(255,255,255,0.3);">
 
                 <div id="changeType">
-                    <h4><span class="badge badge-secondary" [ngStyle]="{'background-color': changeType.relatedColor.getRGBA()}">{{changeType.name}}</span></h4>
+                    <div *ngIf="noChangeInInterval; else badge" class="alert alert-danger" role="alert">
+                            Aucun changement dans l'intervalle considéré
+                    </div>
+                    <ng-template #badge>
+                        <h4><span class="badge badge-secondary" [ngStyle]="{'background-color': changeType.relatedColor.getRGBA()}">{{changeType.name}}</span></h4>
+                    </ng-template>
                 </div>
 
                 <app-changes-detailled-map
                 [hidden]="!userContext"
                 [userContext]="userContext"
                 [mainChange]="mainChange"
+                [changeTypesList]="changeTypesList"
                 id="MapChangement">
                 </app-changes-detailled-map>
 
@@ -76,16 +79,16 @@
                                 <a class="logo" title="Analyse du changeset sur OSMCha" target="_blank" href="https://osmcha.mapbox.com/changesets/{{lastChangeset}}/"><img src="https://osmcha.mapbox.com/favicon.ico" style="height:25px;width:25px;"></a>
                             </td>
                         </tr>
-                        <tr *ngIf="transitionalChangesetArray && transitionalChangesetArray.length > 0">
+                        <tr *ngIf="transitionalChangesetMap && transitionalChangesetMap.size > 0">
                             <th>Changeset(s) intermédiaire(s)
                                 <a class="metadata-circle" target="_blank" href="https://wiki.openstreetmap.org/wiki/FR:Groupes_de_modifications" title="Voir la définition sur le wiki"><b>?</b></a>
                             </th>
                             <td>
-                                <ng-container *ngFor="let changeset of transitionalChangesetArray">
-                                    <a>{{changeset}}</a>
-                                    <a class="logo" title="Voir le changeset sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/changeset/{{changeset}}"><img src="assets/images/osm_logo_25px.png"></a>
-                                    <a class="logo" title="Analyse du changeset sur OSMCha" target="_blank" href="https://osmcha.mapbox.com/changesets/{{changeset}}/"><img src="https://osmcha.mapbox.com/favicon.ico" style="height:25px;width:25px;"></a>
-                                </ng-container>
+                                <div *ngFor="let changeset of transitionalChangesetMap | keyvalue ">
+                                    <a>v{{changeset.key}} : {{changeset.value}}</a>
+                                    <a class="logo" title="Voir le changeset sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/changeset/{{changeset.value}}"><img src="assets/images/osm_logo_25px.png"></a>
+                                    <a class="logo" title="Analyse du changeset sur OSMCha" target="_blank" href="https://osmcha.mapbox.com/changesets/{{changeset.value}}/"><img src="https://osmcha.mapbox.com/favicon.ico" style="height:25px;width:25px;"></a>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -94,8 +97,8 @@
             <table class="table table-hover table-bordered" id="tags">
                 <colgroup>
                     <col style="width:30%">
-                    <col *ngIf="mainChange.versionOld">
-                    <col *ngIf="mainChange.versionNew">
+                    <col *ngIf="mainChange.versionOld" style="width:35%;">
+                    <col *ngIf="mainChange.versionNew" style="width:35%;">
                 </colgroup>
                 <thead>
                     <tr style="text-align: center">
@@ -107,8 +110,6 @@
                 <tbody>
                     <tr *ngFor="let tag of tagsList" [ngClass]="getHTMLTableClass(tag)">
                         <th>{{tag.key}}</th>
-                        <!-- <td *ngIf="mainChange.versionOld">{{tag.valueOld.replace(deleteDoubleApostrophe,"'")}}</td>
-                        <td *ngIf="mainChange.versionNew">{{tag.valueNew.replace(deleteDoubleApostrophe,"'")}}</td> -->
                         <td *ngIf="mainChange.versionOld">{{tag.valueOld ? tag.valueOld.replace(deleteDoubleApostrophe,"'") : ""}}</td>
                         <td *ngIf="mainChange.versionNew">{{tag.valueNew ? tag.valueNew.replace(deleteDoubleApostrophe,"'") : ""}}</td>
                     </tr>
