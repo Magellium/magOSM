@@ -129,7 +129,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
 
   initForm() {
     this.changesFilterForm = new FormGroup({
-      'thematic': new FormControl(16,[Validators.required]),
+      'thematic': new FormControl(15,[Validators.required]),
       'dates': new FormControl(this.model,[]),
     });
   }

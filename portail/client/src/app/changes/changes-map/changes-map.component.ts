@@ -42,6 +42,8 @@ export class ChangesMapComponent implements OnInit {
   private changeTypesList : Array<ChangeType>;
   public selectedFeature : any;
 
+  private mapFeatureSelectedInteractionOnClick : any;
+
   ngOnInit() {
     console.log("Init Map !")
     this.initMap();
@@ -108,14 +110,15 @@ export class ChangesMapComponent implements OnInit {
     // })
     // this.map.addInteraction(selectPointerMove);
     
-    var selectFeatureClick = new ol.interaction.Select({
+    this.mapFeatureSelectedInteractionOnClick = new ol.interaction.Select({
       condition: ol.events.condition.click,
       style : function(feature,resolution){
         return self.mapService.mainStyleFunction(feature, resolution, true);},
       hitTolerance : 2,
-      filter: function(feature, layer){return self.heatMapFilter (layer);}
+      filter: function(feature, layer){return self.heatMapFilter (layer);},
+      multi : true
     })
-    this.map.addInteraction(selectFeatureClick);
+    this.map.addInteraction(this.mapFeatureSelectedInteractionOnClick);
 
     // Au passage de la souris, change le curseur
     this.map.on('pointermove', this.onPointerMove.bind(this));
@@ -136,6 +139,7 @@ export class ChangesMapComponent implements OnInit {
   }
 
   public onClick(event){
+      console.log(this.mapFeatureSelectedInteractionOnClick.getFeatures());
       this.selectedFeature = null;
       var pixel = this.map.getEventPixel(event.originalEvent);
       var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter : this.heatMapFilter});
