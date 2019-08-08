@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { LabelType, Options } from 'ng5-slider';
 import { Change } from 'app/model/ChangesClasses/Change';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class SliderService {
   public ticksArray;
   public minValue;
   public maxValue;
+  public background : SafeStyle;
 
   public getMinValue(){
     return this.minValue;
@@ -23,9 +25,13 @@ export class SliderService {
   public getOptions(){
     return this.options;
   }
-  constructor() { }
+  constructor(private sanitizer : DomSanitizer) { }
 
   public initSlider(beginDate, endDate, featureChangesList, changeType){
+    console.log(beginDate);
+    console.log(endDate);
+    this.background=this.sanitizer.bypassSecurityTrustStyle('rgba(100,100,100)');
+
     this.stepsArray = this.getStepsArray(beginDate, endDate);
     this.ticksArray = this.getTicksArray(featureChangesList, this.stepsArray);
     this.minValue = beginDate.getTime();
@@ -36,12 +42,11 @@ export class SliderService {
   public setOptions(stepsArray, ticksArray, changeType){
     var dateOptions = { month: 'numeric', day: 'numeric' };
     this.options = {
-      stepsArray : stepsArray.map((date : number) => {return {value : date, legend : "<b>"+new Date(date).toLocaleDateString('fr-FR', dateOptions)+"</b>"}}),
+      stepsArray : stepsArray.map((date : number) => {return {value : date, legend : "<b [style.background-color]='background'>"+new Date(date).toLocaleDateString('fr-FR', dateOptions)+"</b>"}}),
       translate: this.translate,
       noSwitching: true,
       showTicks: true,
       ticksArray : ticksArray,
-      showSelectionBar:false,
       getTickColor: (value: number): string => {
         if (value == 6) {
           return 'blue';
@@ -49,12 +54,8 @@ export class SliderService {
         if (value == 2){
           return 'red'
         }
-        return '#2AE02A';
+        return 'red';
       },
-      // getSelectionBarColor: (minValue : number, maxValue : number): string => {
-      //   console.log(changeType);
-      //   return this.getRGBA(changeType);
-      // }
     };
   }
 
@@ -65,9 +66,9 @@ export class SliderService {
     else {
       var stepsArray = [];
       var date = beginDate;
-      while (date.getTime() <= endDate.getTime()){
+      while (date.getTime() <= endDate.getTime()+1000){ //1000 to add one seconds : 23h59m59s --> 00h00m00s
        stepsArray.push(date.getTime());
-       date = new Date(date.getTime() + 1000*60*60*24);
+       date = new Date(date.getTime() + 1000*60*60*24); // = 24h = 1 day
       }
       return stepsArray;
     }

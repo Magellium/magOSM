@@ -226,7 +226,7 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
     var numberofChangesOld = this.numberOfChangesToDisplay;
     this.featureChangesList.forEach(change => {
       let changeTime = new Date(change.timestamp).getTime();
-      if (changeTime > event.value && changeTime < event.highValue+1000*60*60*24){
+      if (changeTime > event.value && changeTime < event.highValue/*+1000*60*60*24*/){
         changesList.push(change);
       }
     })

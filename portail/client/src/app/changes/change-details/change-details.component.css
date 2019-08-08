@@ -139,6 +139,7 @@ a[href]{
     border-radius: 0;
     top: -1px;
     background-color : black !important;
+    left:10px;
   }
 
 /* ::ng-deep .custom-slider .ng5-slider .ng5-slider-ticks .ng5-slider-tick.ng5-slider-selected {
