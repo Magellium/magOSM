@@ -4,8 +4,8 @@
     <div id="mouse-position-2"></div>
     <app-change-details 
         id="featureDetailsPanel"
-        *ngIf="selectedFeature" 
-        [selectedFeature]="selectedFeature"
+        *ngIf="selectedFeatures && selectedFeatures.length > 0" 
+        [selectedFeatures]="selectedFeatures"
         [changeTypesList]="changeTypesList"
         [userContext]="userContext">
     </app-change-details>

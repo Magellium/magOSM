@@ -7,6 +7,26 @@
         <div class="card-header p-2 text-center" role="tab" id="headingDetailsPanel" style="word-wrap: break-word;">
             <b>Informations sur l'objet</b>
         </div>
+
+        <div *ngIf="selectedFeatures.length>1" id="featuresNearbyArray">
+            <div class="dropdown">
+                <button class="btn btn-secondary btn-lg btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" 
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:0.8em;">
+                    <a>{{selectedFeatures.length-1}} élément(s) à proximité</a> <!-- -1 because the selectedFeature is in the selectedFeatureS -->
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <ng-container *ngFor="let feature of selectedFeatures">
+                        <button *ngIf="feature != selectedFeature" class="dropdown-item" (click)="onSelect(feature)">
+                            <span style="text-align:left;float:left; text-transform : capitalize;">{{this.mapService.getOsmTypeOfFeature(feature.get('osmId'), feature.get('geom_type'))}} {{feature.get('osmId')}}</span>
+                            <div style="text-align:right;float:right;" class="cercle" [ngStyle]="{'background-color' : getColor(feature.get('changeType'))}"></div>
+                        </button>
+                        <!-- [ngStyle]="{'background-color': changeTypesList.filter(x => x.id === feature.get('changeType'))[0].relatedColor.getRGBA()}" -->
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+
         <div id="detailsContainer" *ngIf="mainChange" style="position:relative;">
         <div style="text-transform : capitalize;">
             <p style="text-align: left; width:50%; display: inline-block;">

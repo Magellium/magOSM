@@ -21,12 +21,13 @@ declare var _paq : any;
 })
 export class ChangeDetailsComponent implements OnInit, OnChanges {
 
-  @Input() selectedFeature : any;
+  @Input() selectedFeatures : any;
   @Input() changeTypesList : Array<ChangeType>;
   @Input() userContext : UserContext;
 
   private panelOpen = true;
 
+  public selectedFeature;
   public featureChangesRequest : FeatureChangesRequest = new FeatureChangesRequest();
   public featureChangesList : Array<Change>;
   public mainChange : Change;
@@ -60,9 +61,11 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
+    this.selectedFeature = this.selectedFeatures[0];
     var self=this;
     $("#detailspanel-close").click(function(e) {
       console.log("Au clic sur la croix !")
+      self.mapService.clearSelection();
       e.preventDefault();
       $("#detailspanel").toggleClass("active");
       self.panelOpen=false;
@@ -70,6 +73,8 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(...args: any[]){
+    this.selectedFeature = this.selectedFeatures[0];
+    this.mapService.addFeatureToSelection(this.selectedFeature);
     this.setFeatureChangesRequest();
     this.getFeatureChanges();
     if (!this.panelOpen) { //si le panel est fermé, on l'ouvre
@@ -82,6 +87,15 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
     }
      //// Matomo
      _paq.push(['trackEvent', 'changed_feature_selected'])
+  }
+
+  onSelect(feature){
+    this.selectedFeature = feature;
+    this.mapService.clearSelection();
+    this.mapService.addFeatureToSelection(this.selectedFeature);
+
+    this.setFeatureChangesRequest();
+    this.getFeatureChanges();
   }
 
   public setFeatureChangesRequest(){
@@ -116,7 +130,7 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
 
   public setDataToDisplay(){
     this.osmId = Math.abs(this.mainChange.osmId);
-    this.osmType = this.mapService.getOsmTypeOfFeature(this.mainChange);
+    this.osmType = this.mapService.getOsmTypeOfFeature(this.mainChange.osmId, this.mainChange.type);
     this.changeType = this.changeTypesList.filter(x => x.id === this.mainChange.changeType)[0];
     this.timestampDate = new Date(this.mainChange.timestamp);
     this.lastUser = this.mainChange.tagsNew ? this.mainChange.tagsNew.osm_user : undefined;
@@ -243,5 +257,10 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
         this.noChangeInInterval = true;
       }
     }
+  }
+
+  public getColor(changeTypeId : number){
+    var changeType : ChangeType = this.changeTypesList.filter(x => x.id === changeTypeId)[0];
+    return changeType.relatedColor.getRGBA();
   }
 }

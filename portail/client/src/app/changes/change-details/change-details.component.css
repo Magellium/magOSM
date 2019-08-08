@@ -33,13 +33,26 @@
     -o-transition: all 0.5s ease-out 0s;
   }
 
-#changeType{
+#changeType, #dropdownMenuButton{
   text-align:center;
   /* right:2%; */
   position:relative;
   margin-left:auto;
   margin-right:auto;
+  width:97%;
 }
+
+.dropdown-menu{
+  width:97%;
+  /* text-align:center; */
+}
+
+.cercle {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin : 5px 20px auto 5px;
+  }
 
 .metadata-circle {
   cursor:pointer;

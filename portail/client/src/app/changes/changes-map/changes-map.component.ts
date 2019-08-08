@@ -40,7 +40,7 @@ export class ChangesMapComponent implements OnInit {
 
   //
   private changeTypesList : Array<ChangeType>;
-  public selectedFeature : any;
+  public selectedFeatures : Array<any>;
 
   private mapFeatureSelectedInteractionOnClick : any;
 
@@ -93,13 +93,13 @@ export class ChangesMapComponent implements OnInit {
       console.log(this.changeTypesList);
       this.mapService.initLayers(this.changeTypesList);
       this.mapService.initHeatMap();
+      this.mapService.initInteractions();
       this.layersArray = this.mapService.changesLayersArray;
-      console.log(this.layersArray);
     });
 
 
     //// Pour ajouter de la surbrillance au passage de la souris et au clic sur un objet
-
+    //// Désactivé car ralentit très fortement lorsqu'il y a beaucoup d'objets (> 500)
     var self = this;
     // var selectPointerMove = new ol.interaction.Select({
     //   condition: ol.events.condition.pointerMove,
@@ -109,16 +109,6 @@ export class ChangesMapComponent implements OnInit {
     //   filter: function(feature, layer){return self.heatMapFilter (layer);}
     // })
     // this.map.addInteraction(selectPointerMove);
-    
-    this.mapFeatureSelectedInteractionOnClick = new ol.interaction.Select({
-      condition: ol.events.condition.click,
-      style : function(feature,resolution){
-        return self.mapService.mainStyleFunction(feature, resolution, true);},
-      hitTolerance : 2,
-      filter: function(feature, layer){return self.heatMapFilter (layer);},
-      multi : true
-    })
-    this.map.addInteraction(this.mapFeatureSelectedInteractionOnClick);
 
     // Au passage de la souris, change le curseur
     this.map.on('pointermove', this.onPointerMove.bind(this));
@@ -132,24 +122,21 @@ export class ChangesMapComponent implements OnInit {
     if (e.dragging) return; // si il y a déplacement de la carte, on arrête
        
       var pixel = this.map.getEventPixel(e.originalEvent);
-      var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter: this.heatMapFilter}); // on vérifie si il y a un objet à l'endroit de l'événement
+      var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter: this.mapService.heatMapFilter}); // on vérifie si il y a un objet à l'endroit de l'événement
        
       this.map.getTargetElement().style.cursor = hit ? 'pointer' : ''; // si besoin, on change le curseur
 
   }
 
   public onClick(event){
-      console.log(this.mapFeatureSelectedInteractionOnClick.getFeatures());
-      this.selectedFeature = null;
-      var pixel = this.map.getEventPixel(event.originalEvent);
-      var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter : this.heatMapFilter});
-      if (hit){
-        this.selectedFeature = this.map.getFeaturesAtPixel(pixel, {hitTolerance:2})[0];
-      }
-  }
-
-  public heatMapFilter(layer){
-    return layer.get('title')!="Carte de chaleur";
+    this.mapService.clearSelection();
+    this.selectedFeatures = new Array<any>();
+    var pixel = this.map.getEventPixel(event.originalEvent);
+    var hit = this.map.hasFeatureAtPixel(pixel, {hitTolerance:2, layerFilter : this.mapService.heatMapFilter});
+    if (hit){
+      this.selectedFeatures = this.map.getFeaturesAtPixel(pixel, {hitTolerance:2, layerFilter : this.mapService.heatMapFilter});
+      console.log(this.selectedFeatures);
+    }
   }
 
   // Actions pour la légende //

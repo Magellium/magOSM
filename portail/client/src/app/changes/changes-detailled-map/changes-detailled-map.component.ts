@@ -43,7 +43,6 @@ export class ChangesDetailledMapComponent {
 
   initMap(){
     let center = [this.userContext.lon, this.userContext.lat]
-    console.log(center);
     this.view = new ol.View({
       projection: 'EPSG:3857',
       center: ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'),

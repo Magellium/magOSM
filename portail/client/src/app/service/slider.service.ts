@@ -28,8 +28,6 @@ export class SliderService {
   constructor(private sanitizer : DomSanitizer) { }
 
   public initSlider(beginDate, endDate, featureChangesList, changeType){
-    console.log(beginDate);
-    console.log(endDate);
     this.background=this.sanitizer.bypassSecurityTrustStyle('rgba(100,100,100)');
 
     this.stepsArray = this.getStepsArray(beginDate, endDate);

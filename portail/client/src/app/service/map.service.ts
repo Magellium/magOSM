@@ -47,6 +47,7 @@ export class MapService {
   public changesLayersGroup = new ol.layer.Group({});
   public heatMapLayer = new ol.layer.Heatmap({});
   public changeTypeArrayList : Array<ChangeType>;
+  private mapFeatureSelectedInteractionOnClick : any;
   //public pointStyles;
 
   @Output() announceOpacityChangeEvent: EventEmitter<any> = new EventEmitter();
@@ -543,9 +544,13 @@ export class MapService {
     return this.opacityRange;
   }
 
-  //////////////////////////////////////////////////
-  ///// Partie dédiée au suivi de changement ///////
-  //////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ///// Partie dédiée au suivi de changement /////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public addChanges(changesList : Array<Change>): any{
     let featureLayers = new Map();
@@ -687,6 +692,27 @@ export class MapService {
     this.map.addLayer(this.heatMapLayer);
   }
 
+  public initInteractions(){
+    var self = this;
+    this.mapFeatureSelectedInteractionOnClick = new ol.interaction.Select({
+      condition: ol.events.condition.click,
+      style : function(feature,resolution){
+        return self.mainStyleFunction(feature, resolution, true);},
+      hitTolerance : 2,
+      filter: function(feature, layer){return self.heatMapFilter (layer);},
+    })
+    this.map.addInteraction(this.mapFeatureSelectedInteractionOnClick);
+  }
+
+  public clearSelection(){
+    this.mapFeatureSelectedInteractionOnClick.getFeatures().clear();
+  }
+
+  public addFeatureToSelection(feature){
+    this.clearSelection();
+    this.mapFeatureSelectedInteractionOnClick.getFeatures().push(feature);
+  }
+
   public getChangesMergeForOneFeature(changes : Array<Change>): Change{
     let changesOrderByTimestamp = changes.sort(function(a,b){ return a.timestamp == b.timestamp ? 0 : +(a.timestamp > b.timestamp) || -1; })
     while (changesOrderByTimestamp.length > 1){
@@ -811,15 +837,18 @@ export class MapService {
     return [style];
   }
 
-  public getOsmTypeOfFeature(feature : Change){
-    let geometryType = feature.type;
+  public heatMapFilter(layer){
+    return layer.get('title')!="Carte de chaleur";
+  }
+
+  public getOsmTypeOfFeature(osmId : number, geometryType : string){
     switch(geometryType){
       case 'Point':
         return 'node';
         break;
       case 'Line':
       case 'Polygon':
-        if (feature.osmId>0){
+        if (osmId>0){
           return 'way';
         } else {
           return 'relation'
