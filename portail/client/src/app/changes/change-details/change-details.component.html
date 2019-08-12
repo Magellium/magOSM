@@ -17,7 +17,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <ng-container *ngFor="let feature of selectedFeatures">
                         <button *ngIf="feature != selectedFeature" class="dropdown-item" (click)="onSelect(feature)">
-                            <span style="text-align:left;float:left; text-transform : capitalize;">{{this.mapService.getOsmTypeOfFeature(feature.get('osmId'), feature.get('geom_type'))}} {{feature.get('osmId')}}</span>
+                            <span style="text-align:left;float:left; text-transform : capitalize;">{{this.mapService.getOsmTypeOfFeature(feature.get('osmId'), feature.get('geom_type'))}} {{feature.get('osmId') > 0 ? feature.get('osmId') : feature.get('osmId')*(-1) }}</span>
                             <div style="text-align:right;float:right;" class="cercle" [ngStyle]="{'background-color' : getColor(feature.get('changeType'))}"></div>
                         </button>
                         <!-- [ngStyle]="{'background-color': changeTypesList.filter(x => x.id === feature.get('changeType'))[0].relatedColor.getRGBA()}" -->
