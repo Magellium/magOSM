@@ -32,11 +32,6 @@ export class HelpComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnInit(){
-    // this.apiRequestService.searchChangeTypes().subscribe(data => {
-    //   console.log(data);
-    //   this.changeTypesList = JSON.parse(data['_body']) as Array<ChangeType>;
-    //   console.log(this.changeTypesList);
-    // })
     this.apiRequestService.searchChangeTypes().subscribe(data => {
       let array = JSON.parse(data['_body']) as any[];
       this.changeTypesList = array.map(element => new ChangeType(element));
