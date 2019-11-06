@@ -25,7 +25,7 @@ import com.magellium.magosm.model.Thematic;
  */
 
 @Entity
-@Table(name = "mp_changes_analysis_point", schema = Parameters.MAGOSM_DATA_SCHEMA)
+@Table(name = "changes_analysis_point", schema = Parameters.MAGOSM_DATA_SCHEMA)
 @TypeDef(name = "hstore", typeClass = PostgreSQLHStoreType.class)
 @NamedQuery(name = "ChangedPoint.findAll", query = "SELECT p FROM ChangedPoint p")
 public class ChangedPoint implements ChangedObject {

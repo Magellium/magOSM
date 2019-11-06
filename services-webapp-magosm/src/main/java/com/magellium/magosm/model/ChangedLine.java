@@ -28,7 +28,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 
 @Entity
-@Table(name = "mp_changes_analysis_line", schema = Parameters.MAGOSM_DATA_SCHEMA)
+@Table(name = "changes_analysis_line", schema = Parameters.MAGOSM_DATA_SCHEMA)
 @TypeDef(name = "hstore", typeClass = PostgreSQLHStoreType.class)
 @NamedQuery(name = "ChangedLine.findAll", query = "SELECT l FROM ChangedLine l")
 public class ChangedLine implements ChangedObject {
