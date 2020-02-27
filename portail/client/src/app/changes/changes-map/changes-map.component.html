@@ -1,0 +1,44 @@
+<div style="position:relative">
+    <div id="map" class="map"></div>
+    <app-apiadresse (citySelected)="onCitySelected($event)"></app-apiadresse>
+    <div id="mouse-position-2"></div>
+    <app-change-details 
+        id="featureDetailsPanel"
+        *ngIf="selectedFeatures && selectedFeatures.length > 0" 
+        [selectedFeatures]="selectedFeatures"
+        [changeTypesList]="changeTypesList"
+        [userContext]="userContext">
+    </app-change-details>
+    <div *ngIf="layerswitcherdisplay" id="layerswitcher">
+            <div class="card-header p-2 text-center" style="word-wrap: break-word;">
+                <b style="margin-left:10px">Légende</b>
+            </div>
+        <table>
+            <tr>
+                <td>
+                    <input type="checkbox" id="selectAll" name="selectAll" (click)="onSelectAll($event)" checked>
+                    <label class="panelSwitcherLayerName">Tout (dé)sélectionner</label>
+                </td>
+            </tr>
+            <tr *ngFor="let changetype of changeTypesList">
+                <td>
+                    <input type="checkbox" id="{{changetype.id}}" name="layer" (click)="onSelect(changetype.id)" checked>
+                    <label [routerLink]="['/changements-aide']" fragment="{{changetype.ref}}" style="cursor:pointer;"
+                    class="panelSwitcherLayerName" title="Voir + sur la page d'aide">{{changetype.short_name}}</label>
+                </td>
+                <td>
+                    <b class="cercle" [ngStyle]="{'background-color': changetype.relatedColor.getRGBA()}"></b>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="heatMap" name="heatMap" (click)="onSelect('heatMap')" checked>
+                    <label class="panelSwitcherLayerName">Carte de chaleur</label>
+                </td>
+                <td>
+                    <b class="cercle" style="background: linear-gradient(0.25turn,#00f, #0ff, #0f0, #ff0, #f00);"></b>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

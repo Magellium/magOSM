@@ -1,0 +1,58 @@
+.body{
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    background-color: rgba(255,255,255,0.8);
+    border-radius: .25rem;
+    overflow-y: auto;
+    max-height:80vh;
+}
+
+form{
+    margin-bottom: 5px;
+}
+
+.title{
+    font-size:1rem;
+    font-weight: bolder;
+    text-align: center !important;
+    margin:5px;
+}
+
+.invalid-tooltip{
+    position: relative;
+}
+
+#report{
+    border:15px;
+}
+
+table{
+    width:100%;
+}
+.reportTable{
+    font-size: 0.8em;
+    border:2px;
+}
+
+.metadata-circle {
+    cursor:pointer;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    font-size: 10px;
+    color: #fff;
+    line-height: 12px;
+    text-align: center;
+    background: #7092be;
+  }
+
+.categorie{
+    padding-left:5px;
+}
+/* 
+::ng-deep .mydrp { position:absolute !important;  }
+::ng-deep .selectorarrow { position:absolute !important; }
+::ng-deep .mydrp .selectiongroup {     margin-left: 12px;    top: -18px;     display: inline-table  !important;     border: 1px solid #CCC !important; }
+::ng-deep .mydrp { border:none !important; }
+::ng-deep body .ui-table .ui-table-thead > tr > th { height:45px !important; } */

@@ -2,15 +2,22 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { UserContext } from '../model/UserContext';
 
 import * as shapefile from 'shapefile'
+import { Change } from 'app/model/ChangesClasses/Change';
+import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
+import { ConfigService } from './config.service';
+import { a } from '@angular/core/src/render3';
+import { Color } from 'app/model/ChangesClasses/Color';
 
 declare var ol: any;
 declare var _paq: any;
 declare var window: any;
-declare var config: any;
+//declare var config: any;
 declare var fetch: any;
 
 @Injectable()
 export class MapService {
+
+  public config: any;
 
   public map: any;
   public ol: any;
@@ -28,6 +35,21 @@ export class MapService {
   private baseLayer: any;
   private baseLayerName: string;
   private opacityRange = 30;
+
+  //Suivi de changements
+  public changesStyles = new Map();
+  public changesPointStyles = new Map();
+  public changesLayer = new Map();
+  public numberOfChangeByType = new Map<ChangeType,number>();
+  public legendDisplay : boolean = false;
+  public changesLayersArray : Array<any> = [];
+  public changesLayersCollection ;
+  public changesLayersGroup = new ol.layer.Group({});
+  public heatMapLayer = new ol.layer.Heatmap({});
+  public changeTypeArrayList : Array<ChangeType>;
+  private mapFeatureSelectedInteractionOnClick : any;
+  //public pointStyles;
+
   @Output() announceOpacityChangeEvent: EventEmitter<any> = new EventEmitter();
   //legende
   public legendUrls: string[];//au niveau infra-communal il y a autant d'urls de légendes que de couches visibles
@@ -38,7 +60,13 @@ export class MapService {
   wmtsResult: any;
 
 
-  constructor() { }
+  constructor(
+    private configService: ConfigService
+  ) { 
+    this.configService.getConfig().subscribe(config => {
+      this.config=config;
+    })
+  }
 
   setMap(map, userContext: UserContext) {
     this.map = map;
@@ -206,7 +234,7 @@ export class MapService {
     if (this.layers[id] == null) {
 
       var layerSource = new ol.source.TileWMS(({
-        url: config.PARAMS[0].geoserver_baseurl + '/wms?',
+        url: this.config.PARAMS[0].geoserver_baseurl + '/wms?',
         crossOrigin: 'anonymous',
         params: { 'LAYERS': layername },
         attributions: [new ol.Attribution({
@@ -313,7 +341,7 @@ export class MapService {
       return;
     }*/
 
-    let url = config.PARAMS[0].geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
+    let url = this.config.PARAMS[0].geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
     //let url = config.PARAMS[0].geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=50000&outputFormat=application%2Fvnd.google-earth.kml%2Bxml&typeName="+layer.layername;
     //let url = config.PARAMS[0].geoserver_baseurl + "/wms/kml?layers="+layer.layername;
 
@@ -342,7 +370,7 @@ export class MapService {
     }*/
 
     //let url = config.PARAMS[0].geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
-    let url = config.PARAMS[0].geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=500000&outputFormat=shape-zip&typeName=" + layer.layername + "&srsName=EPSG:3857&bbox=" + bbox;
+    let url = this.config.PARAMS[0].geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=500000&outputFormat=shape-zip&typeName=" + layer.layername + "&srsName=EPSG:3857&bbox=" + bbox;
     //let url = config.PARAMS[0].geoserver_baseurl + "/wms/kml?layers="+layer.layername;
 
     //piwik
@@ -350,6 +378,14 @@ export class MapService {
 
     window.open(url, "_blank");
   }
+
+  getBoundingBox() {
+    let format = new ol.format.WKT();
+    let extent = ol.geom.Polygon.fromExtent(this.map.getView().calculateExtent());
+    var wkt = format.writeGeometry(extent);
+    return wkt;
+  }
+
 
   getResolutionFromScale(scale, units) {
     var resolution = scale / (this.INCHES_PER_UNIT[units] * this.DOTS_PER_INCH);
@@ -413,10 +449,10 @@ export class MapService {
 
   //Find the Layer of one object (useful for the list of nearby features, and for the style of main_info)
   getLayerOfOneFeature(feature){
-    for (let i in config.LAYERS){
-      for (let j in config.LAYERS[i].features){
-        if (feature.getId().startsWith(config.LAYERS[i].features[j].layername.replace('magosm:',""))){
-          return config.LAYERS[i].features[j];
+    for (let i in this.config.LAYERS){
+      for (let j in this.config.LAYERS[i].features){
+        if (feature.getId().startsWith(this.config.LAYERS[i].features[j].layername.replace('magosm:',""))){
+          return this.config.LAYERS[i].features[j];
         }
       }
     }
@@ -506,6 +542,319 @@ export class MapService {
 
   public getOpacityRange() {
     return this.opacityRange;
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ///// Partie dédiée au suivi de changement /////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public addChanges(changesList : Array<Change>): any{
+    let featureLayers = new Map();
+    let alreadyTested = new Array<number>();
+    this.changesLayersArray.forEach(layer => {
+        featureLayers.set(layer.get('id'), []);
+    });
+    changesList.forEach(element => {
+      let osmId = element.osmId;
+      if (alreadyTested.indexOf(osmId) < 0){
+        let featuresWithSameOsmId = changesList.filter(x => x.osmId === osmId);
+        if (featuresWithSameOsmId.length > 1){
+          element = this.getChangesMergeForOneFeature(featuresWithSameOsmId);
+        }
+        let newFeature = this.setFeature(element);
+        featureLayers.get(element.changeType).push(newFeature);
+        alreadyTested.push(osmId); 
+      } 
+    });
+    // On a complété un Map de 8 tableaux qui contiennent chacun les objets pour chaque type de changement.
+    this.numberOfChangeByType = new Map<ChangeType,number>();
+    this.changesLayersArray.forEach(layer => {
+        let id = layer.get('id');
+        layer.getSource().clear();
+        layer.getSource().addFeatures(featureLayers.get(id));
+        this.numberOfChangeByType.set(layer.get('changetype'), featureLayers.get(id).length);
+    });
+    this.refreshHeatMap();
+  };
+
+  public refreshHeatMap(){
+    let features : Array<any> = new Array<any>();
+    this.changesLayersArray.forEach(layer => {
+      if (layer.getVisible()){
+        features = features.concat(layer.getSource().getFeatures());
+      }
+    });
+    this.heatMapLayer.getSource().clear();
+    this.heatMapLayer.getSource().refresh();
+    this.heatMapLayer.getSource().addFeatures(features);
+    if (features.length < 50){
+      this.changesLayersGroup.setMaxResolution(10000);
+    }
+    else{
+      this.changesLayersGroup.setMaxResolution(this.map.getView().getResolutionForZoom(10));
+    }
+  }
+
+  public setFeature(change : Change){
+    let changeType:number = change.changeType;
+    //Choix de la géométrie. On prend theGeomNew sauf s'il est vide, auquel cas theGeomOld ne l'est pas, donc on le sélectionne
+    let the_geom = change.theGeomNew;
+    if (the_geom == null){
+      the_geom = change.theGeomOld;
+    }
+
+    var newFeature = (new ol.format.GeoJSON()).readFeature(the_geom);
+    // var geom =newFeature.getGeometry()
+    // newFeature.setGeometry(geom.simplify(5));
+    newFeature.set('changeType', changeType);
+    newFeature.set('osmId', change.osmId);
+    newFeature.set('geom_type', change.type);
+
+    return newFeature;
+  }
+
+
+  initLayers(changeTypesList : Array<ChangeType>){
+    this.changesLayersArray = new Array<any>();
+    this.changeTypeArrayList = changeTypesList;
+      //On crée un Array contenant les layers que l'on place dans un LayerGroup que l'on associe à la map.
+    changeTypesList.forEach(element => {
+      var newVector = new ol.layer.Vector({
+        source: new ol.source.Vector({attributions: [
+          new ol.Attribution({
+            html: '' +
+                '<a href="http://magosm.magellium.com/">© Magellium pour les changements</a>'
+          })
+        ]
+        }),
+        zIndex: 10+element.id,
+        id : element.id,
+        title : element.name,
+        changetype : element,
+        style : this.mainStyleFunction.bind(this),
+      });
+      this.changesLayersArray.push(newVector);
+    })
+    this.changesLayersGroup = new ol.layer.Group({
+      layers:this.changesLayersArray,
+      maxResolution : this.map.getView().getResolutionForZoom(10)
+    });
+    this.map.addLayer(this.changesLayersGroup);
+  }
+
+  initHeatMap(){
+    /// Initialisation de la HeatMap : basé sur https://stackoverflow.com/questions/56780705/creating-heatmap-in-openlayers-with-vector-source-containing-linestrings
+    this.heatMapLayer = new ol.layer.Heatmap({
+      source : new ol.source.Vector({attributions: [
+        new ol.Attribution({
+          html: '' +
+              '<a href="http://magosm.magellium.com/">© Magellium pour les changements</a>'
+          })
+        ]
+      }),
+      zIndex: 2,
+      title : 'Carte de chaleur',
+      minResolution : this.map.getView().getResolutionForZoom(12),
+      radius : 2,
+      blur : 10,
+    });
+
+  var defaultStyleFunction = this.heatMapLayer.getStyleFunction();
+  this.heatMapLayer.setStyle(function(feature, resolution){
+    var style = defaultStyleFunction(feature, resolution);
+    var geom = feature.getGeometry();
+    var geomType = geom.getType();
+    switch(geomType){
+      case "Polygon":
+        style[0].setGeometry(geom.getInteriorPoint());
+        break;
+      case "MultiPolygon":
+        style[0].setGeometry(geom.getInteriorPoints()[0]);
+        break;
+      case "LineString":
+        style[0].setGeometry(new ol.geom.Point(geom.getCoordinateAt(0.5)));
+        break;
+      case "MultiLineString":
+        let middlePointNumber =  Math.round((geom.getCoordinates().length)/2);
+        style[0].setGeometry(new ol.geom.Point(geom.getCoordinates()[middlePointNumber][0]));
+        break;
+      case "Point":
+        style[0].setGeometry(geom);
+        break;   
+    }
+    return style;
+  })
+    //this.changesLayer.set("Carte de chaleur", this.heatMapLayer);
+    this.map.addLayer(this.heatMapLayer);
+  }
+
+  public initInteractions(){
+    var self = this;
+    this.mapFeatureSelectedInteractionOnClick = new ol.interaction.Select({
+      condition: ol.events.condition.click,
+      style : function(feature,resolution){
+        return self.mainStyleFunction(feature, resolution, true);},
+      hitTolerance : 2,
+      filter: function(feature, layer){return self.heatMapFilter (layer);},
+    })
+    this.map.addInteraction(this.mapFeatureSelectedInteractionOnClick);
+  }
+
+  public clearSelection(){
+    this.mapFeatureSelectedInteractionOnClick.getFeatures().clear();
+  }
+
+  public addFeatureToSelection(feature){
+    this.clearSelection();
+    this.mapFeatureSelectedInteractionOnClick.getFeatures().push(feature);
+  }
+
+  public getChangesMergeForOneFeature(changes : Array<Change>): Change{
+    let changesOrderByTimestamp = changes.sort(function(a,b){ return a.timestamp == b.timestamp ? 0 : +(a.timestamp > b.timestamp) || -1; })
+    while (changesOrderByTimestamp.length > 1){
+      let change1 = changesOrderByTimestamp.pop();
+      let change2 = changesOrderByTimestamp.pop();
+      changesOrderByTimestamp.push(this.mergeTwoChanges(change1, change2));
+    }
+    return changesOrderByTimestamp[0];
+
+  }
+
+  public mergeTwoChanges(change1 : Change, change2 : Change): Change{
+    let firstChange : Change;
+    let secondChange : Change;
+    let newChange : Change = new Change();
+    if (change1.timestamp < change2.timestamp){
+      firstChange = change1;
+      secondChange = change2;
+    } else {
+      firstChange = change2;
+      secondChange = change1;
+    }
+    newChange.timestamp = secondChange.timestamp;
+    newChange.osmId=firstChange.osmId;
+    newChange.type= firstChange.type;
+    newChange.versionOld = firstChange.versionOld;
+    newChange.versionNew = secondChange.versionNew;
+    newChange.tagsOld = firstChange.tagsOld;
+    newChange.tagsNew = secondChange.tagsNew;
+    newChange.theGeomOld = firstChange.theGeomOld;
+    newChange.theGeomNew = secondChange.theGeomNew; // Attention, dans ce cas, si on a une Création puis une Suppression, on n'a aucune géométrie !
+    switch(firstChange.changeType){
+      case 1:
+        if ([5,6].indexOf(secondChange.changeType)> -1 ){
+          newChange.changeType = 7;
+          newChange.theGeomNew = secondChange.theGeomOld; // C'est pourquoi on rattrape le tout ici
+          newChange.tagsNew = secondChange.tagsOld;
+          newChange.versionNew = secondChange.versionOld;
+        } else {
+          newChange.changeType = 1;
+        }
+        break;
+      case 2: 
+        if ([5,6].indexOf(secondChange.changeType)> -1 ){
+          newChange.changeType = 7;
+        } else {
+          newChange.changeType = 2;
+        } 
+        break;
+      case 3:
+        newChange.changeType = 3;
+        if ([34,5,6].indexOf(secondChange.changeType)> -1){
+          newChange.changeType = secondChange.changeType;
+        }
+        if (secondChange.changeType == 4){
+          newChange.changeType = 34;
+        }
+        break;
+      case 4:
+        newChange.changeType = 34;
+        if ([4,5,6].indexOf(secondChange.changeType)> -1){
+          newChange.changeType = secondChange.changeType;
+        }
+        break;
+      case 34:
+        newChange.changeType=34;
+        if ([5,6].indexOf(secondChange.changeType)>-1){
+          newChange.changeType = secondChange.changeType;
+        }
+        break;
+      case 5:
+        newChange.changeType = 7;
+        break;
+      case 6:
+        break;
+      case 7:
+        newChange.changeType = secondChange.changeType;   
+    }
+    // if (newChange.theGeomNew == null && newChange.theGeomOld == null){
+    //   console.log(newChange.osmId);
+    // }
+    return newChange;
+  }
+
+  //Cela permet de réutiliser l'affichage lors du passage de la souris ou de la sélection :
+  //Voir : https://stackoverflow.com/questions/35184546/openlayers3-same-style-for-selected-features-only-one-changed-property
+  public mainStyleFunction(feature, resolution : number, selected : boolean, changeTypeId? : number, small? : boolean ){
+    let maxResol = this.map.getView().getResolutionForZoom(10);
+    let style = new ol.style.Style({});
+
+    //Récupérer la conf pour les couleurs
+    var changeType = changeTypeId ? changeTypeId : feature.get('changeType');
+    let color : Color = this.changeTypeArrayList.filter(x => x.id === changeType)[0].color;
+    let fillcolor = [color.R, color.G, color.B, 0.2];
+    let strokecolor = [color.R, color.G, color.B, 1];
+
+
+    var fill = new ol.style.Fill({color: fillcolor});
+    style.setZIndex(1);
+    if (small || resolution < this.changesLayersGroup.getMaxResolution()){    
+      if (feature.getGeometry().getType() == 'Point'){
+        var pointStroke = new ol.style.Stroke({color: strokecolor, width : selected ? 10 : 3});
+        let circle=new ol.style.Circle({radius:1, stroke: pointStroke, fill:fill});
+        style.setImage(circle);
+
+        if (resolution<10){
+          style.getImage().setRadius(small ? 2*(1+1/resolution) : 4*(1+1/resolution));
+        }
+        else{
+          style.getImage().setRadius(1);
+        }
+      } 
+      else {
+        var stroke = new ol.style.Stroke({color: strokecolor, width : selected ? 10 : 5});
+        style.setFill(fill);
+        style.setStroke(stroke);
+    }
+      // if (selected){
+      //   style.setMaxResolution(this.map.getView().getResolutionForZoom(10));
+      // }
+    }
+    return [style];
+  }
+
+  public heatMapFilter(layer){
+    return layer.get('title')!="Carte de chaleur";
+  }
+
+  public getOsmTypeOfFeature(osmId : number, geometryType : string){
+    switch(geometryType){
+      case 'Point':
+        return 'node';
+        break;
+      case 'Line':
+      case 'Polygon':
+        if (osmId>0){
+          return 'way';
+        } else {
+          return 'relation'
+        }
+        break;
+    }
   }
 
 }

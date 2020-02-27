@@ -1,0 +1,130 @@
+<body>
+  <app-header></app-header>
+  <div class="container mainContent">
+    <div class="row">
+      <div class="d-none d-xl-block d-xs-none d-sm-none d-md-none d-lg-none bd-toc">
+        <nav id="navbar-example3" class="navbar navbar-light bg-light" style="position: fixed;right: 30px;">
+          <a class="navbar-brand" href="#"></a>
+          <nav class="nav nav-pills flex-column">
+            <a class="nav-link active" href="#suivi-changement">Le suivi de changement</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link ml-3 my-1" href="#changement">Qu'est-ce qu'un changement ?</a>
+              <a class="nav-link ml-3 my-1" href="#interet">Pourquoi faire du suivi de changement ?</a>
+              <a class="nav-link ml-3 my-1" href="#outil">Pourquoi cet outil ?</a>
+            </nav>
+            <a class="nav-link" href="#types-changements">Les types de changements</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link ml-3 my-1" href="#creation">Création</a>
+              <a class="nav-link ml-3 my-1" href="#ajout">Ajout</a>
+              <a class="nav-link ml-3 my-1" href="#modif-tag">Modification de tag(s)</a>
+              <a class="nav-link ml-3 my-1" href="#modif-geom">Modification de géométrie</a>
+              <a class="nav-link ml-3 my-1" href="#modif-tag-et-geom">Modification de tag(s) et de géométrie</a>
+              <a class="nav-link ml-3 my-1" href="#retrait">Retrait</a>
+              <a class="nav-link ml-3 my-1" href="#suppression">Suppression</a>
+              <a class="nav-link ml-3 my-1" href="#autre">Autre</a>
+            </nav>
+            <a class="nav-link" href="#aide-interpretation">Aide à l'interprétation</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link ml-3 my-1" href="#regroupement-changement">Regroupement des changements</a>
+              <a class="nav-link ml-3 my-1" href="#scission-chemin">Scission d'un chemin</a>
+            </nav>
+          </nav>
+        </nav>
+      </div>
+      <div style="max-width:80%" class="col-sm" *ngIf="changeTypesList">
+
+        <h1><a id="suivi-changement"></a>Le suivi de changement</h1>
+          <app-help-subsection ref="changement" header="Qu'est-ce qu'un changement ?">
+            Dans OpenStreetMap, un changement a lieu lorsqu'un objet est modifié dans la base de données mondiale d'OSM. Cet évènement intervient lorsqu'un objet est créé, supprimé, ou bien modifié.
+            Ainsi, dès lorsqu'un objet subit une quelconque action, il est modifié, et son numéro de version va augmenter.
+            <br>Chaque changement est contenu dans un <a target="_blank" href="https://wiki.openstreetmap.org/wiki/FR:Groupes_de_modifications">changeset (ou groupe de modifications)</a>, qui liste tous les objets modifiés par un utilisateur entre le moment où il a téléchargé les données et le moment où il remet en ligne les données modifiées. 
+          </app-help-subsection>
+
+          <app-help-subsection ref="interet" header="Pourquoi faire du suivi de changement ?">
+            A chaque instant, des objets sont modifiés dans OpenStreetMap, partout dans le monde et sur toutes les thématiques possibles. Il peut alors être intéressant de suivre l'évolution de la cartographie et des données sur une zone et/ou une thématique précise, pour, par exemple, conserver des données de bonne qualité. Avec les outils actuels, il devient compliqué de visualiser ces changements, notamment lorsque l'on veut filtrer ces changements un minimum. En effet, ces outils sont bien souvent basés sur des changesets, qui ne permettent pas de savoir précisement quels objets ont été modifiés.
+          </app-help-subsection> 
+          <app-help-subsection ref="outil" header="Pourquoi cet outil ?">
+          Ce portail permet d'effectuer du suivi de changement sur la France entière. Contrairement aux autres outils existants, il est possible de <b>visualiser les changements sur une large zone géographique en une seule requête</b>. Cela permet d'être indépendant par rapport aux API comme celle d'<a target="_blank" href="https://wiki.openstreetmap.org/wiki/API_v0.6">OpenStreetMap</a> ou d'<a target="_blank" href="http://www.overpass-api.de/">Overpass</a> notamment.
+          <br>
+          De plus, <b>les changements sont classés par thématique</b>, qui sont similaires à celles visibles sur le <a target="_blank" href="https://magosm.magellium.com/portail/">portail de magOSM</a>. Par rapport à l'analyse d'un changeset, cela permet de savoir où et quand sont intervenus les changements sur une thématique.
+          <br>
+          Enfin, <b>ces changements déjà catégorisés en 7 types de changements distincts</b>, ce qui en facilite la compréhension. Ces différents types sont détaillés ci-dessous.
+          </app-help-subsection>
+
+        <h1 id="types-changements">Les différents types de changements</h1>
+        Les changements peuvent être catégorisés en différents types décrits ci-dessous. Cela permet de connaître directement la nature du changement dans la plupart des cas.
+          <br><br>
+        <app-help-subsection header="Création" ref="creation" [color]="getColorForRef('creation')">
+            Objet qui n'existait pas dans OpenStreetMap, rajouté au cours de la période de temps sélectionnée, et qui entre dans la requête.
+        </app-help-subsection>
+
+        <app-help-subsection header="Ajout" ref="ajout" [color]="getColorForRef('ajout')">
+            Objet qui existait déjà dans OpenStreetMap au début de la période, mais qui n'entrait pas dans la requête, car :
+            <ul>
+              <li>soit il n'était pas contenu dans l'emprise géographique sélectionnée</li>
+              <li>soit il ne contenait pas les combinaisons d'attributs nécessaires pour appartenir à la thématique choisie</li>
+            </ul>
+        </app-help-subsection>
+
+        <app-help-subsection header="Modification de tag(s)" ref="modif-tag" [color]="getColorForRef('modif-tag')">
+            Objet présent dans la requête au début et à la fin de la période, qui a uniquement subi une ou des modification(s) d'attribut(s) (clé/valeur) n'affectant pas son appartenance à la thématique choisie
+        </app-help-subsection>
+               
+        <app-help-subsection header="Modification de géométrie" ref="modif-geom" [color]="getColorForRef('modif-geom')">
+            Objet présent dans la requête au début et à la fin de la période, qui a uniquement subi une ou des modification(s) de géométrie, tels que :
+            <ul>
+              <li>un déplacement</li>
+              <li>pour un way : un rajout ou une suppression de points</li>
+              <li>pour une relation : un rajout ou une suppression de membre(s)</li>
+            </ul>
+        </app-help-subsection>
+
+        <app-help-subsection ref="modif-tag-et-geom" header="Modification de tag(s) et de géométrie" [color]="getColorForRef('modif-tag-et-geom')">
+          Objet présent dans la requête au début et à la fin de la période, qui a subi une ou des modifications d'attributs <b>et</b> de géométrie. 
+        </app-help-subsection>
+
+        <app-help-subsection ref="retrait" header="Retrait" [color]="getColorForRef('retrait')">
+          Objet présent dans la requête au début de la période, mais plus à la fin, et toujours existant dans OpenStreetMap. De fait:
+          <ul>
+              <li>soit il n'est plus contenu dans l'emprise géographique sélectionnée</li>
+              <li>soit il ne contient plus les combinaisons d'attributs nécessaires pour appartenir à la thématique choisie</li>
+          </ul>
+        </app-help-subsection>
+
+        <app-help-subsection ref="suppression" header="Suppression" [color]="getColorForRef('suppression')">
+          Objet existant dans OpenStreetMap et présent dans la requête au début de la période, puis supprimé d'OpenStreetMap au cours de la période.
+        </app-help-subsection> 
+        
+        <app-help-subsection ref="autre" header="Autre" [color]="getColorForRef('autre')">
+            Objet n'ayant pas subi de modification de géométrie, ni d'attributs, mais dont la version a quand même augmenté. Quelques cas peuvent expliquer cette situation :
+            <ul>
+              <li>pour un way : un point appartenant à ce way a été remplacé par un autre point exactement au même endroit</li>
+              <li>pour une relation : un membre a été remplacé par un autre membre exactement au même endroit</li>
+              <li>un <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Change_rollback">revert</a> (aussi appelé "change rollback") : un changeset créé est annulé par la suite. Ainsi, il y a potentiellement des objets supprimés qui sont remis dans la base OSM : seul son numéro de version a changé</li>
+            </ul>
+        </app-help-subsection>
+
+        <h1 id="aide-interpretation">Aide à l'interprétation</h1>
+        La fiche d'information qui s'ouvre lorsqu'un objet est sélectionné, permet d'afficher les métadonnées liées au changement, ainsi que les tags et la géométrie de l'objet. Même avec ces différents éléments, il est parfois compliqué d'analyser le changement dans certains situations.
+        Voici quelques exemples qui ont pour but d'éclaircir certains cas courants :
+        
+        
+        <app-help-subsection ref="regroupement-changement" header="Regroupement des changements">
+          Si plusieurs changements interviennent sur un même objet au cours de la période, le changement affiché par défaut est la fusion des différents changements. 
+          Par exemple : si un objet est créé puis modifié, on indiquera une <b>création</b>.<br><br>
+          Il est ensuite possible de visualiser les changements intermédiaires dans le détail, les uns après les autres, grâce au double-curseur.
+        </app-help-subsection>
+
+        <app-help-subsection ref="scission-chemin" header="Scission d'un chemin">
+          C'est un cas qui arrive fréquemment sur un way. Un contributeur peut scinder le way afin de rajouter des attributs sur une portion (rajout d'un pont, par exemple).
+          Dans ce cas, on a alors : 
+          <ul>
+            <li>Le way initial qui subit une <b>modification de géométrie</b></li>
+            <li>Un nouveau way contigu à au way initial, qui est donc <b>créé</b></li>
+          </ul>
+        </app-help-subsection>
+      </div>
+    </div>
+  </div>
+</body>
+

@@ -1,0 +1,24 @@
+.mainContent {
+    color: #5a5a5a;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    position: unset;
+    left: 10%;
+    top: 10px;
+    font-family: Arial;
+    width: 80%;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+img.help{
+    max-width: 100%;
+}
+
+.navbar{
+    z-index: 1;
+}
+
+h1 {
+    color: gray;
+}

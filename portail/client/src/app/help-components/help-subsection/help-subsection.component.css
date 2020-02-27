@@ -1,0 +1,11 @@
+.content{
+    margin-bottom : 10px;
+}
+
+b.cercle {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 10px auto;
+    border-radius: 50%;
+  }
