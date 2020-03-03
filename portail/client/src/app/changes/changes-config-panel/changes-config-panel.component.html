@@ -35,6 +35,7 @@
       <div class=submitButton style="text-align:center;padding:5px">
         <button type="button" class="btn btn-success" (click)="onSubmit()">Lancer la recherche</button>
       </div>
+      <app-load-spinner *ngIf="searchingChanges"></app-load-spinner>
     </form>
 
     <div *ngIf="changesList && changesList.length < 1" class="alert alert-danger" role="alert">

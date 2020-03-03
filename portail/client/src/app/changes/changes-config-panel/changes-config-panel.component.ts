@@ -29,7 +29,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   //form
   public changesFilterForm : FormGroup;
   public criteriaFilter: any = {};
-
+  public searchingChanges: boolean = false;
   //data
   private thematicsList : Array<Thematic>;
   public categoryMap : Map<string,Array<Thematic>> = new Map<string,Array<Thematic>>();
@@ -84,6 +84,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   }
 
   public emitChanges(changesRequest : ChangesRequest){
+    this.searchingChanges=true;
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
@@ -99,6 +100,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     this.apiRequestService.searchChanges(data, options)
       .subscribe(
         (res) => {
+          this.searchingChanges=false;
           this.changesList = JSON.parse(res['_body']);
           console.log(this.changesList);
           this.mapService.addChanges(this.changesList);

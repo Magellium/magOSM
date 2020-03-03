@@ -33,6 +33,7 @@ import { ConfigService } from './service/config.service';
 import { HelpComponent } from './help-components/help/help.component';
 import { HelpChangeTypeComponent } from './help-components/help-subsection/help-subsection.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { LoadSpinnerComponent } from './utils/load-spinner/load-spinner.component';
 
 // Define the routes
 const ROUTES: Routes = [
@@ -82,6 +83,7 @@ const ROUTES: Routes = [
     ChangesHeaderComponent,
     HelpComponent,
     HelpChangeTypeComponent,
+    LoadSpinnerComponent,
   ],
   imports: [ 
     NguiAutoCompleteModule,
