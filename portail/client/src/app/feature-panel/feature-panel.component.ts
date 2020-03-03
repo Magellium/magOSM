@@ -169,7 +169,7 @@ export class FeaturePanelComponent implements OnInit {
   }
   dropdownMenuSelected(){
     if (!(document.getElementById("features_nearby_list").classList.contains('show'))){
-      _paq.push(['trackEvent', 'features_nearby_list_selected']);
+      _paq.push(['trackEvent', 'features_nearby_list_selected', true]);
     }
   }
 

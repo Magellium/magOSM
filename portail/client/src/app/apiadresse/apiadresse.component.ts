@@ -63,10 +63,8 @@ export class ApiAdresseComponent implements OnInit {
   }
 
   onSelect(event) {
-    this.citySelected.emit(this.selected);
-    
-    //TO_CHECK
-    _paq.push(['trackEvent', 'api_adresse', this.selected])
+    this.citySelected.emit(this.selected);    
+    _paq.push(['trackEvent', 'api_adresse', true])
   }
 
 

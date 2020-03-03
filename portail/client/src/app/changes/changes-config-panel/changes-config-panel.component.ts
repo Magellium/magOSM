@@ -106,11 +106,10 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
           if (this.changesList.length < 1){
             this.displayReport = false;
           } else {
-
             this.initReport();
           };
           //// Matomo
-          _paq.push(['trackEvent', 'changes_request', this.changesRequest.beginDate, this.changesRequest.endDate, this.selectedThematic.viewName, this.changesList.length]);
+          _paq.push(['trackEvent', 'change-thematic_search', this.selectedThematic.viewName]);
         });
   }
 

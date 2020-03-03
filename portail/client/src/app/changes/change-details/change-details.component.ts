@@ -86,7 +86,7 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
       }
     }
      //// Matomo
-     _paq.push(['trackEvent', 'changed_feature_selected'])
+     _paq.push(['trackEvent', 'change-feature_selected', true])
   }
 
   onSelect(feature){
@@ -262,5 +262,9 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   public getColor(changeTypeId : number){
     var changeType : ChangeType = this.changeTypesList.filter(x => x.id === changeTypeId)[0];
     return changeType.relatedColor.getRGBA();
+  }
+
+  public onExternalOSMToolSelected(tool_name: string){
+    _paq.push(['trackEvent', 'change-ext_osmtool_selected', tool_name])
   }
 }
