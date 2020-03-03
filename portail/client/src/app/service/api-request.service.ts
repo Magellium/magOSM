@@ -29,7 +29,7 @@ export class ApiRequestService {
     public configService : ConfigService) 
     { 
       this.configPromise = this.configService.getConfig().toPromise().then(config => {
-        this.baseUrl = config.WEBAPP_BASE_URL;
+        this.baseUrl = config.PARAMS[0].services_baseurl;
         return config;
     });
     }

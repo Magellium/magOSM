@@ -3,7 +3,7 @@
     "PARAMS":[
             {
                 "geoserver_baseurl": "https://magosm.magellium.com/geoserver",
-                "services_baseurl": "/services-webapp"
+                "services_baseurl": "http://localhost/services-webapp-magosm/"
             }
     ],
     "DEFAULTUSERCONTEXT":[
@@ -860,6 +860,5 @@
         {"osm_key":"description"},
         {"osm_key":"email"}
     ],
-    "DAYS_INTERVAL_FOR_CHANGES_MONITORING":30,
-    "WEBAPP_BASE_URL":"http://localhost/services-webapp-magosm/"
+    "DAYS_INTERVAL_FOR_CHANGES_MONITORING":30
 }
