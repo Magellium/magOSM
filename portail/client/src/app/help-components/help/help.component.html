@@ -8,9 +8,7 @@
           <nav class="nav nav-pills flex-column">
             <a class="nav-link active" href="#suivi-changement">Le suivi de changement</a>
             <nav class="nav nav-pills flex-column">
-              <a class="nav-link ml-3 my-1" href="#changement">Qu'est-ce qu'un changement ?</a>
-              <a class="nav-link ml-3 my-1" href="#interet">Pourquoi faire du suivi de changement ?</a>
-              <a class="nav-link ml-3 my-1" href="#outil">Pourquoi cet outil ?</a>
+              <a class="nav-link ml-3 my-1" href="#pourquoi">Pourquoi ce outil ?</a>
             </nav>
             <a class="nav-link" href="#types-changements">Les types de changements</a>
             <nav class="nav nav-pills flex-column">
@@ -33,22 +31,29 @@
       </div>
       <div style="max-width:80%" class="col-sm" *ngIf="changeTypesList">
 
-        <h1><a id="suivi-changement"></a>Le suivi de changement</h1>
-          <app-help-subsection ref="changement" header="Qu'est-ce qu'un changement ?">
-            Dans OpenStreetMap, un changement a lieu lorsqu'un objet est modifié dans la base de données mondiale d'OSM. Cet évènement intervient lorsqu'un objet est créé, supprimé, ou bien modifié.
-            Ainsi, dès lorsqu'un objet subit une quelconque action, il est modifié, et son numéro de version va augmenter.
-            <br>Chaque changement est contenu dans un <a target="_blank" href="https://wiki.openstreetmap.org/wiki/FR:Groupes_de_modifications">changeset (ou groupe de modifications)</a>, qui liste tous les objets modifiés par un utilisateur entre le moment où il a téléchargé les données et le moment où il remet en ligne les données modifiées. 
-          </app-help-subsection>
+        <h1><a id="suivi-changement"></a>Suivi de changement</h1>
 
-          <app-help-subsection ref="interet" header="Pourquoi faire du suivi de changement ?">
-            A chaque instant, des objets sont modifiés dans OpenStreetMap, partout dans le monde et sur toutes les thématiques possibles. Il peut alors être intéressant de suivre l'évolution de la cartographie et des données sur une zone et/ou une thématique précise, pour, par exemple, conserver des données de bonne qualité. Avec les outils actuels, il devient compliqué de visualiser ces changements, notamment lorsque l'on veut filtrer ces changements un minimum. En effet, ces outils sont bien souvent basés sur des changesets, qui ne permettent pas de savoir précisement quels objets ont été modifiés.
-          </app-help-subsection> 
-          <app-help-subsection ref="outil" header="Pourquoi cet outil ?">
-          Ce portail permet d'effectuer du suivi de changement sur la France entière. Contrairement aux autres outils existants, il est possible de <b>visualiser les changements sur une large zone géographique en une seule requête</b>. Cela permet d'être indépendant par rapport aux API comme celle d'<a target="_blank" href="https://wiki.openstreetmap.org/wiki/API_v0.6">OpenStreetMap</a> ou d'<a target="_blank" href="http://www.overpass-api.de/">Overpass</a> notamment.
-          <br>
-          De plus, <b>les changements sont classés par thématique</b>, qui sont similaires à celles visibles sur le <a target="_blank" href="https://magosm.magellium.com/portail/">portail de magOSM</a>. Par rapport à l'analyse d'un changeset, cela permet de savoir où et quand sont intervenus les changements sur une thématique.
-          <br>
-          Enfin, <b>ces changements déjà catégorisés en 7 types de changements distincts</b>, ce qui en facilite la compréhension. Ces différents types sont détaillés ci-dessous.
+          Cet outil permet de <b>suivre l'évolution de thématiques (écoles, bâtiments, routes ...) dans OpenStreetMap</b>, à l'échelle de la France Métropolitaine, sur les 30 derniers jours.
+          <br><br>
+          <app-help-subsection ref="pourquoi" header="Pourquoi cet outil ?">
+          Souvent dans l'écosystème OSM, on visualise les changements par le prisme de changeset (ou groupe de modification) : 
+          on sait que tel.le contribut.eur.rice a modifié 42 noeuds et 35 chemins dans une région donnée à telle heure, 
+          mais il est difficile de comprendre à quoi correspondent ces changements d'un point de vue thématique et quel est leur impact sur l'état de la cartographie.
+
+          On cherche ici à répondre à des questions simples comme :<br><br>
+
+          <ul>
+            <li>où et comment ont évolués les bâtiments en France ces dernières semaines ?</li>
+            <li>des magasins ont-ils été supprimés dans ma commune ?</li>
+            <li>y a-t-il de nouveaux sentiers de randonnée en Ariège ?</li>
+            <li>quelqu'un a-t-il touché au réseau routier dans tel quartier ?</li>
+            <li>combien d'écoles en France ont subies un changement d'attribut ?</li>
+          </ul>
+
+          De plus on cherche à simplifier la compréhension de modifications successive à l'échelle de l'objet
+          en indiquant le changement résultant. Par exemple, si un objet a été modifié 7 fois en un jour, on qualifiera le changement résultant de "Modification de géométrie"
+          et on proposera de visualiser la première et la dernière version.<br>
+
           </app-help-subsection>
 
         <h1 id="types-changements">Les différents types de changements</h1>
