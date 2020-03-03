@@ -27,7 +27,6 @@ import { ChangesDetailledMapComponent } from './changes/changes-detailled-map/ch
 import { ChangeDetailsComponent } from './changes/change-details/change-details.component';
 import { ChangesConfigPanelComponent } from './changes/changes-config-panel/changes-config-panel.component';
 import { ChangesMapComponent } from './changes/changes-map/changes-map.component';
-import { ChangesHeaderComponent } from './changes/changes-header/changes-header.component';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { ConfigService } from './service/config.service';
 import { HelpComponent } from './help-components/help/help.component';
@@ -80,7 +79,6 @@ const ROUTES: Routes = [
     ChangeDetailsComponent,
     ChangesConfigPanelComponent,
     ChangesMapComponent,
-    ChangesHeaderComponent,
     HelpComponent,
     HelpChangeTypeComponent,
     LoadSpinnerComponent,
