@@ -4,4 +4,5 @@
     border-radius: 6px;
     margin: 5px;
     margin-left: 13px;
+    z-index:1000;
   }
