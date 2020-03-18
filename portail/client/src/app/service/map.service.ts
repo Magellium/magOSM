@@ -303,7 +303,6 @@ export class MapService {
 
       var maxResolution = undefined;
       if (layerconfig.maxScaleDenominator) {
-
         maxResolution = this.getResolutionFromScale(layerconfig.maxScaleDenominator, this.map.getView().getProjection().getUnits());
       }
 
