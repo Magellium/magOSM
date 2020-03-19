@@ -48,14 +48,11 @@ export class MapComponent implements OnInit {
   //Pour utiliser la variable config dans le html
   config = config;
 
-
-
   @Input('userContext') userContext: UserContext;
 
   //commenter les bonnes lignes dans le fichier de config selon qu'on est en local ou en intégration
   private geoserver_baseurl =
   config.PARAMS[0].geoserver_baseurl;
-
 
   //paramètres map
   private map: any;
