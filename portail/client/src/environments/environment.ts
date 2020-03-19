@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  geoserver_baseurl: "http://172.30.0.52/geoserver",
+  services_baseurl: "http://localhost/services-webapp-magosm/"
 };

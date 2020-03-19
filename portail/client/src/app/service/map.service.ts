@@ -7,6 +7,7 @@ import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
 import { ConfigService } from './config.service';
 import { a } from '@angular/core/src/render3';
 import { Color } from 'app/model/ChangesClasses/Color';
+import { environment } from '../../environments/environment';
 
 declare var ol: any;
 declare var _paq: any;
@@ -234,7 +235,7 @@ export class MapService {
     if (this.layers[id] == null) {
 
       var layerSource = new ol.source.TileWMS(({
-        url: this.config.PARAMS[0].geoserver_baseurl + '/wms?',
+        url: environment.geoserver_baseurl + '/wms?',
         crossOrigin: 'anonymous',
         params: { 'LAYERS': layername },
         attributions: [new ol.Attribution({
@@ -294,7 +295,7 @@ export class MapService {
         matrixSet: matrixSet
       });
       // then rewrite some opts
-      options.urls[0] = this.config.PARAMS[0].geoserver_baseurl + "/gwc/service/wmts?'";
+      options.urls[0] = environment.geoserver_baseurl + "/gwc/service/wmts?'";
       options.attributions = [new ol.Attribution({
         html: '' +
           '<a href="http://magosm.magellium.com/aide.html#ogc-services-tos">© Magellium pour les flux WMS/WFS</a>'
@@ -343,9 +344,9 @@ export class MapService {
       return;
     }*/
 
-    let url = this.config.PARAMS[0].geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
-    //let url = config.PARAMS[0].geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=50000&outputFormat=application%2Fvnd.google-earth.kml%2Bxml&typeName="+layer.layername;
-    //let url = config.PARAMS[0].geoserver_baseurl + "/wms/kml?layers="+layer.layername;
+    let url = environment.geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
+    //let url = environment.geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=50000&outputFormat=application%2Fvnd.google-earth.kml%2Bxml&typeName="+layer.layername;
+    //let url = environment.geoserver_baseurl + "/wms/kml?layers="+layer.layername;
 
     //piwik
     _paq.push(['trackEvent', 'KML_download', layer.layername])
@@ -371,9 +372,9 @@ export class MapService {
       return;
     }*/
 
-    //let url = config.PARAMS[0].geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
-    let url = this.config.PARAMS[0].geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=500000&outputFormat=shape-zip&typeName=" + layer.layername + "&srsName=EPSG:3857&bbox=" + bbox;
-    //let url = config.PARAMS[0].geoserver_baseurl + "/wms/kml?layers="+layer.layername;
+    //let url = environment.geoserver_baseurl + "/wms?service=wms&request=GetMap&version=1.1.1&format=application/vnd.google-earth.kml+xml&layers=" + layer.layername /*+ "&styles=" + layer.selectedStyle.style*/ + "&height=2048&width=2048&transparent=false&srs=EPSG:3857&format_options=AUTOFIT:true;KMATTR:true;KMPLACEMARK:false;KMSCORE:40;MODE:download;SUPEROVERLAY:false&bbox=" + bbox;
+    let url = environment.geoserver_baseurl + "/wfs?request=GetFeature&version=2.0.0&count=500000&outputFormat=shape-zip&typeName=" + layer.layername + "&srsName=EPSG:3857&bbox=" + bbox;
+    //let url = environment.geoserver_baseurl + "/wms/kml?layers="+layer.layername;
 
     //piwik
     _paq.push(['trackEvent', 'SHP_download', layer.layername])

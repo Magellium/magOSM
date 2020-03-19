@@ -6,7 +6,7 @@ import { Thematic } from 'app/model/ChangesClasses/Thematic';
 import { ConfigService } from './config.service';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/mergeMap'
-declare var config : any;
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class ApiRequestService {
     public configService : ConfigService) 
     { 
       this.configPromise = this.configService.getConfig().toPromise().then(config => {
-        this.baseUrl = config.PARAMS[0].services_baseurl;
+        this.baseUrl = environment.services_baseurl;
         return config;
     });
     }
