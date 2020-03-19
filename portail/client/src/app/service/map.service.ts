@@ -288,10 +288,13 @@ export class MapService {
     let matrixSet = "EPSG:3857";
 
     if (this.layers[id] == null) {
+      // first, set WMTS options from capabilities
       var options = ol.source.WMTS.optionsFromCapabilities(this.wmtsResult, {
         layer: layername,
         matrixSet: matrixSet
       });
+      // then rewrite some opts
+      options.urls[0] = this.config.PARAMS[0].geoserver_baseurl + "/gwc/service/wmts?'";
       options.attributions = [new ol.Attribution({
         html: '' +
           '<a href="http://magosm.magellium.com/aide.html#ogc-services-tos">© Magellium pour les flux WMS/WFS</a>'
