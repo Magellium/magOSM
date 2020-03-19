@@ -4,6 +4,7 @@ import { Layer } from '../../model/Layer';
 import { MapService } from '../../service/map.service';
 import { LayerChangeService } from '../../service/layer-change.service';
 import { UserContext } from '../../model/UserContext';
+import { environment } from '../../../environments/environment';
 
 declare var config: any;
 declare var $: any;
@@ -82,7 +83,7 @@ export class LayerTreeComponent implements OnInit {
 
   onSldDownload(event, variable: Layer): void {
     event.stopPropagation();
-    window.open(variable.sld_url, "_blank");
+    window.open(environment.geoserver_baseurl+variable.sld_path, "_blank");
 
   }
   getState(feature){
