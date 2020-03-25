@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { Http, RequestOptions, RequestMethod, Headers} from '@angular/http';
+import { Http, RequestOptions, RequestMethod, Headers,Response} from '@angular/http';
 import { Thematic } from '../../model/ChangesClasses/Thematic'
 import { ChangesRequest } from 'app/model/ChangesClasses/ChangesRequest';
 import { MapService } from '../../service/map.service';
@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Change } from 'app/model/ChangesClasses/Change';
 import { IMyDrpOptions, IMyDateRange } from 'mydaterangepicker';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
+import { cp } from '@angular/core/src/render3';
 
 declare var $: any;
 declare var config: any;
@@ -38,6 +39,9 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   public changesList : Array<Change>;
   public displayReport : boolean = false;
 
+  //to ask confirmation to user before showing results
+  public tooMuchResult:boolean=false;
+  public responseSizeInMo:number;
   //report
   public reportInfos : Map<ChangeType, number> = new Map();
 
@@ -75,12 +79,18 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
 
   onSubmit(){
     if (this.formValidation()){
+      this.clearResults();
       this.getChangesRequestValues();
       console.log(this.selectedThematic);
       this.changesRequest.bbox = this.mapService.getBoundingBox();
       console.log(this.changesRequest);
       this.emitChanges(this.changesRequest);
     }
+  }
+  showDatas(){
+    this.tooMuchResult=false;
+    this.mapService.addChanges(this.changesList);
+    this.initReport();
   }
 
   public emitChanges(changesRequest : ChangesRequest){
@@ -99,13 +109,22 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     this.apiRequestService.thematic = this.selectedThematic;
     this.apiRequestService.searchChanges(data, options)
       .subscribe(
-        (res) => {
+        (res:Response) => {
+          console.log(res['_body'].length/(1024*1024)+" Mo");
+          this.responseSizeInMo=Number((res['_body'].length/(1024*1024)).toFixed(2));
           this.searchingChanges=false;
           this.changesList = JSON.parse(res['_body']);
           console.log(this.changesList);
-          this.mapService.addChanges(this.changesList);
+          if(this.responseSizeInMo<config.MAX_RESPONSE_SIZE_WITHOUT_WARNING_IN_MO){
+            this.mapService.addChanges(this.changesList);
+            this.tooMuchResult=false;
+          }
+          else{
+            this.tooMuchResult=true;
+          }
+         
           
-          if (this.changesList.length < 1){
+          if (this.changesList.length < 1  || this.tooMuchResult){
             this.displayReport = false;
           } else {
             this.initReport();
@@ -179,7 +198,12 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     this.reportInfos = this.mapService.numberOfChangeByType;
     this.displayReport = true;
   }
-
+  clearResults(){
+    this.reportInfos = new Map();
+    this.displayReport = false;
+    this.changesList = undefined;
+    this.mapService.addChanges([]);
+  }
   public formValidation(){
     if (this.changesFilterForm.controls.thematic.value == null){
       alert('Renseignez une thématique !')

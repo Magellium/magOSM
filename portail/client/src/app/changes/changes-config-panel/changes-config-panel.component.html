@@ -41,8 +41,14 @@
     <div *ngIf="changesList && changesList.length < 1" class="alert alert-danger" role="alert">
       Aucun changement n'a été trouvé pour cette requête.
     </div>
-    <div *ngIf="changesList && changesList.length > 0" class="alert alert-success" role="alert">
+    <div *ngIf="changesList && changesList.length > 0 && !tooMuchResult" class="alert alert-success" role="alert">
       {{changesList.length}} résultats ont été trouvés
+    </div>
+    <div *ngIf="changesList && tooMuchResult" class="alert alert-warning" style="text-align:center;padding:5px;font-size:80%">
+      <i class='fa fa-warning' aria-hidden='true'></i>&nbsp;Attention, la taille de la réponse ({{responseSizeInMo}} Mo) est importante et  les résultats risquent d'être longs à afficher.<br>
+      Vous pouvez zoomer pour réduire la zone de recherche ou limiter la plage de dates.<br>
+      <button type="button" class="btn btn-small btn-success" (click)="showDatas()">Poursuivre</button>
+
     </div>
   </div>
 
