@@ -45,8 +45,8 @@
       {{changesList.length}} résultats ont été trouvés
     </div>
     <div *ngIf="changesList && tooMuchResult" class="alert alert-warning" style="text-align:center;padding:5px;font-size:80%">
-      <i class='fa fa-warning' aria-hidden='true'></i>&nbsp;Attention, la taille de la réponse ({{responseSizeInMo}} Mo) est importante et  les résultats risquent d'être longs à afficher.<br>
-      Vous pouvez zoomer pour réduire la zone de recherche ou limiter la plage de dates.<br>
+      <i class='fa fa-warning' aria-hidden='true'></i>&nbsp;La taille de la réponse ({{responseSizeInMo}} Mo) est importante et  les résultats risquent d'être longs à afficher.<br>
+      Vous pouvez zoomer pour réduire la zone de recherche ou limiter la plage de dates, puis relancer la recherche ou poursuivre le chargement des données.<br>
       <button type="button" class="btn btn-small btn-success" (click)="showDatas()">Poursuivre</button>
 
     </div>
