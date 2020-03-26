@@ -68,6 +68,17 @@ Exemples pour :
 * une requête dans la table "line" avec osm_id<0 : [Autoroutes - France métropolitaine](http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/bf7507c1a2b545ec941c98dbe02d6b0c)
 * une requête dans la table "polygon" : [Parcs Naturels Régionaux - France métropolitaine](http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/a3b4c3fea4234b769083983c57db4d2e)
 
+## Rajouter la couche dans le fichier de configuration
+S'inspirer d'un couche déjà existante. Le fichier est [ici](portail/client/src/assets/maps/default.json).
+Quelques remarques :
+* L'attribut ```md_url``` ne peut pas être complété tant que nous n'avons pas ajouté la couche dans GeoServer.
+* L'attribut ```main_feature_infos``` permet d'ajouter les **informations importantes sur l'objet qui vont s'afficher sur le panneau de gauche** lorsqu'un objet est sélectionné sur la carte. 
+Il existe 4 catégories ```high```, ```medium```, ```low```, et ```no```. Pour les trois premières, seul UN tag de la liste des ```sub_tags``` va réellement s'afficher : c'est celui qui aura la valeur de priorité la plus importante ET qui est contenu dans la liste des tags de l'objet sélectionné.
+Pour la catégorie ```no```, tous les tags listés seront affichés.
+  * Les valeurs de ```priority``` doivent débuter à 1, l'ordre n'est pas important mais il ne faut pas sauter d'entier. Par exemple, une liste avec ```"priority":1``` puis ```"priority":3``` sans un ```"priority":2``` n'est pas valide.
+  * Il n'y a pas de priorité pour ```no```, les tags s'affichent dans l'ordre de la liste.
+  * Rajouter si nécessaire des labels afin de mieux comprendre les valeurs qui seront affichées.
+
 ## Pull request
 Pour réaliser une pull request via l'interface Web de Github :
 * Forker le dépôt magOSM via le [bouton en haut à droite](https://github.com/magellium/magosm) afin de créer une copie personnelle du dépôt de code magOSM
