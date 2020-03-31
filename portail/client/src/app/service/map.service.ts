@@ -569,7 +569,14 @@ export class MapService {
           element = this.getChangesMergeForOneFeature(featuresWithSameOsmId);
         }
         let newFeature = this.setFeature(element);
-        featureLayers.get(element.changeType).push(newFeature);
+        let changeListByType=featureLayers.get(element.changeType);
+        if(!changeListByType){
+          console.error(element.changeType+ " not found in list.voir element suivant:");
+          console.log(element);
+        }else{
+          changeListByType.push(newFeature);
+        }
+        
         alreadyTested.push(osmId); 
       } 
     });
