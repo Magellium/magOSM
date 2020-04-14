@@ -1,4 +1,6 @@
 # dependencies
 /node_modules
 
-/dist
+# build artefacts
+/magosm-portail-dist-integ
+/magosm-portail-dist-prod
