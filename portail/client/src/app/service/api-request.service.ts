@@ -18,6 +18,7 @@ export class ApiRequestService {
   private changesSuffix = 'changesrequest';
   private changeTypesSuffix = 'change_types';
   private featurechangesSuffix = 'featurechangesrequest';
+  private lastChangeSuffix ='lastpolygonchanged';
   public beginDate : Date;
   public endDate : Date;
   public thematic : Thematic;
@@ -37,6 +38,12 @@ export class ApiRequestService {
   public searchThematics(): Observable<any> {
     return Observable.fromPromise(this.configPromise).mergeMap((config) => {
       return this.http.get(this.baseUrl + this.thematicsSuffix)
+    });
+  };
+
+  public getLastChange(): Observable<any> {
+    return Observable.fromPromise(this.configPromise).mergeMap((config) => {
+      return this.http.get(this.baseUrl + this.lastChangeSuffix)
     });
   };
 

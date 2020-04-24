@@ -29,4 +29,6 @@ public interface ChangedPolygonRepository extends JpaRepository<ChangedPolygon, 
 			+ "And p.thematic.id = :thematic")
 	List<ChangedPolygon> findByOsmIdByPeriod(@Param("osm_id") BigInteger osm_id, @Param("date1") Date date1, @Param("date2") Date date2, @Param("thematic") Integer thematic);
 
+	
+	ChangedPolygon findFirstByOrderByTimestampDesc();
 }
