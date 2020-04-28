@@ -50,6 +50,16 @@ public class ChangedObjectController {
 	@Autowired
 	private ThematicRepository thematicRepository;
 
+	
+	@GetMapping(value="/lastpolygonchanged", produces = "application/json")
+	public @ResponseBody ChangedPolygon getLastPolygonChangeRecorded(){
+		
+		ChangedPolygon polygon = changedPolygonRepository.findFirstByOrderByTimestampDesc();
+		
+		return polygon;	
+	}
+	
+	
 	@GetMapping(value="/changedobjects/{id}", produces = "application/json")
 	public @ResponseBody List<ChangedObject> getAllChangedObjectsByThematic(@PathVariable Integer id){
 		Optional<Thematic> thematic = thematicRepository.findById(id);

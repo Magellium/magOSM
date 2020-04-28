@@ -45,12 +45,18 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   //report
   public reportInfos : Map<ChangeType, number> = new Map();
 
-
+  lastChange;
   constructor(public http: Http, public mapService: MapService, public apiRequestService : ApiRequestService) { 
     
   }
 
   ngOnInit() {
+
+    
+    this.apiRequestService.getLastChange().subscribe(data => {
+      this.lastChange = JSON.parse(data['_body']);
+      this.lastChange = new Date(this.lastChange.timestamp);
+    });
     this.apiRequestService.searchThematics().subscribe(data => {
       this.thematicsList = JSON.parse(data['_body']);
       console.log(this.thematicsList);
