@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MapService } from '../service/map.service';
 import { LayerChangeService } from '../service/layer-change.service';
 import { UserContext } from '../model/UserContext';
+import { environment } from '../../environments/environment';
 
 declare var proj4: any;
 declare var $: any;
@@ -48,14 +49,10 @@ export class MapComponent implements OnInit {
   //Pour utiliser la variable config dans le html
   config = config;
 
-
-
   @Input('userContext') userContext: UserContext;
 
   //commenter les bonnes lignes dans le fichier de config selon qu'on est en local ou en intégration
-  private geoserver_baseurl =
-  config.PARAMS[0].geoserver_baseurl;
-
+  private geoserver_baseurl = environment.geoserver_baseurl;
 
   //paramètres map
   private map: any;
@@ -152,7 +149,7 @@ export class MapComponent implements OnInit {
     this.mapService.addLayer('world', 'assets/data/countries_ecem.geojson');
     var parser = new ol.format.WMTSCapabilities();
     let self = this;
-    this.http.get(config.PARAMS[0].geoserver_baseurl + '/gwc/service/wmts?REQUEST=GetCapabilities', {responseType: 'text'})
+    this.http.get(environment.geoserver_baseurl + '/gwc/service/wmts?REQUEST=GetCapabilities', {responseType: 'text'})
     .subscribe(
       
       data => {

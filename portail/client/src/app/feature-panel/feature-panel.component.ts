@@ -88,6 +88,8 @@ export class FeaturePanelComponent implements OnInit {
     // It's NOT easy because : polygon are simplified so the geomType is a Point. Some relations have a positive osm_id and route=*, the other relation have a negative osm_id
     if (clefs.indexOf('osm_type') >= 0) {
       this.osm_type = this.selectedFeature.get('osm_type');
+    } else { 
+      this.osm_type = "way";
     }
     if ((clefs.indexOf("route") >= 0) || this.selectedFeature.get('osm_id') < 0) {
           this.osm_type = "relation";
@@ -167,7 +169,7 @@ export class FeaturePanelComponent implements OnInit {
   }
   dropdownMenuSelected(){
     if (!(document.getElementById("features_nearby_list").classList.contains('show'))){
-      _paq.push(['trackEvent', 'features_nearby_list_selected']);
+      _paq.push(['trackEvent', 'features_nearby_list_selected', true]);
     }
   }
 

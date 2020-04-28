@@ -1,0 +1,81 @@
+<div class="body">
+  <div>
+    <div class="card-header p-2 text-center" style="word-wrap: break-word;">
+        <b>Rechercher des changements</b>
+    </div>
+    <form [formGroup]="changesFilterForm" class="container" novalidate>
+      <div class="form-group">
+        <label for="mydaterange" style="margin-top:5px">Période de temps</label>
+        <my-date-range-picker id="mydaterange" name="mydaterange" placeholder="Dates de début et de fin"
+          [options]="myDateRangePickerOptions" [selDateRange]="model" formControlName="dates" required></my-date-range-picker>
+      </div>
+      <div class="form-group">
+        <label for="thematicSelection">Thématique</label>
+        <select class="custom-select mr-sm-2" id="thematicSelection" formControlName="thematic" required>
+          <ng-container *ngFor="let category of categoryMap | keyvalue">
+            <option class="mb-2 bg-secondary text-white" disabled>{{category.key}}</option>
+            <ng-container *ngFor="let thematic of category.value">
+              <option value="{{thematic.id}}">{{thematic.name}}</option>
+            </ng-container>
+          </ng-container>
+        </select>
+        <div *ngIf="thematic.invalid && (thematic.dirty || thematic.touched)" class="alert alert-danger">
+          <div *ngIf="thematic.errors.required">
+            Sélectionnez une thématique
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="zone">Emprise géographique</label>
+        <div id="zone" style="font-size:0.8rem; margin-left:10px;">
+          Déplacez-vous sur la carte pour sélectionner la zone de recherche
+        </div>
+      </div>
+      <div class=submitButton style="text-align:center;padding:5px">
+        <button type="button" class="btn btn-success" (click)="onSubmit()">Lancer la recherche</button>
+      </div>
+
+      <app-load-spinner *ngIf="searchingChanges"></app-load-spinner>
+      <div  style="font-size:80%;text-align:center;padding:5px" *ngIf="lastChange">
+        <i>Dernière mise à jour le {{lastChange.toLocaleString('fr-FR', {timeZone: 'UTC'})}}</i>
+      </div>
+    </form>
+
+    <div *ngIf="changesList && changesList.length < 1" class="alert alert-danger" role="alert">
+      Aucun changement n'a été trouvé pour cette requête.
+    </div>
+    <div *ngIf="changesList && changesList.length > 0 && !tooMuchResult" class="alert alert-success" role="alert">
+      {{changesList.length}} résultats ont été trouvés
+    </div>
+    <div *ngIf="changesList && tooMuchResult" class="alert alert-warning" style="text-align:center;padding:5px;font-size:80%">
+      <i class='fa fa-warning' aria-hidden='true'></i>&nbsp;La taille de la réponse ({{responseSizeInMo}} Mo) est importante et  les résultats risquent d'être longs à afficher.<br>
+      Vous pouvez zoomer pour réduire la zone de recherche ou limiter la plage de dates, puis relancer la recherche ou poursuivre le chargement des données.<br>
+      <button type="button" class="btn btn-small btn-success" (click)="showDatas()">Poursuivre</button>
+
+    </div>
+  </div>
+
+  <div *ngIf="displayReport" id="report" style="border-top: 1px solid rgba(253, 159, 159, 0.125);">
+      <div class="card-header p-2 text-center" style="word-wrap: break-word;">
+          <b>Récapitulatif</b>
+      </div>
+      <div style="text-align:center; font-size:0.8em">
+        Du {{changesRequest.beginDate.toLocaleString('fr-FR', {timeZone: 'UTC'})}}
+         au {{changesRequest.endDate.toLocaleString('fr-FR', {timeZone: 'UTC'})}}
+      </div>
+    <table style="border-left : 5px;max-height:100px;">
+      <tr>
+        <th style="padding-left:5px">Catégorie</th>
+        <th style="text-align:center;">Nombre d'entités</th>
+      </tr>
+      <tr *ngFor="let type of reportInfos | keyvalue" class="reportTable">
+        <td class="categorie">
+            <a>{{type.key.short_name}}</a>
+            <span [routerLink]="['/changements-aide']" fragment="{{type.key.ref}}" class="metadata-circle" title="Description sur la page d'aide"><b>?</b></span>
+        </td>
+        <td style="text-align:center">{{type.value}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+<div class="card row active" id="detailspanel">
+    <div id="details-panel-nav" style="width:100%;">
+        <a id="detailspanel-close" href="#/changements" class="btn btn-outline-secondary btn-sm toggle">
+            <b class="glyphicon glyphicon-remove">X</b>
+        </a>
+        <!-- Title -->
+        <div class="card-header p-2 text-center" role="tab" id="headingDetailsPanel" style="word-wrap: break-word;">
+            <b>Informations sur l'objet</b>
+        </div>
+
+        <div *ngIf="selectedFeatures.length>1" id="featuresNearbyArray">
+            <div class="dropdown">
+                <button class="btn btn-secondary btn-lg btn-block btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" 
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:0.8em;">
+                    <a>{{selectedFeatures.length-1}} élément(s) à proximité</a> <!-- -1 because the selectedFeature is in the selectedFeatureS -->
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <ng-container *ngFor="let feature of selectedFeatures">
+                        <button *ngIf="feature != selectedFeature" class="dropdown-item" (click)="onSelect(feature)">
+                            <span style="text-align:left;float:left; text-transform : capitalize;">{{this.mapService.getOsmTypeOfFeature(feature.get('osmId'), feature.get('geom_type'))}} {{feature.get('osmId') > 0 ? feature.get('osmId') : feature.get('osmId')*(-1) }}</span>
+                            <div style="text-align:right;float:right;" class="cercle" [ngStyle]="{'background-color' : getColor(feature.get('changeType'))}"></div>
+                        </button>
+                        <!-- [ngStyle]="{'background-color': changeTypesList.filter(x => x.id === feature.get('changeType'))[0].relatedColor.getRGBA()}" -->
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="detailsContainer" *ngIf="mainChange" style="position:relative;">
+        <div style="text-transform : capitalize;">
+            <p style="text-align: left; width:50%; display: inline-block;">
+                <a style="font-size:1.5rem;margin-left:10px;margin-right:5px;"><b>{{osmType}} {{osmId}}</b></a>
+                <a class="logo" (click)="onExternalOSMToolSelected('osmDotOrg_obj')" title="Voir l'objet sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/{{osmType}}/{{osmId}}"><img src="assets/images/osm_logo_25px.png"></a>
+            </p>
+
+            <p style="text-align: right; width:50%;  display: inline-block;">
+                <a (click)="onExternalOSMToolSelected('osmHistBrowser')" title="Comparer les différentes versions sur OSM History Browser" target="_blank" href="http://osm.virtuelle-loipe.de/history/?type={{osmType}}&ref={{osmId}}"><span class="badge badge-info">History Browser</span></a>
+                <a (click)="onExternalOSMToolSelected('osmHistViewer')" title="Comparer et visualiser les différentes versions sur OSM History Viewer" target="_blank" href="https://pewu.github.io/osm-history/#/{{osmType}}/{{osmId}}"><span class="badge badge-info">History Viewer</span></a>
+            </p>
+        </div>
+
+        <div class="custom-slider" style="width:90%;margin: 0px auto 5px auto">
+            <ng5-slider [hidden]="!displaySlider" 
+                [(value)]="minValue"
+                [(highValue)]="maxValue"
+                [options]="options"
+                (userChangeEnd)="onUserChangeEnd($event)"
+                [manualRefresh]="manualRefresh"
+                style="margin-bottom:30px;">
+            </ng5-slider>
+        </div>
+        
+
+            <div id="top_infos" style="background-color: rgba(255,255,255,0.3);">
+
+                <div id="changeType">
+                    <div *ngIf="noChangeInInterval; else badge" class="alert alert-danger" role="alert">
+                            Aucun changement dans l'intervalle considéré
+                    </div>
+                    <ng-template #badge>
+                        <h4><span class="badge badge-secondary" [ngStyle]="{'background-color': changeType.relatedColor.getRGBA()}">{{changeType.name}}</span></h4>
+                    </ng-template>
+                </div>
+
+                <app-changes-detailled-map
+                [hidden]="!userContext"
+                [userContext]="userContext"
+                [mainChange]="mainChange"
+                [changeTypesList]="changeTypesList"
+                id="MapChangement">
+                </app-changes-detailled-map>
+
+
+                <table class="table table-bordered" style="width:97%;line-height:0.8em;margin: 2px auto 5px auto">
+                    <colgroup>
+                        <col style="width:50%;">
+                        <col style="width:50%;">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Dernier timestamp (UTC)</th>
+                            <td>{{timestampDate.toLocaleString('fr-FR', {timeZone: 'UTC'})}}</td>
+                        </tr>
+                        <tr *ngIf="lastUser">
+                            <th style="vertical-align: middle;">Dernier user</th>
+                            <td>
+                                <a>{{lastUser}}</a>
+                                <a class="logo" (click)="onExternalOSMToolSelected('osmDotOrg_user')" title="Voir l'utilisateur sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/user/{{lastUser}}"><img src="assets/images/osm_logo_25px.png"></a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="lastChangeset" >
+                            <th>Dernier changeset
+                                <a class="metadata-circle" target="_blank" href="https://wiki.openstreetmap.org/wiki/FR:Groupes_de_modifications" title="Voir la définition sur le wiki"><b>?</b></a>
+                            </th>
+                            <td>
+                                <a>{{lastChangeset}}</a>
+                                <a class="logo" (click)="onExternalOSMToolSelected('osmDotOrg_chset')" title="Voir le changeset sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/changeset/{{lastChangeset}}"><img src="assets/images/osm_logo_25px.png"></a>
+                                <a class="logo" (click)="onExternalOSMToolSelected('osmCha')" title="Analyse du changeset sur OSMCha" target="_blank" href="https://osmcha.mapbox.com/changesets/{{lastChangeset}}/"><img src="https://osmcha.mapbox.com/favicon.ico" style="height:25px;width:25px;"></a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="transitionalChangesetMap && transitionalChangesetMap.size > 0">
+                            <th>Changeset(s) intermédiaire(s)
+                                <a class="metadata-circle" target="_blank" href="https://wiki.openstreetmap.org/wiki/FR:Groupes_de_modifications" title="Voir la définition sur le wiki"><b>?</b></a>
+                            </th>
+                            <td>
+                                <div *ngFor="let changeset of transitionalChangesetMap | keyvalue ">
+                                    <a>v{{changeset.key}} : {{changeset.value}}</a>
+                                    <a class="logo" (click)="onExternalOSMToolSelected('osmDotOrg_chset')" title="Voir le changeset sur openstreetmap.org" target="_blank" href="https://www.openstreetmap.org/changeset/{{changeset.value}}"><img src="assets/images/osm_logo_25px.png"></a>
+                                    <a class="logo" (click)="onExternalOSMToolSelected('osmCha')" title="Analyse du changeset sur OSMCha" target="_blank" href="https://osmcha.mapbox.com/changesets/{{changeset.value}}/"><img src="https://osmcha.mapbox.com/favicon.ico" style="height:25px;width:25px;"></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table class="table table-hover table-bordered" id="tags">
+                <colgroup>
+                    <col style="width:30%">
+                    <col *ngIf="mainChange.versionOld" style="width:35%;">
+                    <col *ngIf="mainChange.versionNew" style="width:35%;">
+                </colgroup>
+                <thead>
+                    <tr style="text-align: center">
+                        <th>Version</th>
+                        <th *ngIf="mainChange.versionOld">{{mainChange.versionOld}}</th>
+                        <th *ngIf="mainChange.versionNew">{{mainChange.versionNew}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tag of tagsList" [ngClass]="getHTMLTableClass(tag)">
+                        <th>{{tag.key}}</th>
+                        <td *ngIf="mainChange.versionOld">{{tag.valueOld ? tag.valueOld.replace(deleteDoubleApostrophe,"'") : ""}}</td>
+                        <td *ngIf="mainChange.versionNew">{{tag.valueNew ? tag.valueNew.replace(deleteDoubleApostrophe,"'") : ""}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

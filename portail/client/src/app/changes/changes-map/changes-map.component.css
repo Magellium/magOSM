@@ -1,0 +1,53 @@
+.map {
+	height: 100vh;
+	width: 100vw;
+}
+
+#mouse-position-2, #layername, #layerswitcher {
+	padding: 1px 5px;
+	border-radius: 3px;
+	display: inline-block;
+	color: #444;
+	background: rgba(255, 255, 255, 0.6);
+}
+
+#mouse-position-2{
+	position:absolute;
+	left: 165px;
+	bottom: 10px;
+	font-size: 0.7em;
+}
+
+#layerswitcher {
+	position:absolute;
+	right:5px;
+	top:5px;
+	line-height:1.2;
+}
+
+.panelSwitcherLayerName{
+	padding-left:5px; 
+	font-size:0.8em;
+}
+
+b.cercle {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 2px auto;
+  border-radius: 50%;
+}
+
+app-apiadresse{
+	position:absolute;
+	top:10px;
+	left:160px;
+}
+
+#featureDetailsPanel{
+	position:absolute;
+	right:0px;
+	top:0px;
+	width: 500px;
+	height: 100vh;
+}

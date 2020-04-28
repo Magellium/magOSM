@@ -1,0 +1,161 @@
+#detailspanel-close.toggle {
+    position:absolute;
+    right:0px;
+    margin: 5px 5px 0 0;
+    line-height: .5;
+}
+
+/* The panel is hidden when the close button is pushed */
+#detailspanel {
+    margin-right: -600px;
+    right: 0;
+    top: 0vw;
+    width: 600px;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    z-index: 1000;
+    transition: all 0.5s ease-in 0s;
+    -webkit-transition: all 0.5s ease-in 0s;
+    -moz-transition: all 0.5s ease-in 0s;
+    -ms-transition: all 0.5s ease-in 0s;
+    -o-transition: all 0.5s ease-in 0s;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+#detailspanel.active {
+    right: 600px;
+    width: 600px;
+    transition: all 0.5s ease-out 0s;
+    -webkit-transition: all 0.5s ease-out 0s;
+    -moz-transition: all 0.5s ease-out 0s;
+    -ms-transition: all 0.5s ease-out 0s;
+    -o-transition: all 0.5s ease-out 0s;
+  }
+
+#changeType, #dropdownMenuButton{
+  text-align:center;
+  /* right:2%; */
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+  width:97%;
+}
+
+.dropdown-menu{
+  width:97%;
+  /* text-align:center; */
+}
+
+.cercle {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin : 5px 20px auto 5px;
+  }
+
+.metadata-circle {
+  cursor:pointer;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 10px;
+  color: #fff;
+  line-height: 12px;
+  text-align: center;
+  background: #7092be;
+}
+
+table th{
+  vertical-align: middle;
+
+}
+
+table#tags thead .th{
+  text-align:center;
+}
+
+.logo{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+table#tags{
+  width:97%;
+  line-height:0.8em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom:1px;
+  word-break: break-word;
+  hyphens:auto;
+}
+
+a[href]{
+  padding-left:2px;
+  padding-right:2px;
+}
+  
+  /* slider */
+.custom-slider .ng5-slider .ng5-slider-tick {
+       z-index: 1000;
+   }
+
+.custom-slider .ng5-slider .ng5-slider-selection {
+     background: orange;
+   }
+
+ /* 
+ We need to use ::ng-deep to overcome view encapsulation
+::ng-deep {
+  .custom-slider .ng5-slider .ng5-slider-bar {
+    background:#ffe4d1;
+    height: 2px;
+    opacity: 0.1;
+  }*/
+/* ::ng-slider .custom-slider .ng5-slider .ng5-slider-selection {
+     background: orange;
+   }
+    */
+::ng-deep .custom-slider .ng5-slider .ng5-slider-pointer {
+    width: 8px;
+    height: 25px;
+    top: auto; /*to remove the default positioning*/
+    bottom: -10px;
+    background-color: #333;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+::ng-deep .custom-slider .ng5-slider .ng5-slider-pointer:after {
+    display: none;
+  }
+
+::ng-deep .custom-slider .ng5-slider .ng5-slider-bubble {
+    bottom: 14px;
+  }
+
+::ng-deep .custom-slider .ng5-slider .ng5-slider-tick-legend{
+    max-width: none;
+    font-size : 0.7em;
+  }
+
+/* ::ng-deep .custom-slider .ng5-slider .ng5-slider-limit {
+     font-weight: bold;
+     color: orange;
+   } */
+
+::ng-deep .custom-slider .ng5-slider .ng5-slider-tick {
+    width: 2px;
+    height: 20px;
+    margin-left: 4px;
+    border-radius: 0;
+    top: -1px;
+    background-color : black !important;
+    left:10px;
+  }
+
+/* ::ng-deep .custom-slider .ng5-slider .ng5-slider-ticks .ng5-slider-tick.ng5-slider-selected {
+     background-color: blue !important;
+   } */
+

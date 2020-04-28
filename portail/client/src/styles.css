@@ -143,6 +143,17 @@
 	top: 60px;
 }
 
+app-changes-detailled-map .ol-zoom{
+  left: 10px;
+	top: 10px;
+}
+
+@media (max-width:800px) {
+  app-changes-map .ol-zoom{
+    display:none;
+  }
+}
+
 h3 {
   font-size: 0.8rem;
   font-weight: bold;
