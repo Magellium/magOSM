@@ -26,14 +26,17 @@
               <a class="nav-link ml-3 my-1" href="#regroupement-changement">Regroupement des changements</a>
               <a class="nav-link ml-3 my-1" href="#scission-chemin">Scission d'un chemin</a>
             </nav>
+            <a class="nav-link" href="#limitations">Limitations</a>
           </nav>
         </nav>
       </div>
       <div style="max-width:80%" class="col-sm" *ngIf="changeTypesList">
 
-        <h1><a id="suivi-changement"></a>Suivi de changement</h1>
 
+        <h1><a id="suivi-changement"></a>Suivi de changement</h1>
           Cet outil permet de <b>suivre l'évolution de thématiques (écoles, bâtiments, routes ...) dans OpenStreetMap</b>, à l'échelle de la France Métropolitaine, sur les 30 derniers jours.
+          <br>  
+          <a style="font-size:13px;" [routerLink]="['/changements']">Accès au portail de suivi de changement</a>
           <br><br>
           <app-help-subsection ref="pourquoi" header="Pourquoi cet outil ?">
           Souvent dans l'écosystème OSM, on visualise les changements par le prisme de changeset (ou groupe de modification) : 
@@ -53,6 +56,7 @@
           De plus on cherche à simplifier la compréhension de modifications successive à l'échelle de l'objet
           en indiquant le changement résultant. Par exemple, si un objet a été modifié 7 fois en un jour, on qualifiera le changement résultant de "Modification de géométrie"
           et on proposera de visualiser la première et la dernière version.<br>
+          <br><br>
 
           </app-help-subsection>
 
@@ -128,6 +132,13 @@
             <li>Un nouveau way contigu à au way initial, qui est donc <b>créé</b></li>
           </ul>
         </app-help-subsection>
+
+        <h1 id="limitations">Limitations</h1>
+          Principalement le volume des changements. Pour certaines thématiques représentant un gros volume de données et/ou de changements sur le mois passé, 
+          les changements peuvent être nombreux et les géométries complexes. Le volume de données transféré est alors important et votre navigateur peut manquer
+          de ressources pour les afficher. Dans ce cas le plus simple est de zoomer davantage pour diminuer l'emprise de la requête, ou bien réduire la plage de date
+          sur laquelle porte la recherche. Une solution, non implémentée pour l'instant, consisterait à rappatrier des changements minifiés à petite échelle afin d'afficher
+          la carte de chaleur, puis de charger le détail au zoom.
       </div>
     </div>
   </div>
