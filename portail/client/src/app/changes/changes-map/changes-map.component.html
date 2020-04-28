@@ -23,11 +23,13 @@
             <tr *ngFor="let changetype of changeTypesList">
                 <td>
                     <input type="checkbox" id="{{changetype.id}}" name="layer" (click)="onSelect(changetype.id)" checked>
-                    <label [routerLink]="['/changements-aide']" fragment="{{changetype.ref}}" style="cursor:pointer;"
-                    class="panelSwitcherLayerName" title="Voir + sur la page d'aide">{{changetype.short_name}}</label>
+                    <label class="panelSwitcherLayerName">{{changetype.short_name}}</label>
                 </td>
                 <td>
+                    <a [routerLink]="['/changements-aide']" fragment="{{changetype.ref}}" target="_blank" style="cursor:pointer;"
+                     title="Voir + sur la page d'aide">
                     <b class="cercle" [ngStyle]="{'background-color': changetype.relatedColor.getRGBA()}"></b>
+                    </a>
                 </td>
             </tr>
             <tr>
