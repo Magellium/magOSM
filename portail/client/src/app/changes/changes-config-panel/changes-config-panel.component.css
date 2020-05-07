@@ -55,9 +55,9 @@ app-load-spinner{
     display: table;
     margin: 0 auto;
 }
-/* 
-::ng-deep .mydrp { position:absolute !important;  }
-::ng-deep .selectorarrow { position:absolute !important; }
-::ng-deep .mydrp .selectiongroup {     margin-left: 12px;    top: -18px;     display: inline-table  !important;     border: 1px solid #CCC !important; }
-::ng-deep .mydrp { border:none !important; }
-::ng-deep body .ui-table .ui-table-thead > tr > th { height:45px !important; } */
+
+.alert{
+    text-align:center;
+    padding:5px;
+    font-size:80%
+}

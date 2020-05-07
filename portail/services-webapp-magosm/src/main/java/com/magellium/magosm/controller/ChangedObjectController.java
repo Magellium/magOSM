@@ -9,6 +9,7 @@ import javax.security.auth.callback.UnsupportedCallbackException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,6 +77,7 @@ public class ChangedObjectController {
 		return objets;	
 	}
 	
+	@Transactional(timeout = 50)
 	@PostMapping(path="/changesrequest", consumes = "application/json", produces = "application/json")
 	public @ResponseBody List<ChangedObject> getAllChangedObjectsByThematicByBboxByPeriod(@RequestBody ChangesRequest changesRequest) throws JarException, UnsupportedCallbackException{
 		log.info("Thematic id : " + changesRequest.getThematic());
