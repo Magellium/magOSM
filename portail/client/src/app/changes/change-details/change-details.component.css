@@ -159,3 +159,7 @@ a[href]{
      background-color: blue !important;
    } */
 
+app-load-spinner{
+  display: table;
+  margin: 0 auto;
+}

@@ -26,6 +26,7 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   @Input() userContext : UserContext;
 
   private panelOpen = true;
+  public displayLoadSpinner: boolean = false;
 
   public selectedFeature;
   public featureChangesRequest : FeatureChangesRequest = new FeatureChangesRequest();
@@ -107,6 +108,7 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
   }
 
   public getFeatureChanges(){
+    this.displayLoadSpinner=true;
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
@@ -125,6 +127,7 @@ export class ChangeDetailsComponent implements OnInit, OnChanges {
           this.mainChange = this.mapService.getChangesMergeForOneFeature(JSON.parse(JSON.stringify(this.featureChangesList)));
           this.setDataToDisplay();
           this.initSlider();
+          this.displayLoadSpinner=false;
         });
   }
 
