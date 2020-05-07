@@ -9,6 +9,7 @@
             <a class="nav-link active" href="#suivi-changement">Le suivi de changement</a>
             <nav class="nav nav-pills flex-column">
               <a class="nav-link ml-3 my-1" href="#pourquoi">Pourquoi ce outil ?</a>
+              <a class="nav-link ml-3 my-1" href="#limitations">Limitations</a>
             </nav>
             <a class="nav-link" href="#types-changements">Les types de changements</a>
             <nav class="nav nav-pills flex-column">
@@ -26,7 +27,6 @@
               <a class="nav-link ml-3 my-1" href="#regroupement-changement">Regroupement des changements</a>
               <a class="nav-link ml-3 my-1" href="#scission-chemin">Scission d'un chemin</a>
             </nav>
-            <a class="nav-link" href="#limitations">Limitations</a>
           </nav>
         </nav>
       </div>
@@ -54,10 +54,28 @@
           </ul>
 
           De plus on cherche à simplifier la compréhension de modifications successive à l'échelle de l'objet
-          en indiquant le changement résultant. Par exemple, si un objet a été modifié 7 fois en un jour, on qualifiera le changement résultant de "Modification de géométrie"
+          en indiquant le changement résultant. Par exemple, si un objet a été modifié 4 fois en un jour, on qualifiera le changement résultant de "Modification de géométrie"
           et on proposera de visualiser la première et la dernière version.<br>
-          <br><br>
-
+          <br>
+          </app-help-subsection>
+          <app-help-subsection ref="limitations" header="Limitations">
+            <b>Le volume des changements</b>
+            <br>
+            Pour certaines thématiques représentant un gros volume de données et/ou de changements sur le mois passé, 
+            les changements peuvent être nombreux et les géométries complexes. Le volume de données transféré est alors important et votre navigateur peut manquer
+            de ressources pour les afficher. Dans ce cas le plus simple est de zoomer davantage pour diminuer l'emprise de la requête, ou bien réduire la plage de date
+            sur laquelle porte la recherche.<br>
+            Ainsi les thématiques les plus volumineuses (comme les bâtiments, l'occupation du sol, le réseau routier etc.)
+            ne sont réellement exploitables qu'à partir de l'échelle régionale.<br>
+            Une solution, non implémentée pour l'instant, consisterait à rappatrier des changements minifiés à petite échelle afin d'afficher
+            la carte de chaleur, puis de charger le détail au zoom.
+            <br><br>
+            <b>Les changements de géométrie faux-positifs</b>
+            <br>
+            Pour un way (ligne ou polygone), si un noeud est ajouté ou supprimé sans pour autant changer la géométrie résultante, un changement
+            de géométrie est tout de même détecté bien qu'il soit invisible sur le rendu. Cela peut prêter à confusion et rendre plus difficile
+            l'identification des géométries ayant subies des modifications signifiantes. Une solution, non implémentée pour l'instant, consisterait
+            à ignorer ce type de faux-positifs, voir à ignorer certaines modifications de géométrie considérées comme mineures.
           </app-help-subsection>
 
         <h1 id="types-changements">Les différents types de changements</h1>
@@ -132,13 +150,6 @@
             <li>Un nouveau way contigu au way initial, qui est donc <b>créé</b></li>
           </ul>
         </app-help-subsection>
-
-        <h1 id="limitations">Limitations</h1>
-          Principalement le volume des changements. Pour certaines thématiques représentant un gros volume de données et/ou de changements sur le mois passé, 
-          les changements peuvent être nombreux et les géométries complexes. Le volume de données transféré est alors important et votre navigateur peut manquer
-          de ressources pour les afficher. Dans ce cas le plus simple est de zoomer davantage pour diminuer l'emprise de la requête, ou bien réduire la plage de date
-          sur laquelle porte la recherche. Une solution, non implémentée pour l'instant, consisterait à rappatrier des changements minifiés à petite échelle afin d'afficher
-          la carte de chaleur, puis de charger le détail au zoom.
       </div>
     </div>
   </div>
