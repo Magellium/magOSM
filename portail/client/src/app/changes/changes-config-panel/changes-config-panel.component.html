@@ -35,11 +35,10 @@
       <div class=submitButton style="text-align:center;padding:5px">
         <button type="button" class="btn btn-success" (click)="onSubmit()">Lancer la recherche</button>
       </div>
-
-      <app-load-spinner *ngIf="searchingChanges"></app-load-spinner>
       <div  style="font-size:80%;text-align:center;padding:5px" *ngIf="lastChange">
         <i>Dernière mise à jour le {{lastChange.toLocaleString('fr-FR', {timeZone: 'UTC'})}}</i>
       </div>
+      <app-load-spinner *ngIf="displayLoadSpinner"></app-load-spinner>
     </form>
 
     <div *ngIf="changesList && changesList.length < 1" class="alert alert-danger" role="alert">
@@ -48,11 +47,17 @@
     <div *ngIf="changesList && changesList.length > 0 && !tooMuchResult" class="alert alert-success" role="alert">
       {{changesList.length}} résultats ont été trouvés
     </div>
-    <div *ngIf="changesList && tooMuchResult" class="alert alert-warning" style="text-align:center;padding:5px;font-size:80%">
-      <i class='fa fa-warning' aria-hidden='true'></i>&nbsp;La taille de la réponse ({{responseSizeInMo}} Mo) est importante et  les résultats risquent d'être longs à afficher.<br>
+    <div *ngIf="changesList && tooMuchResult" class="alert alert-warning">
+      <i class='fa fa-warning' aria-hidden='true'></i>&nbsp;La taille de la réponse ({{responseSizeInMo}} Mo) est importante et  les résultats risquent d'être lourds à afficher.<br>
       Vous pouvez zoomer pour réduire la zone de recherche ou limiter la plage de dates, puis relancer la recherche ou poursuivre le chargement des données.<br>
       <button type="button" class="btn btn-small btn-success" (click)="showDatas()">Poursuivre</button>
-
+    </div>
+    <div *ngIf="searchChangesTimedOut" class="alert alert-warning">
+      <i class='fa fa-warning' aria-hidden='true'></i>&nbsp;Le volume de changements semble trop important et la requête a expiré.<br>
+      Vous pouvez zoomer pour réduire la zone de recherche ou limiter la plage de dates, puis relancer la recherche.<br>
+    </div>
+    <div *ngIf="unhandledError" class="alert alert-danger">
+      <i class='fa fa-danger' aria-hidden='true'></i>&nbsp;Désolé, une erreur s'est produite.<br>
     </div>
   </div>
 

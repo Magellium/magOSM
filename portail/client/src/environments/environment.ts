@@ -8,5 +8,6 @@ export const environment = {
   integration: false,
   dev: true,
   geoserver_baseurl: "http://172.30.0.52/geoserver",
-  services_baseurl: "http://localhost/services-webapp-magosm/"
+  services_baseurl: "http://localhost/services-webapp-magosm/",
+  searchChangesTimeoutValue: 45000
 };

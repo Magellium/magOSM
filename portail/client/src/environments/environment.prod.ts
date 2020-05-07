@@ -3,5 +3,6 @@ export const environment = {
   integration: false,
   dev: false,
   geoserver_baseurl: "https://magosm.magellium.com/geoserver",
-  services_baseurl: "https://magosm.magellium.com/services-webapp-magosm/"
+  services_baseurl: "https://magosm.magellium.com/services-webapp-magosm/",
+  searchChangesTimeoutValue: 45000
 };

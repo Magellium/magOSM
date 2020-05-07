@@ -8,7 +8,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Change } from 'app/model/ChangesClasses/Change';
 import { IMyDrpOptions, IMyDateRange } from 'mydaterangepicker';
 import { ChangeType } from 'app/model/ChangesClasses/ChangeType';
-import { cp } from '@angular/core/src/render3';
+import { timeout } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 declare var $: any;
 declare var config: any;
@@ -30,7 +31,6 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   //form
   public changesFilterForm : FormGroup;
   public criteriaFilter: any = {};
-  public searchingChanges: boolean = false;
   //data
   private thematicsList : Array<Thematic>;
   public categoryMap : Map<string,Array<Thematic>> = new Map<string,Array<Thematic>>();
@@ -39,9 +39,15 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   public changesList : Array<Change>;
   public displayReport : boolean = false;
 
+  public displayLoadSpinner: boolean = false;
   //to ask confirmation to user before showing results
-  public tooMuchResult:boolean=false;
+  public tooMuchResult:boolean = false;
   public responseSizeInMo:number;
+  //searchChanges timeout on huge requests
+  public searchChangesTimeoutValue: number = environment.searchChangesTimeoutValue;
+  public searchChangesTimedOut: boolean = false;
+  public unhandledError: boolean = false;
+
   //report
   public reportInfos : Map<ChangeType, number> = new Map();
 
@@ -85,6 +91,8 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
 
   onSubmit(){
     if (this.formValidation()){
+      this.searchChangesTimedOut=false;
+      this.unhandledError=false;
       this.clearResults();
       this.getChangesRequestValues();
       console.log(this.selectedThematic);
@@ -100,7 +108,7 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
   }
 
   public emitChanges(changesRequest : ChangesRequest){
-    this.searchingChanges=true;
+    this.displayLoadSpinner=true;
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
@@ -114,11 +122,12 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
     this.apiRequestService.endDate = this.changesRequest.endDate;
     this.apiRequestService.thematic = this.selectedThematic;
     this.apiRequestService.searchChanges(data, options)
+      .pipe(timeout(this.searchChangesTimeoutValue))
       .subscribe(
         (res:Response) => {
           console.log(res['_body'].length/(1024*1024)+" Mo");
           this.responseSizeInMo=Number((res['_body'].length/(1024*1024)).toFixed(2));
-          this.searchingChanges=false;
+          this.displayLoadSpinner=false;
           this.changesList = JSON.parse(res['_body']);
           console.log(this.changesList);
           if(this.responseSizeInMo<config.MAX_RESPONSE_SIZE_WITHOUT_WARNING_IN_MO){
@@ -129,14 +138,23 @@ export class ChangesConfigPanelComponent implements OnInit, AfterViewInit {
             this.tooMuchResult=true;
           }
          
-          
           if (this.changesList.length < 1  || this.tooMuchResult){
             this.displayReport = false;
           } else {
             this.initReport();
           };
-          //// Matomo
           _paq.push(['trackEvent', 'change-thematic_search', this.selectedThematic.viewName]);
+        },
+        (err) => {
+          console.log(err)
+          this.displayLoadSpinner=false;  
+          if(err.name == "TimeoutError"){
+            this.searchChangesTimedOut=true;
+            _paq.push(['trackEvent', 'change-thematic_search-timeout', this.selectedThematic.viewName]);
+          } else {
+            _paq.push(['trackEvent', 'change-thematic_search-unhandledError', this.selectedThematic.viewName]);
+            this.unhandledError=true;
+          }
         });
   }
 
