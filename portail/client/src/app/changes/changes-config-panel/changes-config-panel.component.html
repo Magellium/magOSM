@@ -53,7 +53,7 @@
       <button type="button" class="btn btn-small btn-success" (click)="showDatas()">Poursuivre</button>
     </div>
     <div *ngIf="searchChangesTimedOut" class="alert alert-warning">
-      <i class='fa fa-warning' aria-hidden='true'></i>&nbsp;Le volume de changements semble trop important et la requête a expiré.<br>
+      <i class='fa fa-warning' aria-hidden='true'></i>&nbsp;La requête a expiré. Il est possible que Le volume de changements soit trop important.<br>
       Vous pouvez zoomer pour réduire la zone de recherche ou limiter la plage de dates, puis relancer la recherche.<br>
     </div>
     <div *ngIf="unhandledError" class="alert alert-danger">
