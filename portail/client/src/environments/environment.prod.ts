@@ -4,5 +4,5 @@ export const environment = {
   dev: false,
   geoserver_baseurl: "https://magosm.magellium.com/geoserver",
   services_baseurl: "https://magosm.magellium.com/services-webapp-magosm/",
-  searchChangesTimeoutValue: 45000
+  searchChangesTimeoutValue: 30000
 };
