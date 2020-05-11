@@ -19,11 +19,10 @@ public interface ChangedObject {
 	
 	public static List<ChangedObject> getObjectsListFromList(List<?> list){
 		Logger log = LogManager.getLogger(ChangedObject.class);
-		List<ChangedObject> objets = new ArrayList<ChangedObject>();
+		int size = list.size();
+		List<ChangedObject> objets = new ArrayList<ChangedObject>(size);
 		for (int i=0; i<list.size() ;i++) {
-			ChangedObject objet = null;
-			objet = (ChangedObject)list.get(i);
-			objets.add(objet);	
+			objets.add((ChangedObject) list.get(i));	
 		}
 		return objets;
 	}
