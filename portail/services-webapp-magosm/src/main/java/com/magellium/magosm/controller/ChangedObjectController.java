@@ -77,7 +77,7 @@ public class ChangedObjectController {
 		return objets;	
 	}
 	
-	@Transactional(timeout = 50)
+	@Transactional(timeout = 30)
 	@PostMapping(path="/changesrequest", consumes = "application/json", produces = "application/json")
 	public @ResponseBody List<ChangedObject> getAllChangedObjectsByThematicByBboxByPeriod(@RequestBody ChangesRequest changesRequest) throws JarException, UnsupportedCallbackException{
 		log.info("Thematic id : " + changesRequest.getThematic());

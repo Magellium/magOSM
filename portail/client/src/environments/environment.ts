@@ -9,5 +9,5 @@ export const environment = {
   dev: true,
   geoserver_baseurl: "http://172.30.0.52/geoserver",
   services_baseurl: "http://localhost/services-webapp-magosm/",
-  searchChangesTimeoutValue: 45000
+  searchChangesTimeoutValue: 30000
 };
