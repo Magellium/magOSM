@@ -21,7 +21,7 @@ La base de données magOSM est basée sur Osm2pgsql qui crée notamment 3 tables
 * magosm.france_polygon
 
 Pour créer une nouvelle thématique dans magOSM il faut commencer par créer une "vue" PGSQL.<br>
-Il est possible de s'inspirer d'une [requête existante](database/views) proche de votre thématique.
+Il est possible de s'inspirer d'une [requête existante](https://github.com/Magellium/magosm_db/tree/master/pg_views) proche de votre thématique.
 
 ### Syntaxe de requête pour les tags
 
@@ -36,10 +36,10 @@ Exemple : ```SELECT name FROM magosm.france_line WHERE ...```
 2. alors que pour récupérer un attribut "moins fréquent", il faut faire un ```SELECT tags->'tag_peu_frequent' AS "tag_peu_frequent"```<br>
 Exemple : ```SELECT tags->'network' AS "network" FROM magosm.france_line WHERE ...```
 
-La liste des attributs "fréquents" est définie par le style [magosm.style](database/magosm.style ) utilisé par Osm2pgsql pour l'import. Si la clé de l'attribut d'intérêt n'est pas listé dans le fichier magosm.style, c'est qu'il se trouvera dans la colonne tags de type hstore.
+La liste des attributs "fréquents" est définie par le style [magosm.style](https://github.com/Magellium/magosm_db/tree/master/conf/magosm.style ) utilisé par Osm2pgsql pour l'import. Si la clé de l'attribut d'intérêt n'est pas listé dans le fichier magosm.style, c'est qu'il se trouvera dans la colonne tags de type hstore.
 
 ### Indexes
-Pour des questions de performance, on s'assurera qu'un index est déjà défini pour la colonne de filtrage correspondant à la thématique (exemple : la colonne "building" pour les bâtiments) : vérifiez dans [la liste des index existants](database/views/views-useful-indexes.sql)
+Pour des questions de performance, on s'assurera qu'un index est déjà défini pour la colonne de filtrage correspondant à la thématique (exemple : la colonne "building" pour les bâtiments) : vérifiez dans [la liste des index existants](https://github.com/Magellium/magosm_db/tree/master/pg_views/ind_useful-indexes.sql)
 
 ### Attributs avec cacatères spéciaux
 On adopte la convention suivante : si la clé de l'attribut utilisé contient le caractère deux-points " :  "  (exemple : ```public_transport:version```) alors on remplacera le ":" par un tiret "-" dans l'alias, exemple : 
@@ -49,7 +49,7 @@ On adopte la convention suivante : si la clé de l'attribut utilisé contient le
 
 ### Relations
 Les objets OSM de type "relation" sont également disponibles dans les tables france_line et france_polygon, avec un osm_id négatif égal à l'opposé de l'identifiant de la relation dans OSM (exemple : la ligne de bus [11: Les Deux Collines => Lycée Camus (8937340)](https://www.openstreetmap.org/relation/8937340/) est présente sous forme d'une multi-ligne dans la table france_line avec ```osm_id=-8937340```).<br>
-C'est pourquoi pour la thématique des lignes de bus on requête sur ```osm_id<0``` : [france_bus_routes_line.sql](database/views/france_bus_routes_line.sql)<br>
+C'est pourquoi pour la thématique des lignes de bus on requête sur ```osm_id<0``` : [v_bus_routes_line.sql](https://github.com/Magellium/magosm_db/tree/master/pg_views/v_bus_routes_line.sql)<br>
 Et la ligne de bus est consultable via le portail magOSM [ici](http://magosm.magellium.com/portail/#/carte?z=14&lon=6.6595&lat=43.4217&tr=30&vLay=france_bus_routes_line).<br>
 Dans le cas où l'on voudrait également récuper la liste des arrêts de bus (nodes) associés à la relation, la liste complète des identifiants des membres de la relation est disponible dans la table france_rels et les objets nodes se trouvent dans la table france_point.
 
@@ -83,9 +83,8 @@ Pour la catégorie ```no```, tous les tags listés seront affichés.
 Pour réaliser une pull request via l'interface Web de Github :
 * Forker le dépôt magOSM via le [bouton en haut à droite](https://github.com/magellium/magosm) afin de créer une copie personnelle du dépôt de code magOSM
 * Dans votre nouveau dépôt personnel :
-  * Ajout de la requête SQL dans un nouveau fichier ici : [/database/views](database/views)
-  * Ajout de l’index ici :  [/database/views/views-useful-indexes.sql](database/views/views-useful-indexes.sql)
+  * Ajout de la requête SQL dans un nouveau fichier ici : https://github.com/Magellium/magosm_db/tree/master/pg_views
+  * Ajout de l’index ici :  https://github.com/Magellium/magosm_db/blob/master/pg_views/ind_useful-indexes.sql
   * Ajout du style SLD dans un nouveau fichier ici : [/styles](styles)
   * Ajout de la fiche de métadonnées dans un nouveau fichier ici : [/metadatas](metadatas)
-  * Nous
 * [Créer une pull request depuis votre fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
