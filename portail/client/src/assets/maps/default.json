@@ -390,6 +390,44 @@
             }
             ,
              {
+                "layername": "magosm:france_train_routes_line",
+                "nom_court": "Itinéraires de train",
+                "md_url":"",
+                "sld_path":"/styles/france_train_routes_line.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"},
+                            {"priority":3,"osm_key":"short_name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"ref","label":"Ligne"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"network","label":"Réseau"},
+                            {"osm_key":"website"},
+                            {"osm_key":"from","label":"Depuis"},
+                            {"osm_key":"to","label":"En direction de"},
+                            {"osm_key":"opening_hours","label":"Horaires d'ouverture"}
+                        ]
+                    }
+                ]
+            }
+            ,
+             {
                 "layername": "magosm:france_cycleways_line",
                 "nom_court": "Réseau cyclable",
                 "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/cef59d77b3154d6490f3cb084a196f4b",
