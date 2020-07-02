@@ -638,7 +638,7 @@
                 "layername": "magosm:france_buildings_polygon",
                 "nom_court": "Bâtiments",
                 "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/c2c70bfc443a456d89f169633d74c73d",
-                 "sld_path":"/styles/france_building_v2.sld",
+                 "sld_path":"/styles/france_buildings.sld",
                 "type":"WMTS",
                 "maxScaleDenominator":250000,
                 "download_kml":true,
