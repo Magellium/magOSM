@@ -243,6 +243,46 @@
                         ]
                     }
                 ]
+            },
+           {
+                "layername": "magosm:france_social_amenity_point",
+                "nom_court": "Structures sociales",
+                "md_url":"",
+                "sld_path":"/styles/france_social_amenity_point.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [ 
+                    {"importance": "high",
+                     "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"social_facility", "label":"Type d'établissement"},
+                            {"priority":2, "osm_key":"community_centre", "label":"Type "}
+                        ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"social_facility_for", "label":"Public"},
+                            {"priority":2, "osm_key":"community_centre_for", "label":"Public"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"addr_housenumber"},
+                            {"osm_key":"addr_street"}, 
+                            {"osm_key":"addr_postcode"},
+                            {"osm_key":"addr_city"},
+                            {"osm_key":"phone"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"}
+                        ]
+                    }
+                ]
             }             	
         ]
     },

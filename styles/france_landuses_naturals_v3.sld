@@ -13,8 +13,8 @@
        Style
       </sld:Name>
         <sld:Rule>
-          <sld:Name>OCS - For?ts</sld:Name>
-          <sld:Title>OCS - For?ts</sld:Title>
+          <sld:Name>OCS - Forets</sld:Name>
+          <sld:Title>OCS - Forets</sld:Title>
           <ogc:Filter>
 <ogc:Or>
                     <ogc:PropertyIsEqualTo>
@@ -121,7 +121,7 @@
               <sld:GraphicFill>
                 <sld:Graphic>
                   <sld:ExternalGraphic>
-                    <sld:OnlineResource xlink:type="simple" xlink:href="mag/ground_area_Rocky.png"/>
+                    <sld:OnlineResource xlink:type="simple" xlink:href="images/mag/ground_area_Rocky.png"/>
                     <sld:Format>image/png</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>20</sld:Size>
@@ -229,8 +229,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Zones humides (marais, mangroves, tourbi?res)</sld:Name>
-          <sld:Title>OCS - Zones humides (marais, mangroves, tourbi?res)</sld:Title>
+          <sld:Name>OCS - Zones humides (marais, mangroves, tourbieres)</sld:Name>
+          <sld:Title>OCS - Zones humides (marais, mangroves, tourbieres)</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>natural</ogc:PropertyName>
@@ -325,8 +325,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Entr?es de grotte</sld:Name>
-          <sld:Title>OCS - Entr?es de grotte</sld:Title>
+          <sld:Name>OCS - Entrees de grotte</sld:Name>
+          <sld:Title>OCS - Entrees de grotte</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>natural</ogc:PropertyName>
@@ -385,8 +385,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Bassins de r?tention d'eau artificiels</sld:Name>
-          <sld:Title>OCS - Bassins de r?tention d'eau artificiels</sld:Title>
+          <sld:Name>OCS - Bassins de retention d'eau artificiels</sld:Name>
+          <sld:Title>OCS - Bassins de retention d'eau artificiels</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>
@@ -401,8 +401,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Zones d?affect?es ? reconstruire</sld:Name>
-          <sld:Title>OCS - Zones d?affect?es ? reconstruire</sld:Title>
+          <sld:Name>OCS - Zones desaffectees a reconstruire</sld:Name>
+          <sld:Title>OCS - Zones desaffectees a reconstruire</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>
@@ -433,8 +433,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Zones de d?veloppement</sld:Name>
-          <sld:Title>OCS - Zones de d?veloppement</sld:Title>
+          <sld:Name>OCS - Zones de developpement</sld:Name>
+          <sld:Title>OCS - Zones de developpement</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>
@@ -449,8 +449,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Cimeti?res</sld:Name>
-          <sld:Title>OCS - Cimeti?res</sld:Title>
+          <sld:Name>OCS - Cimetieres</sld:Name>
+          <sld:Title>OCS - Cimetieres</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>
@@ -469,8 +469,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Zones d'activit?s d'affaires, de services ou tertiaires</sld:Name>
-          <sld:Title>OCS - Zones d'activit?s d'affaires, de services ou tertiaires</sld:Title>
+          <sld:Name>OCS - Zones d'activites d'affaires, de services ou tertiaires</sld:Name>
+          <sld:Title>OCS - Zones d'activites d'affaires, de services ou tertiaires</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>
@@ -485,8 +485,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Terres agricoles ou d'?levage</sld:Name>
-          <sld:Title>OCS - Terres agricoles ou d'?levage</sld:Title>
+          <sld:Name>OCS - Terres agricoles ou d'elevage</sld:Name>
+          <sld:Title>OCS - Terres agricoles ou d'elevage</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>
@@ -521,8 +521,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Garages priv?s</sld:Name>
-          <sld:Title>OCS - Garages priv?s</sld:Title>
+          <sld:Name>OCS - Garages prives</sld:Name>
+          <sld:Title>OCS - Garages prives</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>
@@ -591,8 +591,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - D?charges</sld:Name>
-          <sld:Title>OCS - D?charges</sld:Title>
+          <sld:Name>OCS - Decharges</sld:Name>
+          <sld:Title>OCS - Decharges</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>
@@ -643,8 +643,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - P?pini?res horticoles</sld:Name>
-          <sld:Title>OCS - P?pini?res horticoles</sld:Title>
+          <sld:Name>OCS - Pepinieres horticoles</sld:Name>
+          <sld:Title>OCS - Pepinieres horticoles</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>natural</ogc:PropertyName>
@@ -701,8 +701,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Carri?re</sld:Name>
-          <sld:Title>OCS - Carri?re</sld:Title>
+          <sld:Name>OCS - Carriere</sld:Name>
+          <sld:Title>OCS - Carriere</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>
@@ -715,7 +715,7 @@
               <sld:GraphicFill>
                 <sld:Graphic>
                   <sld:ExternalGraphic>
-                    <sld:OnlineResource xlink:type="simple" xlink:href="mag/Quarrying-Mining.svg"/>
+                    <sld:OnlineResource xlink:type="simple" xlink:href="images/mag/Quarrying-Mining.svg"/>
                     <sld:Format>image/svg+xml</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>8</sld:Size>
@@ -762,8 +762,8 @@
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>OCS - Zones r?sidentielles</sld:Name>
-          <sld:Title>OCS - Zones r?sidentielles</sld:Title>
+          <sld:Name>OCS - Zones residentielles</sld:Name>
+          <sld:Title>OCS - Zones residentielles</sld:Title>
           <ogc:Filter>
 <ogc:PropertyIsEqualTo>
                     <ogc:PropertyName>landuse</ogc:PropertyName>

@@ -16,7 +16,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/alcohol-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/alcohol-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -34,7 +34,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/bakery-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/bakery-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -52,7 +52,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/beauty-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/beauty-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -70,7 +70,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/beverages-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/beverages-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -88,7 +88,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/bicycle-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/bicycle-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -106,7 +106,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/books-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/books-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -124,7 +124,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/butcher-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/butcher-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -142,7 +142,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/car-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/car-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -160,7 +160,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/car-parts-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/car-parts-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -178,7 +178,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/chemist-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/chemist-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -196,7 +196,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/clothes-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/clothes-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -214,7 +214,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/coffee-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/coffee-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -232,7 +232,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/computer-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/computer-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -250,7 +250,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/confectionery-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/confectionery-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -268,7 +268,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/convenience-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/convenience-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -286,7 +286,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/copyshop-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/copyshop-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -304,7 +304,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/doityourself-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/doityourself-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -322,7 +322,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/electronics-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/electronics-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -340,7 +340,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/florist-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/florist-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -358,7 +358,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/furniture-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/furniture-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -376,7 +376,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/garden-centre-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/garden-centre-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -394,7 +394,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/gift-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/gift-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -412,7 +412,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/greengrocer-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/greengrocer-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -430,7 +430,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/hairdresser-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/hairdresser-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -448,7 +448,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/hifi-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/hifi-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -466,7 +466,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/ice-cream-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/ice-cream-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -484,7 +484,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/jewellery-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/jewellery-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -502,7 +502,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/kiosk-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/kiosk-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -520,7 +520,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/laundry-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/laundry-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -538,7 +538,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/mobile-phone-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/mobile-phone-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -556,7 +556,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/news-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/news-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -574,7 +574,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/optician-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/optician-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -592,7 +592,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/pet-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/pet-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -610,7 +610,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/photo-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/photo-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -628,7 +628,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/repair-bicycle-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/repair-bicycle-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -646,7 +646,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/repair-car-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/repair-car-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -664,7 +664,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/shoes-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/shoes-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -682,7 +682,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/shop-other-16.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/shop-other-16.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -700,7 +700,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/stationery-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/stationery-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -718,7 +718,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/supermarket-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/supermarket-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -736,7 +736,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/tobacco-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/tobacco-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
@@ -754,7 +754,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="shop/toys-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/shop/toys-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>

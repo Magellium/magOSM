@@ -16,7 +16,7 @@
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="health/pharmacy-14.svg"/>
+                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/osmic/health/pharmacy-14.svg"/>
                 <sld:Format>image/svg+xml</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>5.000000</sld:Size>
