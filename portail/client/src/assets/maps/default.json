@@ -678,7 +678,7 @@
                 "layername": "magosm:france_buildings_polygon",
                 "nom_court": "Bâtiments",
                 "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/c2c70bfc443a456d89f169633d74c73d",
-                 "sld_path":"/styles/france_buildings.sld",
+                "sld_path":"/styles/france_buildings.sld",
                 "type":"WMTS",
                 "maxScaleDenominator":250000,
                 "download_kml":true,
@@ -718,11 +718,46 @@
                 ]
             },
             {
+                "layername": "magosm:france_constructions",
+                "nom_court": "Constructions en cours",
+                "md_url":"",
+                "sld_path":"/styles/france_constructions.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"const_key","label":"Type de construction"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"const_value","label":"Sous-type de construction"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"osm_key":"name","label":"Nom"},
+                            {"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"start_date","label":"Début du chantier"},
+                            {"osm_key":"end_date","label":"Fin du chantier"},
+                            {"osm_key":"opening_date","label":"Date d'ouverture prévue"},
+                            {"osm_key":"check_date","label":"Date de vérification"}
+                        ]
+                    }
+                ]
+            },
+            {
                 "layername": "magosm:france_landuses_naturals_polygon",
                 "nom_court": "Occupation du sol",
                 "maxScaleDenominator":1000000,
                 "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/d14edc3925684255847b0bc155c18bc3",
-                 "sld_path":"/styles/france_landuses_naturals_v3.sld",
+                "sld_path":"/styles/france_landuses_naturals_v3.sld",
                 "type":"WMTS",
                 "feature_main_info":[
                     {"importance": "high","sub_tags":
@@ -752,6 +787,41 @@
                             {"osm_key":"addr-street"}, 
                             {"osm_key":"addr-postcode"},
                             {"osm_key":"addr-city"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:france_proposed",
+                "nom_court": "Propositions de constructions",
+                "md_url":"",
+                "sld_path":"/styles/france_proposed.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"proposed_key","label":"Type de construction prévue"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"proposed_value","label":"Sous-type de construction prévue"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"osm_key":"name","label":"Nom"},
+                            {"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"start_date","label":"Début du chantier"},
+                            {"osm_key":"end_date","label":"Fin du chantier"},
+                            {"osm_key":"opening_date","label":"Date d'ouverture prévue"},
+                            {"osm_key":"check_date","label":"Date de vérification"}
                         ]
                     }
                 ]
