@@ -21,7 +21,7 @@
             {
                 "layername": "magosm:france_hospitals_point",
                 "nom_court": "Hopitaux",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/2da9b1d7a43343769519d4e7f01c5608",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisation-des-hopitaux-france-metropolitaine/",
                 "sld_path":"/styles/france_hospitals_point.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -56,9 +56,11 @@
             {
                 "layername": "magosm:france_shops_point",
                 "nom_court": "Magasins",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/946bd9cdf20f4b368abb4e19c195cd02",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisations-des-magasins-france-metropolitaine/",
                 "sld_path":"/styles/france_shops_point.sld",
                 "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
                 "feature_main_info": [
                     {"importance": "high",
                     "sub_tags":
@@ -94,7 +96,7 @@
             {
                 "layername": "magosm:france_schools_point",
                 "nom_court": "Ecoles",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/18548cfe66dc4cabba4e671abe8438c9",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisations-des-etablissements-scolaires-france-metropolitaine/",
                 "sld_path":"/styles/france_schools_point.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -129,7 +131,7 @@
             {
                 "layername": "magosm:france_pharmacies_point",
                 "nom_court": "Pharmacies",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/c2df2791ee8a45b8b42ad89e9e997157",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisation-des-pharmacies-france-metropolitaine/",
                 "sld_path":"/styles/france_pharmacies_point.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -168,7 +170,7 @@
            {
                 "layername": "magosm:france_clinics_point",
                 "nom_court": "Cliniques",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/2580de25e8404ce89766192a40d83de6",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisation-des-cliniques-france-metropolitaine-2/",
                 "sld_path":"/styles/france_clinics_point.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -208,7 +210,7 @@
            {
                 "layername": "magosm:france_police_point",
                 "nom_court": "Polices et gendarmeries",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/ff7980650742460aaba2075d6cc69e58",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisations-des-brigades-de-gendarmeries-et-commissariats-de-police-france-metropolitaine/",
                 "sld_path":"/styles/france_police_point.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -247,7 +249,7 @@
            {
                 "layername": "magosm:france_social_amenity_point",
                 "nom_court": "Structures sociales",
-                "md_url":"",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisation-des-structures-sociales-france-metropolitaine/",
                 "sld_path":"/styles/france_social_amenity_point.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -294,7 +296,7 @@
             {
                 "layername": "magosm:france_motorways_line",
                 "nom_court": "Autoroutes",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/bf7507c1a2b545ec941c98dbe02d6b0c",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/autoroutes-france-metropolitaine/",
                 "sld_path":"/styles/france_motorways_line.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -328,7 +330,7 @@
             {
                 "layername": "magosm:france_highways_line",
                 "nom_court": "Réseau routier",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/62af719c4df84359b6b465105241476f",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/reseau-routier-france-metropolitaine/",
                 "sld_path":"/styles/test_roads.sld",
                 "type":"WMTS",
                 "download_kml":true,
@@ -362,9 +364,11 @@
             {
                 "layername": "magosm:france_highways_line_recently_modified",
                 "nom_court": "Réseau routier (Modifications récentes j-7)",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/62af719c4df84359b6b465105241476f",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/reseau-routier-france-metropolitaine/",
                 "sld_path":"/styles/test_roads.sld",
                 "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
                 "feature_main_info": [
                     {"importance": "high",
                     "sub_tags":
@@ -396,7 +400,7 @@
              {
                 "layername": "magosm:france_railways_line",
                 "nom_court": "Voies ferrées",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/778ed1a0c08f4d238b665957195e826f",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/voies-ferrees-france-metropolitaine/",
                 "sld_path":"/styles/france_railway_line_v2.sld",
                 "type":"WMTS",
                 "maxScaleDenominator":1000000,
@@ -432,7 +436,7 @@
              {
                 "layername": "magosm:france_train_routes_line",
                 "nom_court": "Itinéraires de train",
-                "md_url":"",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/itineraires-de-train-france-metropolitaine/",
                 "sld_path":"/styles/france_train_routes_line.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -470,7 +474,7 @@
              {
                 "layername": "magosm:france_cycleways_line",
                 "nom_court": "Réseau cyclable",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/cef59d77b3154d6490f3cb084a196f4b",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/reseau-cyclable-france-metropolitaine/",
                 "sld_path":"/styles/france_cycleways_line.sld",
                 "type":"WMTS",
                 "maxScaleDenominator":300000,
@@ -489,7 +493,7 @@
              {
                 "layername": "magosm:france_bicycle_mtb_routes_line",
                 "nom_court": "Itinéraires cyclables",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/9c01b3e617b44fb5a104623425626a03",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/itineraires-cyclables-france-metropolitaine/",
                 "sld_path":"/styles/france_bicycle_mtb_routes_line.sld",
                 "type":"WMTS",
                 "download_kml":true,
@@ -521,7 +525,7 @@
              {
                 "layername": "magosm:france_hiking_foot_routes_line",
                 "nom_court": "Itinéraires de randonnée",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/800bfaf2559a4e928e051d3d55c5f3b5",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/itineraires-de-randonnee-france-metropolitaine/",
                 "sld_path":"/styles/france_hiking_foot_routes_line.sld",
                 "type":"WMTS",
                 "download_kml":true,
@@ -556,7 +560,7 @@
              {
                 "layername": "magosm:france_subway_routes_line",
                 "nom_court": "Itinéraires de métro",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/e6c675fbea814ed4abcc7d58ad01e694",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/itineraires-de-metro-france-metropolitaine/",
                 "sld_path":"/styles/france_subway_routes_line.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -594,7 +598,7 @@
             {
                 "layername": "magosm:france_tram_ltr_routes_line",
                 "nom_court": "Itinéraires de tramways",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/3404fa23a39745029abac20c78d33cae",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/itineraires-de-tramways-france-metropolitaine/",
                 "sld_path":"/styles/france_tram_ltr_routes_line.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -633,7 +637,7 @@
 
                 "layername": "magosm:france_bus_routes_line",
                 "nom_court": "Itinéraires de bus",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/234a9be4cc5f496984926f421df952a3",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/itineraires-de-bus-france-metropolitaine/",
                 "sld_path":"/styles/france_bus_routes_line.sld",
                 "type":"WMS",
                 "download_kml":true,
@@ -677,7 +681,7 @@
             {
                 "layername": "magosm:france_buildings_polygon",
                 "nom_court": "Bâtiments",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/c2c70bfc443a456d89f169633d74c73d",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/emprise-des-batiments-france-metropolitaine/",
                 "sld_path":"/styles/france_buildings.sld",
                 "type":"WMTS",
                 "maxScaleDenominator":250000,
@@ -720,7 +724,7 @@
             {
                 "layername": "magosm:france_constructions",
                 "nom_court": "Constructions en cours",
-                "md_url":"",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/constructions-en-cours-france-metropolitaine/",
                 "sld_path":"/styles/france_constructions.sld",
                 "type":"WMTS",
                 "download_kml":true,
@@ -756,9 +760,11 @@
                 "layername": "magosm:france_landuses_naturals_polygon",
                 "nom_court": "Occupation du sol",
                 "maxScaleDenominator":1000000,
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/d14edc3925684255847b0bc155c18bc3",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/occupation-du-sol-france-metropolitaine/",
                 "sld_path":"/styles/france_landuses_naturals_v3.sld",
                 "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
                 "feature_main_info":[
                     {"importance": "high","sub_tags":
                         [
@@ -794,7 +800,7 @@
             {
                 "layername": "magosm:france_proposed",
                 "nom_court": "Propositions de constructions",
-                "md_url":"",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/propositions-de-constructions-france-metropolitaine/",
                 "sld_path":"/styles/france_proposed.sld",
                 "type":"WMTS",
                 "download_kml":true,
@@ -829,7 +835,7 @@
             {
                 "layername": "magosm:france_pnr_polygon",
                 "nom_court": "Parcs Naturels Régionaux",
-                "md_url": "http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/a3b4c3fea4234b769083983c57db4d2e",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/parcs-naturels-regionaux-pnr-france-metropolitaine/",
                 "sld_path":"/styles/france_pnr_polygon.sld",
                 "type":"WMTS",
                 "download_kml":true,
@@ -866,7 +872,7 @@
             {
                 "layername": "magosm:france_telecom_exchange_point",
                 "nom_court": "Noeuds de raccordement",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/2b7786757e4649ed8c34dbf22fcf7dbb",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisations-des-noeuds-de-raccordement-abonnes-nra-et-optiques-nro-france-metropolitaine/",
                 "sld_path":"/styles/france_telecom_exchange_point.sld",
                 "type":"WMTS",
                 "download_kml":true,
@@ -903,7 +909,7 @@
             {
                 "layername": "magosm:france_telecom_fibre_connection_point",
                 "nom_court": "Points de mutualisation Fibre",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/8f6ddf33399d4bc5b7a6ad34efb382a1",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisations-des-points-de-mutualisation-fibre-pmz-france-metropolitaine/",
                 "sld_path":"/styles/france_telecom_fibre_connection_point.sld",
                 "type":"WMTS",
                 "download_kml":true,
@@ -940,7 +946,7 @@
 			{
                 "layername": "magosm:france_telecom_copper_connection_point",
                 "nom_court": "Sous-répartiteurs cuivre",
-                "md_url":"http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80/r/c18bdca514a14d12a72712c2051682df",
+                "md_url":"https://www.data.gouv.fr/fr/datasets/localisations-des-sous-repartiteurs-cuivre-sr-france-metropolitaine/",
                 "sld_path":"/styles/france_telecom_copper_connection_point.sld",
                 "type":"WMTS",
                 "download_kml":true,
