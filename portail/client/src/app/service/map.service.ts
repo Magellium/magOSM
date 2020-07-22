@@ -8,6 +8,8 @@ import { ConfigService } from './config.service';
 import { a } from '@angular/core/src/render3';
 import { Color } from 'app/model/ChangesClasses/Color';
 import { environment } from '../../environments/environment';
+import { LayerAndCategory } from 'app/model/LayerAndCategory';
+import { Layer } from 'app/model/Layer';
 
 declare var ol: any;
 declare var _paq: any;
@@ -89,6 +91,21 @@ export class MapService {
     });
     this.baseLayer = this.OSMLayer;
     this.map.addLayer(this.OSMLayer);
+  };
+
+  getCategorieAndLayerByStringAttribute(attributeName: string, attributeValue: String):LayerAndCategory {
+    let _layer: Layer;
+    let _categorie: string;
+    this.config.LAYERS.forEach(function (categorie) {
+      if (categorie.features.filter(y => y[attributeName].indexOf(attributeValue) >= 0)[0]) {
+        _categorie = categorie.id_categorie;
+        _layer = categorie.features.filter(y => y[attributeName].indexOf(attributeValue) >= 0)[0];
+      }
+    })
+    const _result = new LayerAndCategory(_categorie, _layer);
+    console.log('getCategorieAndLayerByStringAttribute')
+    console.log(_result)
+    return _result;
   };
 
   changeOpacity(value: number) {//défini l'opacité des layers

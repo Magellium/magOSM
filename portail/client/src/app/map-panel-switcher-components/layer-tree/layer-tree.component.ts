@@ -5,6 +5,7 @@ import { MapService } from '../../service/map.service';
 import { LayerChangeService } from '../../service/layer-change.service';
 import { UserContext } from '../../model/UserContext';
 import { environment } from '../../../environments/environment';
+import { LayerAndCategory } from 'app/model/LayerAndCategory';
 
 declare var config: any;
 declare var $: any;
@@ -52,20 +53,12 @@ export class LayerTreeComponent implements OnInit {
 
   loadVisibleLayersFromUserContext() {
     if (this.userContext.vLay.indexOf("none") < 0) {
-      let vLay: String[] = this.userContext.vLay.split(",");
+      let vLay: string[] = this.userContext.vLay.split(",");
       for (var i = 0; i < vLay.length; i++) {
-
-        let _layer: Layer;
-        let _categorie: String;
-        config.LAYERS.forEach(function (categorie) {
-          if (categorie.features.filter(y => y.layername.indexOf(vLay[i]) >= 0)[0]) {
-            _categorie = categorie.id_categorie;
-            _layer = categorie.features.filter(y => y.layername.indexOf(vLay[i]) >= 0)[0];
-
-          }
-        })
-        document.getElementById("collapse" + _categorie).className = "collapse show";
-        this.onSelect(null, _layer);
+        let _layername: string = vLay[i];
+        const _layerAndCategory = this.mapService.getCategorieAndLayerByStringAttribute("layername", _layername);
+        document.getElementById("collapse" + _layerAndCategory.category).className = "collapse show";
+        this.onSelect(null, _layerAndCategory.layer);
 
       }
     }

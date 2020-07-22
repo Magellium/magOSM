@@ -8,6 +8,7 @@ import { MapService } from '../service/map.service';
 import { LayerChangeService } from '../service/layer-change.service';
 import { UserContext } from '../model/UserContext';
 import { environment } from '../../environments/environment';
+import { LayerAndCategory } from 'app/model/LayerAndCategory';
 
 declare var proj4: any;
 declare var $: any;
@@ -345,7 +346,8 @@ export class MapComponent implements OnInit {
     for (var i = 0; i < ids.length; i++) {
      
       if(this.mapService.isInRange(ids[i])){
-        this.mapService.legendSubTitles.push(ids[i]);
+        let _layerAndCategory: LayerAndCategory = this.mapService.getCategorieAndLayerByStringAttribute("layername", ids[i]);
+        this.mapService.legendSubTitles.push(_layerAndCategory.layer.nom_court);
         this.mapService.legendUrls.push(this.geoserver_baseurl + '/wms?LAYER=' + ids[i] + '&SERVICE=WMS&VERSION=1.3.0&STRICT=false&REQUEST=GetLegendGraphic&FORMAT=image%2Fpng&TRANSPARENT=true&SCALE=' + this.currentScale);
       }
        }

@@ -22,5 +22,4 @@ export class ConfigService {
     }
     return this.http.get<any>(this.configUrl+conf);
   }
-
 }
