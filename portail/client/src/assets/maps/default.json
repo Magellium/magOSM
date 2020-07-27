@@ -775,24 +775,21 @@
                     },
                     {"importance":"medium","sub_tags":
                         [
-                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                            {"priority":1,"osm_key":"landuse","label":"Utilisation du sol"},
+                            {"priority":2,"osm_key":"natural","label":"Occupation du sol"}
                         ]
                     },
                     {"importance":"low","sub_tags":
                         [
-                            {"priority":1,"osm_key":"ref","label":"Ligne"}
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"},
+                            {"priority":2,"osm_key":"source","label":"Source"}
                         ]
                     },
                     {"importance":"no", "sub_tags":
                         [
                             {"osm_key":"opening_hours","label":"Horaires d'ouverture"},
                             {"osm_key":"website"},
-                            {"osm_key":"phone"},
-                            {"osm_key":"email"},
-                            {"osm_key":"addr-housenumber"},
-                            {"osm_key":"addr-street"}, 
-                            {"osm_key":"addr-postcode"},
-                            {"osm_key":"addr-city"}
+                            {"osm_key":"email"}
                         ]
                     }
                 ]
@@ -1007,6 +1004,7 @@
         {"osm_key":"description"},
         {"osm_key":"email"}
     ],
+    "ARTIFICIAL_OSM_KEYS_CREATED_IN_DB":["const_key", "const_value", "proposed_key", "proposed_value"], 
     "DAYS_INTERVAL_FOR_CHANGES_MONITORING":30,
     "MAX_RESPONSE_SIZE_WITHOUT_WARNING_IN_MO":10
 }

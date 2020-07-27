@@ -104,7 +104,10 @@ export class FeaturePanelComponent implements OnInit {
              this.technical_keys.push(clefs[key]);
           }
         } else {
+          //ARTIFICIAL_OSM_KEYS_CREATED_IN_DB keys must be hidden from feature panel (Attribits OSM)
+          if (config.ARTIFICIAL_OSM_KEYS_CREATED_IN_DB.indexOf(clefs[key]) == -1 ){ 
           this.keys.push(clefs[key]);
+          }
         }
 
       }
