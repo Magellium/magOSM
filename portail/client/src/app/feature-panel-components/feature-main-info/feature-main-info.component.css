@@ -5,6 +5,7 @@
     display:flex;
     height:auto;
 }
+  
 #high{
     font-size:1.1em;
     font-weight:bold;
@@ -41,7 +42,6 @@
     text-align: right;
     display:flex;
     flex-direction: column;
-    justify-content:center;
     height:auto;
     margin:5px 8px 5px 0px;
     font-size:0.9em;

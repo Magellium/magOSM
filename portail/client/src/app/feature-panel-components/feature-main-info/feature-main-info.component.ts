@@ -11,6 +11,7 @@ export class FeatureMainInfoComponent implements OnInit, OnChanges {
   @Input() public selectedLayer: any;
   @Input() public keys: any;
   @Input() public selectedFeature: any;
+  @Input() public osm_type: any;
 
   public featureImportantTagsList : FeatureImportantTagsList;
   public addrString : Array<string>; //For a special display of the adresses

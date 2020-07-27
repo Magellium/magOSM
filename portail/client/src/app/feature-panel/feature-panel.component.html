@@ -40,14 +40,15 @@
           <div id=selectedLayer>
               <span class="badge badge-secondary" title="Couche de l'objet">{{selectedLayer.nom_court}}</span>
           </div>
-  
+
           <!-- Info table with general informations about the selected feature -->
-          <app-feature-main-info #featureMainInfoComponent
-              [keys]="keys"
-              [selectedLayer]="selectedLayer"
-              [selectedFeature]="selectedFeature"
-          ></app-feature-main-info>
-        </div>
+            <app-feature-main-info #featureMainInfoComponent
+                [keys]="keys"
+                [selectedLayer]="selectedLayer"
+                [selectedFeature]="selectedFeature"
+                [osm_type]="osm_type"
+            ></app-feature-main-info>
+          </div>
   
         <!--<https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll/16671476#16671476-->
   
@@ -133,11 +134,9 @@
                                   <span *ngSwitchCase="'osm_id'">
                                     <span *ngIf="selectedFeature.get(k)>0; else negative">
                                         <a>{{selectedFeature.get(k)}}</a>
-                                        <a class="logo_OSM" target="_blank" href="http://www.openstreetmap.org/{{osm_type}}/{{selectedFeature.get(k)}}" title="Voir l'objet sur openstreetmap.org"><img src="assets/images/osm_logo_25px.png"></a>
                                     </span>
                                     <ng-template #negative>
                                         <a>{{selectedFeature.get(k)*-1}}</a>
-                                        <a class="logo_OSM" target="_blank" href="http://www.openstreetmap.org/relation/{{selectedFeature.get(k)*-1}}" title="Voir l'objet sur openstreetmap.org"><img src="assets/images/osm_logo_25px.png"></a>
                                     </ng-template>
                                   </span>
                                   <span *ngSwitchCase="'osm_type'">

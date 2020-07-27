@@ -4,9 +4,9 @@
     <div *ngIf="featureImportantTagsList.isEmpty() == false; else nothingToDisplay"><!-- If there is something to display -->
       <div *ngFor="let featureImportantTags of featureImportantTagsList.list">
         <div id={{featureImportantTags.importance}}> <!-- high, medium, low, no -->
-          <div *ngFor="let keyLabelObject of featureImportantTags.tagList.list">
+          <div *ngFor="let keyLabelObject of featureImportantTags.tagList.list">             
             <div [ngSwitch]="keyLabelObject.key">
-              <div *ngSwitchCase="'phone'"><a target="_blank" href="tel:{{selectedFeature.get(keyLabelObject.key)}}" title="Appeler le numéro">{{selectedFeature.get(keyLabelObject.key)}}</a></div>
+              <div *ngSwitchCase="'phone'"><a target="_blank" href="tel:{{selectedFeature.get(keyLabelObject.key)}}" title="Appeler le numéro">{{selectedFeature.get(keyLabelObject.key)}}</a></div> 
               <div *ngSwitchCase="'website'"><a target="_blank" href="{{selectedFeature.get(keyLabelObject.key)}}" title="Consulter le site web">Site web</a></div>
               <div *ngSwitchCase="'email'"><a target="_blank" href="mailto:{{selectedFeature.get(keyLabelObject.key)}}" title="Envoyer un mail">Adresse e-mail</a></div>
               <div *ngSwitchDefault>
@@ -30,6 +30,9 @@
     </ng-template>
   </div>
   <div id=external_links> <!-- Tags related to external links (do NOT write them in config) like Wikipedia, national databases, ... -->
+    <!--Logo OSM -->
+    <span *ngIf="selectedFeature.get('osm_id')>0, else id_negatif"><a class="logo_OSM" target="_blank" href="http://www.openstreetmap.org/{{osm_type}}/{{selectedFeature.get('osm_id')}}" title="Voir l'objet sur openstreetmap.org"><img src="assets/images/osm_logo_25px.png"></a></span>
+    <ng-template #id_negatif><a class="logo_OSM" target="_blank" href="http://www.openstreetmap.org/relation/{{selectedFeature.get('osm_id')*-1}}" title="Voir l'objet sur openstreetmap.org"><img src="assets/images/osm_logo_25px.png"></a></ng-template>
     <span *ngFor="let k of keys" title="Voir la base de données relative à l'objet et à sa couche">
       <span *ngIf="k == 'wikipedia'"><a target="_blank" href="https://fr.wikipedia.org/wiki/{{selectedFeature.get(k)}}" title="Voir l'objet sur Wikipedia"><img src="assets/images/wikipedia_50_39px.png"></a><br></span>
       <span *ngIf="k == 'wikidata'"><a target="_blank" href="https://www.wikidata.org/wiki/{{selectedFeature.get(k)}}" title="Voir l'objet sur Wikidata"><img src="assets/images/wikidata_50_35px.png"></a><br></span>
