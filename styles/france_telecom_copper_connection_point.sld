@@ -14,7 +14,9 @@
 
             <se:Rule>
 
-              <se:Name>Single symbol</se:Name>
+              <se:Name>Sous-répartiteur cuivre</se:Name>
+
+              <se:MaxScaleDenominator>70000000</se:MaxScaleDenominator>
 
               <se:PointSymbolizer>
 

@@ -6,7 +6,7 @@
       <sld:FeatureTypeStyle>
         <sld:Name>name</sld:Name>
         <sld:Rule>
-          <sld:Name>college</sld:Name>
+          <sld:Name>Etablissement d'enseignement supérieur (college)</sld:Name>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>amenity</ogc:PropertyName>
@@ -27,7 +27,7 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>kindergarten</sld:Name>
+          <sld:Name>Jardin d'enfant (kindergarten)</sld:Name>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>amenity</ogc:PropertyName>
@@ -48,7 +48,7 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>school</sld:Name>
+          <sld:Name>Ecole primaire et/ou secondaire (school)</sld:Name>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>amenity</ogc:PropertyName>
@@ -69,7 +69,7 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>university</sld:Name>
+          <sld:Name>Université (university)</sld:Name>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>amenity</ogc:PropertyName>
@@ -82,26 +82,6 @@
                 <sld:WellKnownName>circle</sld:WellKnownName>
                 <sld:Fill>
                   <sld:CssParameter name="fill">#2eca91</sld:CssParameter>
-                </sld:Fill>
-                <sld:Stroke/>
-              </sld:Mark>
-              <sld:Size>7.000000</sld:Size>
-            </sld:Graphic>
-          </sld:PointSymbolizer>
-        </sld:Rule>
-        <sld:Rule>
-          <ogc:Filter>
-            <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>amenity</ogc:PropertyName>
-              <ogc:Literal/>
-            </ogc:PropertyIsEqualTo>
-          </ogc:Filter>
-          <sld:PointSymbolizer>
-            <sld:Graphic>
-              <sld:Mark>
-                <sld:WellKnownName>circle</sld:WellKnownName>
-                <sld:Fill>
-                  <sld:CssParameter name="fill">#92d23e</sld:CssParameter>
                 </sld:Fill>
                 <sld:Stroke/>
               </sld:Mark>

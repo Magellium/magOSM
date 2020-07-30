@@ -14,7 +14,9 @@
 
             <se:Rule>
 
-              <se:Name>Single symbol</se:Name>
+              <se:Name>Point de mutualisation fibre</se:Name>
+
+              <se:MaxScaleDenominator>20000000</se:MaxScaleDenominator>
 
               <se:PointSymbolizer>
 
@@ -125,6 +127,14 @@
                       <se:AnchorPointY>0.5</se:AnchorPointY>
 
                     </se:AnchorPoint>
+
+                    <se:Displacement>
+
+                      <se:DisplacementX>0</se:DisplacementX>
+
+                      <se:DisplacementY>25</se:DisplacementY>
+
+                    </se:Displacement>  
 
                   </se:PointPlacement>
 

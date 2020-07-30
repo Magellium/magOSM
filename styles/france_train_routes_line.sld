@@ -7,18 +7,10 @@
                            xmlns:sld="http://www.opengis.net/sld"
                            version="1.0.0">
   <sld:NamedLayer>
-    <sld:Name>france_train_routes_line
-     Style
-    </sld:Name>
+    <sld:Name>france_train_routes_line</sld:Name>
     <sld:UserStyle>
-      <sld:Name>france_train_routes_line
-      Style
-     </sld:Name>
-      <sld:Title/>
+      <sld:Name>france_train_routes_line</sld:Name>
       <sld:FeatureTypeStyle>
-        <sld:Name>france_train_routes_line
-       Style
-       </sld:Name>
         <sld:Rule>
           <sld:Name>Ligne TGV</sld:Name>
           <sld:Title>Ligne TGV</sld:Title>
@@ -168,10 +160,6 @@
           </sld:LineSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>Ligne TGV  Label TextSymbolizer
-          </sld:Name>
-          <sld:Title>Ligne TGV  Label TextSymbolizer
-          </sld:Title>
           <ogc:Filter>
            <ogc:PropertyIsLike  wildCard="%" singleChar="#" escape="!">
                 <ogc:PropertyName>network</ogc:PropertyName>
@@ -227,10 +215,6 @@
           </sld:TextSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>Ligne du réseau Intercités  Label TextSymbolizer
-          </sld:Name>
-          <sld:Title>Ligne du réseau Intercités  Label TextSymbolizer
-          </sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsLike  wildCard="%" singleChar="#" escape="!">
                <ogc:PropertyName>network</ogc:PropertyName>
@@ -286,10 +270,6 @@
           </sld:TextSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>Ligne TER  Label TextSymbolizer
-          </sld:Name>
-          <sld:Title>Ligne TER  Label TextSymbolizer
-          </sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsLike  wildCard="%" singleChar="#" escape="!">
                <ogc:PropertyName>network</ogc:PropertyName>
@@ -345,10 +325,6 @@
           </sld:TextSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>Ligne du réseau RER  Label TextSymbolizer
-          </sld:Name>
-          <sld:Title>Ligne du réseau RER  Label TextSymbolizer
-          </sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsLike  wildCard="%" singleChar="#" escape="!">
                <ogc:PropertyName>network</ogc:PropertyName>
@@ -404,10 +380,6 @@
           </sld:TextSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>Ligne du réseau Transilien  Label TextSymbolizer
-          </sld:Name>
-          <sld:Title>Ligne du réseau Transilien  Label TextSymbolizer
-          </sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsLike  wildCard="%" singleChar="#" escape="!">
                <ogc:PropertyName>network</ogc:PropertyName>
@@ -463,10 +435,6 @@
           </sld:TextSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>Ligne locale  Label TextSymbolizer
-          </sld:Name>
-          <sld:Title>Ligne locale  Label TextSymbolizer
-          </sld:Title>
           <ogc:Filter>
           <ogc:Or>
             <ogc:PropertyIsNotEqualTo>

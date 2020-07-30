@@ -6,7 +6,7 @@
       <sld:FeatureTypeStyle>
         <sld:Name>name</sld:Name>
         <sld:Rule>
-          <sld:Name>gendarmerie</sld:Name>
+          <sld:Name>Gendarmerie</sld:Name>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>police-FR</ogc:PropertyName>
@@ -27,7 +27,7 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>police municipale</sld:Name>
+          <sld:Name>Police municipale</sld:Name>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>police-FR</ogc:PropertyName>
@@ -48,7 +48,7 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>police nationale</sld:Name>
+          <sld:Name>Police nationale</sld:Name>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>police-FR</ogc:PropertyName>
@@ -69,7 +69,7 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>police (sans categorie)</sld:Name>
+          <sld:Name>Police (sans categorie)</sld:Name>
           <ogc:Filter>
           <ogc:And>
             <ogc:PropertyIsEqualTo>
@@ -137,7 +137,7 @@
               </sld:PointPlacement>
             </sld:LabelPlacement>
             <sld:Fill>
-              <sld:CssParameter name="fill">#ac39ac</sld:CssParameter>
+              <sld:CssParameter name="fill">#000000</sld:CssParameter>
             </sld:Fill>
              <VendorOption name="spaceAround">10</VendorOption>
              <VendorOption name="autoWrap">20</VendorOption>

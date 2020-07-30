@@ -6,8 +6,8 @@
       <sld:FeatureTypeStyle>
         <sld:Name>SVG_Symbolizer</sld:Name>
         <sld:Rule> <!--règle pour visualisation à échelle locale, MAX:zoom12] et - -->
-          <sld:Name>service social -local</sld:Name>
-          <Title>service social</Title>
+          <sld:Name>Service social -local</sld:Name>
+          <Title>Service social</Title>
           <ogc:Filter>
           <ogc:And>
             <ogc:PropertyIsEqualTo>
@@ -34,8 +34,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle departementale, ]MIN:zoom11-MAX:zoom9]-->
-          <sld:Name>service social - dep</sld:Name>
-          <Title>service social</Title>
+          <sld:Name>Service social - dep</sld:Name>
+          <Title>Service social</Title>
           <ogc:Filter>
           <ogc:And>
             <ogc:PropertyIsEqualTo>
@@ -63,8 +63,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle regionale, [MIN:zoom8-MAX:zoom7]-->
-          <sld:Name>service social - regional</sld:Name>
-          <Title>service social</Title>
+          <sld:Name>Service social - regional</sld:Name>
+          <Title>Service social</Title>
           <ogc:Filter>
           <ogc:And>
             <ogc:PropertyIsEqualTo>
@@ -92,8 +92,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle national, [MIN:zoom6-MAX:zoom5]-->
-          <sld:Name>service social - national</sld:Name>
-          <Title>service social</Title>
+          <sld:Name>Service social - national</sld:Name>
+          <Title>Service social</Title>
           <ogc:Filter>
           <ogc:And>
             <ogc:PropertyIsEqualTo>
@@ -121,8 +121,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle worldwide, [MIN:zoom4 et +-->
-          <sld:Name>service social - worldwide</sld:Name>
-          <Title>service social</Title>
+          <sld:Name>Service social - worldwide</sld:Name>
+          <Title>Service social</Title>
           <ogc:Filter>
           <ogc:And>
             <ogc:PropertyIsEqualTo>
@@ -150,8 +150,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle locale, MAX:zoom11] et - -->
-          <sld:Name>centre communautaire -local</sld:Name>
-          <Title>centre communautaire</Title>
+          <sld:Name>Centre communautaire -local</sld:Name>
+          <Title>Centre communautaire</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>amenity</ogc:PropertyName>
@@ -170,8 +170,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle departementale, [MIN:zoom11-MAX:zoom9]-->
-          <sld:Name>centre communautaire - dep</sld:Name>
-          <Title>centre communautaire</Title>
+          <sld:Name>Centre communautaire - dep</sld:Name>
+          <Title>Centre communautaire</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>amenity</ogc:PropertyName>
@@ -191,8 +191,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle regionale, [MIN:zoom8-MAX:zoom7]-->
-          <sld:Name>centre communautaire - regional</sld:Name>
-          <Title>centre communautaire</Title>
+          <sld:Name>Centre communautaire - regional</sld:Name>
+          <Title>Centre communautaire</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>amenity</ogc:PropertyName>
@@ -212,8 +212,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle nationale, [MIN:zoom6-MAX:zoom5]-->
-          <sld:Name>centre communautaire - national</sld:Name>
-          <Title>centre communautaire</Title>
+          <sld:Name>Centre communautaire - national</sld:Name>
+          <Title>Centre communautaire</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>amenity</ogc:PropertyName>
@@ -233,8 +233,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle worldwide, [MIN:zoom4 et +-->
-          <sld:Name>centre communautaire - worldwide</sld:Name>
-          <Title>centre communautaire</Title>
+          <sld:Name>Centre communautaire - worldwide</sld:Name>
+          <Title>Centre communautaire</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>amenity</ogc:PropertyName>
@@ -254,8 +254,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle locale, MAX:zoom12] et - -->
-          <sld:Name>centre associatif - local</sld:Name>
-          <Title>centre associatif</Title>
+          <sld:Name>Centre associatif - local</sld:Name>
+          <Title>Centre associatif</Title>
           <ogc:Filter>
           <ogc:Or>
             <ogc:PropertyIsEqualTo>
@@ -292,8 +292,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle departementale, [MIN:zoom11-MAX:zoom9]-->
-          <sld:Name>centre associatif - dep</sld:Name>
-          <Title>centre associatif</Title>
+          <sld:Name>Centre associatif - dep</sld:Name>
+          <Title>Centre associatif</Title>
           <ogc:Filter>
           <ogc:Or>
             <ogc:PropertyIsEqualTo>
@@ -331,8 +331,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle regionale, [MIN:zoom8-MAX:zoom7]-->
-          <sld:Name>centre associatif - regional</sld:Name>
-          <Title>centre associatif</Title>
+          <sld:Name>Centre associatif - regional</sld:Name>
+          <Title>Centre associatif</Title>
           <ogc:Filter>
           <ogc:Or>
             <ogc:PropertyIsEqualTo>
@@ -370,8 +370,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle nationale, [MIN:zoom6-MAX:zoom5]-->
-          <sld:Name>centre associatif - national</sld:Name>
-          <Title>centre associatif</Title>
+          <sld:Name>Centre associatif - national</sld:Name>
+          <Title>Centre associatif</Title>
           <ogc:Filter>
           <ogc:Or>
             <ogc:PropertyIsEqualTo>
@@ -409,8 +409,8 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule> <!--règle pour visualisation à échelle worldwide, [MIN:zoom4 et +-->
-          <sld:Name>centre associatif - worldwide</sld:Name>
-          <Title>centre associatif</Title>
+          <sld:Name>Centre associatif - worldwide</sld:Name>
+          <Title>Centre associatif</Title>
           <ogc:Filter>
           <ogc:Or>
             <ogc:PropertyIsEqualTo>

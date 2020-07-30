@@ -14,7 +14,13 @@
 
             <se:Rule>
 
-              <se:Name>Single symbol</se:Name>
+              <se:Name>Noeud de raccordement</se:Name>
+                
+              <se:Description>
+
+                <se:Title>Noeud de raccordement</se:Title>
+
+              </se:Description>
 
               <se:PointSymbolizer>
 
@@ -40,7 +46,7 @@
 
                   </se:Mark>
 
-                  <se:Size>16</se:Size>
+                  <se:Size>12</se:Size>
 
                 </se:Graphic>
 
@@ -49,7 +55,9 @@
             </se:Rule>
 
             <se:Rule>
-
+              
+			        <se:MaxScaleDenominator>10000</se:MaxScaleDenominator>
+              
               <se:TextSymbolizer>
 
                 <se:Label>
@@ -96,6 +104,8 @@
 
             <se:Rule>
 
+              <se:MaxScaleDenominator>10000</se:MaxScaleDenominator>
+              
               <se:TextSymbolizer>
 
                 <se:Label>

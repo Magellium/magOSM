@@ -58,7 +58,7 @@
                 "nom_court": "Magasins",
                 "md_url":"https://www.data.gouv.fr/fr/datasets/localisations-des-magasins-france-metropolitaine/",
                 "sld_path":"/styles/france_shops_point.sld",
-                "type":"WMS",
+                "type":"WMTS",
                 "download_kml":true,
                 "download_shp":true,
                 "feature_main_info": [

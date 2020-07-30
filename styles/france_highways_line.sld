@@ -7,28 +7,23 @@
                            xmlns:gml="http://www.opengis.net/gml"
                            version="1.0.0">
    <sld:NamedLayer>
-      <sld:Name>france_highways_line
-     Style
-    </sld:Name>
+      <sld:Name>france_highways_line</sld:Name>
       <sld:UserStyle>
-         <sld:Name>france_highways_line
-      Style
-     </sld:Name>
+         <sld:Name>france_highways_line</sld:Name>
          <sld:Title/>
          <sld:FeatureTypeStyle>
-            <sld:Name>france_highways_line
-       Style
-      </sld:Name>
+            <sld:Name>france_highways_line</sld:Name>
             <sld:Rule>
                <sld:Name>Living Street</sld:Name>
-               <sld:Title>Living Street</sld:Title>
+               <sld:Title>Zone de rencontre (living Street)</sld:Title>
                <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>living_street</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
+                  <ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyName>highway</ogc:PropertyName>
+                                    <ogc:Literal>living_street</ogc:Literal>
+                  </ogc:PropertyIsEqualTo>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
+               <!--sld:Name>living_street Background</sld:Name-->
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
                      <sld:CssParameter name="stroke">#303030</sld:CssParameter>
@@ -36,35 +31,53 @@
                      <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
+               <!--sld:Name>living_street</sld:Name-->
+               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <sld:Stroke>
+                     <sld:CssParameter name="stroke">#DDDDE8</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                  </sld:Stroke>
+               </sld:LineSymbolizer>
             </sld:Rule>
             <sld:Rule>
                <sld:Name>Pedestrian</sld:Name>
-               <sld:Title>Pedestrian</sld:Title>
+               <sld:Title>Rue piétonne (pedestrian)</sld:Title>
                <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>pedestrian</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
+                  <ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyName>highway</ogc:PropertyName>
+                                    <ogc:Literal>pedestrian</ogc:Literal>
+                  </ogc:PropertyIsEqualTo>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
+               <!--sld:Name>pedestrian Background</sld:Name-->
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
                      <sld:CssParameter name="stroke">#BFBFBF</sld:CssParameter>
                      <sld:CssParameter name="stroke-width">2</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                  </sld:Stroke>
+               </sld:LineSymbolizer>
+               <!--sld:Name>pedestrian</sld:Name-->
+               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <sld:Stroke>
+                     <sld:CssParameter name="stroke">#DDDDE8</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">1</sld:CssParameter>
                      <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
             </sld:Rule>
             <sld:Rule>
                <sld:Name>Service</sld:Name>
-               <sld:Title>Service</sld:Title>
+               <sld:Title>Route de service</sld:Title>
                <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>service</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
+                  <ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyName>highway</ogc:PropertyName>
+                                    <ogc:Literal>service</ogc:Literal>
+                  </ogc:PropertyIsEqualTo>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
+               <!--sld:Name>service Background</sld:Name-->
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
                      <sld:CssParameter name="stroke">#BFBFBF</sld:CssParameter>
@@ -72,29 +85,38 @@
                      <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
+               <!--sld:Name>service</sld:Name-->
+               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <sld:Stroke>
+                     <sld:CssParameter name="stroke">#FFFFFF</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                  </sld:Stroke>
+               </sld:LineSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>Road Background</sld:Name>
-               <sld:Title>Road Background</sld:Title>
+               <sld:Name>Road</sld:Name>
+               <sld:Title>Route (road) non spécifiée</sld:Title>
                <ogc:Filter>
-<ogc:Or>
-                    <ogc:Or>
-                                        <ogc:PropertyIsEqualTo>
-                                                            <ogc:PropertyName>highway</ogc:PropertyName>
-                                                            <ogc:Literal>residential</ogc:Literal>
-                                        </ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyIsEqualTo>
-                                                            <ogc:PropertyName>highway</ogc:PropertyName>
-                                                            <ogc:Literal>road</ogc:Literal>
-                                        </ogc:PropertyIsEqualTo>
-                    </ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>unclassified</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
+                  <ogc:Or>
+                                    <ogc:Or>
+                                                         <ogc:PropertyIsEqualTo>
+                                                                              <ogc:PropertyName>highway</ogc:PropertyName>
+                                                                              <ogc:Literal>residential</ogc:Literal>
+                                                         </ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyIsEqualTo>
+                                                                              <ogc:PropertyName>highway</ogc:PropertyName>
+                                                                              <ogc:Literal>road</ogc:Literal>
+                                                         </ogc:PropertyIsEqualTo>
+                                    </ogc:Or>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>unclassified</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                  </ogc:Or>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
+               <!--sld:Name>Road Background</sld:Name-->
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
                      <sld:CssParameter name="stroke">#BFBFBF</sld:CssParameter>
@@ -102,23 +124,32 @@
                      <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
+               <!--sld:Name>Road</sld:Name-->
+               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <sld:Stroke>
+                     <sld:CssParameter name="stroke">#FFFFFF</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                  </sld:Stroke>
+               </sld:LineSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>Tertiary Road Background</sld:Name>
-               <sld:Title>Tertiary Road Background</sld:Title>
+               <sld:Name>Tertiary Road</sld:Name>
+               <sld:Title>Route tertiaire (tertiary road)</sld:Title>
                <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>tertiary_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>tertiary</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
+                  <ogc:Or>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>tertiary_link</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>tertiary</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                  </ogc:Or>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>150000.0</sld:MaxScaleDenominator>
+               <!--sld:Name>Tertiary Road Background</sld:Name-->
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
                      <sld:CssParameter name="stroke">#BFBFBF</sld:CssParameter>
@@ -126,23 +157,32 @@
                      <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
+               <!--sld:Name>Tertiary Road</sld:Name-->
+               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <sld:Stroke>
+                     <sld:CssParameter name="stroke">#FFFFFF</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">5</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                  </sld:Stroke>
+               </sld:LineSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>Secondary Road Background</sld:Name>
-               <sld:Title>Secondary Road Background</sld:Title>
+               <sld:Name>Secondary Road</sld:Name>
+               <sld:Title>Route secondaire (secondary road)</sld:Title>
                <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>secondary_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>secondary</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
+                  <ogc:Or>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>secondary_link</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>secondary</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                  </ogc:Or>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>300000.0</sld:MaxScaleDenominator>
+               <!--sld:Name>Secondary Road Background</sld:Name-->
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
                      <sld:CssParameter name="stroke">#B1B389</sld:CssParameter>
@@ -150,22 +190,31 @@
                      <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
+               <!--sld:Name>Secondary Road</sld:Name-->
+               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <sld:Stroke>
+                     <sld:CssParameter name="stroke">#F6F9BE</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">7</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                  </sld:Stroke>
+               </sld:LineSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>Primary Road Background</sld:Name>
-               <sld:Title>Primary Road Background</sld:Title>
+               <sld:Name>Primary Road</sld:Name>
+               <sld:Title>Route nationale (primary road)</sld:Title>
                <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>primary_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>primary</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
+                  <ogc:Or>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>primary_link</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>primary</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                  </ogc:Or>
+               </ogc:Filter>
+               <!--sld:Name>Primary Road Background</sld:Name-->
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
                      <sld:CssParameter name="stroke">#B38347</sld:CssParameter>
@@ -173,22 +222,31 @@
                      <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
+               <!--sld:Name>Primary Road</sld:Name-->
+               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <sld:Stroke>
+                     <sld:CssParameter name="stroke">#FBD5A4</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">7</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                  </sld:Stroke>
+               </sld:LineSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>trunk Background</sld:Name>
-               <sld:Title>trunk Background</sld:Title>
+               <sld:Name>Trunk</sld:Name>
+               <sld:Title>Voie rapide (trunk)</sld:Title>
                <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>trunk_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>trunk</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
+                  <ogc:Or>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>trunk_link</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>trunk</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                  </ogc:Or>
+               </ogc:Filter>
+               <!--sld:Name>trunk Background</sld:Name-->
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
                      <sld:CssParameter name="stroke">#B36147</sld:CssParameter>
@@ -196,22 +254,31 @@
                      <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
+               <!--sld:Name>trunk</sld:Name-->
+               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <sld:Stroke>
+                     <sld:CssParameter name="stroke">#F9B29C</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">12</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                  </sld:Stroke>
+               </sld:LineSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>motorway Background</sld:Name>
-               <sld:Title>motorway Background</sld:Title>
+               <sld:Name>Motorway</sld:Name>
+               <sld:Title>Autoroute (motorway)</sld:Title>
                <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>motorway_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>motorway</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
+                  <ogc:Or>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>motorway_link</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>motorway</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                  </ogc:Or>
+               </ogc:Filter>
+               <!--sld:Name>motorway Background</sld:Name-->
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
                      <sld:CssParameter name="stroke">#B3475D</sld:CssParameter>
@@ -219,25 +286,31 @@
                      <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
+               <!--sld:Name>motorway</sld:Name-->
+               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <sld:Stroke>
+                     <sld:CssParameter name="stroke">#E892A2</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">9</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                  </sld:Stroke>
+               </sld:LineSymbolizer>
             </sld:Rule>
-     </sld:FeatureTypeStyle>
-      <sld:FeatureTypeStyle>
-   <sld:Rule>
+            <sld:Rule>
                <sld:Name>Private</sld:Name>
-               <sld:Title>Private</sld:Title>
+               <sld:Title>Route privée (private)</sld:Title>
                <ogc:Filter>
-<ogc:And>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>private</ogc:PropertyName>
-                                        <ogc:Literal>yes</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:Not>
-                                        <ogc:PropertyIsNull>
-                                                            <ogc:PropertyName>highway</ogc:PropertyName>
-                                        </ogc:PropertyIsNull>
-                    </ogc:Not>
-</ogc:And>
-          </ogc:Filter>
+                  <ogc:And>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>private</ogc:PropertyName>
+                                                         <ogc:Literal>yes</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                                    <ogc:Not>
+                                                         <ogc:PropertyIsNull>
+                                                                              <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         </ogc:PropertyIsNull>
+                                    </ogc:Not>
+                  </ogc:And>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
@@ -250,13 +323,13 @@
             </sld:Rule>
             <sld:Rule>
                <sld:Name>Track</sld:Name>
-               <sld:Title>Track</sld:Title>
+               <sld:Title>Chemin carrossable (track)</sld:Title>
                <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>track</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
+                  <ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyName>highway</ogc:PropertyName>
+                                    <ogc:Literal>track</ogc:Literal>
+                  </ogc:PropertyIsEqualTo>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
                <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
                   <sld:Stroke>
@@ -268,225 +341,57 @@
                </sld:LineSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>Living Street</sld:Name>
-               <sld:Title>Living Street</sld:Title>
+               <sld:Name>Sens de circulation</sld:Name>
                <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>living_street</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
-               <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
-               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+                  <ogc:PropertyIsEqualTo>
+                     <ogc:PropertyName>oneway</ogc:PropertyName>
+                     <ogc:Literal>yes</ogc:Literal>
+                  </ogc:PropertyIsEqualTo>
+               </ogc:Filter>
+               <sld:MaxScaleDenominator>5000.0</sld:MaxScaleDenominator>
+               <sld:LineSymbolizer>
                   <sld:Stroke>
-                     <sld:CssParameter name="stroke">#DDDDE8</sld:CssParameter>
+                     <sld:CssParameter name="stroke">#6c70d5</sld:CssParameter>
                      <sld:CssParameter name="stroke-width">1</sld:CssParameter>
-                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                     <sld:CssParameter name="stroke-dasharray">0 12 10 152</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
-            </sld:Rule>
-            <sld:Rule>
-               <sld:Name>Pedestrian</sld:Name>
-               <sld:Title>Pedestrian</sld:Title>
-               <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>pedestrian</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
-               <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
-               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+               <sld:LineSymbolizer>
                   <sld:Stroke>
-                     <sld:CssParameter name="stroke">#DDDDE8</sld:CssParameter>
-                     <sld:CssParameter name="stroke-width">1</sld:CssParameter>
-                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                     <sld:CssParameter name="stroke">#6c70d5</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">2</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                     <sld:CssParameter name="stroke-dasharray">0 12 9 153</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
-            </sld:Rule>
-            <sld:Rule>
-               <sld:Name>Service</sld:Name>
-               <sld:Title>Service</sld:Title>
-               <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>service</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
-               <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
-               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+               <sld:LineSymbolizer>
                   <sld:Stroke>
-                     <sld:CssParameter name="stroke">#FFFFFF</sld:CssParameter>
-                     <sld:CssParameter name="stroke-width">1</sld:CssParameter>
-                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
-                  </sld:Stroke>
-               </sld:LineSymbolizer>
-            </sld:Rule>
-     </sld:FeatureTypeStyle>
-      <sld:FeatureTypeStyle>
-   <sld:Rule>
-               <sld:Name>Road</sld:Name>
-               <sld:Title>Road</sld:Title>
-               <ogc:Filter>
-<ogc:Or>
-                    <ogc:Or>
-                                        <ogc:PropertyIsEqualTo>
-                                                            <ogc:PropertyName>highway</ogc:PropertyName>
-                                                            <ogc:Literal>residential</ogc:Literal>
-                                        </ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyIsEqualTo>
-                                                            <ogc:PropertyName>highway</ogc:PropertyName>
-                                                            <ogc:Literal>road</ogc:Literal>
-                                        </ogc:PropertyIsEqualTo>
-                    </ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>unclassified</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
-               <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
-               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
-                  <sld:Stroke>
-                     <sld:CssParameter name="stroke">#FFFFFF</sld:CssParameter>
+                     <sld:CssParameter name="stroke">#6c70d5</sld:CssParameter>
                      <sld:CssParameter name="stroke-width">3</sld:CssParameter>
-                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                     <sld:CssParameter name="stroke-dasharray">0 18 2 154</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
-            </sld:Rule>
-     </sld:FeatureTypeStyle>
-      <sld:FeatureTypeStyle>
-   <sld:Rule>
-               <sld:Name>Tertiary Road</sld:Name>
-               <sld:Title>Tertiary Road</sld:Title>
-               <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>tertiary_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>tertiary</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
-               <sld:MaxScaleDenominator>150000.0</sld:MaxScaleDenominator>
-               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
+               <sld:LineSymbolizer>
                   <sld:Stroke>
-                     <sld:CssParameter name="stroke">#FFFFFF</sld:CssParameter>
-                     <sld:CssParameter name="stroke-width">5</sld:CssParameter>
-                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
+                     <sld:CssParameter name="stroke">#6c70d5</sld:CssParameter>
+                     <sld:CssParameter name="stroke-width">4</sld:CssParameter>
+                     <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                     <sld:CssParameter name="stroke-dasharray">0 18 1 155</sld:CssParameter>
                   </sld:Stroke>
                </sld:LineSymbolizer>
             </sld:Rule>
-     </sld:FeatureTypeStyle>
-      <sld:FeatureTypeStyle>
-   <sld:Rule>
-               <sld:Name>Secondary Road</sld:Name>
-               <sld:Title>Secondary Road</sld:Title>
-               <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>secondary_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>secondary</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
-               <sld:MaxScaleDenominator>300000.0</sld:MaxScaleDenominator>
-               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
-                  <sld:Stroke>
-                     <sld:CssParameter name="stroke">#F6F9BE</sld:CssParameter>
-                     <sld:CssParameter name="stroke-width">7</sld:CssParameter>
-                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
-                  </sld:Stroke>
-               </sld:LineSymbolizer>
-            </sld:Rule>
-     </sld:FeatureTypeStyle>
-      <sld:FeatureTypeStyle>
-   <sld:Rule>
-               <sld:Name>Primary Road</sld:Name>
-               <sld:Title>Primary Road</sld:Title>
-               <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>primary_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>primary</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
-               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
-                  <sld:Stroke>
-                     <sld:CssParameter name="stroke">#FBD5A4</sld:CssParameter>
-                     <sld:CssParameter name="stroke-width">7</sld:CssParameter>
-                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
-                  </sld:Stroke>
-               </sld:LineSymbolizer>
-            </sld:Rule>
-     </sld:FeatureTypeStyle>
-      <sld:FeatureTypeStyle>
-   <sld:Rule>
-               <sld:Name>Trunk</sld:Name>
-               <sld:Title>Trunk</sld:Title>
-               <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>trunk_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>trunk</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
-               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
-                  <sld:Stroke>
-                     <sld:CssParameter name="stroke">#F9B29C</sld:CssParameter>
-                     <sld:CssParameter name="stroke-width">12</sld:CssParameter>
-                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
-                  </sld:Stroke>
-               </sld:LineSymbolizer>
-            </sld:Rule>
+         </sld:FeatureTypeStyle>
+         <sld:FeatureTypeStyle>
             <sld:Rule>
-               <sld:Name>Motorway</sld:Name>
-               <sld:Title>Motorway</sld:Title>
+               <!--sld:Name>Motorway Road Label TextSymbolizer</sld:Name-->
                <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>motorway_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>motorway</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
-               <sld:LineSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
-                  <sld:Stroke>
-                     <sld:CssParameter name="stroke">#E892A2</sld:CssParameter>
-                     <sld:CssParameter name="stroke-width">9</sld:CssParameter>
-                     <sld:CssParameter name="stroke-linecap">round</sld:CssParameter>
-                  </sld:Stroke>
-               </sld:LineSymbolizer>
-            </sld:Rule>
-            <sld:Rule>
-               <sld:Name>Motorway Road Label TextSymbolizer</sld:Name>
-               <sld:Title>Motorway Road Label TextSymbolizer</sld:Title>
-               <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>motorway</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
+                  <ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyName>highway</ogc:PropertyName>
+                                    <ogc:Literal>motorway</ogc:Literal>
+                  </ogc:PropertyIsEqualTo>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>5000000.0</sld:MaxScaleDenominator>
                <sld:TextSymbolizer>
                   <sld:Label>
@@ -527,14 +432,13 @@
                </sld:TextSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>trunk Road Label TextSymbolizer</sld:Name>
-               <sld:Title>trunk Road Label TextSymbolizer</sld:Title>
+               <!--sld:Name>trunk Road Label TextSymbolizer</sld:Name-->
                <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>trunk</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
+                  <ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyName>highway</ogc:PropertyName>
+                                    <ogc:Literal>trunk</ogc:Literal>
+                  </ogc:PropertyIsEqualTo>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>800000.0</sld:MaxScaleDenominator>
                <sld:TextSymbolizer>
                   <sld:Label>
@@ -575,14 +479,13 @@
                </sld:TextSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>Primary Road Label TextSymbolizer</sld:Name>
-               <sld:Title>Primary Road Label TextSymbolizer</sld:Title>
+               <!--sld:Name>Primary Road Label TextSymbolizer</sld:Name-->
                <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>primary</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
+                  <ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyName>highway</ogc:PropertyName>
+                                    <ogc:Literal>primary</ogc:Literal>
+                  </ogc:PropertyIsEqualTo>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>500000.0</sld:MaxScaleDenominator>
                <sld:TextSymbolizer>
                   <sld:Label>
@@ -631,14 +534,13 @@
                </sld:TextSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>Secondary Road label TextSymbolizer</sld:Name>
-               <sld:Title>Secondary Road label TextSymbolizer</sld:Title>
+               <!--sld:Name>Secondary Road label TextSymbolizer</sld:Name-->
                <ogc:Filter>
-<ogc:PropertyIsEqualTo>
-                    <ogc:PropertyName>highway</ogc:PropertyName>
-                    <ogc:Literal>secondary</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-          </ogc:Filter>
+                  <ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyName>highway</ogc:PropertyName>
+                                    <ogc:Literal>secondary</ogc:Literal>
+                  </ogc:PropertyIsEqualTo>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>500000.0</sld:MaxScaleDenominator>
                <sld:TextSymbolizer>
                   <sld:Label>
@@ -690,20 +592,19 @@
                </sld:TextSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>Tertiary Road label TextSymbolizer</sld:Name>
-               <sld:Title>Tertiary Road label TextSymbolizer</sld:Title>
+               <!--sld:Name>Tertiary Road label TextSymbolizer</sld:Name-->
                <ogc:Filter>
-<ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>tertiary_link</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>tertiary</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
+                  <ogc:Or>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>tertiary_link</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>tertiary</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                  </ogc:Or>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>100000.0</sld:MaxScaleDenominator>
                <sld:TextSymbolizer>
                   <sld:Label>
@@ -755,26 +656,25 @@
                </sld:TextSymbolizer>
             </sld:Rule>
             <sld:Rule>
-               <sld:Name>Quaternary Road label TextSymbolizer</sld:Name>
-               <sld:Title>Quaternary Road label TextSymbolizer</sld:Title>
+               <!--sld:Name>Quaternary Road label TextSymbolizer</sld:Name-->
                <ogc:Filter>
-<ogc:Or>
-                    <ogc:Or>
-                                        <ogc:PropertyIsEqualTo>
-                                                            <ogc:PropertyName>highway</ogc:PropertyName>
-                                                            <ogc:Literal>residential</ogc:Literal>
-                                        </ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyIsEqualTo>
-                                                            <ogc:PropertyName>highway</ogc:PropertyName>
-                                                            <ogc:Literal>road</ogc:Literal>
-                                        </ogc:PropertyIsEqualTo>
-                    </ogc:Or>
-                    <ogc:PropertyIsEqualTo>
-                                        <ogc:PropertyName>highway</ogc:PropertyName>
-                                        <ogc:Literal>unclassified</ogc:Literal>
-                    </ogc:PropertyIsEqualTo>
-</ogc:Or>
-          </ogc:Filter>
+                  <ogc:Or>
+                                    <ogc:Or>
+                                                         <ogc:PropertyIsEqualTo>
+                                                                              <ogc:PropertyName>highway</ogc:PropertyName>
+                                                                              <ogc:Literal>residential</ogc:Literal>
+                                                         </ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyIsEqualTo>
+                                                                              <ogc:PropertyName>highway</ogc:PropertyName>
+                                                                              <ogc:Literal>road</ogc:Literal>
+                                                         </ogc:PropertyIsEqualTo>
+                                    </ogc:Or>
+                                    <ogc:PropertyIsEqualTo>
+                                                         <ogc:PropertyName>highway</ogc:PropertyName>
+                                                         <ogc:Literal>unclassified</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                  </ogc:Or>
+               </ogc:Filter>
                <sld:MaxScaleDenominator>50000.0</sld:MaxScaleDenominator>
                <sld:TextSymbolizer>
                   <sld:Label>
@@ -815,50 +715,6 @@
                   <sld:VendorOption name="maxDisplacement">400</sld:VendorOption>
                </sld:TextSymbolizer>
             </sld:Rule>
-         <sld:Rule>
-                   <sld:Name>Sens de circulation</sld:Name>
-          <sld:Title>Sens de circulation</sld:Title>
-<ogc:Filter>
-
-<ogc:PropertyIsEqualTo>
-<ogc:PropertyName>oneway</ogc:PropertyName>
-<ogc:Literal>yes</ogc:Literal>
-</ogc:PropertyIsEqualTo>
-</ogc:Filter>
-<sld:MaxScaleDenominator>5000.0</sld:MaxScaleDenominator>
-<sld:LineSymbolizer>
-<sld:Stroke>
-<sld:CssParameter name="stroke">#6c70d5</sld:CssParameter>
-<sld:CssParameter name="stroke-width">1</sld:CssParameter>
-<sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
-<sld:CssParameter name="stroke-dasharray">0 12 10 152</sld:CssParameter>
-</sld:Stroke>
-</sld:LineSymbolizer>
-<sld:LineSymbolizer>
-<sld:Stroke>
-<sld:CssParameter name="stroke">#6c70d5</sld:CssParameter>
-<sld:CssParameter name="stroke-width">2</sld:CssParameter>
-<sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
-<sld:CssParameter name="stroke-dasharray">0 12 9 153</sld:CssParameter>
-</sld:Stroke>
-</sld:LineSymbolizer>
-<sld:LineSymbolizer>
-<sld:Stroke>
-<sld:CssParameter name="stroke">#6c70d5</sld:CssParameter>
-<sld:CssParameter name="stroke-width">3</sld:CssParameter>
-<sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
-<sld:CssParameter name="stroke-dasharray">0 18 2 154</sld:CssParameter>
-</sld:Stroke>
-</sld:LineSymbolizer>
-<sld:LineSymbolizer>
-<sld:Stroke>
-<sld:CssParameter name="stroke">#6c70d5</sld:CssParameter>
-<sld:CssParameter name="stroke-width">4</sld:CssParameter>
-<sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
-<sld:CssParameter name="stroke-dasharray">0 18 1 155</sld:CssParameter>
-</sld:Stroke>
-</sld:LineSymbolizer>
-</sld:Rule>
          </sld:FeatureTypeStyle>
       </sld:UserStyle>
    </sld:NamedLayer>
