@@ -137,15 +137,6 @@
           <MaxScaleDenominator>70000000</MaxScaleDenominator>
           <sld:PointSymbolizer>
             <sld:Graphic>
-              <sld:ExternalGraphic>
-                <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="images/mag/health_pharmacy_-1377382206.svg"/>
-                <sld:Format>image/svg+xml</sld:Format>
-              </sld:ExternalGraphic>
-              <sld:Size>1.500000</sld:Size>
-            </sld:Graphic>
-          </sld:PointSymbolizer>
-          <sld:PointSymbolizer>
-            <sld:Graphic>
               <sld:Mark>
                 <sld:WellKnownName>circle</sld:WellKnownName>
                 <sld:Fill>

@@ -5,6 +5,55 @@
       <sld:Name>france_shops_point</sld:Name>
       <sld:FeatureTypeStyle>
         <sld:Name>name</sld:Name>
+        <sld:Rule> <!--règle pour visualisation échelle [MAX:zoom6 MIN:zoom16]-->
+          <sld:Name>magasin</sld:Name>
+          <sld:Title>magasin</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike  wildCard="%" singleChar="#" escape="!">
+                <ogc:PropertyName>shop</ogc:PropertyName>
+                <ogc:Literal>%</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <MinScaleDenominator>5000</MinScaleDenominator>
+          <MaxScaleDenominator>5000000</MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#ac39ac</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>3.00000</sld:Size>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule> <!--règle pour visualisation à échelle worldwide, [MIN:zoom6 et - -->
+          <sld:Name>magasin</sld:Name>
+          <sld:Title>magasin</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike  wildCard="%" singleChar="#" escape="!">
+                <ogc:PropertyName>shop</ogc:PropertyName>
+                <ogc:Literal>%</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <MinScaleDenominator>5000000</MinScaleDenominator>
+          <MaxScaleDenominator>70000000</MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#ac39ac</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>1.500000</sld:Size>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+      </sld:FeatureTypeStyle>
+      <sld:FeatureTypeStyle> <!--règle pour visualisation avec icônes, [MIN:zoom16 et + -->
+        <sld:Name>name</sld:Name>
         <sld:Rule>
           <sld:Name>Alcool (alcohol)</sld:Name>
           <ogc:Filter>
@@ -13,6 +62,7 @@
               <ogc:Literal>alcohol</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -31,6 +81,7 @@
               <ogc:Literal>pet</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -49,6 +100,7 @@
               <ogc:Literal>hifi</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -67,6 +119,7 @@
               <ogc:Literal>beauty</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -85,6 +138,7 @@
               <ogc:Literal>jewellery</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -103,6 +157,7 @@
               <ogc:Literal>beverages</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -121,6 +176,7 @@
               <ogc:Literal>butcher</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -139,6 +195,7 @@
               <ogc:Literal>bakery</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -157,6 +214,7 @@
               <ogc:Literal>doityourself</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -175,6 +233,7 @@
               <ogc:Literal>gift</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -193,6 +252,7 @@
               <ogc:Literal>coffee</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -211,6 +271,7 @@
               <ogc:Literal>shoes</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -229,6 +290,7 @@
               <ogc:Literal>hairdresser</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -247,6 +309,7 @@
               <ogc:Literal>confectionery</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -265,6 +328,7 @@
               <ogc:Literal>shop-other</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -283,6 +347,7 @@
               <ogc:Literal>chemist</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -301,6 +366,7 @@
               <ogc:Literal>electronics</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -319,6 +385,7 @@
               <ogc:Literal>convenience</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -337,6 +404,7 @@
               <ogc:Literal>florist</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -355,6 +423,7 @@
               <ogc:Literal>ice-cream</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -373,6 +442,7 @@
               <ogc:Literal>copyshop</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -391,6 +461,7 @@
               <ogc:Literal>garden-centre</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -409,6 +480,7 @@
               <ogc:Literal>toys</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -427,6 +499,7 @@
               <ogc:Literal>news</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -445,6 +518,7 @@
               <ogc:Literal>kiosk</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -463,6 +537,7 @@
               <ogc:Literal>laundry</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -481,6 +556,7 @@
               <ogc:Literal>books</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -499,6 +575,7 @@
               <ogc:Literal>furniture</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -517,6 +594,7 @@
               <ogc:Literal>optician</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -535,6 +613,7 @@
               <ogc:Literal>computer</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -553,6 +632,7 @@
               <ogc:Literal>stationery</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -571,6 +651,7 @@
               <ogc:Literal>photo</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -589,6 +670,7 @@
               <ogc:Literal>car-parts</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -607,6 +689,7 @@
               <ogc:Literal>greengrocer</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -625,6 +708,7 @@
               <ogc:Literal>repair-car</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -643,6 +727,7 @@
               <ogc:Literal>repair-bicycle</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -661,6 +746,7 @@
               <ogc:Literal>supermarket</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -679,6 +765,7 @@
               <ogc:Literal>tobacco</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -697,6 +784,7 @@
               <ogc:Literal>mobile-phone</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -715,6 +803,7 @@
               <ogc:Literal>bicycle</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -733,6 +822,7 @@
               <ogc:Literal>clothes</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
@@ -751,6 +841,7 @@
               <ogc:Literal>car</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
+          <MaxScaleDenominator>5000</MaxScaleDenominator>
           <sld:PointSymbolizer uom="http://www.opengeospatial.org/se/units/metre">
             <sld:Graphic>
               <sld:ExternalGraphic>
