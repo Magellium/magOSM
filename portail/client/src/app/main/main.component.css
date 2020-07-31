@@ -21,11 +21,11 @@ app-alert{
 app-permalink {
     position: absolute;
     top: 12px;
-    left: 350px;
+    left: 525px;
 }  
 
 #report-bug {
   position: absolute;
   top: 12px;
-  left: 425px;
+  left: 350px;
 } 

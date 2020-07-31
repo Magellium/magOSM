@@ -8,9 +8,9 @@
     <div id="mainmap">
       <app-map *ngIf="userContext" [userContext]="userContext"></app-map>
       <app-header></app-header>
-      <app-permalink class="d-none d-md-block"></app-permalink>
+      <app-permalink class="d-none"></app-permalink> <!--Permalink hidden, to display it back: <app-permalink class="d-none d-md-block"></app-permalink>-->
       <span id="report-bug" class="d-none d-md-block">
-        - <a href="https://github.com/Magellium/magOSM/" target="_blank"> Signaler une anomalie</a>
+        <a href="https://github.com/Magellium/magOSM/" target="_blank"> Signaler une anomalie</a> 
       </span>
     </div>
   </div>
