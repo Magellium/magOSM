@@ -26,6 +26,5 @@ Un guide est disponible ici : [Contribution.md](Contribution.md) !
 ## Organisation du projet
 
 * `./portail/` : frontend et backend du [Portail magOSM](http://magosm.magellium.com/portail/)
-* `./metadatas/` : fiches de métadonnées du [Catalogue magOSM](http://open.isogeo.com/s/6da366a3991f4d42aa9d2a8f58a73af1/pHUOzxi2EayRSGnbHCbdZOXzQGN80) au format XML ISO 19139
 * `./styles/` : fichiers de style SLD définissant les styles par défaut pour les flux WMS
 * [magosm_db](https://github.com/Magellium/magosm_db) : dépôt de code relatif à la base de données magOSM
