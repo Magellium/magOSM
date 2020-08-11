@@ -51,6 +51,7 @@ export class UserContextService {
           this.context = this.defaultUserContext;
           resolve.next(this.context);
         }
+        resolve.next(this.context);
       });
 
     })
