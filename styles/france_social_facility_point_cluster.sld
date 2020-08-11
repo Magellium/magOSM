@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><sld:StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:sld="http://www.opengis.net/sld" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" version="1.0.0">
   <sld:NamedLayer>
-    <sld:Name>france_social_amenity_point</sld:Name>
+    <sld:Name>france_social_facility_point_cluster</sld:Name>
     <sld:UserStyle>
-      <sld:Name>france_social_amenity_point</sld:Name>
+      <sld:Name>france_social_facility_point_cluster</sld:Name>
       <sld:FeatureTypeStyle>
         <Transformation>
             <ogc:Function name="gs:PointStacker">
