@@ -6,11 +6,17 @@ declare var ol: any;
 declare var config: any;
 
 export class UserContext{
+  // zoom
   z:number;
+  // longitude
   lon:number;
+  // latitude
   lat:number;
+  // base layer name
   bLay:string;
+  // visible layer name
   vLay:string;
+  // opacity range
   tr:number;
   
   constructor(){};
