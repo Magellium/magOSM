@@ -27,6 +27,7 @@ export class UserContext{
       this.lat=parseFloat(route.snapshot.queryParams['lat']),
       this.bLay=route.snapshot.queryParams['bLay'],
       this.vLay=route.snapshot.queryParams['vLay'],
+      (!this.vLay || this.vLay ==="")?  this.vLay = "none":"",
       this.tr=route.snapshot.queryParams['tr'] 
   }
 
