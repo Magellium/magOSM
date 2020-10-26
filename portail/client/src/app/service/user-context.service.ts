@@ -33,6 +33,7 @@ export class UserContextService {
     let pLnk: string = this.context.getContextAsPermalink();
     this.location.go(pLnk);
     let piwikVlay = pLnk.substring(pLnk.indexOf("vLay=")+5);
+    (!piwikVlay || piwikVlay ==="")?  piwikVlay = "none":"",
     _paq.push(['trackEvent', 'permalien' , piwikVlay])
   }
 
@@ -49,11 +50,9 @@ export class UserContextService {
         this.context.initFromRoute(this.route);
         if(!this.context.isValid()){
           this.context = this.defaultUserContext;
-          resolve.next(this.context);
         }
         resolve.next(this.context);
       });
-
     })
     return obs;
   }
