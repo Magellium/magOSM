@@ -14,7 +14,7 @@ import { Layer } from 'app/model/Layer';
 declare var ol: any;
 declare var _paq: any;
 declare var window: any;
-//declare var config: any;
+declare var config: any;
 declare var fetch: any;
 
 @Injectable()
@@ -75,6 +75,10 @@ export class MapService {
     this.map = map;
     this.setBaseLayers();
     this.changeOpacity(userContext.tr);
+  }
+
+  getMap(){
+    return this.map;
   }
 
   setWMTSResult(wmtsResult) {
@@ -406,6 +410,11 @@ export class MapService {
     return wkt;
   }
 
+  getBoundingBoxCorner() {
+    let format = new ol.format.WKT();
+    let extent = ol.geom.Polygon.fromExtent(this.map.getView().calculateExtent());
+    return extent.getExtent();
+  }
 
   getResolutionFromScale(scale, units) {
     var resolution = scale / (this.INCHES_PER_UNIT[units] * this.DOTS_PER_INCH);
@@ -414,10 +423,10 @@ export class MapService {
 
   getScaleFromResolution(resolution, units, opt_round) {
     var scale = this.INCHES_PER_UNIT[units] * this.DOTS_PER_INCH * resolution;
-    console.log("scale : " + scale + " / resolution : " + resolution)
     if (opt_round) {
       scale = Math.round(scale);
     }
+    console.log("scale : " + scale + " / resolution : " + resolution)
     return scale;
   };
 
@@ -884,4 +893,21 @@ export class MapService {
     }
   }
 
+  // Centre sur la géom liée à la ligne du bouton cliqué
+  centerItemGeom(geom) {
+
+      let polygone : Array<Number> = [];
+      if (geom && geom.length > 2 ) {
+        geom.forEach((element, index) => {
+          if (index % 2 == 0){            
+            polygone.push( ol.proj.transform([geom[index], geom[index+1]], 'EPSG:3857', config.PROJECTION_CODE));
+          }
+        });
+        let polygon = new ol.geom.Polygon([polygone]);
+        this.map.getView().fit(polygon, {});
+        this.map.getView().setZoom(19);
+    } else {
+      alert("Cet objet ne contient pas de géométrie permettant le centrage sur la carte.");
+    }
+  }
 }

@@ -1,0 +1,98 @@
+<!-- Modal ajout de couche -->
+<div class="modal fade modal-lg" id="featureAttributeTableModal" #featureAttributeTableModal tabindex="-1" 
+  role="dialog" data-backdrop="false" data-keyboard="false"
+  [draggable] dragHandle=".featureAttributeTableHeader" dragTarget="#featureAttributeTableModal"
+    aria-labelledby="featureAttributeTableModalLabel" aria-hidden="true" >
+
+  <div class="modal-dialog  modal-lg" id="featureAttributeTableModalDialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header featureAttributeTableHeader">
+        <h5 class="modal-title" id="featureAttributeTableModalLabel">
+            <label *ngIf="currentFeature">{{currentFeature.nom_court}}</label> 
+        </h5>
+        <!-- <button class="reloadButton" > -->
+          <img class="reloadImage" src="./assets/images/reload.png" title="Recharger les valeurs valeurs"  (click)="setFeature(null)"/>
+        <!-- </button> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-body">
+            <!-- Data table -->
+                <div class="containerTable" *ngIf="!loadingWFS">                   
+                <table class="attribute-table" id="featureAttributeTable" >
+                  <thead [class.hidden]="featureAttributeKeyTable.length===0 || loadingWFS">
+                    <tr>
+                      <th></th>
+                      <ng-container *ngFor="let featureAttributeKey of featureAttributeKeyTable"> 
+                        <th *ngIf="featureAttributeKey!='bbox' && featureAttributeKey!='osm_original_geom'" class="attribute">{{featureAttributeKey}} 
+                          <i [class]="paginationService.getSort()[featureAttributeKey]==-1? 'fa fa-sort-desc': paginationService.getSort()[featureAttributeKey]==0? 'fa fa-sort' : 'fa fa-sort-asc'" aria-hidden="true" (click)="sort(featureAttributeKey)"></i>
+                        </th>
+                      </ng-container>
+                    </tr>
+                  </thead>
+                  <tbody id="featureAttributeTableBody" [class.hidden]="featureAttributeValuesTable.length===0 || loadingWFS">
+                    <tr id="bodyTable" *ngFor="let featureAttributeValue of featureAttributeValuesTable; let featureAttributeIndex = index" >
+                      <ng-container *ngFor="let featureAttributeKey of featureAttributeKeyTable; let featureAttributeKeyIndex = index">
+                        <td class="action" *ngIf="featureAttributeKeyIndex==0"  >
+                          <button class="centerButtonTable" (click)="centerGeom($event, featureAttributeValue.properties['bbox'])">
+                            <img id="centerMap" class="centerButton" src="./assets/images/localisation.svg" title="Centrer sur la carte" />
+                          </button>
+                        </td>
+                        <td *ngIf="featureAttributeKey!='bbox' && featureAttributeKey!='osm_original_geom'">
+                          {{ featureAttributeValue.properties[featureAttributeKey] }}
+                        </td>
+                      </ng-container>                      
+                    </tr>
+                  </tbody>
+                </table>  
+              </div>   
+              <div id="loadingWFS" *ngIf="loadingWFS">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer"> 
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item pageSize disabled">
+              <label for="pet-select">Nombre d'élément par page</label>
+              <select #pageSize (change)="onChangePageSize($event)">
+                <option *ngFor="let pageSize of paginationService.getPageSizeArray()" value={{pageSize}}>{{pageSize}}</option>
+              </select>
+            </li>
+            <li class="page-item disabled">
+              <label for="pet-select">Aller à la page : </label>
+              <input #pageSizeInput type="text" (keydown)="handlePageSizeInputKeyDown($event)">
+            </li>  
+            <li class="page-item" >
+              <label #rangePage for="rangePage" class="rangePage"></label>
+            </li> 
+
+            <li class="page-item disabled">
+              <a class="page-link" #previousPage href="#" tabindex="-1" aria-disabled="true" disabled (click)="onChangePreviousPage()">Page précédente</a>
+            </li>
+            <li class="page-item disabled" ><a class="page-link active" #pageItem1 (click)="onChangePageIndex($event)" href="#">1</a></li>
+            <li class="page-item disabled"><a class="page-link" #pageItem2 (click)="onChangePageIndex($event)" href="#">2</a></li>
+            <li class="page-item disabled"><a class="page-link" #pageItem3 (click)="onChangePageIndex($event)" href="#">3</a></li>
+            <ng-container *ngIf="paginationService.getLastPageIndex()>3 && paginationService.getPageIndex() < paginationService.getLastPageIndex()-3">
+              <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+            </ng-container>
+            <ng-container *ngIf="paginationService.getLastPageIndex()>3 && paginationService.getPageIndex() < paginationService.getLastPageIndex()-2">
+              <li class="page-item"><a class="page-link" #pageLastItem (click)="onChangeLastPage()" href="#">{{paginationService.getLastPageIndex()}}</a></li>
+            </ng-container>
+            <li class="page-item disabled">
+              <a class="page-link" #nextPage href="#" (click)="onChangeNextPage()" >Page suivante</a>
+            </li>
+          </ul>
+        </nav>       
+      </div>
+    </div>
+  </div>
+</div>
