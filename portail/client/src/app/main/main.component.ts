@@ -102,6 +102,8 @@ export class MainComponent {
       $('#panel-switcher-wrapper').popover({
         html: true,
         trigger: 'manual'
+      }).on("hide.bs.popover", function(e){
+        $('#panel-switcher-wrapper').popover('dispose');
       });
       $('[data-toggle="popover"]').popover();
       $('#panel-switcher-wrapper').popover('show');
@@ -109,7 +111,7 @@ export class MainComponent {
   }
   onFeatureInfo(featureInfo){
     this.selectedFeature=featureInfo;
-  }
+  }  
 }
 
   

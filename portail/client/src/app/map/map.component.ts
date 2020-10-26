@@ -258,6 +258,9 @@ export class MapComponent implements OnInit {
         this.visibleLayers, this.id_layers, viewResolution, event
       );
     }
+    if ($('.popover.fade.show.bs-popover-left')){
+      $('.popover.fade.show.bs-popover-left').remove();
+    }
   }
 
   setVisibleLayersAndLegends(): boolean { //tient à jour les infos sur les layers visibles et les légendes à afficher
@@ -310,6 +313,10 @@ export class MapComponent implements OnInit {
     if (this.selectedFeature[0].getKeys().indexOf("osm_original_geom") >= 0) {
       let wkt_geom = this.selectedFeature[0].get("osm_original_geom");
 
+      // si l'on manipule des objets de type point (ou "node"), 
+      // nous n'avons pas de geom, donc nous ne traitons pas ce cas ici
+      if (wkt_geom){
+        //  nous manipulons des objets geom de type polygone (ou "way"), l'objet contient une géométrie
         var format = new ol.format.WKT();
         
         var feature = format.readFeature(wkt_geom.split(';')[1], {
@@ -317,8 +324,8 @@ export class MapComponent implements OnInit {
           featureProjection: 'EPSG:3857'
         });
         this.mapService.addToSelection(feature);
+      }
     }
-
 
     console.log(this.selectedFeature);
   }
@@ -412,7 +419,7 @@ export class MapComponent implements OnInit {
     } else if (event.dataTransfer.files.length > 0) {
       const file: File = event.dataTransfer.files[0];
       const reader = new FileReader();
-      reader.onload = e => {
+      reader.onload = (e : any) => {
         const buffer = e.target.result as ArrayBuffer;
         // TODO id collision if several shapefiles have the same name. Use a hash
         // on the arraybuffer? For now, only use a random number to mitigeate
