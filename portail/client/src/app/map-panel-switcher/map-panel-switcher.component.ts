@@ -38,7 +38,8 @@ export class MapPanelSwitcherComponent implements OnInit {
     var self = this;
     $("#panel-switcher-close").click(function (e) {
       console.log("close");
-      self.showStartDialog = false
+      self.showStartDialog = false;
+     
       $('#panel-switcher-wrapper').popover('hide');
       e.preventDefault();
       self.closePanel();
@@ -48,7 +49,7 @@ export class MapPanelSwitcherComponent implements OnInit {
     }); 
     $('#panel-switcher-wrapper').on('inserted.bs.popover', function () {
       if (!self.showStartDialog) {
-        $('#panel-switcher-wrapper').popover('hide');
+       $('#panel-switcher-wrapper').popover('hide');
       }
     });
    
