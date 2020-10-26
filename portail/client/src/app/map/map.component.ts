@@ -310,13 +310,13 @@ export class MapComponent implements OnInit {
     if (this.selectedFeature[0].getKeys().indexOf("osm_original_geom") >= 0) {
       let wkt_geom = this.selectedFeature[0].get("osm_original_geom");
 
-      var format = new ol.format.WKT();
-
-      var feature = format.readFeature(wkt_geom.split(';')[1], {
-        dataProjection: 'EPSG:3857',
-        featureProjection: 'EPSG:3857'
-      });
-      this.mapService.addToSelection(feature);
+        var format = new ol.format.WKT();
+        
+        var feature = format.readFeature(wkt_geom.split(';')[1], {
+          dataProjection: 'EPSG:3857',
+          featureProjection: 'EPSG:3857'
+        });
+        this.mapService.addToSelection(feature);
     }
 
 

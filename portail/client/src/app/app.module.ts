@@ -33,6 +33,10 @@ import { HelpComponent } from './help-components/help/help.component';
 import { HelpChangeTypeComponent } from './help-components/help-subsection/help-subsection.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { LoadSpinnerComponent } from './utils/load-spinner/load-spinner.component';
+import { FeatureAttributeTableComponent } from './feature-attribute-table/feature-attribute-table.component';
+
+import { DraggableDirective } from './common/directive/draggable.directive';
+
 
 // Define the routes
 const ROUTES: Routes = [
@@ -82,6 +86,8 @@ const ROUTES: Routes = [
     HelpComponent,
     HelpChangeTypeComponent,
     LoadSpinnerComponent,
+    FeatureAttributeTableComponent,
+    DraggableDirective
   ],
   imports: [ 
     NguiAutoCompleteModule,

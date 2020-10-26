@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { MapComponent } from '../../map/map.component';
 import { Layer } from '../../model/Layer';
 import { MapService } from '../../service/map.service';
@@ -6,6 +6,7 @@ import { LayerChangeService } from '../../service/layer-change.service';
 import { UserContext } from '../../model/UserContext';
 import { environment } from '../../../environments/environment';
 import { LayerAndCategory } from 'app/model/LayerAndCategory';
+import { FeatureAttributeTableComponent } from 'app/feature-attribute-table/feature-attribute-table.component';
 
 declare var config: any;
 declare var $: any;
@@ -25,6 +26,8 @@ export class LayerTreeComponent implements OnInit {
 
   layervariables = config.LAYERS;
 
+  @ViewChild('featureAttributeTableComponent') featureAttributeTableComponent: FeatureAttributeTableComponent;
+
   @Input('userContext')
   public userContext: UserContext;
 
@@ -39,7 +42,13 @@ export class LayerTreeComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    let self= this;
+    this.layervariables.forEach(categorie => {
+      categorie.features.forEach(feature => {
+        feature.nom_court_trim = feature.nom_court.replaceAll(' ', '');
+      }); 
+    }); 
+   
   }
 
   ngAfterViewInit() {
@@ -89,7 +98,10 @@ export class LayerTreeComponent implements OnInit {
   //Selection d'une couche
   onSelect(event, variable: Layer): void {
     console.log(variable.layername);
-    $('#panel-switcher-wrapper').popover('hide');
+
+    if ($('.popover.fade.show.bs-popover-left')){
+      $('.popover.fade.show.bs-popover-left').remove();
+    }
     if (event) {
       event.stopPropagation();
     }
@@ -134,5 +146,13 @@ export class LayerTreeComponent implements OnInit {
     }
 
   }
+  
+  // Evènement levé lors d'un click sur le bouton "grille" en face du nom d'une couche
+  // Cela provoque l'ouverture d'une fenêtre modale contenant les valeurs attributaires de la couche
+  openAttributeTable($event : any, feature):void{
+    this.featureAttributeTableComponent.setFeature(feature);
+    _paq.push(['trackEvent', 'layer_attribut', feature.layername])
+  }
 
+  
 }
