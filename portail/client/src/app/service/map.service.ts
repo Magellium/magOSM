@@ -14,8 +14,8 @@ import { Layer } from 'app/model/Layer';
 declare var ol: any;
 declare var _paq: any;
 declare var window: any;
-declare var config: any;
 declare var fetch: any;
+declare var config: any;
 
 @Injectable()
 export class MapService {
@@ -160,7 +160,8 @@ export class MapService {
   }
   addToSelection(feature) {
     this.selectedFeatureSource.addFeature(feature);
-    let piwikFeatureSelectedLayer = feature.getId().substring(0, feature.getId().indexOf('.fid'))
+    let toIndex = feature.getId().indexOf('.fid')>0? feature.getId().indexOf('.fid'): (feature.getId().lastIndexOf('.')>0? feature.getId().lastIndexOf('.'):feature.getId().length);
+    let piwikFeatureSelectedLayer = feature.getId().substring(0, toIndex)
     _paq.push(['trackEvent', 'feature_selected', piwikFeatureSelectedLayer])
   }
   addSelectionLayer() {
