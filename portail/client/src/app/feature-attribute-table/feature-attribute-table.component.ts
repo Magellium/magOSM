@@ -48,7 +48,7 @@ export class FeatureAttributeTableComponent implements OnInit {
   constructor(
     public mapService: MapService,
     private http: HttpClient, 
-    private paginationService : PaginationService) { 
+    public paginationService : PaginationService) { 
       this.wfsRequest = new WFSRequest(this.mapService);
       this.mapService = mapService;
      

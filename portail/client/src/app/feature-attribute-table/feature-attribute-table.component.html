@@ -63,7 +63,7 @@
           <ul class="pagination justify-content-center">
             <li class="page-item pageSize disabled">
               <label for="pet-select">Nombre d'élément par page</label>
-              <select #pageSize (change)="onChangePageSize($event)">
+              <select #pageSize (change)="onChangePageSize()">
                 <option *ngFor="let pageSize of paginationService.getPageSizeArray()" value={{pageSize}}>{{pageSize}}</option>
               </select>
             </li>
