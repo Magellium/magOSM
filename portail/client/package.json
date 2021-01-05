@@ -23,7 +23,7 @@
     "@angular/router": "^6.1.7",
     "@ngui/auto-complete": "^2.0.0",
     "@types/proj4": "^2.3.4",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.17.1",
     "bootstrap": "^4.0.0-alpha.6",
     "concurrently": "^4.0.1",
