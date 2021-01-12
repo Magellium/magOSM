@@ -143,6 +143,7 @@ export class PaginationService {
         this.pageItem3 = null;
         this.nextPage = null;
         this.rangePage = null;
+        this.resetPageIndex();
     }
 
     public actualizePagination(){
@@ -164,9 +165,9 @@ export class PaginationService {
             this.pageItem2.nativeElement.parentElement.classList.remove('disabled');  
             this.pageItem3.nativeElement.parentElement.classList.remove('disabled');  
 
-            if (this.getPageIndex()==0){
+            if (pageArray[0] == 1 && pageArray[0] == this.getPageIndex()+1 ){
                 this.previousPage.nativeElement.parentElement.classList.add('disabled'); 
-            } else if (this.getPageIndex() >= this.getLastPageIndex()){
+            } else if (this.getPageIndex() >= this.getLastPageIndex()-1){
                 this.nextPage.nativeElement.parentElement.classList.add('disabled'); 
                 if (this.getPageIndex()>2){
                     pageArray=[this.getPageIndex()-1, this.getPageIndex(), this.getPageIndex()+1];    
@@ -190,12 +191,6 @@ export class PaginationService {
             if (pageArray[2] > (this.getLastPageIndex())){
                 this.pageItem3.nativeElement.parentElement.classList.add('disabled');  
             }
-            if (pageArray[0] == 1 ){
-                this.previousPage.nativeElement.parentElement.classList.add('disabled'); 
-            }
-            if (pageArray[2] >= this.getLastPageIndex() ){
-                this.nextPage.nativeElement.parentElement.classList.add('disabled');  
-            }                
         }
     }
     
@@ -206,7 +201,7 @@ export class PaginationService {
             let lastRangeElement = fisrtRangeElement+1 +  + parseInt( this.numberPerPage.nativeElement.value); 
             lastRangeElement = (lastRangeElement > this.getTotalElement() ? this.getTotalElement():lastRangeElement);
             
-            this.rangePage.nativeElement.innerText = (fisrtRangeElement+1) + " - " + lastRangeElement +" sur " + this.getTotalElement() ;
+            this.rangePage.nativeElement.innerText = (fisrtRangeElement+1) + " - " + lastRangeElement +" sur " + this.getTotalElement() +" éléments" ;
         } 
     }
 
@@ -232,7 +227,7 @@ export class PaginationService {
             if (this.getPageIndex()==0){
                 buttons[1].classList.add('active');
             } else if (this.getPageIndex() == this.getLastPageIndex()-1){
-                buttons[3].classList.add('active');
+                buttons[this.getLastPageIndex()].classList.add('active');
             } else{            
                 buttons[2].classList.add('active');  
             }

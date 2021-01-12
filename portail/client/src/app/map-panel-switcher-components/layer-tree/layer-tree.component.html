@@ -26,12 +26,26 @@
                         [class.visible]="mapService.isVisible(feature.layername)"
                     >
                         <div>
+                            <label class="form-check-label"  (click)="onSelect($event,feature)">
+                                <input type="checkbox" class="form-check-input position-static"  [checked]="categorie.id_categorie === 4 || (userContext.vLay.indexOf(feature.layername.replace(myRegex, '')) >= 0)">
+                                {{feature.nom_court}}
+                            </label>
+                            <div (click)="onInfo(feature)" class="metadata-circle" [title]="feature.md_url ? 'Fiche de métadonnées' : 'Aucune info pour cette couche'"><b>?</b></div>
+                            
+                            <span *ngIf="mapService.isInRange(feature.layername)==false" 
+                                style="cursor:pointer;margin: 3px;vertical-align: middle;"
+                                title="Couche non visible à cette résolution" 
+                                data-container="body"
+                                data-toggle="popover"
+                                data-trigger="hover"
+                                data-html="true"
+                                data-content="<div class='alert alert-warning'><i class='fa fa-warning' aria-hidden='true'></i> la couche n'est pas visible à cette résolution</div>"
+                                data-placement="top"
+                            >
+                                <i class="fa fa-eye-slash" aria-hidden="true" style="font-size: 18px;"></i>
+                            </span>
+
                             <a class="layer-entry collapsed" data-toggle="collapse" href="#{{feature.nom_court_trim}}Collapse" role="button" aria-expanded="false">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input position-static" (click)="onSelect($event,feature)" [checked]="categorie.id_categorie === 4 || (userContext.vLay.indexOf(feature.layername.replace(myRegex, '')) >= 0)">
-                                    {{feature.nom_court}}
-                                </label>
-                                <div (click)="onInfo(feature)" class="metadata-circle" [title]="feature.md_url ? 'Fiche de métadonnées' : 'Aucune info pour cette couche'"><b>?</b></div>
                                 <i class="fa fa-chevron-right img-expandable" aria-hidden="true"></i>
 
                                 <span class="loading-panel" *ngIf="getState(feature)>0">
@@ -47,21 +61,7 @@
                                         (change)="changeOpacity($event,feature,ref.value);false"
                                     />
                                 
-
-                                    <span *ngIf="mapService.isInRange(feature.layername)==false" 
-                                        style="cursor:pointer;margin: 3px"
-                                        title="Couche non visible à cette résolution" 
-                                        data-container="body"
-                                        data-toggle="popover"
-                                        data-trigger="hover"
-                                        data-html="true"
-                                        data-content="<div class='alert alert-warning'><i class='fa fa-warning' aria-hidden='true'></i> la couche n'est pas visible à cette résolution</div>"
-                                        data-placement="top"
-                                    >
-                                        <i class="fa fa-eye-slash" aria-hidden="true" style="font-size: 27px;"></i>
-                                    </span>
-
-                                    <span style="cursor:pointer;margin: 3px"
+                                    <span *ngIf="mapService.isInRange(feature.layername)" style="cursor:pointer;margin: 3px"
                                         title="Valeurs attributaires" 
                                         (click)="openAttributeTable($event, feature)"
                                         data-container="body"
