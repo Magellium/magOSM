@@ -30,7 +30,7 @@
   line-height: 12px;
   text-align: center;
   background: #7092be;
-  vertical-align: text-top;
+  /* vertical-align: text-top; */
 }
 
 .form-check-label{

@@ -45,7 +45,7 @@ export class LayerTreeComponent implements OnInit {
     let self= this;
     this.layervariables.forEach(categorie => {
       categorie.features.forEach(feature => {
-        feature.nom_court_trim = feature.nom_court.replaceAll(' ', '');
+        feature.nom_court_trim = feature.nom_court.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', '');
       }); 
     }); 
    

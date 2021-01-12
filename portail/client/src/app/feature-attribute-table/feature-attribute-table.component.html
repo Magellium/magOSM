@@ -59,14 +59,15 @@
       </div>
 
       <div class="modal-footer"> 
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item pageSize disabled">
-              <label for="pet-select">Nombre d'élément par page</label>
-              <select #pageSize (change)="onChangePageSize()">
-                <option *ngFor="let pageSize of paginationService.getPageSizeArray()" value={{pageSize}}>{{pageSize}}</option>
-              </select>
-            </li>
+        <nav aria-label="Navigation">
+          <div class="pull-left">
+            <ul class="pagination">
+              <li class="page-item pageSize disabled">
+                <label for="pet-select">Nombre d'élément par page</label>
+                <select #pageSize (change)="onChangePageSize()">
+                  <option *ngFor="let pageSize of paginationService.getPageSizeArray()" value={{pageSize}}>{{pageSize}}</option>
+                </select>
+              </li>
             <li class="page-item disabled">
               <label for="pet-select">Aller à la page : </label>
               <input #pageSizeInput type="text" (keydown)="handlePageSizeInputKeyDown($event)">
@@ -74,25 +75,28 @@
             <li class="page-item" >
               <label #rangePage for="rangePage" class="rangePage"></label>
             </li> 
-
+          </ul>
+        </div>
+        <div class="pull-right">
+          <ul class="pagination">
             <li class="page-item disabled">
               <a class="page-link" #previousPage href="#" tabindex="-1" aria-disabled="true" disabled (click)="onChangePreviousPage()">Page précédente</a>
             </li>
             <li class="page-item disabled" ><a class="page-link active" #pageItem1 (click)="onChangePageIndex($event)" href="#">1</a></li>
             <li class="page-item disabled"><a class="page-link" #pageItem2 (click)="onChangePageIndex($event)" href="#">2</a></li>
             <li class="page-item disabled"><a class="page-link" #pageItem3 (click)="onChangePageIndex($event)" href="#">3</a></li>
-            <ng-container *ngIf="paginationService.getLastPageIndex()>3 && paginationService.getPageIndex() < paginationService.getLastPageIndex()-3">
+            <ng-container *ngIf="paginationService.getLastPageIndex()>4 && paginationService.getPageIndex() < paginationService.getLastPageIndex()-3">
               <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-            </ng-container>
-            <ng-container *ngIf="paginationService.getLastPageIndex()>3 && paginationService.getPageIndex() < paginationService.getLastPageIndex()-2">
+            </ng-container><ng-container *ngIf="paginationService.getLastPageIndex()>=4 && paginationService.getPageIndex() < paginationService.getLastPageIndex()-3">
+
               <li class="page-item"><a class="page-link" #pageLastItem (click)="onChangeLastPage()" href="#">{{paginationService.getLastPageIndex()}}</a></li>
             </ng-container>
             <li class="page-item disabled">
               <a class="page-link" #nextPage href="#" (click)="onChangeNextPage()" >Page suivante</a>
             </li>
           </ul>
-        </nav>       
-      </div>
+        </div>
+      </nav>
     </div>
   </div>
 </div>

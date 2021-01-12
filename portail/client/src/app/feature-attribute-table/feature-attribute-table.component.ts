@@ -210,7 +210,7 @@ export class FeatureAttributeTableComponent implements OnInit {
 
   public requestWFS(){    
     this.loadingWFS = true;
-    this.wfsRequest.setStartIndex(this.paginationService.getPageIndex() * this.paginationService.getPageSize() + 1);
+    this.wfsRequest.setStartIndex(this.paginationService.getPageIndex() * this.paginationService.getPageSize());
     this.wfsRequest.setCount(this.paginationService.getPageSize() );
     this.http.get(this.wfsRequest.build(), {responseType: 'text'})
     .subscribe(
