@@ -1,18 +1,18 @@
 <!-- Modal ajout de couche -->
-<div class="modal fade modal-lg" id="featureAttributeTableModal" #featureAttributeTableModal tabindex="-1" 
+<div class="modal fade modal-lg" id="layerAttributeTableModal" #layerAttributeTableModal tabindex="-1" 
   role="dialog" data-backdrop="false" data-keyboard="false"
-  [draggable] dragHandle=".featureAttributeTableHeader" dragTarget="#featureAttributeTableModal"
-    aria-labelledby="featureAttributeTableModalLabel" aria-hidden="true" >
+  [draggable] dragHandle=".layerAttributeTableHeader" dragTarget="#layerAttributeTableModal"
+    aria-labelledby="layerAttributeTableModalLabel" aria-hidden="true" >
 
-  <div class="modal-dialog  modal-lg" id="featureAttributeTableModalDialog" role="document">
+  <div class="modal-dialog  modal-lg" id="layerAttributeTableModalDialog" role="document">
     <div class="modal-content">
 
-      <div class="modal-header featureAttributeTableHeader">
-        <h5 class="modal-title" id="featureAttributeTableModalLabel">
-            <label *ngIf="currentFeature">{{currentFeature.nom_court}}</label> 
+      <div class="modal-header layerAttributeTableHeader">
+        <h5 class="modal-title" id="layerAttributeTableModalLabel">
+            <label *ngIf="currentLayer">{{currentLayer.nom_court}}</label> 
         </h5>
         <!-- <button class="reloadButton" > -->
-          <img class="reloadImage" src="./assets/images/reload.png" title="Recharger les valeurs valeurs"  (click)="setFeature(null)"/>
+          <img class="reloadImage" src="./assets/images/reload.png" title="Recharger les valeurs valeurs"  (click)="setLayer(null)"/>
         <!-- </button> -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -24,27 +24,27 @@
           <div class="card-body">
             <!-- Data table -->
                 <div class="containerTable" *ngIf="!loadingWFS">                   
-                <table class="attribute-table" id="featureAttributeTable" >
-                  <thead [class.hidden]="featureAttributeKeyTable.length===0 || loadingWFS">
+                <table class="attribute-table" id="layerAttributeTable" >
+                  <thead [class.hidden]="layerAttributeKeyTable.length===0 || loadingWFS">
                     <tr>
                       <th></th>
-                      <ng-container *ngFor="let featureAttributeKey of featureAttributeKeyTable"> 
-                        <th *ngIf="featureAttributeKey!='bbox' && featureAttributeKey!='osm_original_geom'" class="attribute">{{featureAttributeKey}} 
-                          <i [class]="paginationService.getSort()[featureAttributeKey]==-1? 'fa fa-sort-desc': paginationService.getSort()[featureAttributeKey]==0? 'fa fa-sort' : 'fa fa-sort-asc'" aria-hidden="true" (click)="sort(featureAttributeKey)"></i>
+                      <ng-container *ngFor="let layerAttributeKey of layerAttributeKeyTable"> 
+                        <th *ngIf="layerAttributeKey!='bbox' && layerAttributeKey!='osm_original_geom'" class="attribute">{{layerAttributeKey}} 
+                          <i [class]="paginationService.getSort()[layerAttributeKey]==-1? 'fa fa-sort-desc': paginationService.getSort()[layerAttributeKey]==0? 'fa fa-sort' : 'fa fa-sort-asc'" aria-hidden="true" (click)="sort(layerAttributeKey)"></i>
                         </th>
                       </ng-container>
                     </tr>
                   </thead>
-                  <tbody id="featureAttributeTableBody" [class.hidden]="featureAttributeValuesTable.length===0 || loadingWFS">
-                    <tr id="bodyTable" *ngFor="let featureAttributeValue of featureAttributeValuesTable; let featureAttributeIndex = index" >
-                      <ng-container *ngFor="let featureAttributeKey of featureAttributeKeyTable; let featureAttributeKeyIndex = index">
-                        <td class="action" *ngIf="featureAttributeKeyIndex==0"  >
-                          <button class="centerButtonTable" (click)="centerGeom($event, featureAttributeValue.properties['bbox'])">
+                  <tbody id="layerAttributeTableBody" [class.hidden]="layerAttributeValuesTable.length===0 || loadingWFS">
+                    <tr id="bodyTable" *ngFor="let layerAttributeValue of layerAttributeValuesTable; let layerAttributeIndex = index" >
+                      <ng-container *ngFor="let layerAttributeKey of layerAttributeKeyTable; let layerAttributeKeyIndex = index">
+                        <td class="action" *ngIf="layerAttributeKeyIndex==0"  >
+                          <button class="centerButtonTable" (click)="centerGeom($event, layerAttributeValue.properties['bbox'])">
                             <img id="centerMap" class="centerButton" src="./assets/images/localisation.svg" title="Centrer sur la carte" />
                           </button>
                         </td>
-                        <td *ngIf="featureAttributeKey!='bbox' && featureAttributeKey!='osm_original_geom'">
-                          {{ featureAttributeValue.properties[featureAttributeKey] }}
+                        <td *ngIf="layerAttributeKey!='bbox' && layerAttributeKey!='osm_original_geom'">
+                          {{ layerAttributeValue.properties[layerAttributeKey] }}
                         </td>
                       </ng-container>                      
                     </tr>

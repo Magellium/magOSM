@@ -1,7 +1,6 @@
 import { MapService } from "app/service/map.service";
 import { Layer } from "./Layer";
 import { environment } from '../../environments/environment';
-import { FeatureAttributeTableComponent } from "app/feature-attribute-table/feature-attribute-table.component";
 import { PaginationService } from "app/service/pagination.service";
 
 
@@ -10,7 +9,7 @@ import { PaginationService } from "app/service/pagination.service";
 export class WFSRequest {
 
 
-    public currentFeature: Layer;
+    public currentLayer: Layer;
     public sorterColumn : string;
     public sorterDirection : number;
     public count : number;
@@ -21,8 +20,8 @@ export class WFSRequest {
 
     }
 
-    public setFeature(feature){
-        this.currentFeature = feature;
+    public setLayer(layer){
+        this.currentLayer = layer;
     }
 
     public setSorter(column : string, direction : number){
@@ -66,7 +65,7 @@ export class WFSRequest {
         } else{
             url += '&maxfeatures=5000&count=10';
         } 
-        url +='&typename=' + this.currentFeature.layername + '&outputFormat=' + outputformat + '&srsname=EPSG:3857';
+        url +='&typename=' + this.currentLayer.layername + '&outputFormat=' + outputformat + '&srsname=EPSG:3857';
        
         let extent = this.mapService.getBoundingBoxCorner();
         

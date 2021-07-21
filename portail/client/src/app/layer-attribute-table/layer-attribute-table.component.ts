@@ -6,19 +6,14 @@ import { MapService } from 'app/service/map.service';
 import { PaginationService } from 'app/service/pagination.service';
 
 import { WFSRequest } from 'app/model/WFSRequest';
-import { bind } from '@angular/core/src/render3/instructions';
-
-
 
 declare var $: any;
 @Component({
-  selector: 'app-feature-attribute-table',
-  templateUrl: './feature-attribute-table.component.html',
-  styleUrls: ['./feature-attribute-table.component.css']
+  selector: 'app-layer-attribute-table',
+  templateUrl: './layer-attribute-table.component.html',
+  styleUrls: ['./layer-attribute-table.component.css']
 })
-export class FeatureAttributeTableComponent implements OnInit {
-
-  @Input() selectedFeature : any;
+export class LayerAttributeTableComponent implements OnInit {
 
   @ViewChild('pageItem1') pageItem1: ElementRef;
   @ViewChild('pageItem2') pageItem2: ElementRef;
@@ -28,16 +23,16 @@ export class FeatureAttributeTableComponent implements OnInit {
   @ViewChild('pageSize') pageSize: ElementRef;
   @ViewChild('pageSizeInput') pageSizeInput: ElementRef;
   @ViewChild('rangePage') rangePage: ElementRef;
-  @ViewChild('featureAttributeTableModal')  modal: ElementRef;
+  @ViewChild('layerAttributeTableModal')  modal: ElementRef;
   
-  public currentFeature : Layer;
+  public currentLayer : Layer;
 
   private static bboxKey : string = 'bbox';
   // champs geoserver WFS à ne pas afficher 
   private static osmOriginalGeomKey : string = 'osm_original_geom';
 
-  public featureAttributeKeyTable : Array<string> = [];
-  public featureAttributeValuesTable : Array<any> = [];
+  public layerAttributeKeyTable : Array<string> = [];
+  public layerAttributeValuesTable : Array<any> = [];
   public loadingWFS : boolean;
 
   public isInitializedSorter : boolean = false;
@@ -72,37 +67,37 @@ export class FeatureAttributeTableComponent implements OnInit {
     });
   }
 
-  initFeatureAttribute(feature){
-    this.featureAttributeValuesTable = [];  
+  initLayerAttribute(layer){
+    this.layerAttributeValuesTable = [];  
     if (this.mapService){
       this.currentZoomMap = this.mapService.getMap().getView().getZoom();
     }
-    if (feature){
-      this.wfsRequest.setFeature(feature);
+    if (layer){
+      this.wfsRequest.setLayer(layer);
     }
     this.requestWFS();    
   }
 
   // Appel du setter depuis le composant "LayerTreeComponent"
   // mais aussi lors du clic sur le reload de la fenêtre
-  setFeature(feature){
-    if (feature){
-      this.currentFeature = feature;
+  setLayer(layer){
+    if (layer){
+      this.currentLayer = layer;
     }
     this.paginationService.resetPageIndex();
     
-    this.initFeatureAttribute(feature);
+    this.initLayerAttribute(layer);
     // affichage de la fenêtre modal des valeurs attributaires de la couches demandées
-    $('#featureAttributeTableModal').modal('show');
+    $('#layerAttributeTableModal').modal('show');
   }
   
   
   initializeSorter(){
     if (!this.isInitializedSorter){
 
-      this.featureAttributeKeyTable.forEach(headerKey => {
-        if (FeatureAttributeTableComponent.bboxKey != headerKey 
-          && FeatureAttributeTableComponent.osmOriginalGeomKey != headerKey ){
+      this.layerAttributeKeyTable.forEach(headerKey => {
+        if (LayerAttributeTableComponent.bboxKey != headerKey 
+          && LayerAttributeTableComponent.osmOriginalGeomKey != headerKey ){
           
           this.paginationService.setSort(headerKey, PaginationService.UNSORTED);
         }      
@@ -180,16 +175,16 @@ export class FeatureAttributeTableComponent implements OnInit {
 
   private parseWFS(data){
     let jsonData = JSON.parse(data);
-    this.featureAttributeKeyTable = [];
-    this.featureAttributeValuesTable = [];
+    this.layerAttributeKeyTable = [];
+    this.layerAttributeValuesTable = [];
 
     jsonData.features.forEach(element => {
-      if (this.featureAttributeKeyTable.length==0){
-        this.featureAttributeKeyTable =  Object.keys(element.properties);
+      if (this.layerAttributeKeyTable.length==0){
+        this.layerAttributeKeyTable =  Object.keys(element.properties);
       }
-      this.featureAttributeValuesTable.push(element);
+      this.layerAttributeValuesTable.push(element);
     });
-    this.paginationService.setData(this.featureAttributeValuesTable);
+    this.paginationService.setData(this.layerAttributeValuesTable);
 
     this.paginationService.setTotalElement(jsonData['totalFeatures']?jsonData['totalFeatures']:jsonData['numberMatched']);
     this.paginationService.actualizePagination();
@@ -202,10 +197,10 @@ export class FeatureAttributeTableComponent implements OnInit {
     this.mapService.centerItemGeom(geom);
   }
 
-  sort(featureAttributeKey : string){
-    this.featureAttributeValuesTable = [];
-    let sorterDir = this.paginationService.setSortColumn(featureAttributeKey);
-    this.wfsRequest.setSorter(featureAttributeKey, sorterDir);
+  sort(layerAttributeKey : string){
+    this.layerAttributeValuesTable = [];
+    let sorterDir = this.paginationService.setSortColumn(layerAttributeKey);
+    this.wfsRequest.setSorter(layerAttributeKey, sorterDir);
     this.requestWFS();
   }
 

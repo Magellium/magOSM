@@ -4,7 +4,7 @@
   margin-left: 2rem;
 }
 
-:host > #featureAttributeTableModal{ z-index: 10001; font-size: 11.2px; overflow: hidden; pointer-events: none; }
+:host > #layerAttributeTableModal{ z-index: 10001; font-size: 11.2px; overflow: hidden; pointer-events: none; }
 
 :host > div > div >  div.modal-content { overflow: hidden;  }
 :host > div > div > div > div.modal-header { padding: 0.5rem; margin-left: 7px; height: 40px; }

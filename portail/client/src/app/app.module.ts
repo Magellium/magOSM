@@ -33,7 +33,7 @@ import { HelpComponent } from './help-components/help/help.component';
 import { HelpChangeTypeComponent } from './help-components/help-subsection/help-subsection.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { LoadSpinnerComponent } from './utils/load-spinner/load-spinner.component';
-import { FeatureAttributeTableComponent } from './feature-attribute-table/feature-attribute-table.component';
+import { LayerAttributeTableComponent } from './layer-attribute-table/layer-attribute-table.component';
 
 import { DraggableDirective } from './common/directive/draggable.directive';
 
@@ -86,7 +86,7 @@ const ROUTES: Routes = [
     HelpComponent,
     HelpChangeTypeComponent,
     LoadSpinnerComponent,
-    FeatureAttributeTableComponent,
+    LayerAttributeTableComponent,
     DraggableDirective
   ],
   imports: [ 

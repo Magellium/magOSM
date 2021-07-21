@@ -6,7 +6,7 @@ import { LayerChangeService } from '../../service/layer-change.service';
 import { UserContext } from '../../model/UserContext';
 import { environment } from '../../../environments/environment';
 import { LayerAndCategory } from 'app/model/LayerAndCategory';
-import { FeatureAttributeTableComponent } from 'app/feature-attribute-table/feature-attribute-table.component';
+import { LayerAttributeTableComponent } from 'app/layer-attribute-table/layer-attribute-table.component';
 
 declare var config: any;
 declare var $: any;
@@ -26,7 +26,7 @@ export class LayerTreeComponent implements OnInit {
 
   layervariables = config.LAYERS;
 
-  @ViewChild('featureAttributeTableComponent') featureAttributeTableComponent: FeatureAttributeTableComponent;
+  @ViewChild('featureAttributeTableComponent') featureAttributeTableComponent: LayerAttributeTableComponent;
 
   @Input('userContext')
   public userContext: UserContext;
@@ -150,7 +150,7 @@ export class LayerTreeComponent implements OnInit {
   // Evènement levé lors d'un click sur le bouton "grille" en face du nom d'une couche
   // Cela provoque l'ouverture d'une fenêtre modale contenant les valeurs attributaires de la couche
   openAttributeTable($event : any, feature):void{
-    this.featureAttributeTableComponent.setFeature(feature);
+    this.featureAttributeTableComponent.setLayer(feature);
     _paq.push(['trackEvent', 'attribute_table', feature.layername])
   }
 
