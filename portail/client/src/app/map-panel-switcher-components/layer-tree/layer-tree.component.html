@@ -26,8 +26,10 @@
                         [class.visible]="mapService.isVisible(feature.layername)"
                     >
                         <div>
-                            <label class="form-check-label"  (click)="onSelect($event,feature)">
-                                <input type="checkbox" class="form-check-input position-static"  [checked]="categorie.id_categorie === 4 || (userContext.vLay.indexOf(feature.layername.replace(myRegex, '')) >= 0)">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input position-static"  
+                                [checked]="categorie.id_categorie === 4 || (userContext.vLay.indexOf(feature.layername.replace(myRegex, '')) >= 0)"
+                                (click)="onSelect($event,feature)">
                                 {{feature.nom_court}}
                             </label>
                             <div (click)="onInfo(feature)" class="metadata-circle" [title]="feature.md_url ? 'Fiche de métadonnées' : 'Aucune info pour cette couche'"><b>?</b></div>
@@ -62,7 +64,7 @@
                                     />
                                 
                                     <span *ngIf="mapService.isInRange(feature.layername)" style="cursor:pointer;margin: 3px"
-                                        title="Valeurs attributaires" 
+                                        title="Table attributaire de la zone visualisée uniquement" 
                                         (click)="openAttributeTable($event, feature)"
                                         data-container="body"
                                         data-toggle="popover"
