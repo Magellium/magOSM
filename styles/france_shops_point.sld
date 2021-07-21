@@ -131,11 +131,11 @@
           </sld:PointSymbolizer>
         </sld:Rule>
         <sld:Rule>
-          <sld:Name>Bijoutier/ joaillier (jewellery)</sld:Name>
+          <sld:Name>Bijoutier/ joaillier (jewelry)</sld:Name>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>shop</ogc:PropertyName>
-              <ogc:Literal>jewellery</ogc:Literal>
+              <ogc:Literal>jewelry</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Filter>
           <MaxScaleDenominator>5000</MaxScaleDenominator>
