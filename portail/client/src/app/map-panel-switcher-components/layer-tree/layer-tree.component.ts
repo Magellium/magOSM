@@ -151,7 +151,7 @@ export class LayerTreeComponent implements OnInit {
   // Cela provoque l'ouverture d'une fenêtre modale contenant les valeurs attributaires de la couche
   openAttributeTable($event : any, feature):void{
     this.featureAttributeTableComponent.setFeature(feature);
-    _paq.push(['trackEvent', 'layer_attribut', feature.layername])
+    _paq.push(['trackEvent', 'attribute_table', feature.layername])
   }
 
   
