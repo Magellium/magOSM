@@ -180,6 +180,7 @@ export class FeatureAttributeTableComponent implements OnInit {
 
   private parseWFS(data){
     let jsonData = JSON.parse(data);
+    this.featureAttributeKeyTable = [];
     this.featureAttributeValuesTable = [];
 
     jsonData.features.forEach(element => {
