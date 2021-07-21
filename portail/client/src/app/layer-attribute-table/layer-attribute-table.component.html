@@ -23,9 +23,9 @@
         <div class="card">
           <div class="card-body">
             <!-- Data table -->
-                <div class="containerTable" *ngIf="!loadingWFS">                   
+                <div class="containerTable" *ngIf="!loadingWFS && layerAttributeKeyTable.length != 0; else noDataBlock">                   
                 <table class="attribute-table" id="layerAttributeTable" >
-                  <thead [class.hidden]="layerAttributeKeyTable.length===0 || loadingWFS">
+                  <thead>
                     <tr>
                       <th></th>
                       <ng-container *ngFor="let layerAttributeKey of layerAttributeKeyTable"> 
@@ -35,7 +35,7 @@
                       </ng-container>
                     </tr>
                   </thead>
-                  <tbody id="layerAttributeTableBody" [class.hidden]="layerAttributeValuesTable.length===0 || loadingWFS">
+                  <tbody id="layerAttributeTableBody">
                     <tr id="bodyTable" *ngFor="let layerAttributeValue of layerAttributeValuesTable; let layerAttributeIndex = index" >
                       <ng-container *ngFor="let layerAttributeKey of layerAttributeKeyTable; let layerAttributeKeyIndex = index">
                         <td class="action" *ngIf="layerAttributeKeyIndex==0"  >
@@ -51,6 +51,9 @@
                   </tbody>
                 </table>  
               </div>   
+              <ng-template #noDataBlock>
+                Pas de données
+              </ng-template>
               <div id="loadingWFS" *ngIf="loadingWFS">
                 <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
             </div>
