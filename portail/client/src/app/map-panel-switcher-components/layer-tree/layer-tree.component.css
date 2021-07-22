@@ -2,11 +2,6 @@
     font-size: 1rem;
 }
 
-#layer-title{
-    font-size: 0.7em;
-    line-height: 100%
-}
-
 .shift {
   position: relative;
   left: 30px;
@@ -24,6 +19,7 @@
 }
 
 .metadata-circle {
+  margin-left: 2px;
   cursor:pointer;
   display: inline-block;
   width: 14px;
@@ -34,6 +30,12 @@
   line-height: 12px;
   text-align: center;
   background: #7092be;
+  /* vertical-align: text-top; */
+}
+
+.form-check-label{
+  margin-right: 2px;
+  padding-left: 10px;
 }
 
 h4 {
@@ -95,9 +97,16 @@ h4 {
     transform: rotate(360deg);
   }
 }
+.btn.layer-entry{
+  padding: 0 0 ;
+}
 
 .layer-entry {
   background: white;
+  font-size: 0.84em;
+  line-height: 100%;
+  background-color: transparent;
+  color: #212529;
 }
 
 .layer-entry.visible {
@@ -108,7 +117,17 @@ h4 {
 input[type=range] {
   width: 60px; 
 }
+:host > div > div > div > div > div > a > div > div > div.card.card-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  font-size: 0.84em;
+  padding: 0 0 ;
+  background-color: transparent;
+}  
+:host >div > div > div > div > div > a > div > a { text-decoration:none; }
 
-.form-check-label{
-  padding-left: 10px;
-}
+:host >div > div > div > div > div > a > div > a > i.img-expandable { margin-left : 3px; margin-top : -1px; width: 13px; height: 15px;  transform: rotate(90deg); transition: transform 0.2s linear;  }
+
+:host >div > div > div > div > div > a > div > a.collapsed > i.img-expandable { margin-left : 3px; margin-top : -1px; width: 13px; height: 15px; transform: rotate(0deg); transition: transform 0.2s linear; }
