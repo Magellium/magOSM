@@ -216,9 +216,9 @@
           </ogc:Filter>
           <sld:MaxScaleDenominator>1000000</sld:MaxScaleDenominator>
           <sld:PolygonSymbolizer uom="http://www.opengeospatial.org/se/units/pixel">
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#B4D0D0</sld:CssParameter>
-            </sld:Stroke>
+            <sld:Fill>
+              <sld:CssParameter name="fill">#B4D0D0</sld:CssParameter>
+            </sld:Fill>
           </sld:PolygonSymbolizer>
         </sld:Rule>
         <sld:Rule>
