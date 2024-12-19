@@ -1,0 +1,19 @@
+<layer>
+  <name>cycleways_line</name>
+  <id>LayerInfoImpl-7d371000:15debce7a79:-6b0a</id>
+  <path>/Transport</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--22da7989:15e76f2c193:11c</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-7d371000:15debce7a79:-6b0b</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:24:16.925 UTC</dateModified>
+</layer>

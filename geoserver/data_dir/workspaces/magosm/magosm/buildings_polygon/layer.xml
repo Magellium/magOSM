@@ -1,0 +1,23 @@
+<layer>
+  <name>buildings_polygon</name>
+  <id>LayerInfoImpl-26921b9f:15f8244d6b3:5f66</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-26921b9f:15f7d9c12fc:-170b</id>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <id>StyleInfoImpl-26921b9f:15f7d9c12fc:-170b</id>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-26921b9f:15f8244d6b3:5f65</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:17:13.877 UTC</dateModified>
+</layer>

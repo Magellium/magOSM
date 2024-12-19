@@ -1,0 +1,19 @@
+<layer>
+  <name>bicycle_mtb_routes_line</name>
+  <id>LayerInfoImpl--22da7989:15e71ccaf43:278f</id>
+  <path>/Transport</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--22da7989:15e7b70bc7e:-3cd1</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--22da7989:15e71ccaf43:278e</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:42:16.652 UTC</dateModified>
+</layer>

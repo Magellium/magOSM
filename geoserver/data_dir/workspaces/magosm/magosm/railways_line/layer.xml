@@ -1,0 +1,19 @@
+<layer>
+  <name>railways_line</name>
+  <id>LayerInfoImpl-7d371000:15deb0e36cf:-7d4c</id>
+  <path>/Transport</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--22da7989:15e7a900065:20b4</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-7d371000:15deb0e36cf:-7d4d</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:34:38.965 UTC</dateModified>
+</layer>

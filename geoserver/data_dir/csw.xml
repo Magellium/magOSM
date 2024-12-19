@@ -1,0 +1,22 @@
+<csw>
+  <id>csw</id>
+  <enabled>false</enabled>
+  <name>CSW</name>
+  <versions>
+    <org.geotools.util.Version>
+      <version>2.0.2</version>
+    </org.geotools.util.Version>
+  </versions>
+  <citeCompliant>false</citeCompliant>
+  <schemaBaseURL>http://schemas.opengis.net</schemaBaseURL>
+  <verbose>false</verbose>
+  <metadata>
+    <entry key="DirectDownload.Key">
+      <directDownloadSettings>
+        <directDownloadEnabled>false</directDownloadEnabled>
+        <maxDownloadSize>0</maxDownloadSize>
+      </directDownloadSettings>
+    </entry>
+  </metadata>
+  <canonicalSchemaLocation>false</canonicalSchemaLocation>
+</csw>

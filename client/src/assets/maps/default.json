@@ -1,0 +1,1002 @@
+{
+    "DEFAULTUSERCONTEXT":[
+        {
+            "z": 6,
+            "lon": 2.2, 
+            "lat": 46.8,
+            "bLay": "OSM",
+            "vLay": "none",
+            "tr": 30
+        }
+    ],
+
+    "PROJECTION_CODE":"EPSG:3857",
+
+    "LAYERS":[
+    {
+        "categorie": "Points d'intérêt",
+        "id_categorie": 1,
+        "features": [
+           
+            {
+                "layername": "magosm:hospitals_point",
+                "nom_court": "Hopitaux",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisation-des-hopitaux-dans-openstreetmap/",
+                "sld_path":"/styles/hospitals_point.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [ 
+                    {"importance": "high",
+                     "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"operator", "label":"Opérateur"},
+                            {"priority":2, "osm_key":"alt_name", "label":"Anciennement"}
+                        ]   
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"addr-housenumber"},
+                            {"osm_key":"addr-street"}, 
+                            {"osm_key":"addr-postcode"},
+                            {"osm_key":"addr-city"},
+                            {"osm_key":"phone"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:clinics_point",
+                "nom_court": "Cliniques",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisation-des-cliniques-dans-openstreetmap/",
+                "sld_path":"/styles/clinics_point.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"operator", "label":"Opérateur"}
+                        ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"opening_hours", "label":"Horaires d'ouverture"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"addr-housenumber"},
+                            {"osm_key":"addr-street"}, 
+                            {"osm_key":"addr-postcode"},
+                            {"osm_key":"addr-city"},
+                            {"osm_key":"phone"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:pharmacies_point",
+                "nom_court": "Pharmacies",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisation-des-pharmacies-dans-openstreetmap/",
+                "sld_path":"/styles/pharmacies_point.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"operator", "label":"Opérateur"}
+                        ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"opening_hours", "label":"Horaires d'ouverture"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"addr-housenumber"},
+                            {"osm_key":"addr-street"}, 
+                            {"osm_key":"addr-postcode"},
+                            {"osm_key":"addr-city"},
+                            {"osm_key":"phone"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:social_facility_point",
+                "nom_court": "Structures sociales",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisation-des-structures-sociales-dans-openstreetmap/",
+                "sld_path":"/styles/social_facility_point_cluster.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [ 
+                    {"importance": "high",
+                     "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"social_facility", "label":"Type d'établissement"},
+                            {"priority":2, "osm_key":"community_centre", "label":"Type "}
+                        ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"social_facility_for", "label":"Public"},
+                            {"priority":2, "osm_key":"community_centre_for", "label":"Public"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"addr_housenumber"},
+                            {"osm_key":"addr_street"}, 
+                            {"osm_key":"addr_postcode"},
+                            {"osm_key":"addr_city"},
+                            {"osm_key":"phone"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"}
+                        ]
+                    }
+                ]
+            },             
+            {
+                "layername": "magosm:schools_point",
+                "nom_court": "Ecoles",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisations-des-etablissements-scolaires-dans-openstreetmap/",
+                "sld_path":"/styles/schools_point.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                           [
+                            {"priority":1, "osm_key":"operator-type", "label":"Enseignement"}
+                           ]   
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"addr-housenumber"},
+                            {"osm_key":"addr-street"}, 
+                            {"osm_key":"addr-postcode"},
+                            {"osm_key":"addr-city"},
+                            {"osm_key":"phone"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:police_point",
+                "nom_court": "Polices et gendarmeries",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisations-des-brigades-de-gendarmeries-et-commissariats-de-police-dans-openstreetmap/",
+                "sld_path":"/styles/police_point.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"operator"}
+                        ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"opening_hours", "label":"Horaires d'ouverture"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"addr-housenumber"},
+                            {"osm_key":"addr-street"}, 
+                            {"osm_key":"addr-postcode"},
+                            {"osm_key":"addr-city"},
+                            {"osm_key":"phone"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:shops_point",
+                "nom_court": "Magasins",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisations-des-magasins-dans-openstreetmap/",
+                "sld_path":"/styles/shops_point.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                           [
+                            {"priority":1, "osm_key":"brand", "label":"Marque"}
+                           ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                         {"priority":1, "osm_key":"operator", "label":"Exploitant"}
+                        ]   
+                 },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"addr-housenumber"},
+                            {"osm_key":"addr-street"}, 
+                            {"osm_key":"addr-postcode"},
+                            {"osm_key":"addr-city"},
+                            {"osm_key":"phone"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"},
+                            {"osm_key":"opening_hours"}
+                        ]
+                    }
+                ]
+            }                	
+        ]
+    },
+    {
+        
+        "categorie": "Routes/Itinéraires",
+        "id_categorie": 2,
+        "features": [
+            {
+                "layername": "magosm:motorways_line",
+                "nom_court": "Autoroutes",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/autoroutes-dans-openstreetmap/",
+                "sld_path":"/styles/motorways_line.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"ref"}
+                        ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"int_ref", "label":"Dénomination européenne"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"maxspeed","label":"Vitesse maximale autorisée (km/h)"},
+                            {"osm_key":"lanes", "label":"Nombre de voies"}
+                        ]
+                    }
+                ]   
+            },
+            {
+                "layername": "magosm:highways_line",
+                "nom_court": "Réseau routier",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/reseau-routier-dans-openstreetmap/",
+                "sld_path":"/styles/highways_line.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"ref"}
+                        ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"int_ref", "label":"Dénomination européenne"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"maxspeed","label":"Vitesse maximale autorisée (km/h)"},
+                            {"osm_key":"lanes", "label":"Nombre de voies"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:highways_line_recently_modified",
+                "nom_court": "Réseau routier (Modifications récentes j-7)",
+                "sld_path":"/styles/highways_line.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"ref"}
+                        ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"int_ref", "label":"Dénomination européenne"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"maxspeed","label":"Vitesse maximale autorisée (km/h)"},
+                            {"osm_key":"lanes", "label":"Nombre de voies"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:hiking_foot_routes_line",
+                "nom_court": "Itinéraires de randonnée",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/itineraires-de-randonnee-dans-openstreetmap/",
+                "sld_path":"/styles/hiking_foot_routes_line.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"ref","label":"Référence"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"website"},
+                            {"osm_key":"duration","label":"Durée"},
+                            {"osm_key":"distance","label":"Distance"}
+
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:bicycle_mtb_routes_line",
+                "nom_court": "Itinéraires cyclables",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/itineraires-cyclables-dans-openstreetmap/",
+                "sld_path":"/styles/bicycle_mtb_routes_line.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"ref","label":"Référence"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"osm_key":"description","label":"Description"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:cycleways_line",
+                "nom_court": "Réseau cyclable",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/reseau-cyclable-dans-openstreetmap/",
+                "sld_path":"/styles/cycleways_line.sld",
+                "type":"WMTS",
+                "maxScaleDenominator":300000,
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    }
+                ]
+            },
+            {
+
+                "layername": "magosm:bus_routes_line",
+                "nom_court": "Itinéraires de bus",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/itineraires-de-bus-dans-openstreetmap/",
+                "sld_path":"/styles/bus_routes_line.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"},
+                            {"priority":3,"osm_key":"short_name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"ref","label":"Ligne"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"network","label":"Réseau"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"},
+                            {"osm_key":"from","label":"Depuis"},
+                            {"osm_key":"to","label":"En direction de"},
+                            {"osm_key":"opening_hours","label":"Horaires d'ouverture"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:tram_ltr_routes_line",
+                "nom_court": "Itinéraires de tramways",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/itineraires-de-tramways-dans-openstreetmap/",
+                "sld_path":"/styles/tram_ltr_routes_line.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"},
+                            {"priority":3,"osm_key":"short_name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"ref","label":"Ligne"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"network","label":"Réseau"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"},
+                            {"osm_key":"from","label":"Depuis"},
+                            {"osm_key":"to","label":"En direction de"},
+                            {"osm_key":"opening_hours","label":"Horaires d'ouverture"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:subway_routes_line",
+                "nom_court": "Itinéraires de métro",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/itineraires-de-metro-dans-openstreetmap/",
+                "sld_path":"/styles/subway_routes_line.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"},
+                            {"priority":3,"osm_key":"short_name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"ref","label":"Ligne"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"network","label":"Réseau"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"},
+                            {"osm_key":"from","label":"Depuis"},
+                            {"osm_key":"to","label":"En direction de"},
+                            {"osm_key":"opening_hours","label":"Horaires d'ouverture"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:train_routes_line",
+                "nom_court": "Itinéraires de train",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/itineraires-de-train-dans-openstreetmap/",
+                "sld_path":"/styles/train_routes_line.sld",
+                "type":"WMS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"},
+                            {"priority":3,"osm_key":"short_name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"ref","label":"Ligne"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"network","label":"Réseau"},
+                            {"osm_key":"website"},
+                            {"osm_key":"from","label":"Depuis"},
+                            {"osm_key":"to","label":"En direction de"},
+                            {"osm_key":"opening_hours","label":"Horaires d'ouverture"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:railways_line",
+                "nom_court": "Voies ferrées",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/voies-ferrees-dans-openstreetmap/",
+                "sld_path":"/styles/railway_line.sld",
+                "type":"WMTS",
+                "maxScaleDenominator":1000000,
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high",
+                    "sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"importance", "label":"Niveau d'importance"}
+                        ]   
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"operator", "label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"maxspeed","label":"Vitesse maximale autorisée (km/h)"},
+                            {"osm_key":"lanes", "label":"Nombre de voies"}
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categorie": "Bâti/Occupation du sol",
+        "id_categorie": 3,
+        "features": [
+            {
+                "layername": "magosm:buildings_polygon",
+                "nom_court": "Bâtiments",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/emprise-des-batiments-dans-openstreetmap/",
+                "sld_path":"/styles/buildings.sld",
+                "type":"WMTS",
+                "maxScaleDenominator":250000,
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"},
+                            {"priority":3,"osm_key":"short_name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"ref","label":"Ligne"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"opening_hours","label":"Horaires d'ouverture"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"},
+                            {"osm_key":"start_date","label":"Début de construction"},
+                            {"osm_key":"height","label":"Hauteur (m)"},
+                            {"osm_key":"building-levels","label":"Etages"},
+                            {"osm_key":"addr-housenumber"},
+                            {"osm_key":"addr-street"}, 
+                            {"osm_key":"addr-postcode"},
+                            {"osm_key":"addr-city"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:proposed",
+                "nom_court": "Propositions de constructions",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/propositions-de-constructions-dans-openstreetmap/",
+                "sld_path":"/styles/proposed.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"proposed_key","label":"Type de construction prévue"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"proposed_value","label":"Sous-type de construction prévue"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"osm_key":"name","label":"Nom"},
+                            {"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"start_date","label":"Début du chantier"},
+                            {"osm_key":"end_date","label":"Fin du chantier"},
+                            {"osm_key":"opening_date","label":"Date d'ouverture prévue"},
+                            {"osm_key":"check_date","label":"Date de vérification"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:constructions",
+                "nom_court": "Constructions en cours",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/constructions-en-cours-dans-openstreetmap/",
+                "sld_path":"/styles/constructions.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"const_key","label":"Type de construction"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"const_value","label":"Sous-type de construction"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"osm_key":"name","label":"Nom"},
+                            {"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"start_date","label":"Début du chantier"},
+                            {"osm_key":"end_date","label":"Fin du chantier"},
+                            {"osm_key":"opening_date","label":"Date d'ouverture prévue"},
+                            {"osm_key":"check_date","label":"Date de vérification"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:landuses_naturals_polygon",
+                "nom_court": "Occupation du sol",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/occupation-du-sol-dans-openstreetmap/",
+                "maxScaleDenominator":1000000,
+                "sld_path":"/styles/landuses_naturals.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"official_name"},
+                            {"priority":2, "osm_key":"name"},
+                            {"priority":3,"osm_key":"short_name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"landuse","label":"Utilisation du sol"},
+                            {"priority":2,"osm_key":"natural","label":"Occupation du sol"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"},
+                            {"priority":2,"osm_key":"source","label":"Source"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"opening_hours","label":"Horaires d'ouverture"},
+                            {"osm_key":"website"},
+                            {"osm_key":"email"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:pnr_polygon",
+                "nom_court": "Parcs Naturels Régionaux",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/parcs-naturels-regionaux-pnr-france-metropolitaine/",
+                "sld_path":"/styles/pnr_polygon.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info": [
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"short_name"},
+                            {"priority":2, "osm_key":"name"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [   
+                            {"osm_key":"start_date","label":"Date de création"},
+                            {"osm_key":"website"},
+                            {"osm_key":"phone"},
+                            {"osm_key":"email"}
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+     		{
+        "categorie": "Télécommunications",
+        "id_categorie": 31,
+        "features": [
+            {
+                "layername": "magosm:telecom_exchange_point",
+                "nom_court": "Noeuds de raccordement",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisations-des-noeuds-de-raccordement-abonnes-nra-et-optiques-nro-dans-openstreetmap/",
+                "sld_path":"/styles/telecom_exchange_point.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"ref-FR-PTT","label":"Référence PTT"},
+                            {"priority":2, "osm_key":"ref-FR-Orange","label":"Référence Orange"},
+                            {"priority":3, "osm_key":"ref-FR-SFR","label":"Référence SFR"},
+                            {"priority":4, "osm_key":"ref","label":"Référence"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"},
+                            {"priority":2,"osm_key":"owner","label":"Propriétaire"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"name","label":"Nom"},
+                            {"priority":2,"osm_key":"description","label":"Description"},
+                            {"priority":3,"osm_key":"street_cabinet","label":"Type de répartiteur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"telecom-medium","label":"Type de câble"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "layername": "magosm:telecom_fibre_connection_point",
+                "nom_court": "Points de mutualisation Fibre",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisations-des-points-de-mutualisation-fibre-pmz-dans-openstreetmap/",
+                "sld_path":"/styles/telecom_fibre_connection_point.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"ref-FR-ARCEP","label":"Référence ARCEP"},
+                            {"priority":2,"osm_key":"ref-FR-Orange","label":"Référence Orange"},
+                            {"priority":3,"osm_key":"ref-FR-SFR","label":"Référence SFR"},
+                            {"priority":4, "osm_key":"ref","label":"Référence"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"},
+                            {"priority":2,"osm_key":"owner","label":"Propriétaire"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"name","label":"Nom"},
+                            {"priority":2,"osm_key":"description","label":"Description"},
+                            {"priority":3,"osm_key":"street_cabinet","label":"Type de répartiteur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"ref-FR-Orange-NRO","label":"Référence Orange NRO"}
+                        ]
+                    }
+                ]
+            },
+			{
+                "layername": "magosm:telecom_copper_connection_point",
+                "nom_court": "Sous-répartiteurs cuivre",
+                "md_url": "https://www.data.gouv.fr/fr/datasets/localisations-des-sous-repartiteurs-cuivre-sr-dans-openstreetmap/",
+                "sld_path":"/styles/telecom_copper_connection_point.sld",
+                "type":"WMTS",
+                "download_kml":true,
+                "download_shp":true,
+                "feature_main_info":[
+                    {"importance": "high","sub_tags":
+                        [
+                            {"priority":1, "osm_key":"ref-FR-PTT","label":"Référence PTT"},
+                            {"priority":2, "osm_key":"ref","label":"Référence"},
+                            {"priority":3,"osm_key":"ref-FR-Orange","label":"Référence Orange"}
+                        ]
+                    },
+                    {"importance":"medium","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"operator","label":"Opérateur"},
+                            {"priority":2,"osm_key":"owner","label":"Propriétaire"}
+                        ]
+                    },
+                    {"importance":"low","sub_tags":
+                        [
+                            {"priority":1,"osm_key":"name","label":"Nom"},
+                            {"priority":2,"osm_key":"description","label":"Description"},
+                            {"priority":3,"osm_key":"street_cabinet","label":"Type de répartiteur"}
+                        ]
+                    },
+                    {"importance":"no", "sub_tags":
+                        [
+                            {"osm_key":"ref-FR-PTT-NRA","label":"Référence PTT NRA"},
+                            {"osm_key":"telecom-medium","label":"Type de câble"}
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categorie": "Mes couches",
+        "help": "Pour ajouter une couche, faîtes un glissé/déposé d'un fichier ShapeFile (ou de son URL) dans la carte.",
+        "id_categorie": 4,
+        "features": []
+    }
+    ],
+    "OSM_KEYS_WITH_IRRELEVANT_VALUE_FOR_EXTERNAL_LINKS":[
+        {"osm_key":"phone"},
+        {"osm_key":"fax"},
+        {"osm_key":"opening_hours"},
+        {"osm_key":"website"},
+        {"osm_key":"wiki"},
+        {"osm_key":"addr"},
+        {"osm_key":"ref"},
+        {"osm_key":"name"},
+        {"osm_key":"building"},
+        {"osm_key":"note"},
+        {"osm_key":"colour"},
+        {"osm_key":"location"},
+        {"osm_key":"source"},
+        {"osm_key":"type"},
+        {"osm_key":"description"},
+        {"osm_key":"email"}
+    ],
+    "ARTIFICIAL_OSM_KEYS_CREATED_IN_DB":["const_key", "const_value", "proposed_key", "proposed_value"], 
+    "DAYS_INTERVAL_FOR_CHANGES_MONITORING":60,
+    "MAX_RESPONSE_SIZE_WITHOUT_WARNING_IN_MO":10
+}

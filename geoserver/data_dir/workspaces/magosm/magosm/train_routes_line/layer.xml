@@ -1,0 +1,17 @@
+<layer>
+  <name>train_routes_line</name>
+  <id>LayerInfoImpl-41bb559d:193bb33794a:-7fea</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--4a6b37c1:171cac69dd4:-7b4f</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-41bb559d:193bb33794a:-7feb</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2024-12-12 14:43:39.545 UTC</dateCreated>
+  <dateModified>2024-12-12 14:44:09.768 UTC</dateModified>
+</layer>
