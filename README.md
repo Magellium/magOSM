@@ -1,8 +1,13 @@
 # magOSM
 
 Toutes les informations utiles sur le projet sont accessibles directement sur le site de magOSM : https://magosm.magellium.com/
+
 ## Utiliser l'application
-Ce repo contient les sources nécessaires pour déployer une instance autonome de magOSM. Après installation
+
+Ce repo contient les sources nécessaires pour déployer une instance autonome de magOSM.
+
+Pour une première installation, suivre la procédure documentée dans [INSTALL.md](./INSTALL.md).
+Pour des déploiements ultérieurs, suivre la procédure documentée dans [deployment/README.md](./deployment/README.md).
 
 ## Contribuer
 
