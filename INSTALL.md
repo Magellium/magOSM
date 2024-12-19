@@ -256,6 +256,12 @@ docker restart $COMPOSE_PROJECT_NAME-geoserver-1
   base de données (correspond à `DBPG_USER_MAGOSM_PWD` dans le fichier `.env`) puis sauvegarder
 * Répéter l'opération pour `Entrepôts > citymap`
 
+### Changer le mot de passe maître 
+
+* Depuis l'interface d'administration de geoserver, aller dans `Sécurité > Mots de passe` et cliquer sur le lien `mot de passe maître oublié` puis renseigner le fichier dans lequel geoserver doit écrire le mot de passe en clair (ex : `masterpwd`)
+* Inspecter le mot de passe en ligne de commande : `docker exec $COMPOSE_PROJECT_NAME-geoserver-1 cat /geoserver/masterpwd`
+* Dans l'interface d'administration, cliquer sur le lien `changer le mot de passe maître` et renseigner les champs demandés
+
 ## Démarrer le reste des services
 
 * Construire les images docker manquantes
