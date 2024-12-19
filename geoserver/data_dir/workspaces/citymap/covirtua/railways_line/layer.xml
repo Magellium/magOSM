@@ -1,0 +1,18 @@
+<layer>
+  <name>railways_line</name>
+  <id>LayerInfoImpl-3adcd49e:190119139e5:-7ff7</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--37abb37b:15d7f484381:-7fff</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-3adcd49e:190119139e5:-7ff8</id>
+  </resource>
+  <queryable>false</queryable>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2024-06-13 12:40:30.940 UTC</dateCreated>
+  <dateModified>2024-06-13 13:08:44.898 UTC</dateModified>
+</layer>

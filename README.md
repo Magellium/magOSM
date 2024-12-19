@@ -1,6 +1,8 @@
 # magOSM
 
-Toutes les informations utiles sur le projet sont accessibles directement sur le site de magOSM  : https://magosm.magellium.com/
+Toutes les informations utiles sur le projet sont accessibles directement sur le site de magOSM : https://magosm.magellium.com/
+## Utiliser l'application
+Ce repo contient les sources nécessaires pour déployer une instance autonome de magOSM. Après installation
 
 ## Contribuer
 
@@ -22,9 +24,3 @@ Si vous voulez rapporter une anomalie sur le portail magOSM, ou bien proposer un
 ### Proposer une nouvelle couche thématique
 
 Un guide est disponible ici : [Contribution.md](Contribution.md) !
-
-## Organisation du projet
-
-* `./portail/` : frontend et backend du [Portail magOSM](http://magosm.magellium.com/portail/)
-* `./styles/` : fichiers de style SLD définissant les styles par défaut pour les flux WMS
-* [magosm_db](https://github.com/Magellium/magosm_db) : dépôt de code relatif à la base de données magOSM

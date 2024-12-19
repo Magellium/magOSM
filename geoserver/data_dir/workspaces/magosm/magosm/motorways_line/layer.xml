@@ -1,0 +1,19 @@
+<layer>
+  <name>motorways_line</name>
+  <id>LayerInfoImpl-7d371000:15debce7a79:-6b02</id>
+  <path>/Transport</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--22da7989:15e763e03c6:2ea3</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-7d371000:15debce7a79:-6b03</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:31:38.26 UTC</dateModified>
+</layer>

@@ -1,0 +1,23 @@
+<layer>
+  <name>landuses_naturals_polygon</name>
+  <id>LayerInfoImpl-26921b9f:15f8244d6b3:5f64</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-7c185ac3:1612fa867e6:-f49</id>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <id>StyleInfoImpl-7c185ac3:1612fa867e6:-f49</id>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-26921b9f:15f8244d6b3:5f63</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:26:58.667 UTC</dateModified>
+</layer>

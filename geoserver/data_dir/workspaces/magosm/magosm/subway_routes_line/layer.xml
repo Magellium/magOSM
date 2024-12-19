@@ -1,0 +1,26 @@
+<layer>
+  <name>subway_routes_line</name>
+  <id>LayerInfoImpl-7d371000:15debce7a79:-6af8</id>
+  <path>/Transport</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--22da7989:15e51733a75:4ae5</id>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <id>StyleInfoImpl--37abb37b:15d7f484381:-7fff</id>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-7d371000:15debce7a79:-6af9</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:36:40.8 UTC</dateModified>
+</layer>

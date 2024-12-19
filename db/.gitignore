@@ -1,0 +1,3 @@
+conf/.env
+conf/postgres_settings.sh
+nohup.out

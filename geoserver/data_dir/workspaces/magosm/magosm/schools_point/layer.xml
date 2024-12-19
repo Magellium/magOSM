@@ -1,0 +1,18 @@
+<layer>
+  <name>schools_point</name>
+  <id>LayerInfoImpl-7d371000:15dea9f0572:-6f61</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--22da7989:15e512659bf:544b</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-7d371000:15dea9f0572:-6f62</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:35:06.878 UTC</dateModified>
+</layer>

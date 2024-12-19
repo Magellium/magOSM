@@ -1,0 +1,44 @@
+<layerGroup>
+  <id>LayerGroupInfoImpl-3e7ba2dd:19011ad40ba:-7ffc</id>
+  <name>niveau_1</name>
+  <mode>OPAQUE_CONTAINER</mode>
+  <queryDisabled>true</queryDisabled>
+  <title>Niveau 1</title>
+  <workspace>
+    <id>WorkspaceInfoImpl-3adcd49e:190119139e5:-8000</id>
+  </workspace>
+  <internationalTitle/>
+  <internationalAbstract/>
+  <publishables>
+    <published type="layer">
+      <id>LayerInfoImpl-3adcd49e:190119139e5:-7ff9</id>
+    </published>
+    <published type="layer">
+      <id>LayerInfoImpl-3adcd49e:190119139e5:-7ffc</id>
+    </published>
+  </publishables>
+  <styles>
+    <style>
+      <id>StyleInfoImpl-3e7ba2dd:19011ad40ba:-8000</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl-3e7ba2dd:19011ad40ba:-7ffe</id>
+    </style>
+  </styles>
+  <bounds>
+    <minx>-2.0037508342789244E7</minx>
+    <maxx>2.0037508342789244E7</maxx>
+    <miny>-2.00489661040146E7</miny>
+    <maxy>2.0048966104014594E7</maxy>
+    <crs class="projected">EPSG:3857</crs>
+  </bounds>
+  <metadata>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2024-06-13 13:04:12.463 UTC</dateCreated>
+  <dateModified>2024-06-14 15:04:36.206 UTC</dateModified>
+</layerGroup>

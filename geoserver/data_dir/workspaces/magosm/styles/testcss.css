@@ -1,0 +1,6 @@
+* {
+   stroke: #333333, symbol("shape://vertline");
+   stroke-width: 3px;
+   label: [name];
+
+ }

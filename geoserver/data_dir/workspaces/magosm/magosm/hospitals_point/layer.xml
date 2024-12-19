@@ -1,0 +1,19 @@
+<layer>
+  <name>hospitals_point</name>
+  <id>LayerInfoImpl-7d371000:15debce7a79:-6b06</id>
+  <path>/Santé</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-7d371000:15e3884e9d2:-7c78</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-7d371000:15debce7a79:-6b07</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:26:00.11 UTC</dateModified>
+</layer>

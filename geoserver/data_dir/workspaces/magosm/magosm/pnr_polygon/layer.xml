@@ -1,0 +1,18 @@
+<layer>
+  <name>pnr_polygon</name>
+  <id>LayerInfoImpl-4fe1a03:167a829330b:1aa3</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-4fe1a03:167a829330b:1bda</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-4fe1a03:167a829330b:1aa2</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:33:02.34 UTC</dateModified>
+</layer>

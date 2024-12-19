@@ -1,0 +1,90 @@
+services:
+
+  db:
+    image: magosm_db
+    build:
+      context: ../db
+      dockerfile: docker/Dockerfile
+    container_name: $DOCKER_NAME
+    restart: always
+    environment:
+      -  POSTGRES_PASSWORD=$DBPG_USER_POSTGRES_PWD
+    volumes:
+      - $HOST_VOLUMES_BASE_DIR/$OSMOSIS_OSM2PGSQL_WORKING_DIR:$DOCKER_VOLUMES_BASE_DIR/$OSMOSIS_OSM2PGSQL_WORKING_DIR
+      - $HOST_VOLUMES_BASE_DIR/$PG_DATA_DIR:/var/lib/postgresql/data
+      - $HOST_VOLUMES_BASE_DIR/$OSM_PBF_FILES_DIR:$DOCKER_VOLUMES_BASE_DIR/$OSM_PBF_FILES_DIR
+      - $HOST_VOLUMES_BASE_DIR/$OSM2PGSQL_FLATNODE_DIR:$DOCKER_VOLUMES_BASE_DIR/$OSM2PGSQL_FLATNODE_DIR
+      - ../db:$DOCKER_VOLUMES_BASE_DIR/$SOURCE_DIR
+      - .env:$DOCKER_VOLUMES_BASE_DIR/$SOURCE_DIR/conf/.env
+    ports:
+      - $DOCKER_HOST_PORT_TO_PUBLISH:5432
+    shm_size: "256MB"
+
+  services-webapp:
+    image: services-webapp
+    build:
+      context: ../services-webapp
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_APPLICATION_JSON={"spring":{"datasource":{"password":"$DBPG_USER_MAGOSM_PWD"}}}
+    depends_on:
+      - db
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+
+  client:
+    image: client
+    build:
+      context: ../client
+      dockerfile: docker/Dockerfile
+    restart: unless-stopped
+    healthcheck:
+      test: curl --fail http://localhost/ || exit 1
+      interval: 10s
+      retries: 5
+
+
+  reverse-proxy:
+    image: nginx:1.27.0-alpine
+    restart: unless-stopped
+    ports:
+      - 81:80
+    volumes:
+      - ../reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      default:
+      magosm:
+        aliases:
+          - $COMPOSE_PROJECT_NAME-reverse-proxy
+
+  geoserver:
+    image: kartoza/geoserver:2.25.2
+    restart: unless-stopped
+    environment:
+      - GS_VERSION=2.25.2
+      - HTTP_SCHEME=https
+      - GEOSERVER_CSRF_WHITELIST=magosm.magellium.com,magosm-ch.magellium.com
+      - TOMCAT_EXTRAS=false
+      - INITIAL_MEMORY=2G
+      - MAXIMUM_MEMORY=4G
+      - EXISTING_DATA_DIR=true
+      - GEOSERVER_UID=${GEOSERVER_UID:-1000}
+      - GEOSERVER_GID=${GEOSERVER_GID:-1000}
+    volumes:
+      - ../geoserver/data_dir:/opt/geoserver/data_dir
+    deploy:
+      replicas: 2
+    depends_on:
+    - db
+    healthcheck:
+      test: curl --fail http://localhost:8080/geoserver || exit 1
+      interval: 10s
+      retries: 5
+
+networks:
+  magosm:
+    external: true
+

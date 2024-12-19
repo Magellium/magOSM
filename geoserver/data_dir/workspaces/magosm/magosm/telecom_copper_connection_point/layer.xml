@@ -1,0 +1,19 @@
+<layer>
+  <name>telecom_copper_connection_point</name>
+  <id>LayerInfoImpl-34131bf:16a6933d8f1:-364c</id>
+  <path>/Télécom</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-34131bf:16a6d5dccdb:-60b4</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-34131bf:16a6933d8f1:-364d</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:37:12.326 UTC</dateModified>
+</layer>
