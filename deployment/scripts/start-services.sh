@@ -19,8 +19,8 @@ echo "Démarrage des services"
 docker compose up -d
 
 echo "Modification des permissions pour le data_dir geoserver"
-uid=${GEOSERVER_VOLUME_HOST_OWNER_UID:-1000}
-gid=${GEOSERVER_VOLUME_HOST_OWNER_GID:-1000}
+uid=${UID}
+gid=$(id -g)
 
 sudo chown -R "$uid:$gid" ../geoserver/data_dir
 
