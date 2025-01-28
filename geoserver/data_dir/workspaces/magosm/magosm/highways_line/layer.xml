@@ -1,0 +1,19 @@
+<layer>
+  <name>highways_line</name>
+  <id>LayerInfoImpl-26921b9f:15f71c82f72:-766</id>
+  <path>/Transport</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-7293c7b:173d9061373:-7667</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-26921b9f:15f71c82f72:-767</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:25:00.488 UTC</dateModified>
+</layer>

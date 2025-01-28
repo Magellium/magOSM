@@ -1,0 +1,32 @@
+<GeoServerTileLayer>
+  <id>LayerInfoImpl-7d371000:15dea9f0572:-6f61</id>
+  <enabled>true</enabled>
+  <inMemoryCached>true</inMemoryCached>
+  <name>magosm:schools_point</name>
+  <mimeFormats>
+    <string>application/vnd.mapbox-vector-tile</string>
+    <string>image/png</string>
+    <string>image/jpeg</string>
+  </mimeFormats>
+  <gridSubsets>
+    <gridSubset>
+      <gridSetName>EPSG:3857</gridSetName>
+    </gridSubset>
+  </gridSubsets>
+  <metaWidthHeight>
+    <int>4</int>
+    <int>4</int>
+  </metaWidthHeight>
+  <expireCache>0</expireCache>
+  <expireClients>0</expireClients>
+  <parameterFilters>
+    <styleParameterFilter>
+      <key>STYLES</key>
+      <defaultValue></defaultValue>
+      <availableStyles class="sorted-set"/>
+      <defaultStyle>schools_point</defaultStyle>
+    </styleParameterFilter>
+  </parameterFilters>
+  <gutter>20</gutter>
+  <cacheWarningSkips/>
+</GeoServerTileLayer>

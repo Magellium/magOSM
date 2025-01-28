@@ -1,0 +1,18 @@
+<layer>
+  <name>vineyards_grapes_polygon</name>
+  <id>LayerInfoImpl-51c08fe2:16561038e31:-8ca</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-51c08fe2:1656114efd5:-36cb</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-51c08fe2:16561038e31:-8cb</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:39:46.531 UTC</dateModified>
+</layer>

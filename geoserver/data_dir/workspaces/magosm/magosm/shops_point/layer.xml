@@ -1,0 +1,18 @@
+<layer>
+  <name>shops_point</name>
+  <id>LayerInfoImpl-7d371000:15debce7a79:-6afc</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--22da7989:15e79fa84f0:2449</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-7d371000:15debce7a79:-6afd</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:35:30.495 UTC</dateModified>
+</layer>

@@ -1,0 +1,29 @@
+<wcs>
+  <id>WCSInfoImpl--70d05a93:15d7f782348:-7fff</id>
+  <enabled>false</enabled>
+  <name>WCS</name>
+  <versions>
+    <org.geotools.util.Version>
+      <version>1.0.0</version>
+    </org.geotools.util.Version>
+    <org.geotools.util.Version>
+      <version>1.1.1</version>
+    </org.geotools.util.Version>
+    <org.geotools.util.Version>
+      <version>2.0.1</version>
+    </org.geotools.util.Version>
+  </versions>
+  <citeCompliant>false</citeCompliant>
+  <schemaBaseURL>http://schemas.opengis.net</schemaBaseURL>
+  <verbose>false</verbose>
+  <metadata>
+    <entry key="inspire.language">eng</entry>
+    <entry key="inspire.spatialDatasetIdentifier"></entry>
+    <entry key="inspire.createExtendedCapabilities">false</entry>
+  </metadata>
+  <gmlPrefixing>false</gmlPrefixing>
+  <latLon>false</latLon>
+  <maxInputMemory>0</maxInputMemory>
+  <maxOutputMemory>0</maxOutputMemory>
+  <subsamplingEnabled>true</subsamplingEnabled>
+</wcs>

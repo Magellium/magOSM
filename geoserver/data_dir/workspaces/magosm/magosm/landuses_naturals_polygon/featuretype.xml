@@ -1,0 +1,87 @@
+<featureType>
+  <id>FeatureTypeInfoImpl-26921b9f:15f8244d6b3:5f63</id>
+  <name>landuses_naturals_polygon</name>
+  <nativeName>landuses_naturals_polygon</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--37abb37b:15d7f484381:-7fe3</id>
+  </namespace>
+  <title>Occupation du sol</title>
+  <abstract>Extrait quotidien d&apos;éléments d&apos;occupation du sol naturels et artificiels en Suisse présents dans la base de données ouverte et collaborative OpenStreetMap (OSM) [1]. Ne sont pas inclus les bâtiments et les cours d&apos;eau.&#xd;
+&#xd;
+&#xd;
+La couche est &#xd;
+&#xd;
+    accessible via des services WMS et WFS publics&#xd;
+    visualisable, requêtable et téléchargeable via le portail&#xd;
+&#xd;
+Modèle de données&#xd;
+Les attributs OSM utilisés pour filtrer la donnée sont :&#xd;
+&#xd;
+    landuse=*&#xd;
+    natural=*&#xd;
+    wood = *&#xd;
+    leisure = *&#xd;
+    tourisme=*&#xd;
+    aeroway=*&#xd;
+&#xd;
+Des attributs OSM supplémentaires ont été sélectionnés pour enrichir les tags principaux. Tous les attributs préfixés par &quot;osm&quot; (ex : osm_user, osm_id ...) sont des propriétés communes assimilables à des méta-données sur l&apos;objet OSM.&#xd;
+&#xd;
+Plus d&apos;informations sur :&#xd;
+&#xd;
+    le modèle de données propre aux différents usages du sol sur la page Wiki OSM - Land use and areas of natural land [2].&#xd;
+    le modèle de données OSM général est documenté sur la page Wiki OSM - Eléments cartographiques [3].&#xd;
+    les modes et fréquences d&apos;usage et de combinaison des différents attributs au sein de la communauté OSM sur le service TagInfo [4]&#xd;
+&#xd;
+[1] https://wiki.openstreetmap.org/wiki/FR:Page_principale [2] https://wiki.openstreetmap.org/wiki/Land_use_and_areas_of_natural_land [3] https://wiki.openstreetmap.org/wiki/FR:%C3%89l%C3%A9ments_cartographiques [4] https://taginfo.openstreetmap.org</abstract>
+  <keywords>
+    <string>features</string>
+    <string>landuses_naturals_polygon</string>
+  </keywords>
+  <srs>EPSG:3857</srs>
+  <nativeBoundingBox>
+    <minx>-2.0037508342789244E7</minx>
+    <maxx>2.0037508342789244E7</maxx>
+    <miny>-2.00489661040146E7</miny>
+    <maxy>2.0048966104014594E7</maxy>
+    <crs class="projected">EPSG:3857</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-180.00000000000003</minx>
+    <maxx>180.00000000000003</maxx>
+    <miny>-85.06</miny>
+    <maxy>85.06</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>landuses_naturals_polygon</name>
+        <sql>SELECT * FROM magosm.landuses_naturals_polygon
+</sql>
+        <escapeSql>false</escapeSql>
+        <keyColumn>osm_id</keyColumn>
+        <geometry>
+          <name>the_geom</name>
+          <type>Geometry</type>
+          <srid>3857</srid>
+        </geometry>
+      </virtualTable>
+    </entry>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--37abb37b:15d7f484381:-7fe2</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <internationalTitle/>
+  <internationalAbstract/>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

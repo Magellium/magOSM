@@ -1,0 +1,16 @@
+<layer>
+  <name>proposed</name>
+  <id>LayerInfoImpl--4a6b37c1:1735216d7a9:47b5</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--4a6b37c1:1735216d7a9:507a</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--4a6b37c1:1735216d7a9:47b4</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:34:16.526 UTC</dateModified>
+</layer>

@@ -1,0 +1,18 @@
+<layer>
+  <name>social_facility_point</name>
+  <id>LayerInfoImpl--4a6b37c1:171cac69dd4:-5206</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--4be62493:173a04014f8:-ba6</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--4a6b37c1:171cac69dd4:-5207</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:35:59.998 UTC</dateModified>
+</layer>

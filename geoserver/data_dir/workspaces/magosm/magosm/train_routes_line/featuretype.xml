@@ -1,0 +1,111 @@
+<featureType>
+  <id>FeatureTypeInfoImpl-41bb559d:193bb33794a:-7feb</id>
+  <name>train_routes_line</name>
+  <nativeName>train_routes_line</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--37abb37b:15d7f484381:-7fe3</id>
+  </namespace>
+  <title>Itinéraires de train</title>
+  <abstract>Extrait quotidien des itinéraires de trains présents dans la base de données ouverte et collaborative OpenStreetMap (OSM) [1].&#xd;
+&#xd;
+La couche est &#xd;
+&#xd;
+    accessible via des services WMS et WFS publics&#xd;
+    visualisable, requêtable et téléchargeable via le portail&#xd;
+&#xd;
+Modèle de données&#xd;
+Les attributs OSM utilisés pour filtrer la donnée sont :&#xd;
+&#xd;
+    route=train&#xd;
+&#xd;
+Des attributs OSM supplémentaires ont été sélectionnés pour enrichir les tags principaux. Tous les attributs préfixés par &quot;osm&quot; (ex : osm_user, osm_id ...) sont des propriétés communes assimilables à des méta-données sur l&apos;objet OSM.&#xd;
+&#xd;
+Plus d&apos;informations sur :&#xd;
+&#xd;
+    le modèle de données propre aux itinéraires de train en France sur la page Wiki OSM - France/Voies ferrées [2]&#xd;
+    le modèle de données OSM général est documenté sur la page Wiki OSM - Eléments cartographiques [3];&#xd;
+    les modes et fréquences d&apos;usage et de combinaison des différents attributs au sein de la communauté OSM sur le service TagInfo [4]&#xd;
+&#xd;
+[1] https://wiki.openstreetmap.org/wiki/FR:Page_principale&#xd;
+[2] https://wiki.openstreetmap.org/wiki/France/Voies_ferr%C3%A9es&#xd;
+[3] https://wiki.openstreetmap.org/wiki/FR:%C3%89l%C3%A9ments_cartographiques&#xd;
+[4] https://taginfo.openstreetmap.org&#xd;
+&#xd;
+&#xd;
+&#xd;
+&#xd;
+Extrait quotidien des itinéraires de train en France métropolitaine présents dans la base de données ouverte et collaborative OpenStreetMap (OSM) [1].&amp;#xd;&#xd;
+&amp;#xd;&#xd;
+La couche est disponible dans magOSM https://magosm.magellium.com/&amp;#xd;&#xd;
+&amp;#xd;&#xd;
+    accessible via des services WMS et WFS publics&amp;#xd;&#xd;
+    visualisable, requêtable et téléchargeable via le portail&amp;#xd;&#xd;
+&amp;#xd;&#xd;
+Modèle de données&amp;#xd;&#xd;
+Les attributs OSM utilisés pour filtrer la donnée sont :&amp;#xd;&#xd;
+&amp;#xd;&#xd;
+    route=train&amp;#xd;&#xd;
+&amp;#xd;&#xd;
+Des attributs OSM supplémentaires ont été sélectionnés pour enrichir les tags principaux. Tous les attributs préfixés par &amp;quot;osm&amp;quot; (ex : osm_user, osm_id ...) sont des propriétés communes assimilables à des méta-données sur l&amp;apos;objet OSM.&amp;#xd;&#xd;
+&amp;#xd;&#xd;
+Plus d&amp;apos;informations sur :&amp;#xd;&#xd;
+&amp;#xd;&#xd;
+    le modèle de données propre aux itinéraires de train en France sur la page Wiki OSM - France/Voies ferrées [2].&amp;#xd;&#xd;
+    le modèle de données OSM général est documenté sur la page Wiki OSM - Eléments cartographiques [3].&amp;#xd;&#xd;
+    les modes et fréquences d&amp;apos;usage et de combinaison des différents attributs au sein de la communauté OSM sur le service TagInfo [4]&amp;#xd;&#xd;
+&amp;#xd;&#xd;
+[1] https://wiki.openstreetmap.org/wiki/FR:Page_principale &amp;#xd;&#xd;
+[2] https://wiki.openstreetmap.org/wiki/France/Voies_ferr%C3%A9es&amp;#xd;&#xd;
+[3] https://wiki.openstreetmap.org/wiki/FR:%C3%89l%C3%A9ments_cartographiques &amp;#xd;&#xd;
+[4] https://taginfo.openstreetmap.org</abstract>
+  <keywords>
+    <string>features</string>
+    <string>train_routes_line</string>
+  </keywords>
+  <srs>EPSG:404000</srs>
+  <nativeBoundingBox>
+    <minx>-2.0037508342789244E7</minx>
+    <maxx>2.0037508342789244E7</maxx>
+    <miny>-2.00489661040146E7</miny>
+    <maxy>2.0048966104014594E7</maxy>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-180.00000000000003</minx>
+    <maxx>180.00000000000003</maxx>
+    <miny>-85.06</miny>
+    <maxy>85.06</maxy>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>train_routes_line</name>
+        <sql>SELECT * FROM magosm.bicycle_mtb_routes_line
+</sql>
+        <escapeSql>false</escapeSql>
+        <keyColumn>osm_id</keyColumn>
+        <geometry>
+          <name>the_geom</name>
+          <type>Geometry</type>
+          <srid>-1</srid>
+        </geometry>
+      </virtualTable>
+    </entry>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--37abb37b:15d7f484381:-7fe2</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <simpleConversionEnabled>false</simpleConversionEnabled>
+  <internationalTitle/>
+  <internationalAbstract/>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

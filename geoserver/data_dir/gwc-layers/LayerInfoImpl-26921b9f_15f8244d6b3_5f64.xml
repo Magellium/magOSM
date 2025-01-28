@@ -1,0 +1,35 @@
+<GeoServerTileLayer>
+  <id>LayerInfoImpl-26921b9f:15f8244d6b3:5f64</id>
+  <enabled>true</enabled>
+  <inMemoryCached>true</inMemoryCached>
+  <name>magosm:landuses_naturals_polygon</name>
+  <mimeFormats>
+    <string>image/png</string>
+  </mimeFormats>
+  <gridSubsets>
+    <gridSubset>
+      <gridSetName>EPSG:3857</gridSetName>
+    </gridSubset>
+  </gridSubsets>
+  <metaWidthHeight>
+    <int>4</int>
+    <int>4</int>
+  </metaWidthHeight>
+  <expireCache>0</expireCache>
+  <expireClients>0</expireClients>
+  <parameterFilters>
+    <styleParameterFilter>
+      <key>STYLES</key>
+      <defaultValue></defaultValue>
+      <allowedStyles class="sorted-set">
+        <string>landuses_naturals</string>
+      </allowedStyles>
+      <availableStyles class="sorted-set">
+        <string>landuses_naturals</string>
+      </availableStyles>
+      <defaultStyle>landuses_naturals</defaultStyle>
+    </styleParameterFilter>
+  </parameterFilters>
+  <gutter>0</gutter>
+  <cacheWarningSkips/>
+</GeoServerTileLayer>

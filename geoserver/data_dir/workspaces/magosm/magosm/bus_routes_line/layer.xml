@@ -1,0 +1,27 @@
+<layer>
+  <name>bus_routes_line</name>
+  <id>LayerInfoImpl-7d371000:15debce7a79:-6df1</id>
+  <path>/Transport</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-7c185ac3:160da1b8015:-2842</id>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <id>StyleInfoImpl-7c185ac3:160da1b8015:-2842</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl--22da7989:15e5155f0df:64f9</id>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-7d371000:15debce7a79:-6df2</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:21:55.306 UTC</dateModified>
+</layer>

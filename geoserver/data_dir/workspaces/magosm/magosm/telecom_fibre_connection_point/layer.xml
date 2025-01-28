@@ -1,0 +1,19 @@
+<layer>
+  <name>telecom_fibre_connection_point</name>
+  <id>LayerInfoImpl-34131bf:16a6933d8f1:-3514</id>
+  <path>/Télécom</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-34131bf:16a6d5dccdb:-60e1</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-34131bf:16a6933d8f1:-3515</id>
+  </resource>
+  <attribution>
+    <title>© Magellium</title>
+    <href>https://magosm.magellium.com/informations.html</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateModified>2024-06-07 15:38:29.278 UTC</dateModified>
+</layer>
