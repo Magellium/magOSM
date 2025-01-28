@@ -67,6 +67,7 @@ services:
       - GS_VERSION=2.25.2
       - HTTP_SCHEME=https
       - GEOSERVER_CSRF_WHITELIST=magosm.magellium.com,magosm-ch.magellium.com
+      - #GEOSERVER_CSRF_DISABLED=true
       - TOMCAT_EXTRAS=false
       - INITIAL_MEMORY=2G
       - MAXIMUM_MEMORY=4G
